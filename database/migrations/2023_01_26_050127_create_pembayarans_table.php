@@ -15,6 +15,13 @@ return new class extends Migration
     {
         Schema::create('pembayarans', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('id_petugas');
+            $table->foreignId('nisn');
+            $table->date('tgl_bayar');
+            $table->string('bulan_bayar', 8);
+            $table->string('tahun_bayar');
+            $table->foreignId('id_spp');
+            $table->integer('jumlah_bayar');
             $table->timestamps();
         });
     }
