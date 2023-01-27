@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Spp;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class SppController extends Controller
 {
@@ -14,7 +15,7 @@ class SppController extends Controller
      */
     public function index()
     {
-        //
+        return Inertia::render('Dashboard/Pembayaran/Home');
     }
 
     /**

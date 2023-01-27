@@ -1,6 +1,11 @@
 <?php
 
+use App\Http\Controllers\KelasController;
+use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\SppController;
+use App\Models\Pembayaran;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -25,6 +30,29 @@ Route::get('/', function () {
     ]);
 });
 
+
+Route::group(['prefix' => '/dashboard'], function () {
+    Route::group(['prefix' => '/kelas'], function () {
+        Route::get('/', [KelasController::class, 'index'])->name('kelas.index');
+    });
+
+    Route::group(['prefix' => '/siswa'], function () {
+        Route::get('/', [SiswaController::class, 'index'])->name('siswa.index');
+    });
+
+    Route::group(['prefix' => '/petugas'], function () {
+        Route::get('/', [PetugasController::class, 'index'])->name('petugas.index');
+    });
+
+    Route::group(['prefix' => '/spp'], function () {
+        Route::get('/', [SppController::class, 'index'])->name('spp.index');
+    });
+
+    Route::group(['prefix' => '/pembayaran'], function () {
+        Route::get('/', [Pembayaran::class, 'index'])->name('pembayaran.index');
+    });
+});
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -35,4 +63,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

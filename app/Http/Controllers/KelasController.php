@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kelas;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class KelasController extends Controller
 {
@@ -14,7 +15,7 @@ class KelasController extends Controller
      */
     public function index()
     {
-        //
+        return Inertia::render('Dashboard/Kelas/Home');
     }
 
     /**
