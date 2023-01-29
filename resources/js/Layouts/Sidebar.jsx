@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Navbar from './Navbar'
 import { BsChevronDown, BsCurrencyDollar } from 'react-icons/bs';
 import { MdOutlineDashboardCustomize, MdOutlineSchool } from 'react-icons/md';
@@ -8,6 +8,7 @@ import { RiUserSettingsLine } from 'react-icons/ri';
 const Sidebar = ({ children, active }) => {
     const [open, setOpen] = useState(false);
     const [submenuOpen, setSubmenuOpen] = useState(false);
+    const sidebarRef = useRef();
 
     const adminMenu = [
         {
@@ -27,12 +28,12 @@ const Sidebar = ({ children, active }) => {
 
     return (
         <div>
-            <Navbar setOpen={setOpen} open={open} />
+            <Navbar setOpen={setOpen} open={open} sidebarRef={sidebarRef} />
             <div className='pt-10'>
-                <div className="flex flex-row ">
-                    <div className={` drop-shadow-md md:pt-10 pt-5 bg-gray-200 h-full h-screen md:relative absolute duration-500  ${open ? 'md:relative absolute md:w-1/4 w-1/2 ' : 'w-12 relative'}`}>
+                <div className="flex flex-row">
+                    <div ref={sidebarRef} className={` drop-shadow-md md:pt-10 pt-14 bg-gray-200 md:h-screen bottom-0 top-0 md:relative absolute duration-500  ${open ? 'md:relative absolute md:w-1/4 w-1/2 bottom-0' : 'w-12 relative h-screen'}`}>
                         {adminMenu.map((menu, index) => (
-                            <div key={index} >
+                            <div key={index}>
                                 {menu?.spacing && (
                                     <h2 className={`${menu?.spacing && 'mt-5 mb-3'} font-semibold md:text-xl text-md mx-3 text-slate-900 duration-300 ${!open && 'scale-0 scale-x-0 mx-0 mt-0 mb-0'}`}>Kelola Data
                                     </h2>

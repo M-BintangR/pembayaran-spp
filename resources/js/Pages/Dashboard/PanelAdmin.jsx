@@ -1,6 +1,7 @@
 import Sidebar from '@/Layouts/Sidebar'
 import React from 'react'
 import { CardAdmin } from '@/Components/Cards';
+import HardTitle from '@/Components/HardTitle';
 
 
 
@@ -17,10 +18,7 @@ const PanelAdmin = () => {
 
     return (
         <Sidebar>
-            <div className="md:mt-5 mt-2 md:mb-8 mb-2 bg-slate-100 rounded-md py-3 px-4">
-                <h1 className='text-base md:text-2xl font-semibold '>Dashboard Admin</h1>
-                <p className='text-xs'>Hi Selamat Datang Admin!</p>
-            </div>
+            <HardTitle title={'Dashboard Admin'} subTitle={'Selamat Datang Admin!'} />
             <CardAdmin dataCards={dataCards} />
         </Sidebar>
     )
