@@ -4,9 +4,10 @@ import { BsChevronDown, BsCurrencyDollar } from 'react-icons/bs';
 import { MdOutlineDashboardCustomize, MdOutlineSchool } from 'react-icons/md';
 import { FaSchool, FaRegMoneyBillAlt } from 'react-icons/fa';
 import { RiUserSettingsLine } from 'react-icons/ri';
+import { Link } from '@inertiajs/react';
 
 const Sidebar = ({ children, active }) => {
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(true);
     const [submenuOpen, setSubmenuOpen] = useState(false);
     const sidebarRef = useRef();
 
@@ -15,15 +16,15 @@ const Sidebar = ({ children, active }) => {
             title: 'Dashboard',
             submenu: true,
             submenuItems: [
-                { title: 'Menu Utama', link: '' },
+                { title: 'Menu Utama', link: '/dashboard' },
                 { title: 'Profil', link: '' },
             ],
         },
-        { title: 'Data Pembayaran', link: '', spacing: true },
-        { title: 'Data Siswa', link: '' },
-        { title: 'Data Kelas', link: '' },
-        { title: 'Data Spp', link: '' },
-        { title: 'Data Petugas', link: '' },
+        { title: 'Data Pembayaran', link: '/dashboard/pembayaran', spacing: true },
+        { title: 'Data Siswa', link: '/dashboard/siswa' },
+        { title: 'Data Kelas', link: '/dashboard/kelas' },
+        { title: 'Data Spp', link: '/dashboard/spp' },
+        { title: 'Data Petugas', link: '/dashboard/petugas' },
     ];
 
     return (
@@ -39,12 +40,13 @@ const Sidebar = ({ children, active }) => {
                                     </h2>
                                 )}
                                 <div className={` hover:bg-gray-300  pb-1 hover:text-purple-700 text-gray-900`}>
-                                    <button
+                                    <Link
                                         onClick={() => setOpen(prev => prev = true)}
+                                        href={menu?.link}
                                     >
                                         <li
                                             className={`duration-200 text-sm flex items-center ${active === menu.title && 'bg-light-with'} gap-x-4 cursor-pointer p-2 hover:bg-light-with rounded-md mt-2`}
-                                            onClick={() => setSubmenuOpen(!submenuOpen)}
+                                            onClick={(e) => { menu.submenu ? e.preventDefault() : ''; menu.submenu ? setSubmenuOpen(!submenuOpen) : ''; }}
                                         >
                                             <span className='md:text-2xl text-base block float-left bg-purple-700 p-1 rounded-md text-white text-center'>
                                                 <>
@@ -77,21 +79,21 @@ const Sidebar = ({ children, active }) => {
                                             <span className={`md:text-base text-xs md:font-semibold font-medium flex-1 duration-200 ${!open && 'hidden'}`}>{menu?.title}
                                             </span>
                                             {menu?.submenu && open && (
-                                                <BsChevronDown className={`duration-300 relative md:left-1/2 left-1/4 ${!submenuOpen && 'rotate-180'}`} />
+                                                <BsChevronDown className={`duration-300 ${!submenuOpen && 'rotate-180'}`} />
                                             )}
                                         </li>
-                                    </button>
+                                    </Link>
 
                                     {menu.submenu && submenuOpen && open && (
                                         <ul className='my-2 space-y-1 flex flex-col'>
                                             {menu.submenuItems.map((submenu, index) => (
-                                                <button key={index} className=''>
+                                                <Link href={submenu?.link} key={index} className=''>
                                                     <li className={`hover:text-purple-700 text-sm flex ${active === submenu.title && 'bg-light-with'} items-center  cursor-pointer p-2 hover:bg-light-with rounded-md md:mx-14 mx-3 duration-300`}
                                                         onClick={() => setOpen(prev => prev = true)}
                                                     >
                                                         {submenu.title}
                                                     </li>
-                                                </button>
+                                                </Link>
                                             ))}
                                         </ul>
                                     )}

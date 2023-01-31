@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class PetugasController extends Controller
@@ -15,7 +16,10 @@ class PetugasController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Dashboard/Petugas/Home');
+        $items = User::all();
+        return Inertia::render('Dashboard/Petugas/Home', [
+            'items' => $items,
+        ]);
     }
 
     /**
@@ -25,7 +29,7 @@ class PetugasController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Dashboard/Petugas/Create');
     }
 
     /**
@@ -58,7 +62,9 @@ class PetugasController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return Inertia::render('Dashboard/Petugas/Edit', [
+            'item' => $user
+        ]);
     }
 
     /**
@@ -81,6 +87,8 @@ class PetugasController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $user->delete();
+
+        return Redirect::back();
     }
 }

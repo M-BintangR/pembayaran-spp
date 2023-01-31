@@ -10,7 +10,7 @@
         "@tailwindcss/forms": "^0.5.3",
         "@vitejs/plugin-react": "^3.0.0",
         "autoprefixer": "^10.4.12",
-        "axios": "^1.1.2",
+        "axios": "^1.2.6",
         "laravel-vite-plugin": "^0.7.2",
         "lodash": "^4.17.19",
         "postcss": "^8.4.18",
@@ -20,7 +20,9 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "@inertiajs/inertia": "^0.11.1",
         "react-icons": "^4.7.1",
+        "sweetalert": "^2.1.2",
         "tailwind-scrollbar-hide": "^1.1.7"
     }
 }

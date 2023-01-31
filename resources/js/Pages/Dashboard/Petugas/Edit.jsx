@@ -1,12 +1,12 @@
-import React from 'react'
 import Sidebar from '@/Layouts/Sidebar'
+import React from 'react'
 
-const Home = () => {
+const Edit = () => {
     return (
         <Sidebar>
-            <div>Home</div>
+            <div>Edit</div>
         </Sidebar>
     )
 }
 
-export default Home
+export default Edit

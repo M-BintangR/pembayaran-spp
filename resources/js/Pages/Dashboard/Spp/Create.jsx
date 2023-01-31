@@ -1,12 +1,12 @@
 import React from 'react'
 import Sidebar from '@/Layouts/Sidebar'
 
-const Home = () => {
+const Create = () => {
     return (
         <Sidebar>
-            <div>Home</div>
+            <h1>Create</h1>
         </Sidebar>
     )
 }
 
-export default Home
+export default Create

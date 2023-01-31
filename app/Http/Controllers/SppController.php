@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Spp;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class SppController extends Controller
@@ -25,7 +26,7 @@ class SppController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Dashboard/Spp/Create');
     }
 
     /**
@@ -58,7 +59,9 @@ class SppController extends Controller
      */
     public function edit(Spp $spp)
     {
-        //
+        return Inertia::render('Dashboard/Spp/Edit', [
+            'item' => $spp,
+        ]);
     }
 
     /**
@@ -81,6 +84,8 @@ class SppController extends Controller
      */
     public function destroy(Spp $spp)
     {
-        //
+        $spp->delete();
+
+        Redirect::back();
     }
 }

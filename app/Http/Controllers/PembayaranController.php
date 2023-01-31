@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pembayaran;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class PembayaranController extends Controller
@@ -25,7 +26,7 @@ class PembayaranController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Dashboard/Pembayaran/Create');
     }
 
     /**
@@ -58,7 +59,9 @@ class PembayaranController extends Controller
      */
     public function edit(Pembayaran $pembayaran)
     {
-        //
+        return Inertia::render('Dashboard/Kelas/Edit', [
+            'item' => $pembayaran,
+        ]);
     }
 
     /**
@@ -81,6 +84,8 @@ class PembayaranController extends Controller
      */
     public function destroy(Pembayaran $pembayaran)
     {
-        //
+        $pembayaran->delete();
+
+        return Redirect::back();
     }
 }

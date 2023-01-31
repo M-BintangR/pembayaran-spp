@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kelas;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class KelasController extends Controller
@@ -15,7 +16,18 @@ class KelasController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Dashboard/Kelas/Home');
+        $items = Kelas::all()->map(function ($kelas) {
+            return [
+                'id' => $kelas->id,
+                'nama_kelas' => $kelas->nama_kelas,
+                'kompetensi_keahlian' => $kelas->kompetensi_keahlian,
+                'edit_url' => route('kelas.edit', $kelas->id),
+                'delete_url' => route('kelas.destroy', $kelas->id),
+            ];
+        });
+        return Inertia::render('Dashboard/Kelas/Home', [
+            'items' => $items,
+        ]);
     }
 
     /**
@@ -25,7 +37,7 @@ class KelasController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Dashboard/Kelas/Create');
     }
 
     /**
@@ -58,7 +70,9 @@ class KelasController extends Controller
      */
     public function edit(Kelas $kelas)
     {
-        //
+        return Inertia::render('Dashboard/Kelas/Edit', [
+            "item" => $kelas,
+        ]);
     }
 
     /**
@@ -81,6 +95,8 @@ class KelasController extends Controller
      */
     public function destroy(Kelas $kelas)
     {
-        //
+        $success = $kelas->delete();
+
+        return Redirect::back();
     }
 }

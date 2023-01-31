@@ -24,11 +24,10 @@ const Navbar = ({ open, setOpen, sidebarRef }) => {
     }, []);
 
     const handleClickOutside = (e) => {
-        console.log(sidebarRef.current);
         if (!sidebarRef.current.contains(e.target) && !toggleRef.current.contains(e.target)) {
             setOpen(false);
         }
-        if (!dropdownRef.current.contains(e.target) && !btnDropdownRef.current.contains(e.target)) {
+        if (!btnDropdownRef.current.contains(e.target)) {
             setIsOpen(false);
         }
     }

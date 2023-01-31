@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Siswa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class SiswaController extends Controller
@@ -25,7 +26,7 @@ class SiswaController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Dashboard/Siswa/Create');
     }
 
     /**
@@ -58,7 +59,9 @@ class SiswaController extends Controller
      */
     public function edit(Siswa $siswa)
     {
-        //
+        return Inertia::render('Dashboard/Siswa/Edit', [
+            'item' => $siswa,
+        ]);
     }
 
     /**
@@ -81,6 +84,8 @@ class SiswaController extends Controller
      */
     public function destroy(Siswa $siswa)
     {
-        //
+        $siswa->delete();
+
+        Redirect::back();
     }
 }
