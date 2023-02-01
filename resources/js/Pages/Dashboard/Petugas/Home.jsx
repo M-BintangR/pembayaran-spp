@@ -3,7 +3,7 @@ import Sidebar from '@/Layouts/Sidebar'
 
 const Home = () => {
     return (
-        <Sidebar>
+        <Sidebar active={'petugas'}>
             <div>Home</div>
         </Sidebar>
     )

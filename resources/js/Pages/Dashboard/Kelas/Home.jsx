@@ -64,7 +64,7 @@ const Home = ({ items }) => {
 
     }
     return (
-        <Sidebar>
+        <Sidebar active={'kelas'}>
             <div className={`absolute bg-yellow-500 text-white duration-1000 left-[47%] right-[46%] ${loading ? 'opacity-100 top-28' : 'opacity-0 top-0'} py-2 px-3 rounded-md shadow-xl`}>
                 Memuat...
             </div>

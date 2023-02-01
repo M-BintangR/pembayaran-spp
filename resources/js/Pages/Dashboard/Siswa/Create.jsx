@@ -3,7 +3,7 @@ import React from 'react'
 
 const Create = () => {
     return (
-        <Sidebar>
+        <Sidebar active={'siswa'}>
             <h1>Create</h1>
         </Sidebar>
     )

@@ -3,7 +3,7 @@ import React from 'react'
 
 const Edit = () => {
     return (
-        <Sidebar>
+        <Sidebar active={'pembayaran'}>
             <div>Edit</div>
         </Sidebar>
     )

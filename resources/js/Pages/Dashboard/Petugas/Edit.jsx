@@ -3,7 +3,7 @@ import React from 'react'
 
 const Edit = () => {
     return (
-        <Sidebar>
+        <Sidebar active={'petugas'}>
             <div>Edit</div>
         </Sidebar>
     )

@@ -9,22 +9,28 @@ import { Link } from '@inertiajs/react';
 const Sidebar = ({ children, active }) => {
     const [open, setOpen] = useState(true);
     const [submenuOpen, setSubmenuOpen] = useState(false);
+    const [targetActive, setTargetActive] = useState(false);
     const sidebarRef = useRef();
+
+    useEffect(() => {
+        setTargetActive(active);
+    }, [active]);
 
     const adminMenu = [
         {
             title: 'Dashboard',
+            active: 'dashboard',
             submenu: true,
             submenuItems: [
-                { title: 'Menu Utama', link: '/dashboard' },
-                { title: 'Profil', link: '' },
+                { title: 'Menu Utama', link: '/dashboard', active: 'menu utama' },
+                { title: 'Profil', link: '', active: 'profil' },
             ],
         },
-        { title: 'Data Pembayaran', link: '/dashboard/pembayaran', spacing: true },
-        { title: 'Data Siswa', link: '/dashboard/siswa' },
-        { title: 'Data Kelas', link: '/dashboard/kelas' },
-        { title: 'Data Spp', link: '/dashboard/spp' },
-        { title: 'Data Petugas', link: '/dashboard/petugas' },
+        { title: 'Data Pembayaran', link: '/dashboard/pembayaran', spacing: true, active: 'pembayaran' },
+        { title: 'Data Siswa', link: '/dashboard/siswa', active: 'siswa' },
+        { title: 'Data Kelas', link: '/dashboard/kelas', active: 'kelas' },
+        { title: 'Data Spp', link: '/dashboard/spp', active: 'spp' },
+        { title: 'Data Petugas', link: '/dashboard/petugas', active: 'petugas' },
     ];
 
     return (
@@ -45,7 +51,7 @@ const Sidebar = ({ children, active }) => {
                                         href={menu?.link}
                                     >
                                         <li
-                                            className={`duration-200 text-sm flex items-center ${active === menu.title && 'bg-light-with'} gap-x-4 cursor-pointer p-2 hover:bg-light-with rounded-md mt-2`}
+                                            className={`duration-200 text-sm flex items-center ${targetActive === menu.active && 'bg-gray-300 text-purple-700'} gap-x-4 cursor-pointer p-2 hover:bg-light-with rounded-md mt-2`}
                                             onClick={(e) => { menu.submenu ? e.preventDefault() : ''; menu.submenu ? setSubmenuOpen(!submenuOpen) : ''; }}
                                         >
                                             <span className='md:text-2xl text-base block float-left bg-purple-700 p-1 rounded-md text-white text-center'>
@@ -88,7 +94,7 @@ const Sidebar = ({ children, active }) => {
                                         <ul className='my-2 space-y-1 flex flex-col'>
                                             {menu.submenuItems.map((submenu, index) => (
                                                 <Link href={submenu?.link} key={index} className=''>
-                                                    <li className={`hover:text-purple-700 text-sm flex ${active === submenu.title && 'bg-light-with'} items-center  cursor-pointer p-2 hover:bg-light-with rounded-md md:mx-14 mx-3 duration-300`}
+                                                    <li className={`hover:text-purple-700 text-sm flex ${targetActive === submenu.active && 'bg-gray-300'} items-center  cursor-pointer p-2 hover:bg-light-with rounded-md md:mx-14 mx-3 duration-300`}
                                                         onClick={() => setOpen(prev => prev = true)}
                                                     >
                                                         {submenu.title}

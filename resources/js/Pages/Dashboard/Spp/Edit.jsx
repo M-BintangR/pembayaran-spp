@@ -3,7 +3,7 @@ import Sidebar from '@/Layouts/Sidebar'
 
 const Edit = () => {
     return (
-        <Sidebar>
+        <Sidebar active={'spp'}>
             <h1>Edit</h1>
         </Sidebar>
     )

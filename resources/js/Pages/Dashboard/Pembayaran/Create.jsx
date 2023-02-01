@@ -3,7 +3,7 @@ import React from 'react'
 
 const Create = () => {
     return (
-        <Sidebar>
+        <Sidebar active={'pembayaran'}>
             <div>Create</div>
         </Sidebar>
     )
