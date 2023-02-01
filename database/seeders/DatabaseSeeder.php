@@ -51,8 +51,16 @@ class DatabaseSeeder extends Seeder
                 "kompetensi_keahlian" => "Rekayasa Prangkat Lunak",
             ],
             [
+                "nama_kelas" => "3 RPL 1",
+                "kompetensi_keahlian" => "Rekayasa Prangkat Lunak",
+            ],
+            [
                 "nama_kelas" => "3 TKJ 1",
                 "kompetensi_keahlian" => "Teknik Komputer Jaringan",
+            ],
+            [
+                "nama_kelas" => "3 MMD 1",
+                "kompetensi_keahlian" => "Multi Media",
             ],
         ];
 

@@ -1,10 +1,40 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { BsCurrencyDollar } from 'react-icons/bs';
 import { MdOutlineDashboardCustomize, MdOutlineSchool } from 'react-icons/md';
 import { FaSchool, FaRegMoneyBillAlt } from 'react-icons/fa';
 import { RiUserSettingsLine } from 'react-icons/ri';
 
-export const CardAdmin = ({ dataCards }) => {
+
+export const CardAdmin = ({ dataCards, items }) => {
+    const [kelas, setKelas] = useState(0);
+    const [siswa, setSiswa] = useState(0);
+    const [spp, setSpp] = useState(0);
+    const [pembayaran, setPembayaran] = useState(0);
+    const [petugas, setPetugas] = useState(0);
+
+    const zeroToValue = (callback, target, intervalId) => {
+        callback(prev => {
+            if (prev >= target) {
+                clearInterval(intervalId);
+                return prev;
+            }
+            return prev + 1;
+        });
+    }
+
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            zeroToValue(setKelas, items.kelas, intervalId);
+            zeroToValue(setPembayaran, items.pembayaran, intervalId);
+            zeroToValue(setPetugas, items.petugas, intervalId);
+            zeroToValue(setSpp, items.spp, intervalId);
+            zeroToValue(setSiswa, items.siswa, intervalId);
+        }, 500);
+        return () => clearInterval(intervalId);
+    }, [items]);
+
+
+
     return (
         <div className="grid mb-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
             {dataCards.map((card, index) => (
@@ -38,12 +68,27 @@ export const CardAdmin = ({ dataCards }) => {
                         </div>
                         <div className="flex flex-col flex-wrap">
                             <div className='font-semibold md:text-base text-sm text-slate-800'>{card?.title}</div>
-                            <div className={`md:text-lg text-xs font-bold ${card?.textColor}`}>{card?.jumlah}</div>
+                            {card?.data === 'kelas' ? (
+                                <div className={`md:text-lg text-xs font-bold ${card?.textColor}`}>{kelas}</div>
+                            ) : null}
+                            {card?.data === 'siswa' ? (
+                                <div className={`md:text-lg text-xs font-bold ${card?.textColor}`}>{siswa}</div>
+                            ) : null}
+                            {card?.data === 'petugas' ? (
+                                <div className={`md:text-lg text-xs font-bold ${card?.textColor}`}>{petugas}</div>
+                            ) : null}
+                            {card?.data === 'pembayaran' ? (
+                                <div className={`md:text-lg text-xs font-bold ${card?.textColor}`}>{pembayaran}</div>
+                            ) : null}
+                            {card?.data === 'spp' ? (
+                                <div div className={`md:text-lg text-xs font-bold ${card?.textColor}`}>{spp}</div>
+                            ) : null}
                         </div>
                     </div>
                 </div>
-            ))}
-        </div>
+            ))
+            }
+        </div >
     )
 }
 
