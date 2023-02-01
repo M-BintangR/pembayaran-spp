@@ -5,6 +5,8 @@ import { Link } from '@inertiajs/react';
 import React, { useEffect, useState } from 'react'
 import { BiEdit, BiTrash } from 'react-icons/bi';
 import swal from 'sweetalert';
+import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
+
 
 const Home = ({ items }) => {
     const [record, setRecord] = useState();
@@ -113,12 +115,12 @@ const Home = ({ items }) => {
                                     <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300'>{row?.nama_kelas}</td>
                                     <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300'>{row?.kompetensi_keahlian}</td>
                                     <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300'>
-                                        <button
-
+                                        <Link
+                                            href={`/dashboard/kelas/${row?.id}/edit`}
                                             className='duration-100 text-sm md:text-xl text-black mr-1 font-medium md:font-semibold py-1 px-3 hover:text-amber-400'
                                         >
                                             <BiEdit className='inline' />
-                                        </button>
+                                        </Link>
                                         <button
                                             onClick={() => handleDelete(row?.id)}
                                             className='duration-100 text-sm md:text-xl text-black mr-1 font-medium md:font-semibold py-1 px-3 hover:text-red-400'
@@ -131,6 +133,17 @@ const Home = ({ items }) => {
                         ))}
                     </tbody>
                 </table>
+                <div className='flex justify-end text-purple-700 font-bold mt-3'>
+                    <div className="flex bg-white rounded-lg">
+                        <button className='border-2 border-gray-400 duration-300 hover:border-purple-400 hover:bg-purple-700 hover:text-white py-1 px-2 rounded-l-md'>
+                            <MdKeyboardArrowLeft />
+                        </button>
+                        <button className='border-2 mx-1 py-1 px-3 border-gray-400 duration-300 hover:border-purple-400 rounded-sm hover:bg-purple-700 hover:text-white'>21</button>
+                        <button className='border-2 border-gray-400 duration-300 hover:border-purple-400 py-1 px-2 rounded-r-md hover:bg-purple-700 hover:text-white'>
+                            <MdKeyboardArrowRight />
+                        </button>
+                    </div>
+                </div>
             </div>
 
             {/* table sm */}
@@ -154,15 +167,15 @@ const Home = ({ items }) => {
                                 <button
                                     onClick={() => handleDelete(row?.id)}
                                     className='mr-2 font-semibold text-white bg-red-600 px-1 py-[2px] rounded-sm'>Hapus</button>
-                                <button className='font-semibold text-white bg-amber-600 px-1 py-[2px] rounded-sm'>Edit</button>
+                                <Link
+                                    href={`/dashboard/kelas/${row?.id}/edit`}
+                                    className='font-semibold text-white bg-amber-600 px-1 py-[2px] rounded-sm'>Edit
+                                </Link>
                             </li>
                         </ul>
                     </div>
                 ))}
             </div>
-
-
-
         </Sidebar>
     )
 }

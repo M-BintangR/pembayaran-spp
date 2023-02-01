@@ -63,14 +63,12 @@ Route::group(['prefix' => '/dashboard'], function () {
     Route::post('/spp', [SppController::class, 'store'])->name('spp.store');
     Route::delete('/spp/{spp:id}', [SppController::class, 'destroy'])->name('spp.destroy');
 
-    Route::group(['prefix' => '/pembayaran'], function () {
-        Route::get('/', [PembayaranController::class, 'index'])->name('pembayaran.index');
-        Route::get('/{pembayaran:id}/edit', [PembayaranController::class, 'edit'])->name('pembayaran.edit');
-        Route::put('/{pembayaran:id}', [PembayaranController::class, 'update'])->name('pembayaran.update');
-        Route::get('/create', [PembayaranController::class, 'create'])->name('pembayaran.create');
-        Route::post('/', [PembayaranController::class, 'store'])->name('pembayaran.store');
-        Route::delete('/{pembayaran:id}', [PembayaranController::class, 'destroy'])->name('pembayaran.destroy');
-    });
+    Route::get('/pembayaran', [PembayaranController::class, 'index'])->name('pembayaran.index');
+    Route::get('/pembayaran/{pembayaran:id}/edit', [PembayaranController::class, 'edit'])->name('pembayaran.edit');
+    Route::put('/pembayaran/{pembayaran:id}', [PembayaranController::class, 'update'])->name('pembayaran.update');
+    Route::get('/pembayaran/create', [PembayaranController::class, 'create'])->name('pembayaran.create');
+    Route::post('/pembayaran', [PembayaranController::class, 'store'])->name('pembayaran.store');
+    Route::delete('/pembayaran/{pembayaran:id}', [PembayaranController::class, 'destroy'])->name('pembayaran.destroy');
 });
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');

@@ -16,7 +16,12 @@ class SiswaController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Dashboard/Siswa/Home');
+        $items = Siswa::with(['kelas', 'spp'])
+            ->orderBy('created_at', 'desc')
+            ->paginate(30);
+        return Inertia::render('Dashboard/Siswa/Home', [
+            'items' => $items,
+        ]);
     }
 
     /**

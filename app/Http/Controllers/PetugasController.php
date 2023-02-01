@@ -16,7 +16,8 @@ class PetugasController extends Controller
      */
     public function index()
     {
-        $items = User::all();
+        $items = User::orderBy('created_at', 'desc')
+            ->paginate(30);
         return Inertia::render('Dashboard/Petugas/Home', [
             'items' => $items,
         ]);
