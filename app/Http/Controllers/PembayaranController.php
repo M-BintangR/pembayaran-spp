@@ -56,7 +56,7 @@ class PembayaranController extends Controller
         $validateData = $request->validate([
             'id_petugas' => ['required', Rule::in($idPetugas)],
             'id_spp' => ['required', Rule::in($idSpp)],
-            'nisn' => ['required', 'max:10', 'unique:nisn'],
+            'nisn' => ['required', 'max:10'],
             'tgl_bayar' => ['required'],
             'bulan_bayar' => ['required'],
             'tahun_bayar' => ['required'],

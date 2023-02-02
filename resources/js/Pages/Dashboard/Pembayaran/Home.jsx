@@ -81,7 +81,7 @@ const Home = ({ items }) => {
             <div className={`absolute bg-yellow-500 text-white duration-1000 left-[47%] right-[46%] ${loading ? 'opacity-100 top-28' : 'opacity-0 top-0'} py-2 px-3 rounded-md shadow-xl`}>
                 Memuat...
             </div>
-            <HardTitle title={'Data Kelas'} subTitle={'Kelola Data Kelas'} />
+            <HardTitle title={'Pembayaran'} subTitle={'Kelola Data Pembayaran'} />
             <div className='text-base font-semibold'>
                 <select
                     onChange={(e) => handleShortData(e.target.value)}

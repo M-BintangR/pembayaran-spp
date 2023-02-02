@@ -41,7 +41,7 @@ Route::group(['prefix' => '/dashboard'], function () {
     Route::get('/kelas/create', [KelasController::class, 'create'])->name('kelas.create');
     Route::post('/kelas', [KelasController::class, 'store'])->name('kelas.store');
     Route::delete('/kelas/{kelas:id}', [KelasController::class, 'destroy'])->name('kelas.destroy');
-    Route::get('/kelas/short/{$query}', [KelasController::class, 'index'])->name('kelas.short');
+    Route::get('/kelas/short/{query}', [KelasController::class, 'index'])->name('kelas.short');
 
     Route::get('/siswa', [SiswaController::class, 'index'])->name('siswa.index');
     Route::get('/siswa/{siswa:id}/edit', [SiswaController::class, 'edit'])->name('siswa.edit');
@@ -49,7 +49,7 @@ Route::group(['prefix' => '/dashboard'], function () {
     Route::get('/siswa/create', [SiswaController::class, 'create'])->name('siswa.create');
     Route::post('/siswa', [SiswaController::class, 'store'])->name('siswa.store');
     Route::delete('/siswa/{siswa:id}', [SiswaController::class, 'destroy'])->name('siswa.destroy');
-    Route::get('/siswa/short/{$query}', [SiswaController::class, 'index'])->name('siswa.short');
+    Route::get('/siswa/short/{query}', [SiswaController::class, 'index'])->name('siswa.short');
 
     Route::get('/petugas', [PetugasController::class, 'index'])->name('petugas.index');
     Route::get('/petugas/{user:id}/edit', [PetugasController::class, 'edit'])->name('petugas.edit');
@@ -57,7 +57,7 @@ Route::group(['prefix' => '/dashboard'], function () {
     Route::get('/petugas/create', [PetugasController::class, 'create'])->name('petugas.create');
     Route::post('/petugas', [PetugasController::class, 'store'])->name('petugas.store');
     Route::delete('/petugas/{user:id}', [PetugasController::class, 'destroy'])->name('petugas.destroy');
-    Route::get('/petugas/short/{$query}', [PetugasController::class, 'index'])->name('petugas.short');
+    Route::get('/petugas/short/{query}', [PetugasController::class, 'index'])->name('petugas.short');
 
     Route::get('/spp', [SppController::class, 'index'])->name('spp.index');
     Route::get('/spp/{spp:id}/edit', [SppController::class, 'edit'])->name('spp.edit');
@@ -65,7 +65,7 @@ Route::group(['prefix' => '/dashboard'], function () {
     Route::get('/spp/create', [SppController::class, 'create'])->name('spp.create');
     Route::post('/spp', [SppController::class, 'store'])->name('spp.store');
     Route::delete('/spp/{spp:id}', [SppController::class, 'destroy'])->name('spp.destroy');
-    Route::get('/spp/short/{$query}', [SppController::class, 'index'])->name('spp.short');
+    Route::get('/spp/short/{query}', [SppController::class, 'index'])->name('spp.short');
 
     Route::get('/pembayaran', [PembayaranController::class, 'index'])->name('pembayaran.index');
     Route::get('/pembayaran/{pembayaran:id}/edit', [PembayaranController::class, 'edit'])->name('pembayaran.edit');
@@ -73,7 +73,7 @@ Route::group(['prefix' => '/dashboard'], function () {
     Route::get('/pembayaran/create', [PembayaranController::class, 'create'])->name('pembayaran.create');
     Route::post('/pembayaran', [PembayaranController::class, 'store'])->name('pembayaran.store');
     Route::delete('/pembayaran/{pembayaran:id}', [PembayaranController::class, 'destroy'])->name('pembayaran.destroy');
-    Route::get('/pembayaran/short/{$query}', [PembayaranController::class, 'index'])->name('pembayaran.short');
+    Route::get('/pembayaran/short/{query}', [PembayaranController::class, 'index'])->name('pembayaran.short');
 });
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');

@@ -14,9 +14,9 @@ class KelasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($query = 10)
+    public function index()
     {
-        $items = Kelas::orderBy('created_at', 'asc')->paginate($query);
+        $items = Kelas::orderBy('created_at', 'asc')->paginate(10);
         return Inertia::render('Dashboard/Kelas/Home', [
             'items' => $items,
         ]);

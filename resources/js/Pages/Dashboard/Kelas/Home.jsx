@@ -18,13 +18,13 @@ const Home = ({ items }) => {
         { title: 'Action' },
     ];
     useEffect(() => {
-        setRecord(items);
+        setRecord(items.data);
     }, []);
 
     const handleShortData = (e) => {
         setLoading(true);
         setTimeout(() => {
-            setRecord(items);
+            setRecord(items.data);
             setRecord(prev => prev.slice(0, e));
             setLoading(false);
         }, 2000);
@@ -37,7 +37,7 @@ const Home = ({ items }) => {
                     item.kompetensi_keahlian.toLowerCase().includes(target.toLowerCase());
             }));
         } else {
-            setRecord(items);
+            setRecord(items.data);
         }
     }
 
