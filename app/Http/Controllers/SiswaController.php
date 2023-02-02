@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kelas;
 use App\Models\Siswa;
+use App\Models\Spp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 
 class SiswaController extends Controller
@@ -31,7 +34,12 @@ class SiswaController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Dashboard/Siswa/Create');
+        $dataKelas = Kelas::all();
+        $dataSpp = Spp::all();
+        return Inertia::render('Dashboard/Siswa/Create', [
+            'spp' => $dataSpp,
+            'kelas' => $dataKelas,
+        ]);
     }
 
     /**
@@ -42,7 +50,27 @@ class SiswaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $idSpp = Spp::pluck('id');
+        $idKelas = Kelas::pluck('id');
+        $validateData = $request->validate([
+            'nisn' => ['required', 'max:10', 'unique:nisn'],
+            'nis' => ['required', 'max:7', 'unique:nis'],
+            'nama' => ['required'],
+            'id_kelas' => ['required', Rule::in($idKelas)],
+            'alamat' => ['required'],
+            'no_telp' => ['required'],
+            'id_spp' => ['required', Rule::in($idSpp)],
+        ]);
+
+        if ($validateData) {
+            $check = Siswa::create($validateData);
+        }
+
+        if ($check) {
+            return redirect(route('siswa.index'))->with('success', 'Data berhasil di tambah kan');
+        }
+
+        return redirect()->back()->with('error', 'Data gagal di tambahkan');
     }
 
     /**
@@ -65,7 +93,7 @@ class SiswaController extends Controller
     public function edit(Siswa $siswa)
     {
         return Inertia::render('Dashboard/Siswa/Edit', [
-            'item' => $siswa,
+            'item' => $siswa->with(['kelas', 'spp']),
         ]);
     }
 
@@ -78,7 +106,27 @@ class SiswaController extends Controller
      */
     public function update(Request $request, Siswa $siswa)
     {
-        //
+        $idSpp = Spp::pluck('id');
+        $idKelas = Kelas::pluck('id');
+        $credentials = $request->validate([
+            'nisn' => ['required', 'max:10', 'unique:nisn'],
+            'nis' => ['required', 'max:7', 'unique:nis'],
+            'nama' => ['required'],
+            'id_kelas' => ['required', Rule::in($idKelas)],
+            'alamat' => ['required'],
+            'no_telp' => ['required'],
+            'id_spp' => ['required', Rule::in($idSpp)],
+        ]);
+
+        if ($credentials) {
+            $check = $siswa->update($credentials);
+        }
+
+        if ($check) {
+            return redirect(route('siswa.index'))->with('success');
+        }
+
+        return redirect()->back()->with('error', 'Data gagal di tambah kan');
     }
 
     /**

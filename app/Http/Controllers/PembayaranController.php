@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pembayaran;
+use App\Models\Siswa;
+use App\Models\Spp;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 
 class PembayaranController extends Controller
@@ -31,7 +35,12 @@ class PembayaranController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Dashboard/Pembayaran/Create');
+        $dataPetugas = User::all();
+        $dataSpp = Spp::all();
+        return Inertia::render('Dashboard/Pembayaran/Create', [
+            'petugas' => $dataPetugas,
+            'spp' => $dataSpp,
+        ]);
     }
 
     /**
@@ -42,7 +51,27 @@ class PembayaranController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $idPetugas = Pembayaran::pluck('id');
+        $idSpp = Spp::pluck('id');
+        $validateData = $request->validate([
+            'id_petugas' => ['required', Rule::in($idPetugas)],
+            'id_spp' => ['required', Rule::in($idSpp)],
+            'nisn' => ['required', 'max:10', 'unique:nisn'],
+            'tgl_bayar' => ['required'],
+            'bulan_bayar' => ['required'],
+            'tahun_bayar' => ['required'],
+            'jumlah_bayar' => ['required'],
+        ]);
+
+        if ($validateData) {
+            $check = Pembayaran::create($validateData);
+        }
+
+        if ($check) {
+            return  redirect(route('pembayaran.index'))->with('success', 'Data berhasil di tambah kan');
+        }
+
+        return redirect()->back()->with('error', 'Data gagal di tambahkan');
     }
 
     /**
@@ -65,7 +94,7 @@ class PembayaranController extends Controller
     public function edit(Pembayaran $pembayaran)
     {
         return Inertia::render('Dashboard/Kelas/Edit', [
-            'item' => $pembayaran,
+            'item' => $pembayaran->with(['spp', 'petugas']),
         ]);
     }
 
@@ -78,7 +107,27 @@ class PembayaranController extends Controller
      */
     public function update(Request $request, Pembayaran $pembayaran)
     {
-        //
+        $idPetugas = Pembayaran::pluck('id');
+        $idSpp = Spp::pluck('id');
+        $credentials = $request->validate([
+            'id_petugas' => ['required', Rule::in($idPetugas)],
+            'id_spp' => ['required', Rule::in($idSpp)],
+            'nisn' => ['required', 'max:10', 'unique:nisn'],
+            'tgl_bayar' => ['required'],
+            'bulan_bayar' => ['required'],
+            'tahun_bayar' => ['required'],
+            'jumlah_bayar' => ['required'],
+        ]);
+
+        if ($credentials) {
+            $check = $pembayaran->update($credentials);
+        }
+
+        if ($check) {
+            return redirect(route('pembayaran.index'))->with('success', 'Data berhasil di tambah kan');
+        }
+
+        return redirect()->back()->with('error', 'Data gagal di tambahkan');
     }
 
     /**

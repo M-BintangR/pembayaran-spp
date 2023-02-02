@@ -40,7 +40,20 @@ class SppController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'nominal' => ['required'],
+            'tahun' => ['required'],
+        ]);
+
+        if ($validateData) {
+            $check = Spp::create($validateData);
+        }
+
+        if ($check) {
+            return redirect(route('spp.index'))->with('success', 'Data berhasil di tambah kan');
+        }
+
+        return redirect()->back()->with('error', 'Data gagal di tambah kan');
     }
 
     /**

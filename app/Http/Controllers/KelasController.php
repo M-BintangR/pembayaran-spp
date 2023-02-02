@@ -48,7 +48,20 @@ class KelasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'nama_kelas' => ['required'],
+            'kompetensi_keahlian' => ['required'],
+        ]);
+
+        if ($validateData) {
+            $check = Kelas::create($validateData);
+        }
+
+        if ($check) {
+            return redirect(route('kelas.index'))->with('success', 'Data berhasil di tambah kan');
+        }
+
+        return redirect()->back()->with('error', 'Data gagal di tambahkan');
     }
 
     /**
@@ -84,7 +97,20 @@ class KelasController extends Controller
      */
     public function update(Request $request, Kelas $kelas)
     {
-        //
+        $credentials = $request->validate([
+            'nama_kelas' => ['required'],
+            'kompetensi_keahlian' => ['required'],
+        ]);
+
+        if ($credentials) {
+            $check = $kelas->update($credentials);
+        }
+
+        if ($check) {
+            return redirect(route('kelas.index'))->with('success', 'Data berhasil di tambah kan');
+        }
+
+        return redirect()->back()->with('error', 'Data gagal di tambah kan');
     }
 
     /**
