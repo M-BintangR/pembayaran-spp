@@ -14,9 +14,9 @@ class SppController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($query = 10)
     {
-        $items = Spp::orderBy('created_at', 'desc')->paginate(30);
+        $items = Spp::orderBy('created_at', 'asc')->paginate($query);
         return Inertia::render('Dashboard/Spp/Home', [
             'items' => $items,
         ]);

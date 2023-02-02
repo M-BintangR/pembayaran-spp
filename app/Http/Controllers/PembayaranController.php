@@ -18,11 +18,11 @@ class PembayaranController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($query = 10)
     {
         $items = Pembayaran::with(['petugas', 'siswa', 'spp'])
-            ->orderBy('created_at', 'desc')
-            ->paginate(30);
+            ->orderBy('created_at', 'asc')
+            ->paginate($query);
         return Inertia::render('Dashboard/Pembayaran/Home', [
             'items' => $items,
         ]);

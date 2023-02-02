@@ -14,17 +14,9 @@ class KelasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($query = 10)
     {
-        $items = Kelas::all()->map(function ($kelas) {
-            return [
-                'id' => $kelas->id,
-                'nama_kelas' => $kelas->nama_kelas,
-                'kompetensi_keahlian' => $kelas->kompetensi_keahlian,
-                'edit_url' => route('kelas.edit', $kelas->id),
-                'delete_url' => route('kelas.destroy', $kelas->id),
-            ];
-        });
+        $items = Kelas::orderBy('created_at', 'asc')->paginate($query);
         return Inertia::render('Dashboard/Kelas/Home', [
             'items' => $items,
         ]);
