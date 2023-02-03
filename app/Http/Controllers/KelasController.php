@@ -29,7 +29,6 @@ class KelasController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Dashboard/Kelas/Create');
     }
 
     /**
@@ -75,7 +74,7 @@ class KelasController extends Controller
      */
     public function edit(Kelas $kelas)
     {
-        return Inertia::render('Dashboard/Kelas/Edit', [
+        return response()->json([
             "item" => $kelas,
         ]);
     }

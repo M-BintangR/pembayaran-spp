@@ -1,16 +1,24 @@
-import HardTitle from '@/Components/HardTitle'
 import Sidebar from '@/Layouts/Sidebar'
+import HardTitle from '@/Components/HardTitle'
 import { Inertia } from '@inertiajs/inertia';
-import { Link } from '@inertiajs/react';
 import React, { useEffect, useState } from 'react'
 import { BiEdit, BiTrash } from 'react-icons/bi';
 import swal from 'sweetalert';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
-
+import { useForm } from '@inertiajs/react';
+import { CrudModal } from '@/Components/CrudModal';
+import axios from 'axios';
+import { DataCreate, DataEdit } from './DataInput';
 
 const Home = ({ items }) => {
     const [record, setRecord] = useState();
     const [loading, setLoading] = useState(false);
+
+    // keperluan modal
+    const [onCreteModal, setOnCreateModal] = useState(false);
+    const [onEditModal, setOnEditModal] = useState(false);
+    const [idKelas, setIdKelas] = useState();
+
     const trTbl = [
         { title: 'No' },
         { title: 'Nama Kelas' },
@@ -19,7 +27,7 @@ const Home = ({ items }) => {
     ];
     useEffect(() => {
         setRecord(items.data);
-    }, []);
+    }, [items]);
 
     const handleShortData = (e) => {
         setLoading(true);
@@ -63,8 +71,84 @@ const Home = ({ items }) => {
                     });
                 }
             });
+    }
+
+
+    // keperluan modal
+
+    const { data, setData, post, processing, errors, put } = useForm({
+        nama_kelas: '',
+        kompetensi_keahlian: '',
+    });
+
+    const onHandleChange = (event) => {
+        setData(event.target.name, event.target.type === 'checkbox' ? event.target.checked : event.target.value);
+    }
+
+    const clearData = () => {
+        setData({ nama_kelas: '', kompetensi_keahlian: '' });
+    }
+
+
+    const onHandleSubmit = (e) => {
+        e.preventDefault();
+        post(route('kelas.store'), {
+            onSuccess: () => {
+                setRecord(items?.data);
+                setOnCreateModal(false);
+                clearData();
+                swal({
+                    title: "Berhasil!",
+                    text: "Data di tambahkan",
+                    icon: "success",
+                    button: "Ok",
+                });
+            }
+        });
+    }
+
+    const onHandleSubmitEdit = (e) => {
+        e.preventDefault();
+        put(route('kelas.update', idKelas), {
+            onSuccess: () => {
+                setRecord(items?.data);
+                setOnEditModal(false);
+                clearData();
+                swal({
+                    title: "Berhasil!",
+                    text: "Data di ubah",
+                    icon: "success",
+                    button: "Ok",
+                });
+            }
+        });
+    }
+
+    const onHandleModal = () => {
+        setOnCreateModal(false);
+        setOnEditModal(false);
+        clearData();
+    }
+
+    const onHandleEdit = (id) => {
+        try {
+            axios.get(route('kelas.edit', id))
+                .then(res => res.data.item)
+                .then(res => {
+                    try {
+                        setData({ nama_kelas: res.nama_kelas, kompetensi_keahlian: res.kompetensi_keahlian });
+                        setOnEditModal(true);
+                        setPetugas(res?.id);
+                    } catch (e) {
+                        console.log(e);
+                    }
+                });
+        } catch (e) {
+            console.error(e)
+        }
 
     }
+
     return (
         <Sidebar active={'kelas'}>
             <div className={`absolute bg-yellow-500 text-white duration-1000 left-[47%] right-[46%] ${loading ? 'opacity-100 top-28' : 'opacity-0 top-0'} py-2 px-3 rounded-md shadow-xl`}>
@@ -88,7 +172,7 @@ const Home = ({ items }) => {
                     placeholder='Search'
                 />
 
-                <Link href='/dashboard/kelas/create' className='bg-purple-700 md:rounded-md md:text-base text-xs rounded-sm px-2 py-[3px] md:px-3 md:py-1 text-white inline float-right'>Tambah Data +</Link>
+                <button onClick={() => setOnCreateModal(true)} className='bg-purple-700 md:rounded-md md:text-base text-xs rounded-sm px-2 py-[3px] md:px-3 md:py-1 text-white inline float-right'>Tambah Data +</button>
             </div>
 
             {/* table md */}
@@ -115,12 +199,12 @@ const Home = ({ items }) => {
                                     <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300'>{row?.nama_kelas}</td>
                                     <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300'>{row?.kompetensi_keahlian}</td>
                                     <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300'>
-                                        <Link
-                                            href={`/dashboard/kelas/${row?.id}/edit`}
+                                        <button
+                                            onClick={() => onHandleEdit(row?.id)}
                                             className='duration-100 text-sm md:text-xl text-black mr-1 font-medium md:font-semibold py-1 px-3 hover:text-amber-400'
                                         >
                                             <BiEdit className='inline' />
-                                        </Link>
+                                        </button>
                                         <button
                                             onClick={() => handleDelete(row?.id)}
                                             className='duration-100 text-sm md:text-xl text-black mr-1 font-medium md:font-semibold py-1 px-3 hover:text-red-400'
@@ -167,15 +251,45 @@ const Home = ({ items }) => {
                                 <button
                                     onClick={() => handleDelete(row?.id)}
                                     className='mr-2 font-semibold text-white bg-red-600 px-1 py-[2px] rounded-sm'>Hapus</button>
-                                <Link
-                                    href={`/dashboard/kelas/${row?.id}/edit`}
+                                <button
+                                    onClick={() => onHandleEdit(row?.id)}
                                     className='font-semibold text-white bg-amber-600 px-1 py-[2px] rounded-sm'>Edit
-                                </Link>
+                                </button>
                             </li>
                         </ul>
                     </div>
                 ))}
             </div>
+
+            <CrudModal
+                isVisible={onCreteModal}
+                onClose={() => setOnCreateModal(false)}
+                title={'Tambah Data'}
+            >
+                <DataCreate
+                    onHandleChange={onHandleChange}
+                    errors={errors}
+                    data={data}
+                    onHandleSubmit={onHandleSubmit}
+                    processing={processing}
+                    onHandleModal={onHandleModal}
+                />
+            </CrudModal>
+
+            <CrudModal
+                isVisible={onEditModal}
+                onClose={() => setOnEditModal(false)}
+                title={'Edit Data'}
+            >
+                <DataEdit
+                    onHandleChange={onHandleChange}
+                    errors={errors}
+                    data={data}
+                    onHandleSubmit={onHandleSubmitEdit}
+                    processing={processing}
+                    onHandleModal={onHandleModal}
+                />
+            </CrudModal>
         </Sidebar>
     )
 }

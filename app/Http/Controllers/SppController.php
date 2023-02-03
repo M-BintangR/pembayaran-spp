@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
+use function Termwind\render;
+
 class SppController extends Controller
 {
     /**
@@ -29,7 +31,6 @@ class SppController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Dashboard/Spp/Create');
     }
 
     /**
@@ -75,7 +76,7 @@ class SppController extends Controller
      */
     public function edit(Spp $spp)
     {
-        return Inertia::render('Dashboard/Spp/Edit', [
+        return response()->json([
             'item' => $spp,
         ]);
     }
@@ -89,7 +90,20 @@ class SppController extends Controller
      */
     public function update(Request $request, Spp $spp)
     {
-        //
+        $credentials = $request->validate([
+            'nominal' => ['required'],
+            'tahun' => ['required'],
+        ]);
+
+        if ($credentials) {
+            $check = $spp->update($credentials);
+        }
+
+        if ($check) {
+            return redirect(route('spp.index'))->with('success', 'Data berhasil di edit');
+        }
+
+        return redirect()->back()->with('error', 'Data gagal di edit');
     }
 
     /**

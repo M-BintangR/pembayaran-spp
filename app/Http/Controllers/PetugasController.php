@@ -15,10 +15,10 @@ class PetugasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($query = 10)
+    public function index()
     {
         $items = User::orderBy('created_at', 'asc')
-            ->paginate($query);
+            ->paginate(10);
         return Inertia::render('Dashboard/Petugas/Home', [
             'items' => $items,
         ]);
@@ -45,8 +45,11 @@ class PetugasController extends Controller
         $validateData = $request->validate([
             'username' => ['required'],
             'nama_pengguna' => ['required'],
+            'password' => ['required'],
             'level' => ['required'],
         ]);
+
+        $validateData['password'] = bcrypt($validateData['password']);
 
         if ($validateData) {
             $check = User::create($validateData);
@@ -78,7 +81,7 @@ class PetugasController extends Controller
      */
     public function edit(User $user)
     {
-        return Inertia::render('Dashboard/Petugas/Edit', [
+        return response()->json([
             'item' => $user
         ]);
     }
@@ -96,10 +99,8 @@ class PetugasController extends Controller
             'username' => ['required'],
             'nama_pengguna' => ['required'],
             'level' => ['required'],
-            'password' => ['required', 'max:10'],
         ]);
 
-        $credentials['password'] = bcrypt($credentials['password']);
 
         if ($credentials) {
             $check = $user->update($credentials);

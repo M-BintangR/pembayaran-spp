@@ -30,8 +30,6 @@ const Create = ({ spp, petugas }) => {
         post(route('pembayaran.store'));
     }
 
-    console.log(data.id_petugas)
-    console.log(data.id_spp)
     return (
         <Sidebar active={'pembayaran'}>
             <HardTitle title={'Tambah Pembayaran'} subTitle={'Tambah data pembayaran'} />

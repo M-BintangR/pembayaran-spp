@@ -53,8 +53,8 @@ class SiswaController extends Controller
         $idSpp = Spp::pluck('id');
         $idKelas = Kelas::pluck('id');
         $validateData = $request->validate([
-            'nisn' => ['required', 'max:10', 'unique:nisn'],
-            'nis' => ['required', 'max:7', 'unique:nis'],
+            'nisn' => ['required', 'max:10', 'unique:siswas,nisn'],
+            'nis' => ['required', 'max:7', 'unique:siswas,nis'],
             'nama' => ['required'],
             'id_kelas' => ['required', Rule::in($idKelas)],
             'alamat' => ['required'],
