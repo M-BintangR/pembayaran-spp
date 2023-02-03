@@ -45,13 +45,13 @@ const Sidebar = ({ children, active }) => {
                                     <h2 className={`${menu?.spacing && 'mt-5 mb-3'} font-semibold md:text-xl text-md mx-3 text-slate-900 duration-300 ${!open && 'scale-0 scale-x-0 mx-0 mt-0 mb-0'}`}>Kelola Data
                                     </h2>
                                 )}
-                                <div className={` hover:bg-gray-300  pb-1 hover:text-purple-700 text-gray-900`}>
+                                <div className={` hover:bg-gray-300  hover:text-purple-700 text-gray-900`}>
                                     <Link
                                         onClick={() => setOpen(prev => prev = true)}
                                         href={menu?.link}
                                     >
                                         <li
-                                            className={`duration-200 text-sm flex items-center ${targetActive === menu.active && 'bg-gray-300 text-purple-700'} gap-x-4 cursor-pointer p-2 hover:bg-light-with rounded-md mt-2`}
+                                            className={`duration-200 text-sm flex items-center ${targetActive === menu.active && 'bg-gray-300 text-purple-700'} gap-x-4 cursor-pointer p-2 hover:bg-light-with rounded-md py-3`}
                                             onClick={(e) => { menu.submenu ? e.preventDefault() : ''; menu.submenu ? setSubmenuOpen(!submenuOpen) : ''; }}
                                         >
                                             <span className='md:text-2xl text-base block float-left bg-purple-700 p-1 rounded-md text-white text-center'>

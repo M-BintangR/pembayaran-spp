@@ -87,7 +87,7 @@ const Edit = ({ item, petugas, spp }) => {
                                 id="nisn"
                                 type="text"
                                 name="nisn"
-                                value={data.nisn || item?.nisn}
+                                value={data.nisn}
                                 className="mt-1 block w-full"
                                 autoComplete="username"
                                 isFocused={true}

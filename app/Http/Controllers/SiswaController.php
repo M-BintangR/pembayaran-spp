@@ -93,7 +93,9 @@ class SiswaController extends Controller
     public function edit(Siswa $siswa)
     {
         return Inertia::render('Dashboard/Siswa/Edit', [
-            'item' => $siswa->with(['kelas', 'spp']),
+            'item' => $siswa,
+            'spp' => Spp::all(),
+            'kelas' => Kelas::all(),
         ]);
     }
 
@@ -109,8 +111,8 @@ class SiswaController extends Controller
         $idSpp = Spp::pluck('id');
         $idKelas = Kelas::pluck('id');
         $credentials = $request->validate([
-            'nisn' => ['required', 'max:10', 'unique:nisn'],
-            'nis' => ['required', 'max:7', 'unique:nis'],
+            'nisn' => ['required', 'max:10'],
+            'nis' => ['required', 'max:7'],
             'nama' => ['required'],
             'id_kelas' => ['required', Rule::in($idKelas)],
             'alamat' => ['required'],

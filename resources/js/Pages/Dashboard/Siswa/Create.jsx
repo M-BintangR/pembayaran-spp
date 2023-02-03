@@ -146,7 +146,7 @@ const Create = ({ kelas, spp }) => {
                 </div>
                 <div className="mt-5">
                     <PrimaryButton processing={processing}>Rekam</PrimaryButton>
-                    <Link className='duration-300 bg-gray-200 border border-gray-400 hover:border-purple-700 hover:bg-purple-700 hover:text-white md:py-2 md:rounded-md md:px-3' href={route('kelas.index')}>Kembali</Link>
+                    <Link className='duration-300 bg-gray-200 border border-gray-400 hover:border-purple-700 hover:bg-purple-700 hover:text-white md:py-2 md:rounded-md md:px-3' href={route('siswa.index')}>Kembali</Link>
                 </div>
             </form>
         </Sidebar>
