@@ -13,7 +13,8 @@ const Home = ({ items }) => {
 
     const trTbl = [
         { title: 'No' },
-        { title: 'Username' },
+        { title: 'Nama Petugas' },
+        { title: 'Nama Siswa' },
         { title: 'NISN' },
         { title: 'Tanggal Bayar' },
         { title: 'Bulan Bayar' },
@@ -123,7 +124,8 @@ const Home = ({ items }) => {
                                 className={` border-x-2 border-gray-300 odd:bg-gray-200`} >
                                 <>
                                     <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300'>{index + 1}</td>
-                                    <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300'>{row?.petugas?.username}</td>
+                                    <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300'>{row?.petugas?.nama_pengguna}</td>
+                                    <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300'>{row?.siswa?.nama}</td>
                                     <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300'>{row?.nisn}</td>
                                     <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300'>{row?.tgl_bayar}</td>
                                     <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300'>{row?.bulan_bayar}</td>
