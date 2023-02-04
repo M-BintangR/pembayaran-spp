@@ -6,6 +6,7 @@ import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import { Head, Link, useForm } from '@inertiajs/react';
+import swal from 'sweetalert';
 
 export default function Login({ status, canResetPassword }) {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -27,7 +28,22 @@ export default function Login({ status, canResetPassword }) {
     const submit = (e) => {
         e.preventDefault();
 
-        post(route('login'));
+        post(route('login'), {
+            onError: () => {
+                swal({
+                    title: "Login Gagal",
+                    text: "Periksa kembali username dan password anda!",
+                    icon: "error",
+                    dangerMode: true,
+                })
+            },
+            onSuccess: () => {
+                swal({
+                    title: "Login Berhasil",
+                    icon: "success",
+                });
+            }
+        });
     };
 
     return (

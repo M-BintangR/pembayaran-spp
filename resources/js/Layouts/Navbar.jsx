@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState, useRef } from 'react'
 import { AiOutlineMenu, AiOutlineProfile } from 'react-icons/ai';
 import { IoMdArrowDropdown } from 'react-icons/io';
 import { CgLogOut, CgProfile } from 'react-icons/cg';
+import { Link } from '@inertiajs/react';
 const Navbar = ({ open, setOpen, sidebarRef }) => {
     const [isOpen, setIsOpen] = useState(false);
     const toggleRef = useRef();
@@ -52,19 +53,29 @@ const Navbar = ({ open, setOpen, sidebarRef }) => {
                         <div ref={dropdownRef} className='absolute md:top-9 top-7 bg-white text-slate-900 w-full rounded-md border-2 shadow-lg'>
                             <ul className='cursor-pointer md:text-base text-xs font-semibold'>
                                 <li>
-                                    <button className='duration-300 hover:bg-purple-500 hover:text-white w-full text-left px-2 md:py-1 py-2 rounded-t-md'>Keluar
+                                    <Link
+                                        href={route('logout')}
+                                        as='button'
+                                        method='post'
+                                        className='duration-300 hover:bg-purple-500 hover:text-white w-full text-left px-2 md:py-1 py-2 rounded-t-md'>Keluar
                                         <CgLogOut className='inline-block float-right mt-1 mr-1 md:text-lg text-sm' />
-                                    </button>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <button className='duration-300 hover:bg-purple-500 hover:text-white w-full text-left px-2 md:py-1 py-2'>Profil
+                                    <Link
+                                        href={route('profile')}
+                                        as='button'
+                                        className='duration-300 hover:bg-purple-500 hover:text-white w-full text-left px-2 md:py-1 py-2'>Profil
                                         <CgProfile className='inline-block float-right mt-1 mr-1 md:text-lg text-sm' />
-                                    </button>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <button className='duration-300 hover:bg-purple-500 hover:text-white w-full text-left px-2 md:py-1 py-2 rounded-b-md'>Menu Utama
+                                    <Link
+                                        href={route('dashboard')}
+                                        as={'button'}
+                                        className='duration-300 hover:bg-purple-500 hover:text-white w-full text-left px-2 md:py-1 py-2 rounded-b-md'>Menu Utama
                                         <AiOutlineProfile className='inline-block float-right mt-1 mr-1 md:text-lg text-sm' />
-                                    </button>
+                                    </Link>
                                 </li>
                             </ul>
                         </div>
