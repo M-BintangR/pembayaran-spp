@@ -6,6 +6,7 @@ import React, { useEffect, useState } from 'react'
 import { BiEdit, BiTrash } from 'react-icons/bi';
 import swal from 'sweetalert';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
+import Loading from '@/Components/Loading';
 
 const Home = ({ items }) => {
     const [record, setRecord] = useState();
@@ -13,15 +14,14 @@ const Home = ({ items }) => {
 
     const trTbl = [
         { title: 'No' },
-        { title: 'Nama Petugas' },
+        { title: 'Nama Petugas / Penerima' },
         { title: 'Nama Siswa' },
         { title: 'NISN' },
         { title: 'Tanggal Bayar' },
         { title: 'Bulan Bayar' },
         { title: 'Tahun Bayar' },
-        { title: 'Nominal' },
-        { title: 'Jumlah Bayar' },
-        { title: 'Action' },
+        { title: 'Nominal Pembayaran Spp' },
+        { title: 'Jumlah Di Bayar' },
     ];
 
     useEffect(() => {
@@ -46,7 +46,7 @@ const Home = ({ items }) => {
                     item.nisn.toString().toLowerCase().includes(target.toLowerCase()) ||
                     item.tgl_bayar.toString().toLowerCase().includes(target.toLowerCase()) ||
                     item.spp.nominal.toString().toLowerCase().includes(target.toLowerCase()) ||
-                    item.jumlah_bayar.toString().toLowerCase().includes(target.toLowerCase());
+                    item.jumlah_bayar.toString().toLowerCase().includes(target.toLowerCase()) || item.siswa.nama.toLowerCase().includes(target.toLowerCase());
             }));
         } else {
             setRecord(items.data);
@@ -79,11 +79,9 @@ const Home = ({ items }) => {
     return (
 
         <Sidebar active={'pembayaran'}>
-            <div className={`absolute bg-yellow-500 text-white duration-1000 left-[47%] right-[46%] ${loading ? 'opacity-100 top-28' : 'opacity-0 top-0'} py-2 px-3 rounded-md shadow-xl`}>
-                Memuat...
-            </div>
-            <HardTitle title={'Pembayaran'} subTitle={'Kelola Data Pembayaran'} />
-            <div className='text-base font-semibold'>
+            <HardTitle title={'History Pembayaran'} subTitle={'History Transaksi Pembayaran'} />
+            <Loading loading={loading} />
+            <div className='text-base font-semibold md:mb-5'>
                 <select
                     onChange={(e) => handleShortData(e.target.value)}
                     defaultValue={10}
@@ -95,16 +93,16 @@ const Home = ({ items }) => {
 
                 <input
                     onInput={(e) => handleSearchData(e.target.value)}
-                    className='md:p-1 py-[1px] rounded-sm border shadow-sm border-gray-300 md:text-sm text-xs w-[100px] md:w-[150px] bg-slate-100 focus:bg-white focus:outline-none focus:ring-1 focus:ring-purple-700'
+                    className='md:p-1 py-[1px] rounded-sm border shadow-sm border-gray-300 md:text-sm text-xs w-auto md:w-[150px] bg-slate-100 focus:bg-white focus:outline-none focus:ring-1 focus:ring-purple-700'
                     type="text"
                     placeholder='Search'
                 />
 
-                <Link href='/dashboard/pembayaran/create' className='bg-purple-700 md:rounded-md md:text-base text-xs rounded-sm px-2 py-[3px] md:px-3 md:py-1 text-white inline float-right'>Tambah Data +</Link>
+                <Link href={route('pembayaran.create')} className='bg-purple-700 md:rounded-md md:text-base text-xs px-2 py-[3px] md:px-3 md:py-1 text-white inline float-right md:relative fixed bottom-0 md:m-0 m-5 rounded-xl shadow-2xl right-0'>Tambah Data +</Link>
             </div>
 
             {/* table md */}
-            <div className="overflow-x-auto mt-2 sm:block hidden">
+            <div className="overflow-x-auto mt-2 sm:block hidden mb-5">
                 <table className='w-full border-2 border-spacing-3'>
                     <thead className='bg-white text-slate-900 border-2 border-gray-300 py-1'>
                         <tr className='border-2 border-gray-300'>
@@ -114,7 +112,9 @@ const Home = ({ items }) => {
                                     className={`p-3 text-sm font-normal md:font-semibold tracking-wide text-left border-x-2 border-gray-300 `}
                                 >{row.title}</th>
                             ))}
-
+                            <th
+                                className={`p-3 text-sm font-normal md:font-semibold tracking-wide text-left border-x-2 border-gray-300 `}
+                            >Action</th>
                         </tr>
                     </thead>
                     <tbody className='divide-y divide-gray-100  '>
@@ -124,17 +124,17 @@ const Home = ({ items }) => {
                                 className={` border-x-2 border-gray-300 odd:bg-gray-200`} >
                                 <>
                                     <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300'>{index + 1}</td>
-                                    <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300'>{row?.petugas?.nama_pengguna}</td>
-                                    <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300'>{row?.siswa?.nama}</td>
-                                    <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300'>{row?.nisn}</td>
-                                    <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300'>{row?.tgl_bayar}</td>
-                                    <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300'>{row?.bulan_bayar}</td>
-                                    <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300'>{row?.tahun_bayar}</td>
-                                    <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300'>{row?.spp?.nominal}</td>
-                                    <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300'>{row?.jumlah_bayar}</td>
+                                    <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 capitalize'>{row?.petugas?.nama_pengguna}</td>
+                                    <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 capitalize'>{row?.siswa?.nama}</td>
+                                    <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 uppercase'>{row?.nisn}</td>
+                                    <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 uppercase'>{row?.tgl_bayar}</td>
+                                    <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 capitalize'>{row?.bulan_bayar}</td>
+                                    <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 uppercase'>{row?.tahun_bayar}</td>
+                                    <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 capitalize'>Rp {row?.spp?.nominal}</td>
+                                    <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 capitalize'>Rp {row?.jumlah_bayar}</td>
                                     <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300'>
                                         <Link
-                                            href={`/dashboard/pembayaran/${row?.id}/edit`}
+                                            href={route('pembayaran.edit', row?.id)}
                                             className='duration-100 text-sm md:text-xl text-black mr-1 font-medium md:font-semibold py-1 px-3 hover:text-amber-400'
                                         >
                                             <BiEdit className='inline' />
@@ -151,53 +151,63 @@ const Home = ({ items }) => {
                         ))}
                     </tbody>
                 </table>
-                <div className='flex justify-end text-purple-700 font-bold mt-3'>
-                    <div className="flex bg-white rounded-lg">
-                        <button className='border-2 border-gray-400 duration-300 hover:border-purple-400 hover:bg-purple-700 hover:text-white py-1 px-2 rounded-l-md'>
-                            <MdKeyboardArrowLeft />
-                        </button>
-                        <button className='border-2 mx-1 py-1 px-3 border-gray-400 duration-300 hover:border-purple-400 rounded-sm hover:bg-purple-700 hover:text-white'>21</button>
-                        <button className='border-2 border-gray-400 duration-300 hover:border-purple-400 py-1 px-2 rounded-r-md hover:bg-purple-700 hover:text-white'>
-                            <MdKeyboardArrowRight />
-                        </button>
-                    </div>
-                </div>
             </div>
 
             {/* table sm */}
 
-            <div className='sm:hidden flex-col gap-y-3 my-3'>
+            <div className='duration-300 mt-3 mb-10 sm:hidden'>
                 {record?.map((row, index) => (
-                    <div key={index} className='flex flex-row odd:bg-gray-100 p-2 rounded-md'>
-                        <ul className='inline-block mr-auto float-left'>
-                            {trTbl.map((head, index) => (
-                                <li
-                                    key={index}
-                                    className='mb-1 border-b-2 '>{head?.title}
-                                </li>
-                            ))}
-                        </ul>
-                        <ul className='inline-block '>
-                            <li className='mb-1 border-b-2'>{index + 1}</li>
-                            <li className='mb-1 border-b-2'>{row?.petugas?.username}</li>
-                            <li className='mb-1 border-b-2'>{row?.nisn}</li>
-                            <li className='mb-1 border-b-2'>{row?.tgl_bayar}</li>
-                            <li className='mb-1 border-b-2'>{row?.bulan_bayar}</li>
-                            <li className='mb-1 border-b-2'>{row?.tahun_bayar}</li>
-                            <li className='mb-1 border-b-2'>{row?.spp?.nominal}</li>
-                            <li className='mb-1 border-b-2'>{row?.jumlah_bayar}</li>
-                            <li className='my-2'>
-                                <button
-                                    onClick={() => handleDelete(row?.id)}
-                                    className='mr-2 font-semibold text-white bg-red-600 px-1 py-[2px] rounded-sm'>Hapus</button>
-                                <Link
-                                    href={`/dashboard/pembayaran/${row?.id}/edit`}
-                                    className='font-semibold text-white bg-amber-600 px-1 py-[2px] rounded-sm'>Edit
-                                </Link>
-                            </li>
-                        </ul>
-                    </div>
+                    <table class="w-full flex flex-row flex-no-wrap sm:bg-white overflow-hidden sm:shadow-lg ">
+                        <thead class="text-white">
+                            <tr class="bg-purple-700 flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0 text-xs rounded-l-md">
+                                {trTbl.map((tr, index) => (
+                                    <th key={index} class="p-3 text-left">{tr.title}</th>
+                                ))}
+                                <th class="p-3 text-left h-[63px]" width="110px">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="flex-1 sm:flex-none">
+                            <tr key={index} class="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0 text-xs">
+                                <td class="border-grey-light border hover:bg-gray-100 p-3">{index + 1}</td>
+                                <td class="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">{row?.petugas?.nama_pengguna}</td>
+                                <td class="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">{row?.siswa?.nama}</td>
+                                <td class="border-grey-light border hover:bg-gray-100 p-3 truncate uppercase">{row?.nisn}</td>
+                                <td class="border-grey-light border hover:bg-gray-100 p-3 truncate uppercase">{row?.tgl_bayar}</td>
+                                <td class="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">{row?.bulan_bayar}</td>
+                                <td class="border-grey-light border hover:bg-gray-100 p-3 truncate uppercase">{row?.tahun_bayar}</td>
+                                <td class="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">Rp {row?.spp?.nominal}</td>
+                                <td class="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">Rp {row?.jumlah_bayar}</td>
+                                <td class="border-grey-light border hover:bg-gray-100 p-3 text-red-400 hover:text-red-600 hover:font-medium cursor-pointer">
+                                    <Link
+                                        href={route('pembayaran.edit', row?.id)}
+                                        className='duration-100 text-sm md:text-xl text-black mr-1 font-medium md:font-semibold hover:text-amber-400'
+                                    >
+                                        <BiEdit className='inline' />
+                                    </Link>
+                                    <button
+                                        onClick={() => handleDelete(row?.id)}
+                                        className='duration-100 text-sm md:text-xl text-black mr-1 font-medium md:font-semibold hover:text-red-400'
+                                    >
+                                        <BiTrash className='inline' />
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 ))}
+            </div>
+
+
+            <div className='flex justify-end text-purple-700 font-bold md:my-10 mb-12 '>
+                <div className="flex bg-white rounded-lg">
+                    <button className='border-2 border-gray-400 duration-300 hover:border-purple-400 hover:bg-purple-700 hover:text-white py-1 px-2 rounded-l-md'>
+                        <MdKeyboardArrowLeft />
+                    </button>
+                    <button className='border-2 mx-1 py-1 px-3 border-gray-400 duration-300 hover:border-purple-400 rounded-sm hover:bg-purple-700 hover:text-white'>21</button>
+                    <button className='border-2 border-gray-400 duration-300 hover:border-purple-400 py-1 px-2 rounded-r-md hover:bg-purple-700 hover:text-white'>
+                        <MdKeyboardArrowRight />
+                    </button>
+                </div>
             </div>
         </Sidebar>
     )

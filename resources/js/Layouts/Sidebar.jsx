@@ -26,7 +26,7 @@ const Sidebar = ({ children, active }) => {
                 { title: 'Profil', link: '', active: 'profil' },
             ],
         },
-        { title: 'Data Pembayaran', link: '/dashboard/pembayaran', spacing: true, active: 'pembayaran' },
+        { title: 'Transaksi Pembayaran', link: '/dashboard/pembayaran', spacing: true, active: 'pembayaran' },
         { title: 'Data Siswa', link: '/dashboard/siswa', active: 'siswa' },
         { title: 'Data Kelas', link: '/dashboard/kelas', active: 'kelas' },
         { title: 'Data Spp', link: '/dashboard/spp', active: 'spp' },
@@ -37,8 +37,8 @@ const Sidebar = ({ children, active }) => {
         <div>
             <Navbar setOpen={setOpen} open={open} sidebarRef={sidebarRef} />
             <div className='pt-10'>
-                <div className="flex flex-row">
-                    <div ref={sidebarRef} className={` drop-shadow-md md:pt-10 pt-14 bg-gray-200 md:h-screen bottom-0 top-0 md:relative absolute duration-500  ${open ? 'md:relative absolute md:w-1/4 w-1/2 bottom-0' : 'w-12 relative h-screen'}`}>
+                <div className="flex flex-row ">
+                    <div ref={sidebarRef} className={` drop-shadow-md md:pt-24 pt-14 bg-gray-200 md:h-screen bottom-0 top-0 left-0 fixed duration-500  ${open ? 'md:fixed md:w-1/5 w-1/2 bottom-0 md:z-0 z-30' : 'w-12 fixed h-screen'}`}>
                         {adminMenu.map((menu, index) => (
                             <div key={index}>
                                 {menu?.spacing && (
@@ -60,7 +60,7 @@ const Sidebar = ({ children, active }) => {
                                                         <MdOutlineDashboardCustomize />
                                                     ) : null}
 
-                                                    {menu?.title === "Data Pembayaran" ? (
+                                                    {menu?.title === "Transaksi Pembayaran" ? (
                                                         <BsCurrencyDollar />
                                                     ) : null}
 
@@ -108,16 +108,15 @@ const Sidebar = ({ children, active }) => {
                         ))
                         }
                     </div>
-                    <div className={`duration-300 ${open ? 'w-full' : 'w-full'}`}>
-                        <div className='md:p-6 md:mt-3 p-3 md:text-base text-xs'>
-                            <main className=''>
-                                {children}
-                            </main>
+                    <div className={`duration-300 w-full`}>
+                        <div className={` md:p-6 md:mt-3 md:pl-[72px] pl-16 p-3 md:text-base text-xs ${open && 'md:pl-6'}`}>
+                            <div className={`${open && 'md:relative fixed inset-0 bg-black md:bg-opacity-100 md:bg-none md:block bg-opacity-25 backdrop-blur-sm flex justify-center items-center z-20'}`}></div>
+                            {children}
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 

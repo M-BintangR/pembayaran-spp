@@ -20,7 +20,7 @@ export const DataCreate = ({ onHandleSubmit, data, errors, onHandleChange, proce
                         autoComplete="username"
                         isFocused={true}
                         handleChange={onHandleChange}
-                        placeholder={'Nominal Spp'}
+                        placeholder={'200000'}
                     />
                     <InputError message={errors.nominal} className="mt-2" />
                 </div>
@@ -35,7 +35,7 @@ export const DataCreate = ({ onHandleSubmit, data, errors, onHandleChange, proce
                         autoComplete="username"
                         isFocused={true}
                         handleChange={onHandleChange}
-                        placeholder={'Tahun'}
+                        placeholder={'2023'}
                     />
                     <InputError message={errors.tahun} className="mt-2" />
                 </div>

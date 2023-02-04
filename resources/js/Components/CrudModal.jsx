@@ -8,7 +8,7 @@ export const CrudModal = ({ children, isVisible, onClose, title }) => {
     return (
         <div>
             {isVisible ? (
-                <div className={`duration-1000 fixed inset-0 z-50 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center`}>
+                <div className={` fixed inset-0 z-50 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center`}>
                     <div className={`duration-3000 bg-white z-30 shadow-xl p-5 md:w-[570px] w-full mx-2 rounded-md`}>
                         <div className="md:text-xl text-lg md:pb-3 pb-5">
                             <h1>{title}

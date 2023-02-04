@@ -33,7 +33,7 @@ const Create = ({ kelas, spp }) => {
             <form onSubmit={onHandleSubmit}>
                 <div className='grid md:grid-cols-2 gap-x-3'>
                     <div className=''>
-                        <div className='md:my-2'>
+                        <div className='my-2'>
                             <InputLabel forInput="id_kelas" value="Pilih Kelas" />
                             <select
                                 onChange={onHandleChange}
@@ -42,28 +42,30 @@ const Create = ({ kelas, spp }) => {
                                 name="id_kelas"
                                 id="id_kelas"
                             >
+                                <option selected>Pilih Kelas</option>
                                 {kelas?.map((data, index) => (
                                     <option key={index} value={data?.id}>{data?.nama_kelas}</option>
                                 ))}
                             </select>
                             <InputError message={errors.id_kelas} className="mt-2" />
                         </div>
-                        <div className='md:my-2'>
+                        <div className='my-2'>
                             <InputLabel forInput="id_spp" value="Nominal SPP" />
                             <select
                                 onChange={onHandleChange}
                                 defaultValue={data.id_spp}
-                                className='border-gray-300 focus:border-purple-700 focus:ring-purple-700 rounded-md shadow-sm md:text-base text-xs block w-full'
+                                className='border-gray-300 focus:border-purple-700 focus:ring-purple-700 rounded-md shadow-sm md:text-base text-xs mt-1 block w-full'
                                 name="id_spp"
                                 id="id_spp"
                             >
+                                <option selected>Rp ---.---</option>
                                 {spp?.map((data, index) => (
                                     <option key={index} value={data?.id}>Rp {data?.nominal}</option>
                                 ))}
                             </select>
                             <InputError message={errors.id_spp} className="mt-2" />
                         </div>
-                        <div className='md:my-2'>
+                        <div className='my-2'>
                             <InputLabel forInput="nisn" value="NISN" />
                             <TextInput
                                 id="nisn"
@@ -74,11 +76,11 @@ const Create = ({ kelas, spp }) => {
                                 autoComplete="username"
                                 isFocused={true}
                                 handleChange={onHandleChange}
-                                placeholder={'NISN'}
+                                placeholder={'0101010101'}
                             />
                             <InputError message={errors.nisn} className="mt-2" />
                         </div>
-                        <div className='md:my-2'>
+                        <div className='my-2'>
                             <InputLabel forInput="nis" value="NIS" />
                             <TextInput
                                 id="nis"
@@ -89,13 +91,13 @@ const Create = ({ kelas, spp }) => {
                                 autoComplete="username"
                                 isFocused={true}
                                 handleChange={onHandleChange}
-                                placeholder={'NIS'}
+                                placeholder={'000-000'}
                             />
                             <InputError message={errors.nis} className="mt-2" />
                         </div>
                     </div>
                     <div>
-                        <div className='md:my-2'>
+                        <div className='my-2'>
                             <InputLabel forInput="nama" value="Nama Siswa" />
                             <TextInput
                                 id="nama"
@@ -110,7 +112,7 @@ const Create = ({ kelas, spp }) => {
                             />
                             <InputError message={errors.nama} className="mt-2" />
                         </div>
-                        <div className='md:my-1'>
+                        <div className='my-2'>
                             <InputLabel forInput="alamat" value="Alamat Siswa" />
                             <TextInput
                                 id="alamat"
@@ -121,11 +123,11 @@ const Create = ({ kelas, spp }) => {
                                 autoComplete="username"
                                 isFocused={true}
                                 handleChange={onHandleChange}
-                                placeholder={'Alamat Siswa'}
+                                placeholder={'Jl Merdeka No 13'}
                             />
                             <InputError message={errors.alamat} className="mt-2" />
                         </div>
-                        <div className='md:my-1'>
+                        <div className='my-2'>
                             <InputLabel forInput="no_telp" value="No Telp" />
                             <TextInput
                                 id="no_telp"
@@ -136,7 +138,7 @@ const Create = ({ kelas, spp }) => {
                                 autoComplete="username"
                                 isFocused={true}
                                 handleChange={onHandleChange}
-                                placeholder={'No Telp'}
+                                placeholder={'0854443331254'}
                             />
                             <InputError message={errors.no_telp} className="mt-2" />
                         </div>
@@ -144,9 +146,9 @@ const Create = ({ kelas, spp }) => {
                     </div>
 
                 </div>
-                <div className="mt-5">
+                <div className="md:mt-5 mt-3 mb-5">
                     <PrimaryButton processing={processing}>Rekam</PrimaryButton>
-                    <Link className='duration-300 bg-gray-200 border border-gray-400 hover:border-purple-700 hover:bg-purple-700 hover:text-white md:py-2 md:rounded-md md:px-3' href={route('siswa.index')}>Kembali</Link>
+                    <Link className='duration-300 bg-gray-200 border border-gray-400 hover:border-purple-700 hover:bg-purple-700 hover:text-white py-2 rounded-md px-3' href={route('siswa.index')}>Kembali</Link>
                 </div>
             </form>
         </Sidebar>

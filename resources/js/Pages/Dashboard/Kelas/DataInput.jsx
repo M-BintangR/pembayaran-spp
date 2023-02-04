@@ -20,7 +20,7 @@ export const DataCreate = ({ onHandleSubmit, data, errors, onHandleChange, proce
                         autoComplete="nama_kelas"
                         isFocused={true}
                         handleChange={onHandleChange}
-                        placeholder={'Nama Kelas'}
+                        placeholder={'1 RPL 2'}
                     />
                     <InputError message={errors.nama_kelas} className="mt-2" />
                 </div>
@@ -35,7 +35,7 @@ export const DataCreate = ({ onHandleSubmit, data, errors, onHandleChange, proce
                         autoComplete="username"
                         isFocused={true}
                         handleChange={onHandleChange}
-                        placeholder={'Kompetensi Keahlian'}
+                        placeholder={'Rekayasa Prangkat Lunak'}
                     />
                     <InputError message={errors.kompetensi_keahlian} className="mt-2" />
                 </div>

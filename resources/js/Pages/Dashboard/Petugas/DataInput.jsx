@@ -48,6 +48,7 @@ export const DataCreate = ({ onHandleSubmit, data, errors, onHandleChange, proce
                         name="level"
                         id="level"
                     >
+                        <option selected>Pilih Peran</option>
                         <option value='admin'>Admin</option>
                         <option value='petugas'>Petugas</option>
                     </select>
@@ -64,7 +65,7 @@ export const DataCreate = ({ onHandleSubmit, data, errors, onHandleChange, proce
                         autoComplete="username"
                         isFocused={true}
                         handleChange={onHandleChange}
-                        placeholder={'Password'}
+                        placeholder={'Password Petugas'}
                     />
                     <InputError message={errors.password} className="mt-2" />
                 </div>

@@ -32,11 +32,11 @@ const Create = ({ spp, petugas }) => {
 
     return (
         <Sidebar active={'pembayaran'}>
-            <HardTitle title={'Tambah Pembayaran'} subTitle={'Tambah data pembayaran'} />
+            <HardTitle title={'Entri Pembayaran'} subTitle={'Entri Transaksi Pembayaran'} />
             <form onSubmit={onHandleSubmit}>
                 <div className='grid md:grid-cols-2 gap-x-3'>
                     <div className=''>
-                        <div className='md:my-2'>
+                        <div className='my-2'>
                             <InputLabel forInput="id_petugas" value="Petugas" />
                             <select
                                 onChange={onHandleChange}
@@ -45,28 +45,30 @@ const Create = ({ spp, petugas }) => {
                                 name="id_petugas"
                                 id="id_petugas"
                             >
+                                <option selected>Pilih Nama Petugas</option>
                                 {petugas?.map((data, index) => (
                                     <option key={index} value={data?.id}>{data?.nama_pengguna}</option>
                                 ))}
                             </select>
                             <InputError message={errors.id_petugas} className="mt-2" />
                         </div>
-                        <div className='md:my-2'>
+                        <div className='my-2'>
                             <InputLabel forInput="id_spp" value="Nominal SPP" />
                             <select
                                 onChange={onHandleChange}
                                 defaultValue={data.id_spp}
-                                className='border-gray-300 focus:border-purple-700 focus:ring-purple-700 rounded-md shadow-sm md:text-base text-xs block w-full'
+                                className='border-gray-300 focus:border-purple-700 focus:ring-purple-700 rounded-md shadow-sm md:text-base text-xs mt-1 block w-full'
                                 name="id_spp"
                                 id="id_spp"
                             >
+                                <option selected>Rp ---.---</option>
                                 {spp?.map((data, index) => (
                                     <option key={index} value={data?.id}>Rp {data?.nominal}</option>
                                 ))}
                             </select>
                             <InputError message={errors.id_spp} className="mt-2" />
                         </div>
-                        <div className='md:my-2'>
+                        <div className='my-2'>
                             <InputLabel forInput="nisn" value="NISN" />
                             <TextInput
                                 id="nisn"
@@ -77,11 +79,11 @@ const Create = ({ spp, petugas }) => {
                                 autoComplete="username"
                                 isFocused={true}
                                 handleChange={onHandleChange}
-                                placeholder={'NISN'}
+                                placeholder={'0101010101'}
                             />
                             <InputError message={errors.nisn} className="mt-2" />
                         </div>
-                        <div className='md:my-2'>
+                        <div className='my-2'>
                             <InputLabel forInput="jumlah_bayar" value="Jumlah Bayar" />
                             <TextInput
                                 id="jumlah_bayar"
@@ -92,13 +94,13 @@ const Create = ({ spp, petugas }) => {
                                 autoComplete="username"
                                 isFocused={true}
                                 handleChange={onHandleChange}
-                                placeholder={'Jumlah Bayar'}
+                                placeholder={'200000'}
                             />
                             <InputError message={errors.jumlah_bayar} className="mt-2" />
                         </div>
                     </div>
                     <div>
-                        <div className='md:my-2'>
+                        <div className='my-2'>
                             <InputLabel forInput="tgl_bayar" value="Tanggal Bayar" />
                             <TextInput
                                 id="tgl_bayar"
@@ -124,11 +126,11 @@ const Create = ({ spp, petugas }) => {
                                 autoComplete="username"
                                 isFocused={true}
                                 handleChange={onHandleChange}
-                                placeholder={'Tahun Bayar'}
+                                placeholder={'2023'}
                             />
                             <InputError message={errors.tahun_bayar} className="mt-2" />
                         </div>
-                        <div className='md:my-2'>
+                        <div className='my-2'>
                             <InputLabel forInput="bulan_bayar" value="Bulan Bayar" />
                             <select
                                 onChange={onHandleChange}
@@ -137,6 +139,7 @@ const Create = ({ spp, petugas }) => {
                                 name="bulan_bayar"
                                 id="bulan_bayar"
                             >
+                                <option selected>Pilih Bulan</option>
                                 {month.map((item, i) => (
                                     <option key={i} value={item}>{item}</option>
                                 ))}
@@ -146,9 +149,9 @@ const Create = ({ spp, petugas }) => {
                     </div>
 
                 </div>
-                <div className="mt-5">
+                <div className="md:mt-5 mt-3 mb-5">
                     <PrimaryButton processing={processing}>Rekam</PrimaryButton>
-                    <Link className='duration-300 bg-gray-200 border border-gray-400 hover:border-purple-700 hover:bg-purple-700 hover:text-white md:py-2 md:rounded-md md:px-3' href={route('pembayaran.index')}>Kembali</Link>
+                    <Link className='duration-300 bg-gray-200 border border-gray-400 hover:border-purple-700 hover:bg-purple-700 hover:text-white py-2 rounded-md px-3' href={route('pembayaran.index')}>Kembali</Link>
                 </div>
             </form>
         </Sidebar >
