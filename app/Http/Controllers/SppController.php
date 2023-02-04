@@ -42,8 +42,8 @@ class SppController extends Controller
     public function store(Request $request)
     {
         $validateData = $request->validate([
-            'nominal' => ['required', 'numeric'],
-            'tahun' => ['required', 'numeric'],
+            'nominal' => ['required'],
+            'tahun' => ['required'],
         ]);
 
         if ($validateData) {
@@ -91,8 +91,8 @@ class SppController extends Controller
     public function update(Request $request, Spp $spp)
     {
         $credentials = $request->validate([
-            'nominal' => ['required', 'numeric'],
-            'tahun' => ['required', 'numeric'],
+            'nominal' => ['required'],
+            'tahun' => ['required'],
         ]);
 
         if ($credentials) {

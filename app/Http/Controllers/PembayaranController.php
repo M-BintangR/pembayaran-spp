@@ -56,11 +56,11 @@ class PembayaranController extends Controller
         $validateData = $request->validate([
             'id_petugas' => ['required', Rule::in($idPetugas)],
             'id_spp' => ['required', Rule::in($idSpp)],
-            'nisn' => ['required', 'max:10', 'numeric'],
+            'nisn' => ['required', 'max:10'],
             'tgl_bayar' => ['required'],
             'bulan_bayar' => ['required'],
-            'tahun_bayar' => ['required', 'numeric'],
-            'jumlah_bayar' => ['required', 'numeric'],
+            'tahun_bayar' => ['required'],
+            'jumlah_bayar' => ['required'],
         ]);
 
         if ($validateData) {
@@ -114,11 +114,11 @@ class PembayaranController extends Controller
         $credentials = $request->validate([
             'id_petugas' => ['required', Rule::in($idPetugas)],
             'id_spp' => ['required', Rule::in($idSpp)],
-            'nisn' => ['required', 'max:10', 'numeric'],
+            'nisn' => ['required', 'max:10'],
             'tgl_bayar' => ['required'],
             'bulan_bayar' => ['required'],
-            'tahun_bayar' => ['required', 'numeric'],
-            'jumlah_bayar' => ['required', 'numeric'],
+            'tahun_bayar' => ['required'],
+            'jumlah_bayar' => ['required'],
         ]);
 
         if ($credentials) {
