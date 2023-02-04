@@ -21,7 +21,7 @@ class PembayaranController extends Controller
     public function index($query = 10)
     {
         $items = Pembayaran::with(['petugas', 'siswa', 'spp'])
-            ->orderBy('created_at', 'asc')
+            ->orderBy('created_at', 'desc')
             ->paginate($query);
         return Inertia::render('Dashboard/Pembayaran/Home', [
             'items' => $items,
@@ -56,11 +56,11 @@ class PembayaranController extends Controller
         $validateData = $request->validate([
             'id_petugas' => ['required', Rule::in($idPetugas)],
             'id_spp' => ['required', Rule::in($idSpp)],
-            'nisn' => ['required', 'max:10'],
+            'nisn' => ['required', 'max:10', 'numeric'],
             'tgl_bayar' => ['required'],
             'bulan_bayar' => ['required'],
-            'tahun_bayar' => ['required'],
-            'jumlah_bayar' => ['required'],
+            'tahun_bayar' => ['required', 'numeric'],
+            'jumlah_bayar' => ['required', 'numeric'],
         ]);
 
         if ($validateData) {
@@ -114,11 +114,11 @@ class PembayaranController extends Controller
         $credentials = $request->validate([
             'id_petugas' => ['required', Rule::in($idPetugas)],
             'id_spp' => ['required', Rule::in($idSpp)],
-            'nisn' => ['required', 'max:10'],
+            'nisn' => ['required', 'max:10', 'numeric'],
             'tgl_bayar' => ['required'],
             'bulan_bayar' => ['required'],
-            'tahun_bayar' => ['required'],
-            'jumlah_bayar' => ['required'],
+            'tahun_bayar' => ['required', 'numeric'],
+            'jumlah_bayar' => ['required', 'numeric'],
         ]);
 
         if ($credentials) {

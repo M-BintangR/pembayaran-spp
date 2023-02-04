@@ -18,7 +18,7 @@ class SppController extends Controller
      */
     public function index($query = 10)
     {
-        $items = Spp::orderBy('created_at', 'asc')->paginate($query);
+        $items = Spp::orderBy('created_at', 'desc')->paginate($query);
         return Inertia::render('Dashboard/Spp/Home', [
             'items' => $items,
         ]);
@@ -42,8 +42,8 @@ class SppController extends Controller
     public function store(Request $request)
     {
         $validateData = $request->validate([
-            'nominal' => ['required'],
-            'tahun' => ['required'],
+            'nominal' => ['required', 'numeric'],
+            'tahun' => ['required', 'numeric'],
         ]);
 
         if ($validateData) {
@@ -91,8 +91,8 @@ class SppController extends Controller
     public function update(Request $request, Spp $spp)
     {
         $credentials = $request->validate([
-            'nominal' => ['required'],
-            'tahun' => ['required'],
+            'nominal' => ['required', 'numeric'],
+            'tahun' => ['required', 'numeric'],
         ]);
 
         if ($credentials) {

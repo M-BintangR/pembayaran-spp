@@ -32,7 +32,7 @@ Route::get('/', function () {
 });
 
 
-Route::group(['prefix' => '/dashboard'], function () {
+Route::group(['prefix' => '/dashboard', 'middleware' => ['auth', 'admin']], function () {
     Route::get('/kelas', [KelasController::class, 'index'])->name('kelas.index');
     Route::get('/kelas/{kelas:id}/edit', [KelasController::class, 'edit'])->name('kelas.edit');
     Route::put('/kelas/{kelas:id}', [KelasController::class, 'update'])->name('kelas.update');
@@ -73,6 +73,8 @@ Route::group(['prefix' => '/dashboard'], function () {
     Route::delete('/pembayaran/{pembayaran:id}', [PembayaranController::class, 'destroy'])->name('pembayaran.destroy');
     Route::get('/pembayaran/short/{query}', [PembayaranController::class, 'index'])->name('pembayaran.short');
 });
+
+Route::get('/dashboard/profile', [DashboardController::class, 'profile'])->name('profile');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 

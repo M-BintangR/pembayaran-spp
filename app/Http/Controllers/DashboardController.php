@@ -26,4 +26,11 @@ class DashboardController extends Controller
             'items' => $items,
         ]);
     }
+
+    public function profile()
+    {
+        return Inertia::render('Dashboard/Profile', [
+            'user'
+        ]);
+    }
 }

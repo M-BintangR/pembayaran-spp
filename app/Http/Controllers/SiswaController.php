@@ -20,7 +20,7 @@ class SiswaController extends Controller
     public function index($query = 10)
     {
         $items = Siswa::with(['kelas', 'spp'])
-            ->orderBy('created_at', 'asc')
+            ->orderBy('created_at', 'desc')
             ->paginate($query);
         return Inertia::render('Dashboard/Siswa/Home', [
             'items' => $items,
@@ -53,12 +53,12 @@ class SiswaController extends Controller
         $idSpp = Spp::pluck('id');
         $idKelas = Kelas::pluck('id');
         $validateData = $request->validate([
-            'nisn' => ['required', 'max:10', 'unique:siswas,nisn'],
+            'nisn' => ['required', 'max:10', 'unique:siswas,nisn', 'numeric'],
             'nis' => ['required', 'max:7', 'unique:siswas,nis'],
             'nama' => ['required'],
             'id_kelas' => ['required', Rule::in($idKelas)],
             'alamat' => ['required'],
-            'no_telp' => ['required'],
+            'no_telp' => ['required', 'numeric'],
             'id_spp' => ['required', Rule::in($idSpp)],
         ]);
 
@@ -111,12 +111,12 @@ class SiswaController extends Controller
         $idSpp = Spp::pluck('id');
         $idKelas = Kelas::pluck('id');
         $credentials = $request->validate([
-            'nisn' => ['required', 'max:10'],
+            'nisn' => ['required', 'max:10', 'numeric'],
             'nis' => ['required', 'max:7'],
             'nama' => ['required'],
             'id_kelas' => ['required', Rule::in($idKelas)],
             'alamat' => ['required'],
-            'no_telp' => ['required'],
+            'no_telp' => ['required', 'numeric'],
             'id_spp' => ['required', Rule::in($idSpp)],
         ]);
 
