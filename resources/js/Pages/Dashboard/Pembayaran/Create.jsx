@@ -6,6 +6,7 @@ import React from 'react'
 import HardTitle from '@/Components/HardTitle'
 import { Link, useForm } from '@inertiajs/react';
 import PrimaryButton from '@/Components/PrimaryButton'
+import swal from 'sweetalert'
 
 const Create = ({ spp, petugas }) => {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -27,7 +28,14 @@ const Create = ({ spp, petugas }) => {
 
     const onHandleSubmit = (e) => {
         e.preventDefault();
-        post(route('pembayaran.store'));
+        post(route('pembayaran.store'), {
+            onSuccess: () => {
+                swal({
+                    title: "Pembayaran Berhasil",
+                    icon: "success",
+                });
+            }
+        });
     }
 
     return (

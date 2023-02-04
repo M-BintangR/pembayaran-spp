@@ -6,6 +6,7 @@ import React, { useEffect } from 'react'
 import HardTitle from '@/Components/HardTitle'
 import { Link, useForm } from '@inertiajs/react';
 import PrimaryButton from '@/Components/PrimaryButton'
+import swal from 'sweetalert'
 
 const Edit = ({ item, petugas, spp }) => {
     const { data, setData, processing, errors, put } = useForm({
@@ -30,7 +31,14 @@ const Edit = ({ item, petugas, spp }) => {
 
     const onHandleSubmit = (e) => {
         e.preventDefault();
-        put(route('pembayaran.update', item?.id));
+        put(route('pembayaran.update', item?.id), {
+            onSuccess: () => {
+                swal({
+                    title: "Pembayaran Berhasil Di Edit",
+                    icon: "success",
+                });
+            }
+        });
     }
 
 

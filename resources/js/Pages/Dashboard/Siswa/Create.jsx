@@ -6,6 +6,7 @@ import React from 'react'
 import HardTitle from '@/Components/HardTitle'
 import { Link, useForm } from '@inertiajs/react';
 import PrimaryButton from '@/Components/PrimaryButton'
+import swal from 'sweetalert'
 
 const Create = ({ kelas, spp }) => {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -24,7 +25,14 @@ const Create = ({ kelas, spp }) => {
 
     const onHandleSubmit = (e) => {
         e.preventDefault();
-        post(route('siswa.store'));
+        post(route('siswa.store'), {
+            onSuccess: () => {
+                swal({
+                    title: "Data Siswa Berhasil Di Tambah",
+                    icon: "success",
+                });
+            }
+        });
     }
 
     return (
