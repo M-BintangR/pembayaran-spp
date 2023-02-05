@@ -9,7 +9,7 @@ import Footer from './Footer';
 import { menuSidebar } from '@/Components/url/url';
 
 const Sidebar = ({ children, active, user }) => {
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(false);
     const [submenuOpen, setSubmenuOpen] = useState(false);
     const [targetActive, setTargetActive] = useState(false);
     const sidebarRef = useRef();
@@ -41,7 +41,7 @@ const Sidebar = ({ children, active, user }) => {
                         </div>
                         {filterMenu.map((menu, index) => (
                             <div key={index}>
-                                {menu?.spacing && (
+                                {menu?.spacing && user?.level === 'admin' && (
                                     <h2 className={`${menu?.spacing && 'mt-5 mb-3'} font-semibold md:text-xl text-md mx-3 text-slate-900 duration-300 ${!open && 'scale-0 scale-x-0 mx-0 mt-0 mb-0'}`}>Kelola Data
                                     </h2>
                                 )}

@@ -17,7 +17,7 @@ class IsPetugas
     public function handle(Request $request, Closure $next)
     {
         if (auth()->guest() || auth()->user()->level != 'petugas') {
-            abort(403);
+            return redirect()->back();
         }
         return $next($request);
     }

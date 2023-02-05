@@ -19,7 +19,7 @@ const PanelAdmin = ({ items, user }) => {
 
     return (
         <Sidebar active={'dashboard'} user={user}>
-            <HardTitle title={'Dashboard Admin'} subTitle={'Selamat Datang Admin!'} />
+            <HardTitle title={'Dashboard Admin'} subTitle={`Selamat Datang ${user?.level}`} />
             <CardAdmin dataCards={dataCards} items={items} />
         </Sidebar>
     )

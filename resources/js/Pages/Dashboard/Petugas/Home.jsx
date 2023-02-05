@@ -10,6 +10,7 @@ import { CrudModal } from '@/Components/CrudModal';
 import axios from 'axios';
 import { DataCreate, DataEdit } from './DataInput';
 import Loading from '@/Components/Loading';
+import Paginate from '@/Components/Paginate';
 
 
 const Home = ({ items, user }) => {
@@ -258,17 +259,7 @@ const Home = ({ items, user }) => {
                 ))}
             </div>
 
-            <div className='flex justify-end text-purple-700 font-bold md:my-10 mb-12 '>
-                <div className="flex bg-white rounded-lg">
-                    <button className='border-2 border-gray-400 duration-300 hover:border-purple-400 hover:bg-purple-700 hover:text-white py-1 px-2 rounded-l-md'>
-                        <MdKeyboardArrowLeft />
-                    </button>
-                    <button className='border-2 mx-1 py-1 px-3 border-gray-400 duration-300 hover:border-purple-400 rounded-sm hover:bg-purple-700 hover:text-white'>21</button>
-                    <button className='border-2 border-gray-400 duration-300 hover:border-purple-400 py-1 px-2 rounded-r-md hover:bg-purple-700 hover:text-white'>
-                        <MdKeyboardArrowRight />
-                    </button>
-                </div>
-            </div>
+            <Paginate meta={items} />
 
             <CrudModal
                 isVisible={onCreteModal}

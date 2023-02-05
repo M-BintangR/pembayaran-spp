@@ -57,7 +57,10 @@ Route::group(['prefix' => '/dashboard', 'middleware' => ['auth', 'admin']], func
     Route::post('/spp', [SppController::class, 'store'])->name('spp.store');
     Route::delete('/spp/{spp:id}', [SppController::class, 'destroy'])->name('spp.destroy');
     Route::get('/spp/short/{query}', [SppController::class, 'index'])->name('spp.short');
+});
 
+
+Route::group(['prefix' => '/dashboard', 'middleware' => 'auth'], function () {
     Route::get('/pembayaran', [PembayaranController::class, 'index'])->name('pembayaran.index');
     Route::get('/pembayaran/{pembayaran:id}/edit', [PembayaranController::class, 'edit'])->name('pembayaran.edit');
     Route::put('/pembayaran/{pembayaran:id}', [PembayaranController::class, 'update'])->name('pembayaran.update');
@@ -65,11 +68,11 @@ Route::group(['prefix' => '/dashboard', 'middleware' => ['auth', 'admin']], func
     Route::post('/pembayaran', [PembayaranController::class, 'store'])->name('pembayaran.store');
     Route::delete('/pembayaran/{pembayaran:id}', [PembayaranController::class, 'destroy'])->name('pembayaran.destroy');
     Route::get('/pembayaran/short/{query}', [PembayaranController::class, 'index'])->name('pembayaran.short');
+    Route::get('profile', [DashboardController::class, 'profile'])->name('profile');
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 });
 
-Route::get('/dashboard/profile', [DashboardController::class, 'profile'])->name('profile');
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

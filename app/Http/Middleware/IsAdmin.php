@@ -17,7 +17,7 @@ class IsAdmin
     public function handle(Request $request, Closure $next)
     {
         if (auth()->guest() || auth()->user()->level != 'admin') {
-            abort(403);
+            return redirect()->back();
         }
         return $next($request);
     }
