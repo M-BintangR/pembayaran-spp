@@ -3,7 +3,7 @@ import { AiOutlineMenu, AiOutlineProfile } from 'react-icons/ai';
 import { IoMdArrowDropdown } from 'react-icons/io';
 import { CgLogOut, CgProfile } from 'react-icons/cg';
 import { Link } from '@inertiajs/react';
-const Navbar = ({ open, setOpen, sidebarRef }) => {
+const Navbar = ({ open, setOpen, sidebarRef, user }) => {
     const [isOpen, setIsOpen] = useState(false);
     const toggleRef = useRef();
     const btnDropdownRef = useRef();
@@ -45,12 +45,16 @@ const Navbar = ({ open, setOpen, sidebarRef }) => {
                 </div>
                 <div className='md:text-base text-xs float-right inline-block relative md:top-2 top-1 md:mr-3'>
                     <button ref={btnDropdownRef} className='cursor-pointer' onClick={handleOpenDropdown}>
-                        Muhammad Bintang
+                        {user ? (
+                            <p>{user.username}</p>
+                        ) : (
+                            <p>Loading...</p>
+                        )}
                     </button>
                     <IoMdArrowDropdown className={`duration-300 inline-block ml-1 ${isOpen ? 'rotate-180' : ''}`} />
 
                     {isOpen ? (
-                        <div ref={dropdownRef} className='absolute md:top-9 top-7 bg-white text-slate-900 w-full rounded-md border-2 shadow-lg'>
+                        <div ref={dropdownRef} className='absolute right-2 md:top-9 top-7 bg-white text-slate-900 w-40 rounded-md border-2 shadow-lg'>
                             <ul className='cursor-pointer md:text-base text-xs font-semibold'>
                                 <li>
                                     <Link

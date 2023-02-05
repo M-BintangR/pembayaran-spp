@@ -1,8 +1,11 @@
+import Sidebar from '@/Layouts/Sidebar'
 import React from 'react'
 
-const Profile = () => {
+const Profile = ({ user }) => {
     return (
-        <div>Profile</div>
+        <Sidebar active={'dashboard'} user={user}>
+            <div>Profile</div>
+        </Sidebar>
     )
 }
 

@@ -8,7 +8,7 @@ import { Link, useForm } from '@inertiajs/react';
 import PrimaryButton from '@/Components/PrimaryButton'
 import swal from 'sweetalert'
 
-const Create = ({ kelas, spp }) => {
+const Create = ({ kelas, spp, user }) => {
     const { data, setData, post, processing, errors, reset } = useForm({
         nisn: '',
         nis: '',
@@ -36,7 +36,7 @@ const Create = ({ kelas, spp }) => {
     }
 
     return (
-        <Sidebar active={'siswa'}>
+        <Sidebar active={'siswa'} user={user}>
             <HardTitle title={'Tambah Siswa'} subTitle={'Tambah data siswa'} />
             <form onSubmit={onHandleSubmit}>
                 <div className='grid md:grid-cols-2 gap-x-3'>

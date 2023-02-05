@@ -25,6 +25,7 @@ class PembayaranController extends Controller
             ->paginate($query);
         return Inertia::render('Dashboard/Pembayaran/Home', [
             'items' => $items,
+            'user' => auth()->user(),
         ]);
     }
 
@@ -40,6 +41,7 @@ class PembayaranController extends Controller
         return Inertia::render('Dashboard/Pembayaran/Create', [
             'petugas' => $dataPetugas,
             'spp' => $dataSpp,
+            'user' => auth()->user(),
         ]);
     }
 
@@ -97,6 +99,7 @@ class PembayaranController extends Controller
             'item' => $pembayaran,
             'petugas' => User::all(),
             'spp' => Spp::all(),
+            'user' => auth()->user(),
         ]);
     }
 

@@ -13,7 +13,7 @@ import Loading from '@/Components/Loading';
 
 
 
-const Home = ({ items }) => {
+const Home = ({ items, user }) => {
     const [record, setRecord] = useState();
     const [loading, setLoading] = useState(false);
 
@@ -146,7 +146,7 @@ const Home = ({ items }) => {
 
 
     return (
-        <Sidebar active={'spp'}>
+        <Sidebar active={'spp'} user={user}>
             <HardTitle title={'Data SPP'} subTitle={'Kelola Data SPP'} />
             <Loading loading={loading} />
             <div className='text-base font-semibold md:mb-5'>

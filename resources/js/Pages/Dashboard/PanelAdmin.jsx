@@ -7,7 +7,7 @@ import HardTitle from '@/Components/HardTitle';
 
 
 
-const PanelAdmin = ({ items }) => {
+const PanelAdmin = ({ items, user }) => {
 
     const dataCards = [
         { title: 'Data Siswa', bgColor: 'bg-indigo-700', textColor: 'text-indigo-700', data: 'siswa' },
@@ -18,7 +18,7 @@ const PanelAdmin = ({ items }) => {
     ];
 
     return (
-        <Sidebar active={'dashboard'}>
+        <Sidebar active={'dashboard'} user={user}>
             <HardTitle title={'Dashboard Admin'} subTitle={'Selamat Datang Admin!'} />
             <CardAdmin dataCards={dataCards} items={items} />
         </Sidebar>

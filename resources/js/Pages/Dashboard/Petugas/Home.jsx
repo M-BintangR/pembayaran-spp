@@ -12,7 +12,7 @@ import { DataCreate, DataEdit } from './DataInput';
 import Loading from '@/Components/Loading';
 
 
-const Home = ({ items }) => {
+const Home = ({ items, user }) => {
     const [record, setRecord] = useState();
     const [loading, setLoading] = useState(false);
 
@@ -149,7 +149,7 @@ const Home = ({ items }) => {
 
 
     return (
-        <Sidebar active={'petugas'}>
+        <Sidebar active={'petugas'} user={user}>
             <HardTitle title={'Data Petugas'} subTitle={'Kelola Data Petugas'} />
             <Loading loading={loading} />
             <div className='text-base font-semibold md:mb-5'>

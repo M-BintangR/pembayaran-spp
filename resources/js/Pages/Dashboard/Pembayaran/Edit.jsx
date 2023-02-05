@@ -8,7 +8,7 @@ import { Link, useForm } from '@inertiajs/react';
 import PrimaryButton from '@/Components/PrimaryButton'
 import swal from 'sweetalert'
 
-const Edit = ({ item, petugas, spp }) => {
+const Edit = ({ item, petugas, spp, user }) => {
     const { data, setData, processing, errors, put } = useForm({
         id_petugas: '',
         id_spp: '',
@@ -44,7 +44,7 @@ const Edit = ({ item, petugas, spp }) => {
 
 
     return (
-        <Sidebar active={'pembayaran'}>
+        <Sidebar active={'pembayaran'} user={user}>
             <HardTitle title={'Pembayaran'} subTitle={'Edit Data Pembayaran'} />
             <form onSubmit={onHandleSubmit}>
                 <div className='grid md:grid-cols-2 gap-x-3'>

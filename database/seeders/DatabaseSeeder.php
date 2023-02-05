@@ -119,7 +119,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 "username" => 'Fery Kun',
-                "password" => bcrypt("petugaspetugas"),
+                "password" => bcrypt("petugas"),
                 "nama_pengguna" => "Fery Fadul",
                 "level" => 'petugas'
             ],

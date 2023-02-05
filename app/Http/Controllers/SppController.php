@@ -21,6 +21,7 @@ class SppController extends Controller
         $items = Spp::orderBy('created_at', 'desc')->paginate($query);
         return Inertia::render('Dashboard/Spp/Home', [
             'items' => $items,
+            'user' => auth()->user(),
         ]);
     }
 

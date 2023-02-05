@@ -19,6 +19,7 @@ class KelasController extends Controller
         $items = Kelas::orderBy('created_at', 'desc')->paginate(10);
         return Inertia::render('Dashboard/Kelas/Home', [
             'items' => $items,
+            'user' => auth()->user(),
         ]);
     }
 

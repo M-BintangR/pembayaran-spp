@@ -8,7 +8,7 @@ import swal from 'sweetalert';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 import Loading from '@/Components/Loading';
 
-const Home = ({ items }) => {
+const Home = ({ items, user }) => {
     const [record, setRecord] = useState();
     const [loading, setLoading] = useState(false);
 
@@ -78,7 +78,7 @@ const Home = ({ items }) => {
 
     return (
 
-        <Sidebar active={'pembayaran'}>
+        <Sidebar active={'pembayaran'} user={user}>
             <HardTitle title={'History Pembayaran'} subTitle={'History Transaksi Pembayaran'} />
             <Loading loading={loading} />
             <div className='text-base font-semibold md:mb-5'>

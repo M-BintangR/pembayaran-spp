@@ -17,13 +17,14 @@ class SiswaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($query = 10)
+    public function index()
     {
         $items = Siswa::with(['kelas', 'spp'])
             ->orderBy('created_at', 'desc')
-            ->paginate($query);
+            ->paginate(10);
         return Inertia::render('Dashboard/Siswa/Home', [
             'items' => $items,
+            'user' => auth()->user(),
         ]);
     }
 

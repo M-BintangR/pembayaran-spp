@@ -9,7 +9,7 @@ import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 import Loading from '@/Components/Loading';
 
 
-const Home = ({ items }) => {
+const Home = ({ items, user }) => {
     const [record, setRecord] = useState();
     const [loading, setLoading] = useState(false);
     const trTbl = [
@@ -74,7 +74,7 @@ const Home = ({ items }) => {
 
     }
     return (
-        <Sidebar active={'siswa'}>
+        <Sidebar active={'siswa'} user={user}>
             <HardTitle title={'Data Siswa'} subTitle={'Kelola Data Siswa'} />
             <Loading loading={loading} />
             <div className='text-base font-semibold md:mb-5'>

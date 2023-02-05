@@ -11,7 +11,7 @@ import axios from 'axios';
 import { DataCreate, DataEdit } from './DataInput';
 import Loading from '@/Components/Loading';
 
-const Home = ({ items }) => {
+const Home = ({ items, user }) => {
     const [record, setRecord] = useState();
     const [loading, setLoading] = useState(false);
 
@@ -150,7 +150,7 @@ const Home = ({ items }) => {
     }
 
     return (
-        <Sidebar active={'kelas'}>
+        <Sidebar active={'kelas'} user={user}>
             <HardTitle title={'Data Kelas'} subTitle={'Kelola Data Kelas'} />
             <Loading loading={loading} />
             <div className='text-base font-semibold md:mb-5'>

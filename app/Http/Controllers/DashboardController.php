@@ -24,13 +24,14 @@ class DashboardController extends Controller
 
         return Inertia::render('Dashboard/PanelAdmin', [
             'items' => $items,
+            'user' => auth()->user(),
         ]);
     }
 
     public function profile()
     {
         return Inertia::render('Dashboard/Profile', [
-            'user'
+            'user' => auth()->user(),
         ]);
     }
 }

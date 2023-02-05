@@ -21,6 +21,7 @@ class PetugasController extends Controller
             ->paginate(10);
         return Inertia::render('Dashboard/Petugas/Home', [
             'items' => $items,
+            'user' => auth()->user(),
         ]);
     }
 
@@ -31,7 +32,6 @@ class PetugasController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Dashboard/Petugas/Create');
     }
 
     /**
