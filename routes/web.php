@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\SppController;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function () {
+    return Inertia::render('Home');
+})->name('home');
 
 Route::group(['prefix' => '/dashboard', 'middleware' => ['auth', 'admin']], function () {
     Route::get('/kelas', [KelasController::class, 'index'])->name('kelas.index');

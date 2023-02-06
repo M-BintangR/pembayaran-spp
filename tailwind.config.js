@@ -14,6 +14,9 @@ module.exports = {
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
             },
+            backgroundColor: {
+                purpleT: `rgb(126, 34, 206, 60%)`
+            }
         },
     },
     plugins: [
