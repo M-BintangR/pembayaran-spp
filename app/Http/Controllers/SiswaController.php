@@ -40,6 +40,7 @@ class SiswaController extends Controller
         return Inertia::render('Dashboard/Siswa/Create', [
             'spp' => $dataSpp,
             'kelas' => $dataKelas,
+            'user' => auth()->user(),
         ]);
     }
 
@@ -97,6 +98,7 @@ class SiswaController extends Controller
             'item' => $siswa,
             'spp' => Spp::all(),
             'kelas' => Kelas::all(),
+            'user' => auth()->user(),
         ]);
     }
 

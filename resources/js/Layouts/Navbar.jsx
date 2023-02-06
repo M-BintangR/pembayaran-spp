@@ -3,6 +3,8 @@ import { AiOutlineMenu, AiOutlineProfile } from 'react-icons/ai';
 import { IoMdArrowDropdown } from 'react-icons/io';
 import { CgLogOut, CgProfile } from 'react-icons/cg';
 import { Link } from '@inertiajs/react';
+import logo from '../Components/img/logoWeb2.png'
+
 const Navbar = ({ open, setOpen, sidebarRef, user }) => {
     const [isOpen, setIsOpen] = useState(false);
     const toggleRef = useRef();
@@ -39,9 +41,10 @@ const Navbar = ({ open, setOpen, sidebarRef, user }) => {
                 <div className='inline-block ' ref={toggleRef} >
                     <AiOutlineMenu className='md:mr-3 mr-2 relative md:top-1 top-1 md:p-2 p-1 md:text-xl text-xs box-content hover:bg-purple-400 hover:rounded-md duration-300' onClick={handleOpenMenus} />
                 </div>
-                <div className="md:text-xl text-xs font-semibold inline-block relative md:-top-2 -top-1">
-                    <span className='font-thin md:mr-3 mr-2'>|</span>
-                    <h1 className='inline-block'>Aplikasi SPP</h1>
+                <div className="md:text-xl text-xs font-semibold inline-block relative md:top-0 -top-1">
+                    <img className='inline-block mr-3 float-left md:w-[50px] w-[30px] relative md:top-2 top-0' src={logo} alt="logo website" />
+                    <h1 className='inline-block md:text-base text-xs'>Aplikasi Transaksi Spp</h1>
+                    <p className={`md:text-xs md:block hidden`}>solusi cerdas dalam transaksi</p>
                 </div>
                 <div className='md:text-base text-xs float-right inline-block relative md:top-2 top-1 md:mr-3'>
                     <button ref={btnDropdownRef} className='cursor-pointer' onClick={handleOpenDropdown}>

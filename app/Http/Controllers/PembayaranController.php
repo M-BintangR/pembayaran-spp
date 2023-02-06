@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pembayaran;
-use App\Models\Siswa;
 use App\Models\Spp;
 use App\Models\User;
 use Illuminate\Http\Request;
