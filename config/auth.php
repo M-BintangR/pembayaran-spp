@@ -41,7 +41,7 @@ return [
             'provider' => 'users',
         ],
 
-        'pengguna2' => [
+        'siswa' => [
             'driver' => 'session',
             'provider' => 'siswas',
         ],
@@ -70,7 +70,7 @@ return [
             'model' => App\Models\User::class,
         ],
 
-        'pengguna2' => [
+        'siswas' => [
             'driver' => 'eloquent',
             'model' => App\Models\Siswa::class,
         ],

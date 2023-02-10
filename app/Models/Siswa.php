@@ -4,9 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Siswa extends Model
+class Siswa extends Authenticatable
 {
+    public function getAuthPassword()
+    {
+        return $this->nisn;
+    }
+
     use HasFactory;
 
     protected $guarded = ['id'];

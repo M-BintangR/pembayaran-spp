@@ -4,7 +4,6 @@ import { Inertia } from '@inertiajs/inertia';
 import React, { useEffect, useState } from 'react'
 import { BiEdit, BiTrash } from 'react-icons/bi';
 import swal from 'sweetalert';
-import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 import { useForm } from '@inertiajs/react';
 import { CrudModal } from '@/Components/CrudModal';
 import axios from 'axios';

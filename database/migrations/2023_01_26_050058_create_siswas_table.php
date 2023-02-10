@@ -18,6 +18,7 @@ return new class extends Migration
             $table->char('nisn', 10)->unique();
             $table->char('nis', 8)->unique();
             $table->string('nama', 35);
+            $table->enum('jk', ['p', 'l']);
             $table->foreignId('id_kelas');
             $table->text('alamat');
             $table->char('no_telp', 13);

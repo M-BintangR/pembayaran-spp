@@ -16,6 +16,7 @@ const Home = ({ items, user }) => {
     const trTbl = [
         { title: 'No' },
         { title: 'Nama' },
+        { title: 'Jenis Kelamin' },
         { title: 'NISN' },
         { title: 'NIS' },
         { title: 'Nama Kelas' },
@@ -122,6 +123,7 @@ const Home = ({ items, user }) => {
                                 <>
                                     <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300'>{index + 1}</td>
                                     <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 capitalize'>{row?.nama}</td>
+                                    <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 capitalize'>{row?.jk === 'l' ? 'Laki-laki' : 'Prempuan'}</td>
                                     <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 uppercase'>{row?.nisn}</td>
                                     <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 uppercase'>{row?.nis}</td>
                                     <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 capitalize'>{row?.kelas?.nama_kelas}</td>

@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kelas;
 use App\Models\Pembayaran;
+use App\Models\Siswa;
 use App\Models\Spp;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\Rule;
@@ -17,11 +18,22 @@ class PembayaranController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($query = 10)
+
+    public function transaksi()
     {
-        $items = Pembayaran::with(['petugas', 'siswa', 'spp'])
+        $siswa = Siswa::with(['kelas'])->orderBy('created_at', 'desc')
+            ->paginate(10);
+        return Inertia::render('Dashboard/Pembayaran/Transaksi', [
+            'user' => auth()->user(),
+            'siswa' => $siswa,
+        ]);
+    }
+
+    public function index()
+    {
+        $items = Pembayaran::with(['petugas', 'siswa', 'spp', 'siswa.kelas'])
             ->orderBy('created_at', 'desc')
-            ->paginate($query);
+            ->paginate(10);
         return Inertia::render('Dashboard/Pembayaran/Home', [
             'items' => $items,
             'user' => auth()->user(),
@@ -33,14 +45,17 @@ class PembayaranController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Siswa $siswa)
     {
-        $dataPetugas = User::all();
-        $dataSpp = Spp::all();
+        $dataSpp = Spp::where('id', $siswa->id_spp)->first();
+        $kelas = Kelas::where('id', $siswa->id_kelas)->first();
+        $month = Pembayaran::where('nisn', $siswa->nisn)->get();
         return Inertia::render('Dashboard/Pembayaran/Create', [
-            'petugas' => $dataPetugas,
+            'siswa' => $siswa,
+            'kelas' => $kelas,
             'spp' => $dataSpp,
             'user' => auth()->user(),
+            'bulan_bayar' => $month,
         ]);
     }
 
@@ -81,10 +96,6 @@ class PembayaranController extends Controller
      * @param  \App\Models\Pembayaran  $pembayaran
      * @return \Illuminate\Http\Response
      */
-    public function show(Pembayaran $pembayaran)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -92,15 +103,6 @@ class PembayaranController extends Controller
      * @param  \App\Models\Pembayaran  $pembayaran
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pembayaran $pembayaran)
-    {
-        return Inertia::render('Dashboard/Pembayaran/Edit', [
-            'item' => $pembayaran,
-            'petugas' => User::all(),
-            'spp' => Spp::all(),
-            'user' => auth()->user(),
-        ]);
-    }
 
     /**
      * Update the specified resource in storage.

@@ -2,11 +2,13 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KelasController;
+use App\Http\Controllers\LoginSiswaController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\SppController;
+use App\Models\Pembayaran;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -23,7 +25,7 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
     return Inertia::render('Home');
-})->name('home');
+})->name('home')->middleware('guest');
 
 Route::group(['prefix' => '/dashboard', 'middleware' => ['auth', 'admin']], function () {
     Route::get('/kelas', [KelasController::class, 'index'])->name('kelas.index');
@@ -59,18 +61,22 @@ Route::group(['prefix' => '/dashboard', 'middleware' => ['auth', 'admin']], func
     Route::get('/spp/short/{query}', [SppController::class, 'index'])->name('spp.short');
 });
 
-
 Route::group(['prefix' => '/dashboard', 'middleware' => ['auth', 'petugas']], function () {
     Route::get('/pembayaran', [PembayaranController::class, 'index'])->name('pembayaran.index');
-    Route::get('/pembayaran/{pembayaran:id}/edit', [PembayaranController::class, 'edit'])->name('pembayaran.edit');
+
     Route::put('/pembayaran/{pembayaran:id}', [PembayaranController::class, 'update'])->name('pembayaran.update');
-    Route::get('/pembayaran/create', [PembayaranController::class, 'create'])->name('pembayaran.create');
+
+    Route::get('/pembayaran/{siswa:nisn}/create', [PembayaranController::class, 'create'])->name('pembayaran.create');
+
     Route::post('/pembayaran', [PembayaranController::class, 'store'])->name('pembayaran.store');
     Route::delete('/pembayaran/{pembayaran:id}', [PembayaranController::class, 'destroy'])->name('pembayaran.destroy');
     Route::get('/pembayaran/short/{query}', [PembayaranController::class, 'index'])->name('pembayaran.short');
     Route::get('profile', [DashboardController::class, 'profile'])->name('profile');
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/pembayaran/transaksi', [PembayaranController::class, 'transaksi'])->name('transaksi');
 });
+
+Route::get('/dashboard-siswa', [DashboardController::class, 'getPanelSiswa'])->name('panel.siswa');
 
 
 

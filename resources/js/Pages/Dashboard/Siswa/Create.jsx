@@ -13,6 +13,7 @@ const Create = ({ kelas, spp, user }) => {
         nisn: '',
         nis: '',
         nama: '',
+        jk: '',
         id_kelas: '',
         id_spp: '',
         alamat: '',
@@ -56,6 +57,21 @@ const Create = ({ kelas, spp, user }) => {
                                 ))}
                             </select>
                             <InputError message={errors.id_kelas} className="mt-2" />
+                        </div>
+                        <div className='my-2'>
+                            <InputLabel forInput="jk" value="Jenis Kelamin" />
+                            <select
+                                onChange={onHandleChange}
+                                defaultValue={data.jk}
+                                className='border-gray-300 focus:border-purple-700 focus:ring-purple-700 rounded-md shadow-sm md:text-base text-xs mt-1 block w-full'
+                                name="jk"
+                                id="jk"
+                            >
+                                <option selected>Jenis Kelamin</option>
+                                <option value={'p'}>Perempuan</option>
+                                <option value={'l'}>Laki-laki</option>
+                            </select>
+                            <InputError message={errors.jk} className="mt-2" />
                         </div>
                         <div className='my-2'>
                             <InputLabel forInput="id_spp" value="Nominal SPP" />

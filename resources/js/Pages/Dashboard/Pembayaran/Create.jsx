@@ -1,15 +1,12 @@
-import InputError from '@/Components/InputError'
 import InputLabel from '@/Components/InputLabel'
-import TextInput from '@/Components/TextInput'
 import Sidebar from '@/Layouts/Sidebar'
 import React from 'react'
 import HardTitle from '@/Components/HardTitle'
-import { Link, useForm } from '@inertiajs/react';
-import PrimaryButton from '@/Components/PrimaryButton'
+import { useForm } from '@inertiajs/react';
 import swal from 'sweetalert'
 
-const Create = ({ spp, petugas, user }) => {
-    const { data, setData, post, processing, errors, reset } = useForm({
+const Create = ({ spp, user, siswa, kelas, bulan_bayar }) => {
+    const { setData, post } = useForm({
         id_petugas: '',
         id_spp: '',
         nisn: '',
@@ -19,149 +16,129 @@ const Create = ({ spp, petugas, user }) => {
         jumlah_bayar: '',
     });
 
-
     const month = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
 
-    const onHandleChange = (event) => {
-        setData(event.target.name, event.target.type === 'checkbox' ? event.target.checked : event.target.value);
+    const onHandleTransaksi = (bulan) => {
+        let today = new Date();
+        let dd = today.getDate();
+        let mm = today.getMonth() + 1;
+        let yyyy = today.getFullYear();
+        setData({
+            id_petugas: user?.id,
+            id_spp: siswa?.id_spp,
+            nisn: siswa?.nisn,
+            tgl_bayar: yyyy + '-' + mm + '-' + dd,
+            bulan_bayar: bulan,
+            tahun_bayar: spp?.tahun,
+            jumlah_bayar: spp?.nominal,
+        });
     }
 
-    const onHandleSubmit = (e) => {
+    const onHandleSubmit = async (e) => {
         e.preventDefault();
-        post(route('pembayaran.store'), {
-            onSuccess: () => {
-                swal({
-                    title: "Pembayaran Berhasil",
-                    icon: "success",
+        await swal({
+            title: "Apakah Anda Yakin!",
+            text: "Transaksi akan di lakukan!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        }).then((will) => {
+            if (will) {
+                post(route('pembayaran.store'), {
+                    onSuccess: () => {
+                        swal({
+                            title: "Transaksi Berhasil",
+                            icon: "success",
+                        });
+                    },
+                    onError: () => {
+                        swal({
+                            title: "Transaksi Berhasil",
+                            icon: "error",
+                        });
+                    }
                 });
+            } else {
+                swal("Transaksi batal");
             }
         });
     }
 
+
     return (
         <Sidebar active={'pembayaran'} user={user}>
             <HardTitle title={'Entri Pembayaran'} subTitle={'Entri Transaksi Pembayaran'} />
-            <form onSubmit={onHandleSubmit}>
-                <div className='grid md:grid-cols-2 gap-x-3'>
-                    <div className=''>
-                        <div className='my-2'>
-                            <InputLabel forInput="id_petugas" value="Petugas" />
-                            <select
-                                onChange={onHandleChange}
-                                defaultValue={data.id_petugas}
-                                className='border-gray-300 focus:border-purple-700 focus:ring-purple-700 rounded-md shadow-sm md:text-base text-xs mt-1 block w-full'
-                                name="id_petugas"
-                                id="id_petugas"
-                            >
-                                <option selected>Pilih Nama Petugas</option>
-                                {petugas?.map((data, index) => (
-                                    <option key={index} value={data?.id}>{data?.nama_pengguna}</option>
-                                ))}
-                            </select>
-                            <InputError message={errors.id_petugas} className="mt-2" />
-                        </div>
-                        <div className='my-2'>
-                            <InputLabel forInput="id_spp" value="Nominal SPP" />
-                            <select
-                                onChange={onHandleChange}
-                                defaultValue={data.id_spp}
-                                className='border-gray-300 focus:border-purple-700 focus:ring-purple-700 rounded-md shadow-sm md:text-base text-xs mt-1 block w-full'
-                                name="id_spp"
-                                id="id_spp"
-                            >
-                                <option selected>Rp ---.---</option>
-                                {spp?.map((data, index) => (
-                                    <option key={index} value={data?.id}>Rp {data?.nominal}</option>
-                                ))}
-                            </select>
-                            <InputError message={errors.id_spp} className="mt-2" />
-                        </div>
-                        <div className='my-2'>
-                            <InputLabel forInput="nisn" value="NISN" />
-                            <TextInput
-                                id="nisn"
-                                type="text"
-                                name="nisn"
-                                value={data.nisn}
-                                className="mt-1 block w-full"
-                                autoComplete="username"
-                                isFocused={true}
-                                handleChange={onHandleChange}
-                                placeholder={'0101010101'}
-                            />
-                            <InputError message={errors.nisn} className="mt-2" />
-                        </div>
-                        <div className='my-2'>
-                            <InputLabel forInput="jumlah_bayar" value="Jumlah Bayar" />
-                            <TextInput
-                                id="jumlah_bayar"
-                                type="text"
-                                name="jumlah_bayar"
-                                value={data.jumlah_bayar}
-                                className="mt-1 block w-full"
-                                autoComplete="username"
-                                isFocused={true}
-                                handleChange={onHandleChange}
-                                placeholder={'200000'}
-                            />
-                            <InputError message={errors.jumlah_bayar} className="mt-2" />
-                        </div>
+            <div className="grid md:grid-cols-2 grid-cols-1 md:gap-7 gap-5 md:mt-0 mt-5">
+                <div className='flex gap-y-3 flex-col'>
+                    <h1 className='md:text-lg text-sm font-semibold'>Data Siswa
+                        <p className='md:text-sm text-xs font-normal'>Data siswa yang ingin membayar</p>
+                    </h1>
+                    <div>
+                        <small>Nama</small>
+                        <input
+                            className='border-gray-200 bg-gray-100 rounded-md shadow-sm md:text-base text-xs mt-1 block w-full'
+                            type="text"
+                            name='nisn'
+                            value={siswa?.nama}
+                            disabled={true}
+                        />
                     </div>
                     <div>
-                        <div className='my-2'>
-                            <InputLabel forInput="tgl_bayar" value="Tanggal Bayar" />
-                            <TextInput
-                                id="tgl_bayar"
-                                type="date"
-                                name="tgl_bayar"
-                                value={data.tgl_bayar}
-                                className="block w-full"
-                                autoComplete="username"
-                                isFocused={true}
-                                handleChange={onHandleChange}
-                                placeholder={'tgl_bayar'}
-                            />
-                            <InputError message={errors.tgl_bayar} className="mt-2" />
-                        </div>
-                        <div className='md:my-1'>
-                            <InputLabel forInput="tahun_bayar" value="Tahun Bayar" />
-                            <TextInput
-                                id="tahun_bayar"
-                                type="number"
-                                name="tahun_bayar"
-                                value={data.tahun_bayar}
-                                className=" w-full"
-                                autoComplete="username"
-                                isFocused={true}
-                                handleChange={onHandleChange}
-                                placeholder={'2023'}
-                            />
-                            <InputError message={errors.tahun_bayar} className="mt-2" />
-                        </div>
-                        <div className='my-2'>
-                            <InputLabel forInput="bulan_bayar" value="Bulan Bayar" />
-                            <select
-                                onChange={onHandleChange}
-                                defaultValue={data.bulan_bayar}
-                                className='border-gray-300 focus:border-purple-700 focus:ring-purple-700 rounded-md shadow-sm md:text-base text-xs mt-1 block w-full'
-                                name="bulan_bayar"
-                                id="bulan_bayar"
-                            >
-                                <option selected>Pilih Bulan</option>
-                                {month.map((item, i) => (
-                                    <option key={i} value={item}>{item}</option>
-                                ))}
-                            </select>
-                            <InputError message={errors.bulan_bayar} className="mt-2" />
-                        </div>
+                        <small>NISN</small>
+                        <input
+                            className='border-gray-200 bg-gray-100 rounded-md shadow-sm md:text-base text-xs mt-1 block w-full'
+                            type="text"
+                            name='nisn'
+                            value={siswa?.nisn}
+                            disabled={true}
+                        />
                     </div>
-
+                    <div>
+                        <small>Kelas</small>
+                        <input
+                            className='border-gray-200 bg-gray-100 rounded-md shadow-sm md:text-base text-xs mt-1 block w-full'
+                            type="text"
+                            name='nisn'
+                            value={kelas?.nama_kelas}
+                            disabled={true}
+                        />
+                    </div>
                 </div>
-                <div className="md:mt-5 mt-3 mb-5">
-                    <PrimaryButton processing={processing}>Rekam</PrimaryButton>
-                    <Link className='duration-300 bg-gray-200 border border-gray-400 hover:border-purple-700 hover:bg-purple-700 hover:text-white py-2 rounded-md px-3' href={route('pembayaran.index')}>Kembali</Link>
+                <div className=''>
+                    <p className='text-slate-500'>*catatan : jumlah pembayaran spp sebesar</p>
+                    <h1 className='text-2xl font-bold'>Rp {spp?.nominal.toLocaleString()}</h1>
+                    <div>
+                        <h3 className='mb-2 mt-5 text-gray-600'>*Pilih Bulan Yang Belum Di Bayar</h3>
+                        <form onSubmit={onHandleSubmit}>
+                            <table className='w-full border-2 border-spacing-1'>
+                                <tr className='border-2 border-gray-300'>
+                                    <td className='pl-3 py-3'>Bulan Pembayaran</td>
+                                    <td>Transaksi Siswa</td>
+                                </tr>
+                                {month.map((mon, index) => {
+                                    let match = false;
+                                    for (const bulan of bulan_bayar) {
+                                        if (bulan.bulan_bayar.toLowerCase() === mon.toLowerCase()) {
+                                            match = true;
+                                            break;
+                                        }
+                                    }
+                                    return (
+                                        <tr key={index} className='border-2 border-gray-300'>
+                                            <td className='pl-3'>{mon}</td>
+                                            <td>
+                                                <button disabled={match} type='submit' onClick={() => onHandleTransaksi(mon)} className={` text-white py-1 px-2 rounded-md my-3 ${match ? "bg-green-600" : "bg-red-600"}`}>
+                                                    {match ? 's.bayar' : 'b.bayar'}
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    )
+                                })}
+                            </table>
+                        </form>
+                    </div>
                 </div>
-            </form>
+            </div>
         </Sidebar >
     )
 }

@@ -55,12 +55,13 @@ class SiswaController extends Controller
         $idSpp = Spp::pluck('id');
         $idKelas = Kelas::pluck('id');
         $validateData = $request->validate([
-            'nisn' => ['required', 'max:10', 'unique:siswas,nisn', 'numeric'],
+            'nisn' => ['required', 'max:10', 'unique:siswas,nisn'],
             'nis' => ['required', 'max:7', 'unique:siswas,nis'],
             'nama' => ['required'],
+            'jk' => ['required'],
             'id_kelas' => ['required', Rule::in($idKelas)],
             'alamat' => ['required'],
-            'no_telp' => ['required', 'numeric'],
+            'no_telp' => ['required'],
             'id_spp' => ['required', Rule::in($idSpp)],
         ]);
 
@@ -114,12 +115,13 @@ class SiswaController extends Controller
         $idSpp = Spp::pluck('id');
         $idKelas = Kelas::pluck('id');
         $credentials = $request->validate([
-            'nisn' => ['required', 'max:10', 'numeric'],
+            'nisn' => ['required', 'max:10'],
             'nis' => ['required', 'max:7'],
             'nama' => ['required'],
+            'jk' => ['required'],
             'id_kelas' => ['required', Rule::in($idKelas)],
             'alamat' => ['required'],
-            'no_telp' => ['required', 'numeric'],
+            'no_telp' => ['required'],
             'id_spp' => ['required', Rule::in($idSpp)],
         ]);
 

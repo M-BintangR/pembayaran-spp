@@ -34,4 +34,11 @@ class DashboardController extends Controller
             'user' => auth()->user(),
         ]);
     }
+
+    public function getPanelSiswa()
+    {
+        return Inertia::render('Siswa/PanelSiswa', [
+            'user' => auth()->guard('siswa')->user(),
+        ]);
+    }
 }

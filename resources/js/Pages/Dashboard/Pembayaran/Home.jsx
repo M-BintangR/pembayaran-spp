@@ -5,19 +5,17 @@ import { Link } from '@inertiajs/react';
 import React, { useEffect, useState } from 'react'
 import { BiEdit, BiTrash } from 'react-icons/bi';
 import swal from 'sweetalert';
-import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 import Loading from '@/Components/Loading';
 import Paginate from '@/Components/Paginate';
 
 const Home = ({ items, user }) => {
     const [record, setRecord] = useState();
     const [loading, setLoading] = useState(false);
-
     const trTbl = [
         { title: 'No' },
         { title: 'Nama Petugas / Penerima' },
         { title: 'Nama Siswa' },
-        { title: 'NISN' },
+        { title: 'NIS' },
         { title: 'Tanggal Bayar' },
         { title: 'Bulan Bayar' },
         { title: 'Tahun Bayar' },
@@ -99,7 +97,7 @@ const Home = ({ items, user }) => {
                     placeholder='Search'
                 />
 
-                <Link href={route('pembayaran.create')} className='bg-purple-700 md:rounded-md md:text-base text-xs px-2 py-[3px] md:px-3 md:py-1 text-white inline float-right md:relative fixed bottom-0 md:m-0 m-5 rounded-xl shadow-2xl right-0'>Tambah Data +</Link>
+                <Link href={route('transaksi')} className='bg-purple-700 md:rounded-md md:text-base text-xs px-2 py-[3px] md:px-3 md:py-1 text-white inline float-right md:relative fixed bottom-0 md:m-0 m-5 rounded-xl shadow-2xl right-0'>Tambah Pembayaran +</Link>
             </div>
 
             {/* table md */}
@@ -134,12 +132,6 @@ const Home = ({ items, user }) => {
                                     <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 capitalize'>Rp {row?.spp?.nominal}</td>
                                     <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 capitalize'>Rp {row?.jumlah_bayar}</td>
                                     <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300'>
-                                        <Link
-                                            href={route('pembayaran.edit', row?.id)}
-                                            className='duration-100 text-sm md:text-xl text-black mr-1 font-medium md:font-semibold py-1 px-3 hover:text-amber-400'
-                                        >
-                                            <BiEdit className='inline' />
-                                        </Link>
                                         <button
                                             onClick={() => handleDelete(row?.id)}
                                             className='duration-100 text-sm md:text-xl text-black mr-1 font-medium md:font-semibold py-1 px-3 hover:text-red-400'
@@ -158,7 +150,7 @@ const Home = ({ items, user }) => {
 
             <div className='duration-300 mt-3 mb-10 sm:hidden'>
                 {record?.map((row, index) => (
-                    <table class="w-full flex flex-row flex-no-wrap sm:bg-white overflow-hidden sm:shadow-lg ">
+                    <table key={index} class="w-full flex flex-row flex-no-wrap sm:bg-white overflow-hidden sm:shadow-lg ">
                         <thead class="text-white">
                             <tr class="bg-purple-700 flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0 text-xs rounded-l-md">
                                 {trTbl.map((tr, index) => (
@@ -168,23 +160,17 @@ const Home = ({ items, user }) => {
                             </tr>
                         </thead>
                         <tbody class="flex-1 sm:flex-none">
-                            <tr key={index} class="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0 text-xs">
+                            <tr class="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0 text-xs">
                                 <td class="border-grey-light border hover:bg-gray-100 p-3">{index + 1}</td>
                                 <td class="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">{row?.petugas?.nama_pengguna}</td>
                                 <td class="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">{row?.siswa?.nama}</td>
-                                <td class="border-grey-light border hover:bg-gray-100 p-3 truncate uppercase">{row?.nisn}</td>
+                                <td class="border-grey-light border hover:bg-gray-100 p-3 truncate uppercase">{row?.siswa?.nis}</td>
                                 <td class="border-grey-light border hover:bg-gray-100 p-3 truncate uppercase">{row?.tgl_bayar}</td>
                                 <td class="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">{row?.bulan_bayar}</td>
                                 <td class="border-grey-light border hover:bg-gray-100 p-3 truncate uppercase">{row?.tahun_bayar}</td>
                                 <td class="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">Rp {row?.spp?.nominal}</td>
                                 <td class="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">Rp {row?.jumlah_bayar}</td>
                                 <td class="border-grey-light border hover:bg-gray-100 p-3 text-red-400 hover:text-red-600 hover:font-medium cursor-pointer">
-                                    <Link
-                                        href={route('pembayaran.edit', row?.id)}
-                                        className='duration-100 text-sm md:text-xl text-black mr-1 font-medium md:font-semibold hover:text-amber-400'
-                                    >
-                                        <BiEdit className='inline' />
-                                    </Link>
                                     <button
                                         onClick={() => handleDelete(row?.id)}
                                         className='duration-100 text-sm md:text-xl text-black mr-1 font-medium md:font-semibold hover:text-red-400'
