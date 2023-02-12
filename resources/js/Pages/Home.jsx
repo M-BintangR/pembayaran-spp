@@ -28,17 +28,17 @@ const Home = () => {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        post(route('siswa.login'), {
-            onSuccess: () => {
-                setIsModal(false);
-                clearData();
-                swal({
-                    title: "Berhasil Login!",
-                    icon: "success",
-                    button: "Ok",
-                });
-            }
-        })
+        // post(route('siswa.login'), {
+        //     onSuccess: () => {
+        //         setIsModal(false);
+        //         clearData();
+        //         swal({
+        //             title: "Berhasil Login!",
+        //             icon: "success",
+        //             button: "Ok",
+        //         });
+        //     }
+        // })
     }
 
     console.log(data);
