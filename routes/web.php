@@ -2,13 +2,10 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KelasController;
-use App\Http\Controllers\LoginSiswaController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\PetugasController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\SppController;
-use App\Models\Pembayaran;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -79,11 +76,5 @@ Route::group(['prefix' => '/dashboard', 'middleware' => ['auth', 'petugas']], fu
 Route::get('/dashboard-siswa', [DashboardController::class, 'getPanelSiswa'])->name('panel.siswa');
 
 
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
 
 require __DIR__ . '/auth.php';
