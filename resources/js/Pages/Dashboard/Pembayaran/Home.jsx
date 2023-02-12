@@ -7,6 +7,7 @@ import { BiEdit, BiTrash } from 'react-icons/bi';
 import swal from 'sweetalert';
 import Loading from '@/Components/Loading';
 import Paginate from '@/Components/Paginate';
+import ShortData from '@/Components/ShortData';
 
 const Home = ({ items, user }) => {
     const [record, setRecord] = useState();
@@ -27,14 +28,6 @@ const Home = ({ items, user }) => {
         setRecord(items.data);
     }, []);
 
-    const handleShortData = (e) => {
-        setLoading(true);
-        setTimeout(() => {
-            setRecord(items.data);
-            setRecord(prev => prev.slice(0, e));
-            setLoading(false);
-        }, 2000);
-    }
 
     const handleSearchData = (target) => {
         if (target !== "") {
@@ -81,14 +74,7 @@ const Home = ({ items, user }) => {
             <HardTitle title={'History Pembayaran'} subTitle={'History Transaksi Pembayaran'} />
             <Loading loading={loading} />
             <div className='text-base font-semibold md:mb-5'>
-                <select
-                    onChange={(e) => handleShortData(e.target.value)}
-                    defaultValue={10}
-                    name="short" id="short" className='md:px-7 md:py-1 md:text-sm text-xs px-6 py-0 rounded-sm border-gray-300 focus:outline-none bg-slate-100 focus:bg-white focus:ring-1 focus:ring-purple-700 mr-2'>
-                    <option value={10}>10</option>
-                    <option value={15}>15</option>
-                    <option value={20}>20</option>
-                </select>
+                <ShortData setRecord={setRecord} setLoading={setLoading} items={items} />
 
                 <input
                     onInput={(e) => handleSearchData(e.target.value)}
@@ -150,27 +136,27 @@ const Home = ({ items, user }) => {
 
             <div className='duration-300 mt-3 mb-10 sm:hidden'>
                 {record?.map((row, index) => (
-                    <table key={index} class="w-full flex flex-row flex-no-wrap sm:bg-white overflow-hidden sm:shadow-lg ">
-                        <thead class="text-white">
-                            <tr class="bg-purple-700 flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0 text-xs rounded-l-md">
+                    <table key={index} className="w-full flex flex-row flex-no-wrap sm:bg-white overflow-hidden sm:shadow-lg ">
+                        <thead className="text-white">
+                            <tr className="bg-purple-700 flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0 text-xs rounded-l-md">
                                 {trTbl.map((tr, index) => (
-                                    <th key={index} class="p-3 text-left">{tr.title}</th>
+                                    <th key={index} className="p-3 text-left">{tr.title}</th>
                                 ))}
-                                <th class="p-3 text-left h-[63px]" width="110px">Actions</th>
+                                <th className="p-3 text-left h-[63px]" width="110px">Actions</th>
                             </tr>
                         </thead>
-                        <tbody class="flex-1 sm:flex-none">
-                            <tr class="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0 text-xs">
-                                <td class="border-grey-light border hover:bg-gray-100 p-3">{index + 1}</td>
-                                <td class="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">{row?.petugas?.nama_pengguna}</td>
-                                <td class="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">{row?.siswa?.nama}</td>
-                                <td class="border-grey-light border hover:bg-gray-100 p-3 truncate uppercase">{row?.siswa?.nis}</td>
-                                <td class="border-grey-light border hover:bg-gray-100 p-3 truncate uppercase">{row?.tgl_bayar}</td>
-                                <td class="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">{row?.bulan_bayar}</td>
-                                <td class="border-grey-light border hover:bg-gray-100 p-3 truncate uppercase">{row?.tahun_bayar}</td>
-                                <td class="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">Rp {row?.spp?.nominal}</td>
-                                <td class="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">Rp {row?.jumlah_bayar}</td>
-                                <td class="border-grey-light border hover:bg-gray-100 p-3 text-red-400 hover:text-red-600 hover:font-medium cursor-pointer">
+                        <tbody className="flex-1 sm:flex-none">
+                            <tr className="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0 text-xs">
+                                <td className="border-grey-light border hover:bg-gray-100 p-3">{index + 1}</td>
+                                <td className="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">{row?.petugas?.nama_pengguna}</td>
+                                <td className="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">{row?.siswa?.nama}</td>
+                                <td className="border-grey-light border hover:bg-gray-100 p-3 truncate uppercase">{row?.siswa?.nis}</td>
+                                <td className="border-grey-light border hover:bg-gray-100 p-3 truncate uppercase">{row?.tgl_bayar}</td>
+                                <td className="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">{row?.bulan_bayar}</td>
+                                <td className="border-grey-light border hover:bg-gray-100 p-3 truncate uppercase">{row?.tahun_bayar}</td>
+                                <td className="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">Rp {row?.spp?.nominal}</td>
+                                <td className="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">Rp {row?.jumlah_bayar}</td>
+                                <td className="border-grey-light border hover:bg-gray-100 p-3 text-red-400 hover:text-red-600 hover:font-medium cursor-pointer">
                                     <button
                                         onClick={() => handleDelete(row?.id)}
                                         className='duration-100 text-sm md:text-xl text-black mr-1 font-medium md:font-semibold hover:text-red-400'

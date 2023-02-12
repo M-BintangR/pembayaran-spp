@@ -11,6 +11,7 @@ import axios from 'axios';
 import { DataCreate, DataEdit } from './DataInput';
 import Loading from '@/Components/Loading';
 import Paginate from '@/Components/Paginate';
+import ShortData from '@/Components/ShortData';
 
 
 const Home = ({ items, user }) => {
@@ -31,15 +32,6 @@ const Home = ({ items, user }) => {
     useEffect(() => {
         setRecord(items.data);
     }, [items]);
-
-    const handleShortData = (e) => {
-        setLoading(true);
-        setTimeout(() => {
-            setRecord(items.data);
-            setRecord(prev => prev.slice(0, e));
-            setLoading(false);
-        }, 2000);
-    }
 
     const handleSearchData = (target) => {
         if (target !== "") {
@@ -154,14 +146,7 @@ const Home = ({ items, user }) => {
             <HardTitle title={'Data Petugas'} subTitle={'Kelola Data Petugas'} />
             <Loading loading={loading} />
             <div className='text-base font-semibold md:mb-5'>
-                <select
-                    onChange={(e) => handleShortData(e.target.value)}
-                    defaultValue={10}
-                    name="short" id="short" className='md:px-7 md:py-1 md:text-sm text-xs px-6 py-0 rounded-sm border-gray-300 focus:outline-none bg-slate-100 focus:bg-white focus:ring-1 focus:ring-purple-700 mr-2'>
-                    <option value={10}>10</option>
-                    <option value={15}>15</option>
-                    <option value={20}>20</option>
-                </select>
+                <ShortData setRecord={setRecord} setLoading={setLoading} items={items} />
 
                 <input
                     onInput={(e) => handleSearchData(e.target.value)}
@@ -224,22 +209,22 @@ const Home = ({ items, user }) => {
 
             <div className='duration-300 mt-3 mb-10 sm:hidden'>
                 {record?.map((row, index) => (
-                    <table class="w-full flex flex-row flex-no-wrap sm:bg-white overflow-hidden sm:shadow-lg ">
-                        <thead class="text-white">
-                            <tr class="bg-purple-700 flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0 text-xs rounded-l-md">
+                    <table key={index} className="w-full flex flex-row flex-no-wrap sm:bg-white overflow-hidden sm:shadow-lg ">
+                        <thead className="text-white">
+                            <tr className="bg-purple-700 flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0 text-xs rounded-l-md">
                                 {trTbl.map((tr, index) => (
-                                    <th key={index} class="p-3 text-left">{tr.title}</th>
+                                    <th key={index} className="p-3 text-left">{tr.title}</th>
                                 ))}
-                                <th class="p-3 text-left h-[52px]" width="110px">Actions</th>
+                                <th className="p-3 text-left h-[52px]" width="110px">Actions</th>
                             </tr>
                         </thead>
-                        <tbody class="flex-1 sm:flex-none">
-                            <tr key={index} class="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0 text-xs">
-                                <td class="border-grey-light border hover:bg-gray-100 p-3">{index + 1}</td>
-                                <td class="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">{row?.username}</td>
-                                <td class="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">{row?.nama_pengguna}</td>
-                                <td class="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">{row?.level}</td>
-                                <td class="border-grey-light border hover:bg-gray-100 p-3 text-red-400 hover:text-red-600 hover:font-medium cursor-pointer">
+                        <tbody className="flex-1 sm:flex-none">
+                            <tr key={index} className="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0 text-xs">
+                                <td className="border-grey-light border hover:bg-gray-100 p-3">{index + 1}</td>
+                                <td className="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">{row?.username}</td>
+                                <td className="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">{row?.nama_pengguna}</td>
+                                <td className="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">{row?.level}</td>
+                                <td className="border-grey-light border hover:bg-gray-100 p-3 text-red-400 hover:text-red-600 hover:font-medium cursor-pointer">
                                     <button
                                         onClick={() => onHandleEdit(row?.id)}
                                         className='duration-100 text-sm md:text-xl text-black mr-1 font-medium md:font-semibold hover:text-amber-400'
