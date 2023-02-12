@@ -6,7 +6,6 @@ import HardTitle from '@/Components/HardTitle';
 
 
 
-
 const PanelAdmin = ({ items, user }) => {
 
     const dataCards = [
@@ -16,6 +15,7 @@ const PanelAdmin = ({ items, user }) => {
         { title: 'Data Spp', bgColor: 'bg-cyan-700', textColor: 'text-cyan-700', data: 'spp', role: 'admin' },
         { title: 'Data Petugas', bgColor: 'bg-emerald-700', textColor: 'text-emerald-700', data: 'petugas', role: 'admin' },
     ];
+
 
     return (
         <Sidebar active={'dashboard'} user={user}>
