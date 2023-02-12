@@ -7,7 +7,6 @@ use App\Models\Pembayaran;
 use App\Models\Siswa;
 use App\Models\Spp;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class DashboardController extends Controller
@@ -21,6 +20,7 @@ class DashboardController extends Controller
             'spp' => count(Spp::all()),
             'pembayaran' => count(Pembayaran::all()),
         ];
+
 
         return Inertia::render('Dashboard/PanelAdmin', [
             'items' => $items,

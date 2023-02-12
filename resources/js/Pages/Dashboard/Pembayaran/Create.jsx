@@ -29,7 +29,7 @@ const Create = ({ spp, user, siswa, kelas, bulan_bayar }) => {
             nisn: siswa?.nisn,
             tgl_bayar: yyyy + '-' + mm + '-' + dd,
             bulan_bayar: bulan,
-            tahun_bayar: spp?.tahun,
+            tahun_bayar: yyyy,
             jumlah_bayar: spp?.nominal,
         });
     }
