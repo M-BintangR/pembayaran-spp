@@ -11,6 +11,7 @@ import { DataCreate, DataEdit } from './DataInput';
 import Loading from '@/Components/Loading';
 import Paginate from '@/Components/Paginate';
 import ShortData from '@/Components/ShortData';
+import SearchData from '@/Components/SearchData';
 
 
 
@@ -143,14 +144,7 @@ const Home = ({ items, user }) => {
             <Loading loading={loading} />
             <div className='text-base font-semibold md:mb-5'>
                 <ShortData setRecord={setRecord} setLoading={setLoading} items={items} />
-
-                <input
-                    onInput={(e) => handleSearchData(e.target.value)}
-                    className='md:p-1 py-[1px] rounded-sm border shadow-sm border-gray-300 md:text-sm text-xs w-auto md:w-[150px] bg-slate-100 focus:bg-white focus:outline-none focus:ring-1 focus:ring-purple-700'
-                    type="text"
-                    placeholder='Search'
-                />
-
+                <SearchData handleSearchData={handleSearchData} />
                 <button
                     onClick={() => setOnCreateModal(prev => prev = true)}
                     className='bg-purple-700 md:rounded-md md:text-base text-xs px-2 py-[3px] md:px-3 md:py-1 text-white inline float-right md:relative fixed bottom-0 md:m-0 m-5 rounded-xl shadow-2xl right-0'>
