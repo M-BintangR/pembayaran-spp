@@ -3,7 +3,7 @@ import HardTitle from '@/Components/HardTitle'
 import { Inertia } from '@inertiajs/inertia';
 import { Link } from '@inertiajs/react';
 import React, { useEffect, useState } from 'react'
-import { BiEdit, BiTrash } from 'react-icons/bi';
+import { BiTrash } from 'react-icons/bi';
 import swal from 'sweetalert';
 import Loading from '@/Components/Loading';
 import Paginate from '@/Components/Paginate';

@@ -7,8 +7,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
-use function Termwind\render;
-
 class SppController extends Controller
 {
     /**
@@ -64,10 +62,6 @@ class SppController extends Controller
      * @param  \App\Models\Spp  $spp
      * @return \Illuminate\Http\Response
      */
-    public function show(Spp $spp)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.

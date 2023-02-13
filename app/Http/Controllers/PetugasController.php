@@ -6,7 +6,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
-use PhpParser\Node\Stmt\Return_;
 
 class PetugasController extends Controller
 {
@@ -30,9 +29,6 @@ class PetugasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -68,11 +64,6 @@ class PetugasController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
-    {
-        //
-    }
-
     /**
      * Show the form for editing the specified resource.
      *

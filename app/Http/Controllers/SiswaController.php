@@ -82,10 +82,6 @@ class SiswaController extends Controller
      * @param  \App\Models\Siswa  $siswa
      * @return \Illuminate\Http\Response
      */
-    public function show(Siswa $siswa)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.

@@ -28,9 +28,6 @@ class KelasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -62,10 +59,6 @@ class KelasController extends Controller
      * @param  \App\Models\Kelas  $kelas
      * @return \Illuminate\Http\Response
      */
-    public function show(Kelas $kelas)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
