@@ -19,8 +19,8 @@ const PanelAdmin = ({ items, user }) => {
 
     return (
         <Sidebar active={'dashboard'} user={user}>
-            <HardTitle title={'Dashboard Admin'} subTitle={`Selamat Datang ${user?.level}`} />
-            <CardAdmin dataCards={dataCards} items={items} user={user} />
+            <HardTitle title={'Menu Utama'} subTitle={`Selamat Datang ${user?.level}`} />
+            <CardAdmin dataCards={dataCards} items={items} />
         </Sidebar>
     )
 }

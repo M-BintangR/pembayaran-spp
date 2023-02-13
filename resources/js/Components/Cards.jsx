@@ -5,7 +5,7 @@ import { FaSchool, FaRegMoneyBillAlt } from 'react-icons/fa';
 import { RiUserSettingsLine } from 'react-icons/ri';
 
 
-export const CardAdmin = ({ dataCards, items, user }) => {
+export const CardAdmin = ({ dataCards, items }) => {
     const [kelas, setKelas] = useState(0);
     const [siswa, setSiswa] = useState(0);
     const [spp, setSpp] = useState(0);
