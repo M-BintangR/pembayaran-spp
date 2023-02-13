@@ -39,9 +39,9 @@ class PetugasController extends Controller
     public function store(Request $request)
     {
         $validateData = $request->validate([
-            'username' => ['required'],
-            'nama_pengguna' => ['required'],
-            'password' => ['required'],
+            'username' => ['required', 'max:25'],
+            'nama_pengguna' => ['required', 'max:35'],
+            'password' => ['required', 'min:8', 'max:32'],
             'level' => ['required'],
         ]);
 
@@ -87,8 +87,9 @@ class PetugasController extends Controller
     public function update(Request $request, User $user)
     {
         $credentials = $request->validate([
-            'username' => ['required'],
-            'nama_pengguna' => ['required'],
+            'username' => ['required', 'max:25'],
+            'nama_pengguna' => ['required', 'max:35'],
+            'password' => ['required', 'min:8', 'max:32'],
             'level' => ['required'],
         ]);
 

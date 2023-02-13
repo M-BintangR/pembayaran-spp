@@ -38,8 +38,8 @@ class KelasController extends Controller
     public function store(Request $request)
     {
         $validateData = $request->validate([
-            'nama_kelas' => ['required'],
-            'kompetensi_keahlian' => ['required'],
+            'nama_kelas' => ['required', 'max:10'],
+            'kompetensi_keahlian' => ['required', 'max:50'],
         ]);
 
         if ($validateData) {

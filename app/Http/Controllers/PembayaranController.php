@@ -73,9 +73,9 @@ class PembayaranController extends Controller
             'id_petugas' => ['required', Rule::in($idPetugas)],
             'id_spp' => ['required', Rule::in($idSpp)],
             'nisn' => ['required', 'max:10'],
-            'tgl_bayar' => ['required'],
-            'bulan_bayar' => ['required'],
-            'tahun_bayar' => ['required'],
+            'tgl_bayar' => ['required', 'date'],
+            'bulan_bayar' => ['required', 'max:8'],
+            'tahun_bayar' => ['required', 'max:4'],
             'jumlah_bayar' => ['required'],
         ]);
 
@@ -119,9 +119,9 @@ class PembayaranController extends Controller
             'id_petugas' => ['required', Rule::in($idPetugas)],
             'id_spp' => ['required', Rule::in($idSpp)],
             'nisn' => ['required', 'max:10'],
-            'tgl_bayar' => ['required'],
-            'bulan_bayar' => ['required'],
-            'tahun_bayar' => ['required'],
+            'tgl_bayar' => ['required', 'date'],
+            'bulan_bayar' => ['required', 'max:8'],
+            'tahun_bayar' => ['required', 'max:4'],
             'jumlah_bayar' => ['required'],
         ]);
 

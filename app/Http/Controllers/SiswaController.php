@@ -57,11 +57,11 @@ class SiswaController extends Controller
         $validateData = $request->validate([
             'nisn' => ['required', 'max:10', 'unique:siswas,nisn'],
             'nis' => ['required', 'max:7', 'unique:siswas,nis'],
-            'nama' => ['required'],
+            'nama' => ['required', 'max:35'],
             'jk' => ['required'],
             'id_kelas' => ['required', Rule::in($idKelas)],
             'alamat' => ['required'],
-            'no_telp' => ['required'],
+            'no_telp' => ['required', 'max:13'],
             'id_spp' => ['required', Rule::in($idSpp)],
         ]);
 
@@ -113,11 +113,11 @@ class SiswaController extends Controller
         $credentials = $request->validate([
             'nisn' => ['required', 'max:10'],
             'nis' => ['required', 'max:7'],
-            'nama' => ['required'],
+            'nama' => ['required', 'max:35'],
             'jk' => ['required'],
             'id_kelas' => ['required', Rule::in($idKelas)],
             'alamat' => ['required'],
-            'no_telp' => ['required'],
+            'no_telp' => ['required', 'max:13'],
             'id_spp' => ['required', Rule::in($idSpp)],
         ]);
 
