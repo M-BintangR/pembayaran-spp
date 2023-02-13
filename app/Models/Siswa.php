@@ -31,4 +31,14 @@ class Siswa extends Authenticatable
     {
         return $this->belongsTo(Spp::class, 'id_spp', 'id');
     }
+
+    //! Membuat trigger hapus siswa->pembayaran
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($siswa) {
+            $siswa->pembayaran()->delete();
+        });
+    }
 }

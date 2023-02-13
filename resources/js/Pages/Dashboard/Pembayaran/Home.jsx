@@ -22,7 +22,7 @@ const Home = ({ items, user }) => {
         { title: 'Bulan Bayar' },
         { title: 'Tahun Bayar' },
         { title: 'Nominal Pembayaran Spp' },
-        { title: 'Jumlah Di Bayar' },
+        { title: 'Jumlah Yang Di Bayar' },
     ];
 
     useEffect(() => {
@@ -34,9 +34,9 @@ const Home = ({ items, user }) => {
         if (target !== "") {
             setRecord(record.filter(item => {
                 return item.petugas.username.toLowerCase().includes(target.toLowerCase()) ||
+                    item.siswa.nis.toLowerCase().includes(target.toLowerCase()) ||
                     item.bulan_bayar.toLowerCase().includes(target.toLowerCase()) ||
                     item.tahun_bayar.toLowerCase().includes(target.toLowerCase()) ||
-                    item.nisn.toString().toLowerCase().includes(target.toLowerCase()) ||
                     item.tgl_bayar.toString().toLowerCase().includes(target.toLowerCase()) ||
                     item.spp.nominal.toString().toLowerCase().includes(target.toLowerCase()) ||
                     item.jumlah_bayar.toString().toLowerCase().includes(target.toLowerCase()) || item.siswa.nama.toLowerCase().includes(target.toLowerCase());
@@ -103,14 +103,14 @@ const Home = ({ items, user }) => {
                                 className={` border-x-2 border-gray-300 odd:bg-gray-200`} >
                                 <>
                                     <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300'>{index + 1}</td>
-                                    <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 capitalize'>{row?.petugas?.nama_pengguna}</td>
+                                    <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 capitalize'>{row?.petugas ? row?.petugas?.nama_pengguna : '-'}</td>
                                     <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 capitalize'>{row?.siswa?.nama}</td>
-                                    <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 uppercase'>{row?.nisn}</td>
+                                    <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 capitalize'>{row?.siswa?.nis}</td>
                                     <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 uppercase'>{row?.tgl_bayar}</td>
                                     <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 capitalize'>{row?.bulan_bayar}</td>
                                     <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 uppercase'>{row?.tahun_bayar}</td>
-                                    <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 capitalize'>Rp {row?.spp?.nominal}</td>
-                                    <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 capitalize'>Rp {row?.jumlah_bayar}</td>
+                                    <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 capitalize'>Rp {row?.spp ? row?.spp?.nominal.toLocaleString() : '0'}</td>
+                                    <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 capitalize'>Rp {row?.jumlah_bayar.toLocaleString()}</td>
                                     <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300'>
                                         <button
                                             onClick={() => handleDelete(row?.id)}
@@ -142,14 +142,14 @@ const Home = ({ items, user }) => {
                         <tbody className="flex-1 sm:flex-none">
                             <tr className="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0 text-xs">
                                 <td className="border-grey-light border hover:bg-gray-100 p-3">{index + 1}</td>
-                                <td className="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">{row?.petugas?.nama_pengguna}</td>
+                                <td className="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">{row?.petugas ? row?.petugas?.nama_pengguna : '-'}</td>
                                 <td className="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">{row?.siswa?.nama}</td>
-                                <td className="border-grey-light border hover:bg-gray-100 p-3 truncate uppercase">{row?.siswa?.nis}</td>
+                                <td className="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">{row?.siswa?.nis}</td>
                                 <td className="border-grey-light border hover:bg-gray-100 p-3 truncate uppercase">{row?.tgl_bayar}</td>
                                 <td className="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">{row?.bulan_bayar}</td>
                                 <td className="border-grey-light border hover:bg-gray-100 p-3 truncate uppercase">{row?.tahun_bayar}</td>
-                                <td className="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">Rp {row?.spp?.nominal}</td>
-                                <td className="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">Rp {row?.jumlah_bayar}</td>
+                                <td className="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">Rp {row?.spp ? row?.spp?.nominal.toLocaleString() : '0'}</td>
+                                <td className="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">Rp {row?.jumlah_bayar.toLocaleString()}</td>
                                 <td className="border-grey-light border hover:bg-gray-100 p-3 text-red-400 hover:text-red-600 hover:font-medium cursor-pointer">
                                     <button
                                         onClick={() => handleDelete(row?.id)}

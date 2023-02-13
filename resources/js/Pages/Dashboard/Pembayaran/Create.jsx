@@ -106,7 +106,7 @@ const Create = ({ spp, user, siswa, kelas, bulan_bayar }) => {
                 </div>
                 <div className=''>
                     <p className='text-slate-500'>*catatan : jumlah pembayaran spp sebesar</p>
-                    <h1 className='text-2xl font-bold'>Rp {spp?.nominal.toLocaleString()}</h1>
+                    <h1 className='text-2xl font-bold'>Rp {spp?.nominal ? spp?.nominal.toLocaleString() : '0'}</h1>
                     <div>
                         <h3 className='mb-2 mt-5 text-gray-600'>*Pilih Bulan Yang Belum Di Bayar</h3>
                         <form onSubmit={onHandleSubmit}>

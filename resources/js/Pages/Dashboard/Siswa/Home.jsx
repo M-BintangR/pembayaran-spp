@@ -107,7 +107,7 @@ const Home = ({ items, user }) => {
                                     <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 capitalize'>{row?.kelas?.nama_kelas}</td>
                                     <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 uppercase'>{row?.alamat}</td>
                                     <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 uppercase'>{row?.no_telp}</td>
-                                    <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 capitalize'>Rp {row?.spp?.nominal}</td>
+                                    <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 capitalize'>Rp {row?.spp ? row?.spp?.nominal.toLocaleString() : '0'}</td>
                                     <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300'>
                                         <Link
                                             href={route('siswa.edit', row?.id)}
@@ -151,7 +151,7 @@ const Home = ({ items, user }) => {
                                 <td className="border-grey-light border hover:bg-gray-100 p-3 truncate uppercase">{row?.kelas?.nama_kelas}</td>
                                 <td className="border-grey-light border hover:bg-gray-100 p-3 truncate uppercase">{row?.alamat}</td>
                                 <td className="border-grey-light border hover:bg-gray-100 p-3 truncate uppercase">{row?.no_telp}</td>
-                                <td className="border-grey-light border hover:bg-gray-100 p-3 truncate uppercase">{row?.spp?.nominal}</td>
+                                <td className="border-grey-light border hover:bg-gray-100 p-3 truncate uppercase">{row?.spp ? row?.spp?.nominal.toLocaleString() : '0'}</td>
                                 <td className="border-grey-light border hover:bg-gray-100 p-3 text-red-400 hover:text-red-600 hover:font-medium cursor-pointer">
                                     <Link
                                         href={route('siswa.edit', row?.id)}

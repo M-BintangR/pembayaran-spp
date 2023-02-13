@@ -175,7 +175,7 @@ const Home = ({ items, user }) => {
                                 className={` border-x-2 border-gray-300 odd:bg-gray-200`} >
                                 <>
                                     <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300'>{index + 1}</td>
-                                    <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300'>{row?.nominal}</td>
+                                    <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300'>Rp {row?.nominal.toLocaleString()}</td>
                                     <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300'>{row?.tahun}</td>
                                     <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300'>
                                         <button
