@@ -58,7 +58,6 @@ export const CardAdmin = ({ dataCards, items, user }) => {
     return (
         <div className="grid mb-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
             {dataCards.map((card, index) => {
-
                 return (
                     <div key={index} className="bg-slate-100 p-3 flex justify-start rounded-md">
                         <div className="flex justify-center">
