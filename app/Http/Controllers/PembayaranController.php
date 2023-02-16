@@ -21,7 +21,7 @@ class PembayaranController extends Controller
 
     public function transaksi()
     {
-        $siswa = Siswa::with(['kelas'])->orderBy('created_at', 'desc')
+        $siswa = Siswa::with(['kelas', 'pembayaran'])->orderBy('created_at', 'desc')
             ->paginate(10);
         return Inertia::render('Dashboard/Pembayaran/Transaksi', [
             'user' => auth()->user(),

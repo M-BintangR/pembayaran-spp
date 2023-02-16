@@ -9,21 +9,12 @@ import Loading from '@/Components/Loading';
 import Paginate from '@/Components/Paginate';
 import ShortData from '@/Components/ShortData';
 import SearchData from '@/Components/SearchData';
+import { tablePembayaran as trTbl } from '@/Components/url/url';
 
 const Home = ({ items, user }) => {
     const [record, setRecord] = useState();
     const [loading, setLoading] = useState(false);
-    const trTbl = [
-        { title: 'No' },
-        { title: 'Nama Petugas / Penerima' },
-        { title: 'Nama Siswa' },
-        { title: 'NIS' },
-        { title: 'Tanggal Bayar' },
-        { title: 'Bulan Bayar' },
-        { title: 'Tahun Bayar' },
-        { title: 'Nominal Pembayaran Spp' },
-        { title: 'Jumlah Yang Di Bayar' },
-    ];
+
 
     useEffect(() => {
         setRecord(items.data);

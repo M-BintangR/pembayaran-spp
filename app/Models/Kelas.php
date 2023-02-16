@@ -16,7 +16,7 @@ class Kelas extends Model
         return $this->hasMany(Siswa::class, 'id_kelas', 'id');
     }
 
-    // ! Triger kelas->siswa
+    // ! Triger kelas->siswa->pembayaran
     protected static function boot()
     {
         parent::boot();

@@ -12,6 +12,7 @@ import Loading from '@/Components/Loading';
 import Paginate from '@/Components/Paginate';
 import ShortData from '@/Components/ShortData';
 import SearchData from '@/Components/SearchData';
+import { tablePetugas as trTbl } from '@/Components/url/url';
 
 
 const Home = ({ items, user }) => {
@@ -23,12 +24,6 @@ const Home = ({ items, user }) => {
     const [onEditModal, setOnEditModal] = useState(false);
     const [idPetugas, setPetugas] = useState();
 
-    const trTbl = [
-        { title: 'No' },
-        { title: 'Username' },
-        { title: 'Nama Pengguna' },
-        { title: 'Level' },
-    ];
     useEffect(() => {
         setRecord(items.data);
     }, [items]);

@@ -3,6 +3,7 @@ import React from 'react'
 import HardTitle from '@/Components/HardTitle'
 import { useForm } from '@inertiajs/react';
 import swal from 'sweetalert'
+import { month } from '@/Components/url/url';
 
 const Create = ({ spp, user, siswa, kelas, bulan_bayar }) => {
     const { setData, post } = useForm({
@@ -14,8 +15,6 @@ const Create = ({ spp, user, siswa, kelas, bulan_bayar }) => {
         tahun_bayar: '',
         jumlah_bayar: '',
     });
-
-    const month = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
 
     const onHandleTransaksi = (bulan) => {
         let today = new Date();
@@ -52,7 +51,7 @@ const Create = ({ spp, user, siswa, kelas, bulan_bayar }) => {
                     },
                     onError: () => {
                         swal({
-                            title: "Transaksi Berhasil",
+                            title: "Transaksi Gagal",
                             icon: "error",
                         });
                     }

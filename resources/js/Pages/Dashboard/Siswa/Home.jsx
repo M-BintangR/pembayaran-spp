@@ -9,22 +9,13 @@ import Loading from '@/Components/Loading';
 import Paginate from '@/Components/Paginate';
 import ShortData from '@/Components/ShortData';
 import SearchData from '@/Components/SearchData';
+import { tableSiswa as trTbl } from '@/Components/url/url';
 
 
 const Home = ({ items, user }) => {
     const [record, setRecord] = useState();
     const [loading, setLoading] = useState(false);
-    const trTbl = [
-        { title: 'No' },
-        { title: 'Nama' },
-        { title: 'Jenis Kelamin' },
-        { title: 'NISN' },
-        { title: 'NIS' },
-        { title: 'Nama Kelas' },
-        { title: 'Alamat' },
-        { title: 'No Telp' },
-        { title: 'Nominal Pembayaran Spp' },
-    ];
+
     useEffect(() => {
         setRecord(items.data);
     }, []);

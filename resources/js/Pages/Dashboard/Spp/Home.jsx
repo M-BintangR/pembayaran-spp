@@ -12,8 +12,7 @@ import Loading from '@/Components/Loading';
 import Paginate from '@/Components/Paginate';
 import ShortData from '@/Components/ShortData';
 import SearchData from '@/Components/SearchData';
-
-
+import { tableSpp as trTbl } from '@/Components/url/url';
 
 const Home = ({ items, user }) => {
     const [record, setRecord] = useState();
@@ -23,12 +22,6 @@ const Home = ({ items, user }) => {
     const [onCreteModal, setOnCreateModal] = useState(false);
     const [onEditModal, setOnEditModal] = useState(false);
     const [idSpp, setIdSpp] = useState();
-
-    const trTbl = [
-        { title: 'No' },
-        { title: 'Nominal' },
-        { title: 'Tahun' },
-    ];
 
     useEffect(() => {
         setRecord(items?.data);

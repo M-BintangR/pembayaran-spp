@@ -12,6 +12,7 @@ import Loading from '@/Components/Loading';
 import Paginate from '@/Components/Paginate';
 import ShortData from '@/Components/ShortData';
 import SearchData from '@/Components/SearchData';
+import { tableKelas as trTbl } from '@/Components/url/url';
 
 const Home = ({ items, user }) => {
     const [record, setRecord] = useState();
@@ -22,17 +23,9 @@ const Home = ({ items, user }) => {
     const [onEditModal, setOnEditModal] = useState(false);
     const [idKelas, setIdKelas] = useState();
 
-    const trTbl = [
-        { title: 'No' },
-        { title: 'Nama Kelas' },
-        { title: 'Kompetensi Keahlian' },
-    ];
-
     useEffect(() => {
         setRecord(items.data);
     }, [items]);
-
-
 
     const handleSearchData = (target) => {
         if (target !== "") {
