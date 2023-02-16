@@ -50,6 +50,7 @@ class PembayaranController extends Controller
         $dataSpp = Spp::where('id', $siswa->id_spp)->first();
         $kelas = Kelas::where('id', $siswa->id_kelas)->first();
         $month = Pembayaran::where('nisn', $siswa->nisn)->get();
+
         return Inertia::render('Dashboard/Pembayaran/Create', [
             'siswa' => $siswa,
             'kelas' => $kelas,
@@ -69,12 +70,13 @@ class PembayaranController extends Controller
     {
         $idPetugas = Pembayaran::pluck('id');
         $idSpp = Spp::pluck('id');
+
         $validateData = $request->validate([
             'id_petugas' => ['required', Rule::in($idPetugas)],
             'id_spp' => ['required', Rule::in($idSpp)],
             'nisn' => ['required', 'max:10'],
             'tgl_bayar' => ['required', 'date'],
-            'bulan_bayar' => ['required', 'max:8'],
+            'bulan_bayar' => ['required', 'max:10'],
             'tahun_bayar' => ['required', 'max:4'],
             'jumlah_bayar' => ['required'],
         ]);
@@ -115,6 +117,7 @@ class PembayaranController extends Controller
     {
         $idPetugas = Pembayaran::pluck('id');
         $idSpp = Spp::pluck('id');
+
         $credentials = $request->validate([
             'id_petugas' => ['required', Rule::in($idPetugas)],
             'id_spp' => ['required', Rule::in($idSpp)],

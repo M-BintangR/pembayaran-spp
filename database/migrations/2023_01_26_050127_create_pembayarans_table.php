@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('id_petugas');
             $table->foreignId('nisn');
             $table->date('tgl_bayar');
-            $table->string('bulan_bayar', 8);
+            $table->string('bulan_bayar', 10);
             $table->string('tahun_bayar');
             $table->foreignId('id_spp');
             $table->integer('jumlah_bayar');
