@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Spp;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class SppController extends Controller
@@ -14,9 +13,12 @@ class SppController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($query = 10)
+    public function index()
     {
-        $items = Spp::orderBy('created_at', 'desc')->paginate($query);
+        $items = Spp::orderBy('created_at', 'desc')
+            ->orderBy('updated_at', 'desc')
+            ->paginate(20);
+
         return Inertia::render('Dashboard/Spp/Home', [
             'items' => $items,
             'user' => auth()->user(),
@@ -45,15 +47,12 @@ class SppController extends Controller
             'tahun' => ['required'],
         ]);
 
-        if ($validateData) {
-            $check = Spp::create($validateData);
+        if (Spp::create($validateData)) {
+            return redirect(route('spp.index'))
+                ->with('success', 'Data berhasil di tambah kan');
         }
 
-        if ($check) {
-            return redirect(route('spp.index'))->with('success', 'Data berhasil di tambah kan');
-        }
-
-        return redirect()->back()->with('error', 'Data gagal di tambah kan');
+        return back()->with('error', 'Data gagal di tambah kan');
     }
 
     /**
@@ -85,20 +84,18 @@ class SppController extends Controller
      */
     public function update(Request $request, Spp $spp)
     {
+
         $credentials = $request->validate([
             'nominal' => ['required'],
             'tahun' => ['required'],
         ]);
 
-        if ($credentials) {
-            $check = $spp->update($credentials);
+        if ($spp->update($credentials)) {
+            return redirect(route('spp.index'))
+                ->with('success', 'Data berhasil di edit');
         }
 
-        if ($check) {
-            return redirect(route('spp.index'))->with('success', 'Data berhasil di edit');
-        }
-
-        return redirect()->back()->with('error', 'Data gagal di edit');
+        return back()->with('error', 'Data gagal di edit');
     }
 
     /**
@@ -111,6 +108,6 @@ class SppController extends Controller
     {
         $spp->delete();
 
-        Redirect::back();
+        return back();
     }
 }

@@ -7,7 +7,6 @@ use App\Models\Pembayaran;
 use App\Models\Siswa;
 use App\Models\Spp;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 
@@ -21,8 +20,19 @@ class PembayaranController extends Controller
 
     public function transaksi()
     {
-        $siswa = Siswa::with(['kelas', 'pembayaran'])->orderBy('created_at', 'desc')
-            ->paginate(10);
+        $siswa = Siswa::select('nama', 'nis', 'nisn', 'id_kelas')
+            ->orderBy('updated_at', 'desc')
+            ->orderBy('created_at', 'desc')
+            ->with([
+                'kelas' => function ($query) {
+                    $query->select('id', 'nama_kelas');
+                },
+                'pembayaran' => function ($query) {
+                    $query->select('nisn', 'bulan_bayar');
+                }
+            ])
+            ->paginate(20);
+
         return Inertia::render('Dashboard/Pembayaran/Transaksi', [
             'user' => auth()->user(),
             'siswa' => $siswa,
@@ -31,9 +41,22 @@ class PembayaranController extends Controller
 
     public function index()
     {
-        $items = Pembayaran::with(['petugas', 'siswa', 'spp', 'siswa.kelas'])
+        $items = Pembayaran::select('bulan_bayar', 'tahun_bayar', 'nisn', 'tgl_bayar', 'id_spp', 'jumlah_bayar', 'id_petugas')
             ->orderBy('created_at', 'desc')
+            ->orderBy('updated_at', 'desc')
+            ->with([
+                'petugas' => function ($query) {
+                    $query->select('id', 'nama_pengguna');
+                },
+                'siswa' => function ($query) {
+                    $query->select('nisn', 'nama', 'nis');
+                },
+                'spp' => function ($query) {
+                    $query->select('id', 'nominal');
+                },
+            ])
             ->paginate(10);
+
         return Inertia::render('Dashboard/Pembayaran/Home', [
             'items' => $items,
             'user' => auth()->user(),
@@ -47,16 +70,17 @@ class PembayaranController extends Controller
      */
     public function create(Siswa $siswa)
     {
-        $dataSpp = Spp::where('id', $siswa->id_spp)->first();
-        $kelas = Kelas::where('id', $siswa->id_kelas)->first();
-        $month = Pembayaran::where('nisn', $siswa->nisn)->get();
+
+        $data_kelas = Kelas::where('id', $siswa->id_kelas)->pluck('nama_kelas');
+        $data_spp = Spp::where('id', $siswa->id_spp)->pluck('nominal');
+        $bulan_bayar = $siswa->pembayaran->pluck('bulan_bayar')->toArray();
 
         return Inertia::render('Dashboard/Pembayaran/Create', [
             'siswa' => $siswa,
-            'kelas' => $kelas,
-            'spp' => $dataSpp,
+            'kelas' => $data_kelas,
+            'spp' => $data_spp,
             'user' => auth()->user(),
-            'bulan_bayar' => $month,
+            'bulan_bayar' => $bulan_bayar,
         ]);
     }
 
@@ -81,15 +105,12 @@ class PembayaranController extends Controller
             'jumlah_bayar' => ['required'],
         ]);
 
-        if ($validateData) {
-            $check = Pembayaran::create($validateData);
+        if (Pembayaran::create($validateData)) {
+            return  redirect(route('pembayaran.index'))
+                ->with('success', 'Data berhasil di tambah kan');
         }
 
-        if ($check) {
-            return  redirect(route('pembayaran.index'))->with('success', 'Data berhasil di tambah kan');
-        }
-
-        return redirect()->back()->with('error', 'Data gagal di tambahkan');
+        return back()->with('error', 'Data gagal di tambahkan');
     }
 
     /**
@@ -121,22 +142,19 @@ class PembayaranController extends Controller
         $credentials = $request->validate([
             'id_petugas' => ['required', Rule::in($idPetugas)],
             'id_spp' => ['required', Rule::in($idSpp)],
-            'nisn' => ['required', 'max:10'],
+            'nisn' => ['required', 'integer', 'min:1', 'max:10'],
             'tgl_bayar' => ['required', 'date'],
             'bulan_bayar' => ['required', 'max:8'],
             'tahun_bayar' => ['required', 'max:4'],
-            'jumlah_bayar' => ['required'],
+            'jumlah_bayar' => ['required', 'integer', 'min:1'],
         ]);
 
-        if ($credentials) {
-            $check = $pembayaran->update($credentials);
+        if ($pembayaran->update($credentials)) {
+            return redirect(route('pembayaran.index'))
+                ->with('success', 'Data berhasil di tambah');
         }
 
-        if ($check) {
-            return redirect(route('pembayaran.index'))->with('success', 'Data berhasil di tambah kan');
-        }
-
-        return redirect()->back()->with('error', 'Data gagal di tambahkan');
+        return back()->with('error', 'Data gagal di tambah');
     }
 
     /**
@@ -149,6 +167,6 @@ class PembayaranController extends Controller
     {
         $pembayaran->delete();
 
-        return Redirect::back();
+        return back();
     }
 }

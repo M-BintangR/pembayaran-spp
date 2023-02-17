@@ -67,6 +67,5 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'admin' => \App\Http\Middleware\IsAdmin::class,
         'petugas' => \App\Http\Middleware\IsPetugas::class,
-        'auth.siswa' => \App\Http\Middleware\AuthSiswa::class,
     ];
 }

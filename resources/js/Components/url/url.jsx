@@ -132,6 +132,6 @@ export const tableSpp = [
 //! Tabel Kelas
 export const tableKelas = [
     { title: 'No' },
-    { title: 'Nominal' },
-    { title: 'Tahun' },
+    { title: 'Nama Kelas' },
+    { title: 'Kompetensi Keahlian' },
 ];

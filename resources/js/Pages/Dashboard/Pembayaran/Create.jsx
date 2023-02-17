@@ -28,7 +28,7 @@ const Create = ({ spp, user, siswa, kelas, bulan_bayar }) => {
             tgl_bayar: yyyy + '-' + mm + '-' + dd,
             bulan_bayar: bulan,
             tahun_bayar: yyyy,
-            jumlah_bayar: spp?.nominal,
+            jumlah_bayar: spp.toString(),
         });
     }
 
@@ -61,7 +61,6 @@ const Create = ({ spp, user, siswa, kelas, bulan_bayar }) => {
             }
         });
     }
-
 
     return (
         <Sidebar active={'pembayaran'} user={user}>
@@ -97,14 +96,14 @@ const Create = ({ spp, user, siswa, kelas, bulan_bayar }) => {
                             className='border-gray-200 bg-gray-100 rounded-md shadow-sm md:text-base text-xs mt-1 block w-full'
                             type="text"
                             name='nisn'
-                            value={kelas?.nama_kelas}
+                            value={kelas}
                             disabled={true}
                         />
                     </div>
                 </div>
                 <div className=''>
                     <p className='text-slate-500'>*catatan : jumlah pembayaran spp sebesar</p>
-                    <h1 className='text-2xl font-bold'>Rp {spp?.nominal ? spp?.nominal.toLocaleString() : '0'}</h1>
+                    <h1 className='text-2xl font-bold'>Rp {spp ? spp.toLocaleString() : '0'}</h1>
                     <div>
                         <h3 className='mb-2 mt-5 text-gray-600'>*Pilih Bulan Yang Belum Di Bayar</h3>
                         <form onSubmit={onHandleSubmit}>
@@ -116,7 +115,7 @@ const Create = ({ spp, user, siswa, kelas, bulan_bayar }) => {
                                 {month.map((mon, index) => {
                                     let match = false;
                                     for (const bulan of bulan_bayar) {
-                                        if (bulan.bulan_bayar.toLowerCase() === mon.toLowerCase()) {
+                                        if (bulan.toLowerCase() === mon.toLowerCase()) {
                                             match = true;
                                             break;
                                         }

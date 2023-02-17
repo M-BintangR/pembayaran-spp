@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Kelas;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class KelasController extends Controller
@@ -16,7 +15,10 @@ class KelasController extends Controller
      */
     public function index()
     {
-        $items = Kelas::orderBy('created_at', 'desc')->paginate(10);
+        $items = Kelas::orderBy('created_at', 'desc')
+            ->orderBy('updated_at', 'desc')
+            ->paginate(20);
+
         return Inertia::render('Dashboard/Kelas/Home', [
             'items' => $items,
             'user' => auth()->user(),
@@ -38,19 +40,16 @@ class KelasController extends Controller
     public function store(Request $request)
     {
         $validateData = $request->validate([
-            'nama_kelas' => ['required', 'max:10'],
-            'kompetensi_keahlian' => ['required', 'max:50'],
+            'nama_kelas' => ['required', 'min:1', 'max:10'],
+            'kompetensi_keahlian' => ['required', 'min:1', 'max:50'],
         ]);
 
-        if ($validateData) {
-            $check = Kelas::create($validateData);
+        if (Kelas::create($validateData)) {
+            return redirect(route('kelas.index'))
+                ->with('success', 'Data berhasil di tambah kan');
         }
 
-        if ($check) {
-            return redirect(route('kelas.index'))->with('success', 'Data berhasil di tambah kan');
-        }
-
-        return redirect()->back()->with('error', 'Data gagal di tambahkan');
+        return back()->with('error', 'Data gagal di tambahkan');
     }
 
     /**
@@ -87,15 +86,12 @@ class KelasController extends Controller
             'kompetensi_keahlian' => ['required'],
         ]);
 
-        if ($credentials) {
-            $check = $kelas->update($credentials);
+        if ($kelas->update($credentials)) {
+            return redirect(route('kelas.index'))
+                ->with('success', 'Data berhasil di tambah kan');
         }
 
-        if ($check) {
-            return redirect(route('kelas.index'))->with('success', 'Data berhasil di tambah kan');
-        }
-
-        return redirect()->back()->with('error', 'Data gagal di tambah kan');
+        return back()->with('error', 'Data gagal di tambah kan');
     }
 
     /**
@@ -106,8 +102,7 @@ class KelasController extends Controller
      */
     public function destroy(Kelas $kelas)
     {
-        $success = $kelas->delete();
-
-        return Redirect::back();
+        $kelas->delete();
+        return back();
     }
 }

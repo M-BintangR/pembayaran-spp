@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class PetugasController extends Controller
@@ -17,7 +16,9 @@ class PetugasController extends Controller
     public function index()
     {
         $items = User::orderBy('created_at', 'desc')
-            ->paginate(10);
+            ->orderBy('updated_at', 'desc')
+            ->paginate(20);
+
         return Inertia::render('Dashboard/Petugas/Home', [
             'items' => $items,
             'user' => auth()->user(),
@@ -39,23 +40,20 @@ class PetugasController extends Controller
     public function store(Request $request)
     {
         $validateData = $request->validate([
-            'username' => ['required', 'max:25'],
-            'nama_pengguna' => ['required', 'max:35'],
+            'username' => ['required', 'min:1', 'max:25'],
+            'nama_pengguna' => ['required', 'min:1', 'max:35'],
             'password' => ['required', 'min:8', 'max:32'],
             'level' => ['required'],
         ]);
 
         $validateData['password'] = bcrypt($validateData['password']);
 
-        if ($validateData) {
-            $check = User::create($validateData);
+        if (User::create($validateData)) {
+            return redirect(route('petugas.index'))
+                ->with('success', 'Data berhasil ditambahkan.');
         }
 
-        if ($check) {
-            return redirect(route('petugas.index'))->with('success', 'Data berhasil di tambah kan');
-        }
-
-        return redirect()->back()->with('error', 'Data gagal di tambahkan');
+        return back()->with('error', 'Data gagal ditambahkan.');
     }
 
     /**
@@ -87,22 +85,17 @@ class PetugasController extends Controller
     public function update(Request $request, User $user)
     {
         $credentials = $request->validate([
-            'username' => ['required', 'max:25'],
-            'nama_pengguna' => ['required', 'max:35'],
-            'password' => ['required', 'min:8', 'max:32'],
-            'level' => ['required'],
+            'username' => ['required', 'min:1', 'max:25'],
+            'nama_pengguna' => ['required', 'min:1', 'max:35'],
+            'level' => ['required', 'min:1'],
         ]);
 
-
-        if ($credentials) {
-            $check = $user->update($credentials);
+        if ($user->update($credentials)) {
+            return redirect(route('petugas.index'))
+                ->with('success', 'Data berhasil di tambah kan');
         }
 
-        if ($check) {
-            return redirect(route('petugas.index'))->with('success', 'Data berhasil di tambah kan');
-        }
-
-        return redirect()->back()->with('error' . 'Data gagal di tambah kan');
+        return back()->with('error' . 'Data gagal di tambah kan');
     }
 
     /**
@@ -115,6 +108,6 @@ class PetugasController extends Controller
     {
         $user->delete();
 
-        return Redirect::back();
+        return back();
     }
 }

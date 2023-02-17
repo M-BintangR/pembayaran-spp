@@ -14,13 +14,12 @@ class DashboardController extends Controller
     public function index()
     {
         $items = [
-            'kelas' => count(Kelas::all()),
-            'siswa' => count(Siswa::all()),
-            'petugas' => count(User::all()),
-            'spp' => count(Spp::all()),
-            'pembayaran' => count(Pembayaran::all()),
+            'kelas' => Kelas::count(),
+            'siswa' => Siswa::count(),
+            'petugas' => User::count(),
+            'spp' => Spp::count(),
+            'pembayaran' => Pembayaran::count(),
         ];
-
 
         return Inertia::render('Dashboard/PanelAdmin', [
             'items' => $items,

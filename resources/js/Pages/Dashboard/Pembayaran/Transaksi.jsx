@@ -119,7 +119,7 @@ const Transaksi = ({ siswa, user }) => {
                         </thead>
                         <tbody className="flex-1 sm:flex-none">
                             <tr key={index} className="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0 text-xs">
-                                <td class="border-grey-light border hover:bg-gray-100 p-3">{index + 1}</td>
+                                <td className="border-grey-light border hover:bg-gray-100 p-3">{index + 1}</td>
                                 <td className="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">{row?.nama}</td>
                                 <td className="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">{row?.nis}</td>
                                 <td className="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">{row?.kelas?.nama_kelas}</td>
