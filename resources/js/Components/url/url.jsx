@@ -12,7 +12,7 @@ export const menuSidebar = [
         submenu: true,
         submenuItems: [
             { title: 'Menu Utama', link: '/dashboard', active: 'menu utama' },
-            { title: 'Profil', link: '', active: 'profil' },
+            { title: 'Profil', link: '/dashboard/profile', active: 'profil' },
         ],
     },
     {
