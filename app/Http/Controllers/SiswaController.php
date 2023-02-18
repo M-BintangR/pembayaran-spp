@@ -30,7 +30,7 @@ class SiswaController extends Controller
         )
             ->orderBy('created_at', 'desc')
             ->orderBy('updated_at', 'desc')
-            ->paginate(10);
+            ->paginate(20);
 
         return Inertia::render('Dashboard/Siswa/Home', [
             'items' => $items,

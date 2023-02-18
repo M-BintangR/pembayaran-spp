@@ -124,7 +124,7 @@ const Create = ({ spp, user, siswa, kelas, bulan_bayar }) => {
                                         <tr key={index} className='border-2 border-gray-300'>
                                             <td className='pl-3'>{mon}</td>
                                             <td>
-                                                <button disabled={match} type='submit' onClick={() => onHandleTransaksi(mon)} className={` text-white py-1 px-2 rounded-md my-3 ${match ? "bg-green-600" : "bg-red-600"}`}>
+                                                <button disabled={match} type='submit' onClick={() => onHandleTransaksi(mon)} className={` py-1 px-2 rounded-md my-3 duration-300 ${match ? "bg-green-600 text-white border-2 border-green-700" : "bg-gray-200 text-gray-700 border-2 border-gray-400 hover:bg-green-600 hover:text-white hover:border-green-700"}`}>
                                                     {match ? 's.bayar' : 'b.bayar'}
                                                 </button>
                                             </td>

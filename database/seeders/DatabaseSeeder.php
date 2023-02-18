@@ -20,36 +20,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $dataSiswa = [
-            [
-                "nisn" => '1111111111',
-                "nis" => '202-062',
-                "nama" => 'Muhammad Bintang',
-                "jk" => 'p',
-                "id_kelas" => 1,
-                "alamat" => 'bps blk f8 no 13',
-                "no_telp" => '0879873627891',
-                "id_spp" => 1,
-            ],
-            [
-                "nisn" => '2222222222',
-                "nis" => '202-063',
-                "nama" => 'Fery Fadul',
-                "jk" => 'p',
-                "id_kelas" => 2,
-                "alamat" => 'jl pajayyang',
-                "no_telp" => '9930283947826',
-                "id_spp" => 2,
-            ],
-        ];
 
-        foreach ($dataSiswa as $siswa) {
-            Siswa::create($siswa);
-        }
-
-        $dataKelas = [
+        $data_kelas = [
             [
                 "nama_kelas" => "3 RPL 2",
+                "kompetensi_keahlian" => "Rekayasa Prangkat Lunak",
+            ],
+            [
+                "nama_kelas" => "2 RPL 2",
+                "kompetensi_keahlian" => "Rekayasa Prangkat Lunak",
+            ],
+            [
+                "nama_kelas" => "1 RPL 2",
                 "kompetensi_keahlian" => "Rekayasa Prangkat Lunak",
             ],
             [
@@ -57,36 +39,63 @@ class DatabaseSeeder extends Seeder
                 "kompetensi_keahlian" => "Rekayasa Prangkat Lunak",
             ],
             [
+                "nama_kelas" => "2 RPL 1",
+                "kompetensi_keahlian" => "Rekayasa Prangkat Lunak",
+            ],
+            [
+                "nama_kelas" => "1 RPL 1",
+                "kompetensi_keahlian" => "Rekayasa Prangkat Lunak",
+            ],
+            [
                 "nama_kelas" => "3 TKJ 1",
+                "kompetensi_keahlian" => "Teknik Komputer Jaringan",
+            ],
+            [
+                "nama_kelas" => "2 TKJ 1",
+                "kompetensi_keahlian" => "Teknik Komputer Jaringan",
+            ],
+            [
+                "nama_kelas" => "1 TKJ 1",
                 "kompetensi_keahlian" => "Teknik Komputer Jaringan",
             ],
             [
                 "nama_kelas" => "3 MMD 1",
                 "kompetensi_keahlian" => "Multi Media",
             ],
+            [
+                "nama_kelas" => "2 MMD 1",
+                "kompetensi_keahlian" => "Multi Media",
+            ],
+            [
+                "nama_kelas" => "1 MMD 1",
+                "kompetensi_keahlian" => "Multi Media",
+            ],
         ];
 
-        foreach ($dataKelas as $kelas) {
-            Kelas::create($kelas);
-        }
-
-        $dataSpp = [
+        $data_spp = [
             [
                 "tahun" => 2019,
-                "nominal" => 200000,
+                "nominal" => 170000,
             ],
             [
                 "tahun" => 2020,
+                "nominal" => 200000,
+            ],
+            [
+                "tahun" => 2021,
+                "nominal" => 250000,
+            ],
+            [
+                "tahun" => 2022,
+                "nominal" => 270000,
+            ],
+            [
+                "tahun" => 2023,
                 "nominal" => 300000,
             ],
         ];
 
-
-        foreach ($dataSpp as $spp) {
-            Spp::create($spp);
-        }
-
-        $dataPembayaran = [
+        $data_pembayaran = [
             [
                 "id_petugas" => 1,
                 "nisn" => '1111111111',
@@ -103,41 +112,35 @@ class DatabaseSeeder extends Seeder
                 "bulan_bayar" => 'maret',
                 "tahun_bayar" => '2004',
                 "id_spp" => 2,
-                "jumlah_bayar" => 300000
+                "jumlah_bayar" => 250000
             ],
         ];
 
+        $data_petugas = [[
+            'nama_pengguna' => 'Muh Bintang',
+            'username' => 'Bintang',
+            'level' => 'admin',
+            'password' => bcrypt('adminadmin'),
+        ]];
 
-        foreach ($dataPembayaran as $pembayaran) {
+        foreach ($data_pembayaran as $pembayaran) {
             Pembayaran::create($pembayaran);
         }
 
-        $dataPetugas = [
-            [
-                "username" => 'HoshiChan',
-                "password" => bcrypt("adminadmin"),
-                "nama_pengguna" => "Bintang",
-                "level" => 'admin'
-            ],
-            [
-                "username" => 'Fery Kun',
-                "password" => bcrypt("petugas"),
-                "nama_pengguna" => "Fery Fadul",
-                "level" => 'petugas'
-            ],
+        foreach ($data_spp as $spp) {
+            Spp::create($spp);
+        }
 
-        ];
+        foreach ($data_kelas as $kelas) {
+            Kelas::create($kelas);
+        }
 
-        foreach ($dataPetugas as $petugas) {
+        foreach ($data_petugas as $petugas) {
             User::create($petugas);
         }
 
-
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        // ! Menggunakan Factory data Fake
+        User::factory()->count(10)->create();
+        Siswa::factory()->count(50)->create();
     }
 }
