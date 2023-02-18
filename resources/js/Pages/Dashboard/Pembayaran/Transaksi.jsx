@@ -1,6 +1,6 @@
 import Sidebar from '@/Layouts/Sidebar'
 import HardTitle from '@/Components/HardTitle'
-import { Link } from '@inertiajs/react';
+import { Link, router } from '@inertiajs/react';
 import React, { useEffect, useState } from 'react'
 import Loading from '@/Components/Loading';
 import Paginate from '@/Components/Paginate';
@@ -12,7 +12,7 @@ import { tableTransaksi01 as trTbl } from '@/Components/url/url';
 import { tableTransaksi02 as trTbl2 } from '@/Components/url/url';
 import { month } from '@/Components/url/url';
 
-const Transaksi = ({ siswa, user }) => {
+const Transaksi = ({ siswa, user, short }) => {
     const [record, setRecord] = useState([]);
     const [loading, setLoading] = useState(false);
 
@@ -22,11 +22,11 @@ const Transaksi = ({ siswa, user }) => {
 
     const handleShortData = (e) => {
         setLoading(true);
-        setTimeout(() => {
-            setRecord(items.data);
-            setRecord(prev => prev.slice(0, e));
-            setLoading(false);
-        }, 2000);
+        router.get(route('transaksi'), { short: e }, {
+            onSuccess: () => {
+                setLoading(false);
+            }
+        });
     }
 
     const handleSearchData = (target) => {
@@ -46,7 +46,7 @@ const Transaksi = ({ siswa, user }) => {
             <Loading loading={loading} />
 
             <div className='text-base font-semibold md:mb-5'>
-                <ShortData setRecord={setRecord} setLoading={setLoading} items={siswa} />
+                <ShortData handleShortData={handleShortData} short={short} />
                 <SearchData handleSearchData={handleSearchData} />
             </div>
 
@@ -153,7 +153,7 @@ const Transaksi = ({ siswa, user }) => {
             </div>
 
 
-            <Paginate meta={siswa} />
+            <Paginate meta={siswa} short={short} />
         </Sidebar>
     )
 }

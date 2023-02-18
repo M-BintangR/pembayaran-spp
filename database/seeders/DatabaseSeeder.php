@@ -105,15 +105,19 @@ class DatabaseSeeder extends Seeder
                 "id_spp" => 1,
                 "jumlah_bayar" => 200000
             ],
+        ];
+
+        $data_siswa = [
             [
-                "id_petugas" => 2,
-                "nisn" => '2222222222',
-                "tgl_bayar" => '2022-03-02',
-                "bulan_bayar" => 'maret',
-                "tahun_bayar" => '2004',
-                "id_spp" => 2,
-                "jumlah_bayar" => 250000
-            ],
+                'nama' => 'Fery Fadul',
+                'nis' => '202-048',
+                'alamat' => 'jl pajayang',
+                'nisn' => '1111111111',
+                'id_kelas' => 1,
+                'id_spp' => 1,
+                'no_telp' => '09848934',
+                'jk' => 'l',
+            ]
         ];
 
         $data_petugas = [[
@@ -129,6 +133,10 @@ class DatabaseSeeder extends Seeder
 
         foreach ($data_spp as $spp) {
             Spp::create($spp);
+        }
+
+        foreach ($data_siswa as $siswa) {
+            Siswa::create($siswa);
         }
 
         foreach ($data_kelas as $kelas) {

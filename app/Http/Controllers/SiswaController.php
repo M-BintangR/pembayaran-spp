@@ -16,8 +16,9 @@ class SiswaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $short = $request->query('short', 20);
         $items = Siswa::with(
             [
                 'kelas' => function ($query) {
@@ -30,11 +31,12 @@ class SiswaController extends Controller
         )
             ->orderBy('created_at', 'desc')
             ->orderBy('updated_at', 'desc')
-            ->paginate(20);
+            ->paginate($short);
 
         return Inertia::render('Dashboard/Siswa/Home', [
             'items' => $items,
             'user' => auth()->user(),
+            'short' => $short,
         ]);
     }
 

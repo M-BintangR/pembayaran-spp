@@ -4,7 +4,7 @@ import { Inertia } from '@inertiajs/inertia';
 import React, { useEffect, useState } from 'react'
 import { BiEdit, BiTrash } from 'react-icons/bi';
 import swal from 'sweetalert';
-import { useForm } from '@inertiajs/react';
+import { router, useForm } from '@inertiajs/react';
 import { CrudModal } from '@/Components/CrudModal';
 import axios from 'axios';
 import { DataCreate, DataEdit } from './DataInput';
@@ -14,8 +14,8 @@ import ShortData from '@/Components/ShortData';
 import SearchData from '@/Components/SearchData';
 import { tableKelas as trTbl } from '@/Components/url/url';
 
-const Home = ({ items, user }) => {
-    const [record, setRecord] = useState();
+const Home = ({ items, user, short }) => {
+    const [record, setRecord] = useState([]);
     const [loading, setLoading] = useState(false);
 
     // keperluan modal
@@ -26,6 +26,16 @@ const Home = ({ items, user }) => {
     useEffect(() => {
         setRecord(items.data);
     }, [items]);
+
+    const handleShortData = (e) => {
+        setLoading(true);
+        router.get(route('kelas.index'), { short: e }, {
+            onSuccess: () => {
+                setLoading(false);
+            }
+        });
+    }
+
 
     const handleSearchData = (target) => {
         if (target !== "") {
@@ -143,7 +153,7 @@ const Home = ({ items, user }) => {
             <HardTitle title={'Data Kelas'} subTitle={'Kelola Data Kelas'} />
             <Loading loading={loading} />
             <div className='text-base font-semibold md:mb-5'>
-                <ShortData setRecord={setRecord} setLoading={setLoading} items={items} />
+                <ShortData handleShortData={handleShortData} short={short} />
                 <SearchData handleSearchData={handleSearchData} />
 
                 <button onClick={() => setOnCreateModal(true)} className='bg-purple-700 md:rounded-md md:text-base text-xs px-2 py-[3px] md:px-3 md:py-1 text-white inline float-right md:relative fixed bottom-0 md:m-0 m-5 rounded-xl shadow-2xl right-0'>Tambah Data +</button>
@@ -233,7 +243,7 @@ const Home = ({ items, user }) => {
                 ))}
             </div>
 
-            <Paginate meta={items} />
+            <Paginate meta={items} short={short} />
 
             <CrudModal
                 isVisible={onCreteModal}

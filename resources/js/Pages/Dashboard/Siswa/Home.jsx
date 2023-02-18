@@ -1,7 +1,7 @@
 import HardTitle from '@/Components/HardTitle'
 import Sidebar from '@/Layouts/Sidebar'
 import { Inertia } from '@inertiajs/inertia';
-import { Link } from '@inertiajs/react';
+import { Link, router } from '@inertiajs/react';
 import React, { useEffect, useState } from 'react'
 import { BiEdit, BiTrash } from 'react-icons/bi';
 import swal from 'sweetalert';
@@ -12,13 +12,22 @@ import SearchData from '@/Components/SearchData';
 import { tableSiswa as trTbl } from '@/Components/url/url';
 
 
-const Home = ({ items, user }) => {
+const Home = ({ items, user, short }) => {
     const [record, setRecord] = useState();
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         setRecord(items.data);
     }, []);
+
+    const handleShortData = (e) => {
+        setLoading(true);
+        router.get(route('siswa.index'), { short: e }, {
+            onSuccess: () => {
+                setLoading(false);
+            }
+        });
+    }
 
     const handleSearchData = (target) => {
         if (target !== "") {
@@ -56,14 +65,14 @@ const Home = ({ items, user }) => {
                     swal("Data batal di hapus");
                 }
             });
-
     }
+
     return (
         <Sidebar active={'siswa'} user={user}>
             <HardTitle title={'Data Siswa'} subTitle={'Kelola Data Siswa'} />
             <Loading loading={loading} />
             <div className='text-base font-semibold md:mb-5'>
-                <ShortData setRecord={setRecord} setLoading={setLoading} items={items} />
+                <ShortData handleShortData={handleShortData} short={short} />
                 <SearchData handleSearchData={handleSearchData} />
                 <Link href={route('siswa.create')} className='bg-purple-700 md:rounded-md md:text-base text-xs px-2 py-[3px] md:px-3 md:py-1 text-white inline float-right md:relative fixed bottom-0 md:m-0 m-5 rounded-xl shadow-2xl right-0'>Tambah Data +</Link>
             </div>
@@ -162,7 +171,7 @@ const Home = ({ items, user }) => {
                     </table>
                 ))}
             </div>
-            <Paginate meta={items} />
+            <Paginate meta={items} short={short} />
         </Sidebar>
     )
 }

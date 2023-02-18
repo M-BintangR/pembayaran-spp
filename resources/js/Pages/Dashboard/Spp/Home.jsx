@@ -4,7 +4,7 @@ import { Inertia } from '@inertiajs/inertia';
 import React, { useEffect, useState } from 'react'
 import { BiEdit, BiTrash } from 'react-icons/bi';
 import swal from 'sweetalert';
-import { useForm } from '@inertiajs/react';
+import { router, useForm } from '@inertiajs/react';
 import { CrudModal } from '@/Components/CrudModal';
 import axios from 'axios';
 import { DataCreate, DataEdit } from './DataInput';
@@ -14,7 +14,7 @@ import ShortData from '@/Components/ShortData';
 import SearchData from '@/Components/SearchData';
 import { tableSpp as trTbl } from '@/Components/url/url';
 
-const Home = ({ items, user }) => {
+const Home = ({ items, user, short }) => {
     const [record, setRecord] = useState();
     const [loading, setLoading] = useState(false);
 
@@ -26,6 +26,15 @@ const Home = ({ items, user }) => {
     useEffect(() => {
         setRecord(items?.data);
     }, [items]);
+
+    const handleShortData = (e) => {
+        setLoading(true);
+        router.get(route('spp.index'), { short: e }, {
+            onSuccess: () => {
+                setLoading(false);
+            }
+        });
+    }
 
     const handleSearchData = (target) => {
         if (target !== "") {
@@ -136,7 +145,7 @@ const Home = ({ items, user }) => {
             <HardTitle title={'Data SPP'} subTitle={'Kelola Data SPP'} />
             <Loading loading={loading} />
             <div className='text-base font-semibold md:mb-5'>
-                <ShortData setRecord={setRecord} setLoading={setLoading} items={items} />
+                <ShortData handleShortData={handleShortData} short={short} />
                 <SearchData handleSearchData={handleSearchData} />
                 <button
                     onClick={() => setOnCreateModal(prev => prev = true)}
@@ -228,7 +237,7 @@ const Home = ({ items, user }) => {
                     </table>
                 ))}
             </div>
-            <Paginate meta={items} />
+            <Paginate meta={items} short={short} />
             <CrudModal
                 isVisible={onCreteModal}
                 onClose={() => setOnCreateModal(false)}

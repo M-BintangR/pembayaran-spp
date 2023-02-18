@@ -18,9 +18,11 @@ class PembayaranController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function transaksi()
+    public function transaksi(Request $request)
     {
-        $siswa = Siswa::select('nama', 'nis', 'nisn', 'id_kelas')
+        $short = $request->query('short', 20);
+
+        $siswa = Siswa::select('id', 'nama', 'nis', 'nisn', 'id_kelas')
             ->orderBy('updated_at', 'desc')
             ->orderBy('created_at', 'desc')
             ->with([
@@ -31,17 +33,20 @@ class PembayaranController extends Controller
                     $query->select('nisn', 'bulan_bayar');
                 }
             ])
-            ->paginate(20);
+            ->paginate($short);
 
         return Inertia::render('Dashboard/Pembayaran/Transaksi', [
             'user' => auth()->user(),
             'siswa' => $siswa,
+            'short' => $short,
         ]);
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $items = Pembayaran::select('bulan_bayar', 'tahun_bayar', 'nisn', 'tgl_bayar', 'id_spp', 'jumlah_bayar', 'id_petugas')
+        $short = $request->query('short', 20);
+
+        $items = Pembayaran::select('id', 'bulan_bayar', 'tahun_bayar', 'nisn', 'tgl_bayar', 'id_spp', 'jumlah_bayar', 'id_petugas')
             ->orderBy('created_at', 'desc')
             ->orderBy('updated_at', 'desc')
             ->with([
@@ -55,11 +60,12 @@ class PembayaranController extends Controller
                     $query->select('id', 'nominal');
                 },
             ])
-            ->paginate(10);
+            ->paginate($short);
 
         return Inertia::render('Dashboard/Pembayaran/Home', [
             'items' => $items,
             'user' => auth()->user(),
+            'short' => $short,
         ]);
     }
 
