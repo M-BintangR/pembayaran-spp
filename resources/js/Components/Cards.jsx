@@ -25,32 +25,32 @@ export const CardAdmin = ({ dataCards, items }) => {
     useEffect(() => {
         const intervalId = setInterval(() => {
             zeroToValue(setPembayaran, items.pembayaran, intervalId);
-        }, 10);
+        }, 80);
         return () => clearInterval(intervalId);
     }, [items]);
 
     useEffect(() => {
         const intervalId = setInterval(() => {
             zeroToValue(setKelas, items.kelas, intervalId);
-        }, 10);
+        }, 80);
     }, [items]);
 
     useEffect(() => {
         const intervalId = setInterval(() => {
             zeroToValue(setPetugas, items.petugas, intervalId);
-        }, 10);
+        }, 80);
     }, [items]);
 
     useEffect(() => {
         const intervalId = setInterval(() => {
             zeroToValue(setSpp, items.spp, intervalId);
-        }, 10);
+        }, 80);
     }, [items]);
 
     useEffect(() => {
         const intervalId = setInterval(() => {
             zeroToValue(setSiswa, items.siswa, intervalId);
-        }, 10);
+        }, 80);
     }, [items]);
 
 

@@ -6,6 +6,8 @@ use App\Models\Kelas;
 use App\Models\Pembayaran;
 use App\Models\Siswa;
 use App\Models\Spp;
+use Error;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
@@ -106,17 +108,36 @@ class PembayaranController extends Controller
             'id_spp' => ['required', Rule::in($idSpp)],
             'nisn' => ['required', 'max:10'],
             'tgl_bayar' => ['required', 'date'],
-            'bulan_bayar' => ['required', 'max:10'],
+            'bulan_bayar' => ['required', 'max:12', 'array'],
             'tahun_bayar' => ['required', 'max:4'],
             'jumlah_bayar' => ['required'],
         ]);
 
-        if (Pembayaran::create($validateData)) {
-            return  redirect(route('pembayaran.index'))
-                ->with('success', 'Data berhasil di tambah kan');
+        $existingPayments = Pembayaran::where('nisn', $validateData['nisn'])
+            ->whereIn('bulan_bayar', array_column($validateData['bulan_bayar'], 'value'))
+            ->get();
+
+        if ($existingPayments->isNotEmpty()) {
+            return back()->with('error', 'Pembayaran Bulan ini Sudah');
         }
 
-        return back()->with('error', 'Data gagal di tambahkan');
+        try {
+
+            foreach ($validateData['bulan_bayar'] as $bulan) {
+                Pembayaran::create([
+                    'id_petugas' => $validateData['id_petugas'],
+                    'id_spp' => $validateData['id_spp'],
+                    'nisn' => $validateData['nisn'],
+                    'tgl_bayar' => $validateData['tgl_bayar'],
+                    'bulan_bayar' => $bulan['value'],
+                    'tahun_bayar' => $validateData['tahun_bayar'],
+                    'jumlah_bayar' => $validateData['jumlah_bayar'],
+                ]);
+            }
+            return redirect(route('transaksi'))->with('success', 'Data berhasil di tambah kan');
+        } catch (Exception $e) {
+            return back()->with('error', 'Data gagal di tambahkan');
+        }
     }
 
     /**

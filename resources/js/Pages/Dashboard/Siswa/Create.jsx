@@ -9,7 +9,7 @@ import PrimaryButton from '@/Components/PrimaryButton'
 import swal from 'sweetalert'
 
 const Create = ({ kelas, spp, user }) => {
-    const { data, setData, post, processing, errors, reset } = useForm({
+    const { data, setData, post, processing, errors } = useForm({
         nisn: '',
         nis: '',
         nama: '',

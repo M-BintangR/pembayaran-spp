@@ -30,8 +30,8 @@ const Sidebar = ({ children, active, user }) => {
         <div>
             <Navbar setOpen={setOpen} open={open} sidebarRef={sidebarRef} user={user} />
             <div className='pt-10'>
-                <div className="flex flex-row ">
-                    <div ref={sidebarRef} className={` drop-shadow-md md:pt-24 pt-14 bg-gray-200 md:h-screen bottom-0 top-0 left-0 fixed duration-500  ${open ? 'md:fixed md:w-1/5 w-1/2 bottom-0 md:z-0 z-30' : 'w-12 fixed h-screen'}`}>
+                <div className="flex flex-row">
+                    <div ref={sidebarRef} className={` drop-shadow-md md:pt-24 pt-14 bg-gray-200 z-30 md:h-screen bottom-0 top-0 left-0 fixed duration-500  ${open ? 'md:fixed md:w-1/5 w-1/2 bottom-0 ' : 'w-12 fixed h-screen'}`}>
                         <div className="ml-2 mb-5">
                             <span className={`duration-500 ${open && 'rotate-[360deg]'} md:text-2xl text-base block float-left bg-amber-500 p-1 rounded-md text-white text-center mr-3`}>
                                 <FaUserAlt />

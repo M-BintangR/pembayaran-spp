@@ -1,12 +1,31 @@
 import Sidebar from '@/Layouts/Sidebar'
-import React from 'react'
+import React, { useState } from 'react'
 import HardTitle from '@/Components/HardTitle'
-import { useForm } from '@inertiajs/react';
+import { Link, useForm } from '@inertiajs/react';
 import swal from 'sweetalert'
 import { month } from '@/Components/url/url';
+import { MultiSelect } from "react-multi-select-component";
+import InputError from '@/Components/InputError';
 
 const Create = ({ spp, user, siswa, kelas, bulan_bayar }) => {
-    const { setData, post } = useForm({
+    const [selected, setSelected] = useState([]);
+
+    const options = [
+        { label: "Januari", value: "januari" },
+        { label: "Februari", value: "februari" },
+        { label: "Maret", value: "maret" },
+        { label: "April", value: "april" },
+        { label: "Mei", value: "mei" },
+        { label: "Juni", value: "juni" },
+        { label: "Juli", value: "juli" },
+        { label: "Agustus", value: "agustus" },
+        { label: "September", value: "september" },
+        { label: "Oktober", value: "oktober" },
+        { label: "November", value: "november" },
+        { label: "Desember", value: "desember" },
+    ];
+
+    const { setData, post, errors } = useForm({
         id_petugas: '',
         id_spp: '',
         nisn: '',
@@ -43,9 +62,10 @@ const Create = ({ spp, user, siswa, kelas, bulan_bayar }) => {
         }).then((will) => {
             if (will) {
                 post(route('pembayaran.store'), {
-                    onSuccess: () => {
+                    onSuccess: (e) => {
+                        console.log(e);
                         swal({
-                            title: "Transaksi Berhasil",
+                            title: "Transaksi Telah Di Lakukan!",
                             icon: "success",
                         });
                     },
@@ -54,7 +74,7 @@ const Create = ({ spp, user, siswa, kelas, bulan_bayar }) => {
                             title: "Transaksi Gagal",
                             icon: "error",
                         });
-                    }
+                    },
                 });
             } else {
                 swal("Transaksi batal");
@@ -100,39 +120,53 @@ const Create = ({ spp, user, siswa, kelas, bulan_bayar }) => {
                             disabled={true}
                         />
                     </div>
+                    <div className='z-auto'>
+                        <h1>Pilih Bulanan</h1>
+                        <form onSubmit={onHandleSubmit}>
+                            <MultiSelect
+                                options={options}
+                                value={selected}
+                                onChange={setSelected}
+                                labelledBy="Select"
+                            />
+                            <InputError message={errors?.bulan_bayar} className="mt-2" />
+                            <div className='my-5'>
+                                <button type='submit' onClick={() => onHandleTransaksi(selected)} className='duration-300 bg-purple-700 hover:bg-purple-500 text-white py-2 rounded-md mr-2 px-3'>Rekam</button>
+                                <Link href={route('transaksi')} className='duration-300 bg-gray-200 border border-gray-400 hover:border-purple-700 hover:bg-purple-700 hover:text-white py-2 rounded-md px-3'>Kembali</Link>
+                            </div>
+                        </form>
+                    </div>
                 </div>
                 <div className=''>
                     <p className='text-slate-500'>*catatan : jumlah pembayaran spp sebesar</p>
                     <h1 className='text-2xl font-bold'>Rp {spp ? spp.toLocaleString() : '0'}</h1>
                     <div>
-                        <h3 className='mb-2 mt-5 text-gray-600'>*Pilih Bulan Yang Belum Di Bayar</h3>
-                        <form onSubmit={onHandleSubmit}>
-                            <table className='w-full border-2 border-spacing-1'>
-                                <tr className='border-2 border-gray-300'>
-                                    <td className='pl-3 py-3'>Bulan Pembayaran</td>
-                                    <td>Transaksi Siswa</td>
-                                </tr>
-                                {month.map((mon, index) => {
-                                    let match = false;
-                                    for (const bulan of bulan_bayar) {
-                                        if (bulan.toLowerCase() === mon.toLowerCase()) {
-                                            match = true;
-                                            break;
-                                        }
+                        <h3 className='mb-2 mt-5 text-gray-600'>*Pembayaran tiap bulan</h3>
+                        <table className='w-full border-2 border-spacing-1'>
+                            <tr className='border-2 border-gray-300'>
+                                <td className='pl-3 py-3'>Pembayaran Bulanan</td>
+                                <td>Keteragan</td>
+                            </tr>
+                            {month.map((mon, index) => {
+                                let match = false;
+                                for (const bulan of bulan_bayar) {
+                                    if (bulan.toLowerCase() === mon.toLowerCase()) {
+                                        match = true;
+                                        break;
                                     }
-                                    return (
-                                        <tr key={index} className='border-2 border-gray-300'>
-                                            <td className='pl-3'>{mon}</td>
-                                            <td>
-                                                <button disabled={match} type='submit' onClick={() => onHandleTransaksi(mon)} className={` py-1 px-2 rounded-md my-3 duration-300 ${match ? "bg-green-600 text-white border-2 border-green-700" : "bg-gray-200 text-gray-700 border-2 border-gray-400 hover:bg-green-600 hover:text-white hover:border-green-700"}`}>
-                                                    {match ? 's.bayar' : 'b.bayar'}
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    )
-                                })}
-                            </table>
-                        </form>
+                                }
+                                return (
+                                    <tr key={index} className='border-2 border-gray-300'>
+                                        <td className='pl-3'>{mon}</td>
+                                        <td>
+                                            <button disabled={true} className={` py-1 px-2 rounded-md my-3 duration-300 ${match ? "bg-green-600 text-white border-2 border-green-700" : "bg-gray-200 text-gray-700 border-2 border-gray-400"}`}>
+                                                {match ? 's.bayar' : 'b.bayar'}
+                                            </button>
+                                        </td>
+                                    </tr>
+                                )
+                            })}
+                        </table>
                     </div>
                 </div>
             </div>
