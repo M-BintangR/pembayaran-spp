@@ -30,18 +30,18 @@ const Home = ({ items, user, short }) => {
     }
 
     const handleSearchData = (target) => {
-        if (target !== "") {
-            setRecord(record.filter(item => {
-                return item.petugas.username.toLowerCase().includes(target.toLowerCase()) ||
-                    item.siswa.nis.toLowerCase().includes(target.toLowerCase()) ||
-                    item.bulan_bayar.toLowerCase().includes(target.toLowerCase()) ||
-                    item.tahun_bayar.toLowerCase().includes(target.toLowerCase()) ||
-                    item.tgl_bayar.toString().toLowerCase().includes(target.toLowerCase()) ||
-                    item.spp.nominal.toString().toLowerCase().includes(target.toLowerCase()) ||
-                    item.jumlah_bayar.toString().toLowerCase().includes(target.toLowerCase()) || item.siswa.nama.toLowerCase().includes(target.toLowerCase());
-            }));
-        } else {
-            setRecord(items.data);
+        try {
+            if (target !== "") {
+                axios.get(`/dashboard/pembayaran/search?search=${target}`)
+                    .then(res => res?.data?.items)
+                    .then(res => {
+                        setRecord(res?.data);
+                    });
+            } else {
+                setRecord(items?.data);
+            }
+        } catch (e) {
+            console.log(e);
         }
     }
 

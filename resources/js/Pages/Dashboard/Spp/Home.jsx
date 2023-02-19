@@ -15,7 +15,7 @@ import SearchData from '@/Components/SearchData';
 import { tableSpp as trTbl } from '@/Components/url/url';
 
 const Home = ({ items, user, short }) => {
-    const [record, setRecord] = useState();
+    const [record, setRecord] = useState([]);
     const [loading, setLoading] = useState(false);
 
     // keperluan modal
@@ -37,13 +37,18 @@ const Home = ({ items, user, short }) => {
     }
 
     const handleSearchData = (target) => {
-        if (target !== "") {
-            setRecord(record.filter(item => {
-                return item.nominal.toString().toLowerCase().includes(target.toLowerCase()) ||
-                    item.tahun.toString().toLowerCase().includes(target.toLowerCase());
-            }));
-        } else {
-            setRecord(items?.data);
+        try {
+            if (target !== "") {
+                axios.get(`/dashboard/spp/search?search=${target.trim()}`)
+                    .then(res => res?.data?.items)
+                    .then(res => {
+                        setRecord(res?.data);
+                    });
+            } else {
+                setRecord(items?.data);
+            }
+        } catch (e) {
+            console.log(e);
         }
     }
 

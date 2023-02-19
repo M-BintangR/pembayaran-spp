@@ -30,13 +30,18 @@ const Transaksi = ({ siswa, user, short }) => {
     }
 
     const handleSearchData = (target) => {
-        if (target !== "") {
-            setRecord(record.filter(item => {
-                return item.nama.toLowerCase().includes(target.toLowerCase()) ||
-                    item.nis.toLowerCase().toString().includes(target.toLowerCase()) || item.kelas.nama_kelas.toLowerCase().includes(target.toLowerCase());
-            }));
-        } else {
-            setRecord(siswa.data);
+        try {
+            if (target !== "") {
+                axios.get(`/dashboard/pembayaran/transaksi/search?search=${target.trim()}`)
+                    .then(res => res?.data?.siswa)
+                    .then(res => {
+                        setRecord(res?.data);
+                    });
+            } else {
+                setRecord(siswa?.data);
+            }
+        } catch (e) {
+            console.log(e);
         }
     }
 

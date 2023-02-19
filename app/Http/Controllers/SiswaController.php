@@ -14,8 +14,35 @@ class SiswaController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Respon se
      */
+    public function search(Request $request)
+    {
+        $search = $request->query('search', null);
+
+        $items = Siswa::with(['kelas', 'spp'])
+            ->where(function ($query) use ($search) {
+                $query
+                    ->where('nama', 'like', "%{$search}%")
+                    ->orWhere('nis', 'like', "%{$search}%")
+                    ->orWhere('nisn', 'like', "%{$search}%")
+                    ->orWhere('alamat', 'like', "%{$search}%")
+                    ->orWhere('jk', 'like', "%{$search}%")
+                    ->orWhere('no_telp', 'like', "%{$search}%");
+            })->orWhereHas('kelas', function ($query) use ($search) {
+                $query
+                    ->where('nama_kelas', 'like', "%{$search}%");
+            })->orWhereHas('spp', function ($query) use ($search) {
+                $query
+                    ->where('nominal', 'like', "%{$search}%");
+            })
+            ->orderBy('created_at', 'desc')
+            ->orderBy('updated_at', 'desc')
+            ->paginate(20);
+
+        return response()->json(['items' => $items], 200);
+    }
+
     public function index(Request $request)
     {
         $short = $request->query('short', 20);

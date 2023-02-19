@@ -38,13 +38,18 @@ const Home = ({ items, user, short }) => {
 
 
     const handleSearchData = (target) => {
-        if (target !== "") {
-            setRecord(record.filter(item => {
-                return item.nama_kelas.toLowerCase().includes(target.toLowerCase()) ||
-                    item.kompetensi_keahlian.toLowerCase().includes(target.toLowerCase());
-            }));
-        } else {
-            setRecord(items.data);
+        try {
+            if (target !== "") {
+                axios.get(`/dashboard/kelas/search?search=${target.trim()}`)
+                    .then(res => res?.data?.items)
+                    .then(res => {
+                        setRecord(res?.data);
+                    });
+            } else {
+                setRecord(items?.data);
+            }
+        } catch (e) {
+            console.log(e);
         }
     }
 

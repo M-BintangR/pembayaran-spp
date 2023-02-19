@@ -13,6 +13,19 @@ class PetugasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function search(Request $request)
+    {
+        $search = $request->query('search', null);
+
+        if ($search !== null && $search !== "") {
+            $items = User::where('username', 'like', '%' . $search . '%')
+                ->orWhere('nama_pengguna', 'like', '%' . $search . '%')
+                ->paginate(20);
+        }
+
+        return response()->json(['items' => $items], 200);
+    }
+
     public function index(Request $request)
     {
         $short = $request->query('short', 20);

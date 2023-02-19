@@ -38,14 +38,18 @@ const Home = ({ items, user, short }) => {
     }
 
     const handleSearchData = (target) => {
-        if (target !== "") {
-            setRecord(record.filter(item => {
-                return item.username.toLowerCase().includes(target.toLowerCase()) ||
-                    item.nama_pengguna.toLowerCase().includes(target.toLowerCase()) ||
-                    item.level.toString().toLowerCase().includes(target.toLowerCase());
-            }));
-        } else {
-            setRecord(items.data);
+        try {
+            if (target !== "") {
+                axios.get(`/dashboard/petugas/search?search=${target.trim()}`)
+                    .then(res => res?.data?.items)
+                    .then(res => {
+                        setRecord(res?.data);
+                    });
+            } else {
+                setRecord(items?.data);
+            }
+        } catch (e) {
+            console.log(e);
         }
     }
 
@@ -241,7 +245,7 @@ const Home = ({ items, user, short }) => {
                 ))}
             </div>
 
-            <Paginate meta={items} />
+            <Paginate meta={items} short={short} />
 
             <CrudModal
                 isVisible={onCreteModal}

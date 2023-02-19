@@ -13,6 +13,19 @@ class KelasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function search(Request $request)
+    {
+        $search = $request->query('search', null);
+
+        if ($search !== null && $search !== "") {
+            $items = Kelas::where('nama_kelas', 'like', '%' . $search . '%')
+                ->orWhere('kompetensi_keahlian', 'like', '%' . $search . '%')
+                ->paginate(20);
+        }
+
+        return response()->json(['items' => $items], 200);
+    }
+
     public function index(Request $request)
     {
         $short = $request->query('short', 20);

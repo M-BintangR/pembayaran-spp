@@ -26,6 +26,7 @@ Route::get('/', function () {
 
 Route::group(['prefix' => '/dashboard', 'middleware' => ['auth', 'admin']], function () {
     //? Kelas Route
+    Route::get('/kelas/search', [KelasController::class, 'search'])->name('kelas.search');
     Route::get('/kelas', [KelasController::class, 'index'])->name('kelas.index');
     Route::get('/kelas/{kelas:id}/edit', [KelasController::class, 'edit'])->name('kelas.edit');
     Route::put('/kelas/{kelas:id}', [KelasController::class, 'update'])->name('kelas.update');
@@ -34,6 +35,7 @@ Route::group(['prefix' => '/dashboard', 'middleware' => ['auth', 'admin']], func
     Route::delete('/kelas/{kelas:id}', [KelasController::class, 'destroy'])->name('kelas.destroy');
 
     //? Siswa Route
+    Route::get('/siswa/search', [SiswaController::class, 'search'])->name('siswa.search');
     Route::get('/siswa', [SiswaController::class, 'index'])->name('siswa.index');
     Route::get('/siswa/{siswa:id}/edit', [SiswaController::class, 'edit'])->name('siswa.edit');
     Route::put('/siswa/{siswa:id}', [SiswaController::class, 'update'])->name('siswa.update');
@@ -42,6 +44,7 @@ Route::group(['prefix' => '/dashboard', 'middleware' => ['auth', 'admin']], func
     Route::delete('/siswa/{siswa:id}', [SiswaController::class, 'destroy'])->name('siswa.destroy');
 
     //? Petugas Route
+    Route::get('/petugas/search', [PetugasController::class, 'search'])->name('petugas.search');
     Route::get('/petugas', [PetugasController::class, 'index'])->name('petugas.index');
     Route::get('/petugas/{user:id}/edit', [PetugasController::class, 'edit'])->name('petugas.edit');
     Route::put('/petugas/{user:id}', [PetugasController::class, 'update'])->name('petugas.update');
@@ -50,6 +53,7 @@ Route::group(['prefix' => '/dashboard', 'middleware' => ['auth', 'admin']], func
     Route::delete('/petugas/{user:id}', [PetugasController::class, 'destroy'])->name('petugas.destroy');
 
     //? Spp Route
+    Route::get('/spp/search', [SppController::class, 'search'])->name('spp.search');
     Route::get('/spp', [SppController::class, 'index'])->name('spp.index');
     Route::get('/spp/{spp:id}/edit', [SppController::class, 'edit'])->name('spp.edit');
     Route::put('/spp/{spp:id}', [SppController::class, 'update'])->name('spp.update');
@@ -61,6 +65,8 @@ Route::group(['prefix' => '/dashboard', 'middleware' => ['auth', 'admin']], func
 Route::group(['prefix' => '/dashboard', 'middleware' => ['auth', 'petugas']], function () {
 
     //? Pembayaran Route
+    Route::get('/pembayaran/search', [PembayaranController::class, 'search'])->name('pembayaran.search');
+    Route::get('/pembayaran/transaksi/search', [PembayaranController::class, 'transaksiSearch'])->name('transaksi.search');
     Route::get('/pembayaran', [PembayaranController::class, 'index'])->name('pembayaran.index');
     Route::put('/pembayaran/{pembayaran:id}', [PembayaranController::class, 'update'])->name('pembayaran.update');
     Route::get('/pembayaran/{siswa:nisn}/create', [PembayaranController::class, 'create'])->name('pembayaran.create');

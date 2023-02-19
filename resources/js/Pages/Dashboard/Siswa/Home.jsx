@@ -30,19 +30,18 @@ const Home = ({ items, user, short }) => {
     }
 
     const handleSearchData = (target) => {
-        if (target !== "") {
-            setRecord(record.filter(item => {
-                return item.nisn.toString().toLowerCase().includes(target.toLowerCase()) ||
-                    item.nama.toString().toLowerCase().includes(target.toLowerCase()) ||
-                    item.alamat.toString().toLowerCase().includes(target.toLowerCase()) ||
-                    item.kelas.nama_kelas.toString().toLowerCase().includes(target.toLowerCase()) ||
-                    item.alamat.toString().toLowerCase().includes(target.toLowerCase()) ||
-                    item.no_telp.toString().toLowerCase().includes(target.toLowerCase()) ||
-                    item.nis.toString().toLowerCase().includes(target.toLowerCase()) ||
-                    item.spp.nominal.toString().toLowerCase().includes(target.toLowerCase());
-            }));
-        } else {
-            setRecord(items.data);
+        try {
+            if (target !== "") {
+                axios.get(`/dashboard/siswa/search?search=${target.trim()}`)
+                    .then(res => res?.data?.items)
+                    .then(res => {
+                        setRecord(res?.data);
+                    });
+            } else {
+                setRecord(items?.data);
+            }
+        } catch (e) {
+            console.log(e);
         }
     }
 
@@ -146,6 +145,7 @@ const Home = ({ items, user, short }) => {
                             <tr key={index} className="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0 text-xs">
                                 <td className="border-grey-light border hover:bg-gray-100 p-3">{index + 1}</td>
                                 <td className="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">{row?.nama}</td>
+                                <td className="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">{row?.jk === 'l' ? 'Laki-laki' : 'Prempuan'}</td>
                                 <td className="border-grey-light border hover:bg-gray-100 p-3 truncate uppercase">{row?.nisn}</td>
                                 <td className="border-grey-light border hover:bg-gray-100 p-3 truncate uppercase">{row?.nis}</td>
                                 <td className="border-grey-light border hover:bg-gray-100 p-3 truncate uppercase">{row?.kelas?.nama_kelas}</td>

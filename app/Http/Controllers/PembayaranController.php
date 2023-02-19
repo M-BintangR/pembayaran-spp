@@ -19,6 +19,53 @@ class PembayaranController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function transaksiSearch(Request $request)
+    {
+        $search = $request->query('search', null);
+
+        if ($search !== null && $search !== "") {
+            $items = Siswa::with(['kelas', 'pembayaran'])
+                ->where(function ($query) use ($search) {
+                    $query
+                        ->where('nama', 'like', '%' . $search . '%')
+                        ->orWhere('nis', 'like', '%' . $search . '%')
+                        ->orWhere('nisn', 'like', '%' . $search . '%');
+                })->orWhereHas('kelas', function ($query) use ($search) {
+                    $query->where('nama_kelas', 'like', '%' . $search . '%');
+                })->orWhereHas('pembayaran', function ($query) use ($search) {
+                    $query->where('bulan_bayar', 'like', '%' . $search . '%');
+                })->paginate(20);
+        }
+
+        return response()->json(['siswa' => $items], 200);
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->query('search', null);
+
+        if ($search !== null && $search !== "") {
+            $items = Pembayaran::with(['petugas', 'siswa', 'spp'])
+                ->where(function ($query) use ($search) {
+                    $query
+                        ->where('bulan_bayar',  'like', '%' . $search . '%')
+                        ->orWhere('tahun_bayar',  'like', '%' . $search . '%')
+                        ->orWhere('nisn',  'like', '%' . $search . '%')
+                        ->orWhere('tgl_bayar',  'like', '%' . $search . '%')
+                        ->orWhere('jumlah_bayar',  'like', '%' . $search . '%');
+                })->orWhereHas('petugas', function ($query) use ($search) {
+                    $query->where('nama_pengguna', 'like', '%' . $search . '%');
+                })->orWhereHas('siswa', function ($query) use ($search) {
+                    $query
+                        ->where('nama', 'like', '%' . $search . '%')
+                        ->orWhere('nis', 'like', '%' . $search . '%');
+                })->orWhereHas('spp', function ($query) use ($search) {
+                    $query->where('nominal',  'like', '%' . $search . '%');
+                })->paginate(20);
+        }
+
+        return response()->json(['items' => $items], 200);
+    }
 
     public function transaksi(Request $request)
     {
