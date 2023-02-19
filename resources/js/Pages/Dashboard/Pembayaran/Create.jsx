@@ -143,29 +143,33 @@ const Create = ({ spp, user, siswa, kelas, bulan_bayar }) => {
                     <div>
                         <h3 className='mb-2 mt-5 text-gray-600'>*Pembayaran tiap bulan</h3>
                         <table className='w-full border-2 border-spacing-1'>
-                            <tr className='border-2 border-gray-300'>
-                                <td className='pl-3 py-3'>Pembayaran Bulanan</td>
-                                <td>Keteragan</td>
-                            </tr>
-                            {month.map((mon, index) => {
-                                let match = false;
-                                for (const bulan of bulan_bayar) {
-                                    if (bulan.toLowerCase() === mon.toLowerCase()) {
-                                        match = true;
-                                        break;
+                            <thead>
+                                <tr className='border-2 border-gray-300'>
+                                    <td className='pl-3 py-3'>Pembayaran Bulanan</td>
+                                    <td>Keteragan</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {month.map((mon, index) => {
+                                    let match = false;
+                                    for (const bulan of bulan_bayar) {
+                                        if (bulan.toLowerCase() === mon.toLowerCase()) {
+                                            match = true;
+                                            break;
+                                        }
                                     }
-                                }
-                                return (
-                                    <tr key={index} className='border-2 border-gray-300'>
-                                        <td className='pl-3'>{mon}</td>
-                                        <td>
-                                            <button disabled={true} className={` py-1 px-2 rounded-md my-3 duration-300 ${match ? "bg-green-600 text-white border-2 border-green-700" : "bg-gray-200 text-gray-700 border-2 border-gray-400"}`}>
-                                                {match ? 's.bayar' : 'b.bayar'}
-                                            </button>
-                                        </td>
-                                    </tr>
-                                )
-                            })}
+                                    return (
+                                        <tr key={index} className='border-2 border-gray-300'>
+                                            <td className='pl-3'>{mon}</td>
+                                            <td>
+                                                <button disabled={true} className={` py-1 px-2 rounded-md my-3 duration-300 ${match ? "bg-green-600 text-white border-2 border-green-700" : "bg-gray-200 text-gray-700 border-2 border-gray-400"}`}>
+                                                    {match ? 's.bayar' : 'b.bayar'}
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    )
+                                })}
+                            </tbody>
                         </table>
                     </div>
                 </div>

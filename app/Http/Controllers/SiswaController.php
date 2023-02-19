@@ -96,7 +96,7 @@ class SiswaController extends Controller
         $id_kelas = Kelas::pluck('id');
 
         $validateData = $request->validate([
-            'nisn' => ['required', 'integer', 'min:1', 'max:10', 'unique:siswas,nisn'],
+            'nisn' => ['required', 'min:1', 'max:10', 'unique:siswas,nisn'],
             'nis' => ['required', 'max:7', 'unique:siswas,nis'],
             'nama' => ['required', 'min:1', 'max:35'],
             'jk' => ['required', 'min:1'],

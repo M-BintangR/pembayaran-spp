@@ -46,7 +46,7 @@ const Create = ({ kelas, spp, user }) => {
                             <InputLabel forInput="id_kelas" value="Pilih Kelas" />
                             <select
                                 onChange={onHandleChange}
-                                defaultValue={data.id_kelas}
+                                defaultValue={data?.id_kelas}
                                 className='border-gray-300 focus:border-purple-700 focus:ring-purple-700 rounded-md shadow-sm md:text-base text-xs mt-1 block w-full'
                                 name="id_kelas"
                                 id="id_kelas"
@@ -62,7 +62,7 @@ const Create = ({ kelas, spp, user }) => {
                             <InputLabel forInput="jk" value="Jenis Kelamin" />
                             <select
                                 onChange={onHandleChange}
-                                defaultValue={data.jk}
+                                defaultValue={data?.jk}
                                 className='border-gray-300 focus:border-purple-700 focus:ring-purple-700 rounded-md shadow-sm md:text-base text-xs mt-1 block w-full'
                                 name="jk"
                                 id="jk"

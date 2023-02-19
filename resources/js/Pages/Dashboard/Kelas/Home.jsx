@@ -140,6 +140,7 @@ const Home = ({ items, user, short }) => {
                 .then(res => res.data.item)
                 .then(res => {
                     try {
+                        setIdKelas(id);
                         setData({ nama_kelas: res.nama_kelas, kompetensi_keahlian: res.kompetensi_keahlian });
                         setOnEditModal(true);
                         setPetugas(res?.id);
