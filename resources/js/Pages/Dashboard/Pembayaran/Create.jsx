@@ -6,9 +6,12 @@ import swal from 'sweetalert'
 import { month } from '@/Components/url/url';
 import { MultiSelect } from "react-multi-select-component";
 import InputError from '@/Components/InputError';
+import { AiOutlineInfoCircle, AiOutlineWarning } from 'react-icons/ai';
 
 const Create = ({ spp, user, siswa, kelas, bulan_bayar }) => {
     const [selected, setSelected] = useState([]);
+    const [onAlert, setOnAlert] = useState(false);
+    const [hideAlert, setHideAlert] = useState(true);
 
     const options = [
         { label: "Januari", value: "januari" },
@@ -62,8 +65,9 @@ const Create = ({ spp, user, siswa, kelas, bulan_bayar }) => {
         }).then((will) => {
             if (will) {
                 post(route('pembayaran.store'), {
-                    onFinish: (e) => {
-                        console.log(e);
+                    onSuccess: () => {
+                        setOnAlert(true);
+                        setHideAlert(true);
                         swal({
                             title: "Transaksi Telah Di Lakukan!",
                             icon: "success",
@@ -77,7 +81,7 @@ const Create = ({ spp, user, siswa, kelas, bulan_bayar }) => {
                     },
                 });
             } else {
-                swal("Transaksi batal");
+                swal("Transaksi Batal!", "Transaksi tidak dilakukan");
             }
         });
     }
@@ -87,6 +91,29 @@ const Create = ({ spp, user, siswa, kelas, bulan_bayar }) => {
             <HardTitle title={'Entri Pembayaran'} subTitle={'Entri Transaksi Pembayaran'} />
             <div className="grid md:grid-cols-2 grid-cols-1 md:gap-7 gap-5 md:mt-0 mt-5">
                 <div className='flex gap-y-3 flex-col'>
+                    {!onAlert && hideAlert ? (
+                        <div className='bg-blue-200 mb-3 p-3 rounded-md'>
+                            <div className='font-semibold mb-1 text-sm text-blue-700 relative'>
+                                <AiOutlineInfoCircle className='inline-block mr-1' />
+                                Info!
+                                <button onClick={() => setHideAlert(false)} className='absolute right-0 -top-1 text-lg'>x</button>
+                            </div>
+                            <div className='text-blue-700 text-sm'>
+                                Apabila data bulanan telah di bayar maka bulan tidak bisa lagi di bayar. Dan data tidak akan terkirim!
+                            </div>
+                        </div>
+                    ) : onAlert && hideAlert ? (
+                        <div className='bg-amber-200 mb-3 p-3 rounded-md'>
+                            <div className='font-semibold mb-1 text-sm relative text-amber-700'>
+                                <AiOutlineWarning className='inline-block mr-1' />
+                                Warning!
+                                <button onClick={() => setHideAlert(false)} className='float-right absolute right-0 -top-1 text-lg'>x</button>
+                            </div>
+                            <div className='text-amber-700 text-sm'>
+                                Bulan telah di bayar! cek kembali bulanan bayar, yang anda kirim
+                            </div>
+                        </div>
+                    ) : null}
                     <h1 className='md:text-lg text-sm font-semibold'>Data Siswa
                         <p className='md:text-sm text-xs font-normal'>Data siswa yang ingin membayar</p>
                     </h1>
