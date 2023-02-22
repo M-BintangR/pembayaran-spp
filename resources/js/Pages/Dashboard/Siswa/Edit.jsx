@@ -31,7 +31,7 @@ const Edit = ({ item, kelas, spp, user }) => {
     const onHandleSubmit = (e) => {
         e.preventDefault();
         put(route('siswa.update', item?.id), {
-            onSuccess: () => {
+            onFinish: () => {
                 swal({
                     title: "Data Siswa Berhasil Di Edit",
                     icon: "success",
@@ -39,7 +39,6 @@ const Edit = ({ item, kelas, spp, user }) => {
             }
         });
     }
-
 
     return (
         <Sidebar active={'siswa'} user={user}>

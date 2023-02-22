@@ -18,7 +18,7 @@ const Home = ({ items, user, short }) => {
     const [record, setRecord] = useState([]);
     const [loading, setLoading] = useState(false);
 
-    // keperluan modal
+    //! KEPERLUAN MODAL!
     const [onCreteModal, setOnCreateModal] = useState(false);
     const [onEditModal, setOnEditModal] = useState(false);
     const [idKelas, setIdKelas] = useState();
@@ -27,26 +27,28 @@ const Home = ({ items, user, short }) => {
         setRecord(items.data);
     }, [items]);
 
-    const handleShortData = (e) => {
+    const handleShortData = (shorting) => {
         setLoading(true);
-        router.get(route('kelas.index'), { short: e }, {
-            onSuccess: () => {
+        router.get(route('kelas.index'), { short: shorting }, {
+            onFinish: () => {
                 setLoading(false);
             }
         });
     }
 
-
     const handleSearchData = (target) => {
         try {
-            if (target !== "") {
-                axios.get(`/dashboard/kelas/search?search=${target.trim()}`)
+            const prevRecord = record;
+            const search = target.trim();
+            if (target && search.length !== 0) {
+                const url = search ? `/dashboard/kelas/search?search=${search}` : "/dashboard/kelas";
+                axios.get(url)
                     .then(res => res?.data?.items)
                     .then(res => {
-                        setRecord(res?.data);
+                        setRecord(res?.data || prevRecord);
                     });
             } else {
-                setRecord(items?.data);
+                setRecord(prevRecord);
             }
         } catch (e) {
             console.log(e);
@@ -63,23 +65,21 @@ const Home = ({ items, user, short }) => {
         })
             .then((willDelete) => {
                 if (willDelete) {
-                    Inertia.delete(`/dashboard/kelas/${id}`);
-                    setRecord(record.filter(record => record.id !== id));
-                    swal("Data berhasil di hapus!", {
-                        icon: "success",
-                        confirmButtonColor: '#7E22CE',
+                    Inertia.delete(`/dashboard/kelas/${id}`, {
+                        onFinish: () => {
+                            setRecord(record.filter(record => record.id !== id));
+                            swal("Berhasil!", "Data telah di hapus", {
+                                icon: "success",
+                            });
+                        }
                     });
                 } else {
-                    swal("Data batal di hapus", {
-                        confirmButtonColor: '#7E22CE',
-                    });
+                    swal("Batal Di Hapus!", "Data tetap tersimpan");
                 }
             });
     }
 
-
-    // keperluan modal
-
+    //! KEPERLUAN MODAL!
     const { data, setData, post, processing, errors, put } = useForm({
         nama_kelas: '',
         kompetensi_keahlian: '',
@@ -93,17 +93,16 @@ const Home = ({ items, user, short }) => {
         setData({ nama_kelas: '', kompetensi_keahlian: '' });
     }
 
-
     const onHandleSubmit = (e) => {
         e.preventDefault();
         post(route('kelas.store'), {
-            onSuccess: () => {
+            onFinish: () => {
                 setRecord(items?.data);
                 setOnCreateModal(false);
                 clearData();
                 swal({
                     title: "Berhasil!",
-                    text: "Data di tambahkan",
+                    text: "Data telah di tambahkan",
                     icon: "success",
                     button: "Ok",
                 });
@@ -114,13 +113,13 @@ const Home = ({ items, user, short }) => {
     const onHandleSubmitEdit = (e) => {
         e.preventDefault();
         put(route('kelas.update', idKelas), {
-            onSuccess: () => {
+            onFinish: () => {
                 setRecord(items?.data);
                 setOnEditModal(false);
                 clearData();
                 swal({
                     title: "Berhasil!",
-                    text: "Data di ubah",
+                    text: "Data telah di ubah",
                     icon: "success",
                     button: "Ok",
                 });
@@ -137,11 +136,11 @@ const Home = ({ items, user, short }) => {
     const onHandleEdit = (id) => {
         try {
             axios.get(route('kelas.edit', id))
-                .then(res => res.data.item)
+                .then(res => res?.data?.item)
                 .then(res => {
                     try {
-                        setIdKelas(id);
                         setData({ nama_kelas: res.nama_kelas, kompetensi_keahlian: res.kompetensi_keahlian });
+                        setIdKelas(id);
                         setOnEditModal(true);
                         setPetugas(res?.id);
                     } catch (e) {
@@ -219,7 +218,7 @@ const Home = ({ items, user, short }) => {
                         <thead className="text-white">
                             <tr className="bg-purple-700 flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0 text-xs rounded-l-md">
                                 {trTbl.map((tr, index) => (
-                                    <th key={index} className="p-3 text-left">{tr.title}</th>
+                                    <th key={index} className="p-3 text-left">{tr?.title}</th>
                                 ))}
                                 <th className="p-3 text-left h-[52px]" width="110px">Actions</th>
                             </tr>

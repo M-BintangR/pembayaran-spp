@@ -23,7 +23,7 @@ const Transaksi = ({ siswa, user, short }) => {
     const handleShortData = (e) => {
         setLoading(true);
         router.get(route('transaksi'), { short: e }, {
-            onSuccess: () => {
+            onFinish: () => {
                 setLoading(false);
             }
         });
@@ -31,14 +31,17 @@ const Transaksi = ({ siswa, user, short }) => {
 
     const handleSearchData = (target) => {
         try {
-            if (target !== "") {
-                axios.get(`/dashboard/pembayaran/transaksi/search?search=${target.trim()}`)
-                    .then(res => res?.data?.siswa)
+            const prevRecord = record;
+            const search = target.trim();
+            if (target && search.length !== 0) {
+                const url = search ? `/dashboard/pembayaran/transaksi/search?search=${search}` : "/dashboard/pembayaran/transaksi";
+                axios.get(url)
+                    .then(res => res?.data?.items)
                     .then(res => {
-                        setRecord(res?.data);
+                        setRecord(res?.data || prevRecord);
                     });
             } else {
-                setRecord(siswa?.data);
+                setRecord(prevRecord);
             }
         } catch (e) {
             console.log(e);
@@ -157,8 +160,8 @@ const Transaksi = ({ siswa, user, short }) => {
                 ))}
             </div>
 
-
             <Paginate meta={siswa} short={short} />
+
         </Sidebar>
     )
 }

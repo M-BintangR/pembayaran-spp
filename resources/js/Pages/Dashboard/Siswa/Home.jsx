@@ -20,10 +20,10 @@ const Home = ({ items, user, short }) => {
         setRecord(items.data);
     }, []);
 
-    const handleShortData = (e) => {
+    const handleShortData = (shorting) => {
         setLoading(true);
-        router.get(route('siswa.index'), { short: e }, {
-            onSuccess: () => {
+        router.get(route('siswa.index'), { short: shorting }, {
+            onFinish: () => {
                 setLoading(false);
             }
         });
@@ -57,11 +57,11 @@ const Home = ({ items, user, short }) => {
                 if (willDelete) {
                     Inertia.delete(`/dashboard/siswa/${id}`);
                     setRecord(record.filter(record => record.id !== id));
-                    swal("Data berhasil di hapus!", {
+                    swal("Berhasil!", "Data telah dihapus", {
                         icon: "success",
                     });
                 } else {
-                    swal("Data batal di hapus");
+                    swal("Batal Di Hapus!", "Data tetap tersimpan");
                 }
             });
     }

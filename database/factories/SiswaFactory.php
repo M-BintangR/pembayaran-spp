@@ -20,7 +20,7 @@ class SiswaFactory extends Factory
         return [
             'nisn' => fake()->unique()->randomNumber(9),
             'nis' => fake()->unique()->regexify('^[0-9]{3}\-[0-9]{3}$'),
-            'nama' => fake()->name(),
+            'nama' => fake()->unique()->name(),
             'jk' => fake()->randomElement($jenis_kelamin),
             'id_kelas' => fake()->numberBetween(1, 12),
             'alamat' => fake()->address(),

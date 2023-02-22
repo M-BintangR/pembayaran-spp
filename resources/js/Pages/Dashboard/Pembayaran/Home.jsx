@@ -15,15 +15,14 @@ const Home = ({ items, user, short }) => {
     const [record, setRecord] = useState([]);
     const [loading, setLoading] = useState(false);
 
-
     useEffect(() => {
-        setRecord(items.data);
+        setRecord(items?.data);
     }, []);
 
-    const handleShortData = (e) => {
+    const handleShortData = (shorting) => {
         setLoading(true);
-        router.get(route('pembayaran.index'), { short: e }, {
-            onSuccess: () => {
+        router.get(route('pembayaran.index'), { short: shorting }, {
+            onFinish: () => {
                 setLoading(false);
             }
         });
@@ -31,14 +30,17 @@ const Home = ({ items, user, short }) => {
 
     const handleSearchData = (target) => {
         try {
-            if (target !== "") {
-                axios.get(`/dashboard/pembayaran/search?search=${target}`)
+            const prevRecord = record;
+            const search = target.trim();
+            if (target && search.length !== 0) {
+                const url = search ? `/dashboard/pembayaran/search?search=${search}` : "/dashboard/pembayaran";
+                axios.get(url)
                     .then(res => res?.data?.items)
                     .then(res => {
-                        setRecord(res?.data);
+                        setRecord(res?.data || prevRecord);
                     });
             } else {
-                setRecord(items?.data);
+                setRecord(record);
             }
         } catch (e) {
             console.log(e);
@@ -55,18 +57,19 @@ const Home = ({ items, user, short }) => {
         })
             .then((willDelete) => {
                 if (willDelete) {
-                    Inertia.delete(`/dashboard/pembayaran/${id}`);
-                    setRecord(record.filter(record => record.id !== id));
-                    swal("Data berhasil di hapus!", {
-                        icon: "success",
+                    Inertia.delete(`/dashboard/pembayaran/${id}`, {
+                        onFinish: () => {
+                            setRecord(record.filter(record => record.id !== id));
+                            swal("Berhasil!", "Data telah di hapus", {
+                                icon: "success",
+                            });
+                        }
                     });
                 } else {
-                    swal("Data batal di hapus");
+                    swal("Batal Di Hapus!", "Data tetap tersimpan");
                 }
             });
     }
-
-
 
     return (
 
@@ -88,7 +91,7 @@ const Home = ({ items, user, short }) => {
                                 <th
                                     key={index}
                                     className={`p-3 text-sm font-normal md:font-semibold tracking-wide text-left border-x-2 border-gray-300 `}
-                                >{row.title}</th>
+                                >{row?.title}</th>
                             ))}
                             <th
                                 className={`p-3 text-sm font-normal md:font-semibold tracking-wide text-left border-x-2 border-gray-300 `}
@@ -166,6 +169,5 @@ const Home = ({ items, user, short }) => {
         </Sidebar>
     )
 }
-
 
 export default Home

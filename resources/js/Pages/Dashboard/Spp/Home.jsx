@@ -30,7 +30,7 @@ const Home = ({ items, user, short }) => {
     const handleShortData = (e) => {
         setLoading(true);
         router.get(route('spp.index'), { short: e }, {
-            onSuccess: () => {
+            onFinish: () => {
                 setLoading(false);
             }
         });
@@ -38,14 +38,17 @@ const Home = ({ items, user, short }) => {
 
     const handleSearchData = (target) => {
         try {
-            if (target !== "") {
-                axios.get(`/dashboard/spp/search?search=${target.trim()}`)
+            const prevRecord = record;
+            const search = target.trim();
+            if (target && search.length !== 0) {
+                const url = search ? `/dashboard/spp/search?search=${search}` : "/dashboard/spp";
+                axios.get(url)
                     .then(res => res?.data?.items)
                     .then(res => {
-                        setRecord(res?.data);
+                        setRecord(res?.data || prevRecord);
                     });
             } else {
-                setRecord(items?.data);
+                setRecord(record);
             }
         } catch (e) {
             console.log(e);
@@ -62,13 +65,16 @@ const Home = ({ items, user, short }) => {
         })
             .then((willDelete) => {
                 if (willDelete) {
-                    Inertia.delete(`/dashboard/spp/${id}`);
-                    setRecord(record.filter(record => record.id !== id));
-                    swal("Data berhasil di hapus!", {
-                        icon: "success",
+                    Inertia.delete(`/dashboard/spp/${id}`, {
+                        onFinish: () => {
+                            setRecord(record.filter(record => record.id !== id));
+                            swal("Berhasil!", "Data telah dihapus!", {
+                                icon: "success",
+                            });
+                        }
                     });
                 } else {
-                    swal("Data batal di hapus");
+                    swal("Batal Di Hapus!", "Data tetap tersimpan");
                 }
             });
     }
@@ -92,7 +98,7 @@ const Home = ({ items, user, short }) => {
     const onHandleSubmit = (e) => {
         e.preventDefault();
         post(route('spp.store'), {
-            onSuccess: () => {
+            onFinish: () => {
                 setRecord(items?.data);
                 setOnCreateModal(false);
                 clearData();
@@ -109,7 +115,7 @@ const Home = ({ items, user, short }) => {
     const onHandleSubmitEdit = (e) => {
         e.preventDefault();
         put(route('spp.update', idSpp), {
-            onSuccess: () => {
+            onFinish: () => {
                 setRecord(items?.data);
                 setOnEditModal(false);
                 clearData();

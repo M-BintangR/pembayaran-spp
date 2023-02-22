@@ -62,7 +62,7 @@ const Create = ({ spp, user, siswa, kelas, bulan_bayar }) => {
         }).then((will) => {
             if (will) {
                 post(route('pembayaran.store'), {
-                    onSuccess: (e) => {
+                    onFinish: (e) => {
                         console.log(e);
                         swal({
                             title: "Transaksi Telah Di Lakukan!",

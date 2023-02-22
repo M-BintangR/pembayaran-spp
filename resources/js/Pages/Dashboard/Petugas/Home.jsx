@@ -16,10 +16,10 @@ import { tablePetugas as trTbl } from '@/Components/url/url';
 
 
 const Home = ({ items, user, short }) => {
-    const [record, setRecord] = useState();
+    const [record, setRecord] = useState([]);
     const [loading, setLoading] = useState(false);
 
-    // keperluan modal
+    //! KEPERLUAN MODAL
     const [onCreteModal, setOnCreateModal] = useState(false);
     const [onEditModal, setOnEditModal] = useState(false);
     const [idPetugas, setPetugas] = useState();
@@ -28,10 +28,10 @@ const Home = ({ items, user, short }) => {
         setRecord(items.data);
     }, [items]);
 
-    const handleShortData = (e) => {
+    const handleShortData = (shorting) => {
         setLoading(true);
-        router.get(route('petugas.index'), { short: e }, {
-            onSuccess: () => {
+        router.get(route('petugas.index'), { short: shorting }, {
+            onFinish: () => {
                 setLoading(false);
             }
         });
@@ -39,11 +39,14 @@ const Home = ({ items, user, short }) => {
 
     const handleSearchData = (target) => {
         try {
-            if (target !== "") {
-                axios.get(`/dashboard/petugas/search?search=${target.trim()}`)
+            const prevRecord = record;
+            const search = target.trim();
+            if (target && search.length !== 0) {
+                const url = search ? `/dashboard/petugas/search?search=${search}` : "/dashboard/petugas";
+                axios.get(url)
                     .then(res => res?.data?.items)
                     .then(res => {
-                        setRecord(res?.data);
+                        setRecord(res?.data || prevRecord);
                     });
             } else {
                 setRecord(items?.data);
@@ -63,20 +66,21 @@ const Home = ({ items, user, short }) => {
         })
             .then((willDelete) => {
                 if (willDelete) {
-                    Inertia.delete(`/dashboard/petugas/${id}`);
-                    setRecord(record.filter(record => record.id !== id));
-                    swal("Data berhasil di hapus!", {
-                        icon: "success",
+                    Inertia.delete(`/dashboard/petugas/${id}`, {
+                        onFinish: () => {
+                            setRecord(record.filter(record => record.id !== id));
+                            swal("Berhasil!", "Data telah di hapus", {
+                                icon: "success",
+                            });
+                        }
                     });
                 } else {
-                    swal("Data batal di hapus");
+                    swal("Batal Di Hapus!", "Data tetap tersimpan");
                 }
             });
     }
 
-
-    // keperluan modal
-
+    //! KEPERLUAN MODAL
     const { data, setData, post, processing, errors, put } = useForm({
         username: '',
         nama_pengguna: '',
@@ -92,11 +96,10 @@ const Home = ({ items, user, short }) => {
         setData({ username: '', nama_pengguna: '', level: '', password: '' });
     }
 
-
     const onHandleSubmit = (e) => {
         e.preventDefault();
         post(route('petugas.store'), {
-            onSuccess: () => {
+            onFinish: () => {
                 setRecord(items?.data);
                 setOnCreateModal(false);
                 clearData();
@@ -113,7 +116,7 @@ const Home = ({ items, user, short }) => {
     const onHandleSubmitEdit = (e) => {
         e.preventDefault();
         put(route('petugas.update', idPetugas), {
-            onSuccess: () => {
+            onFinish: () => {
                 setRecord(items?.data);
                 setOnEditModal(false);
                 clearData();
