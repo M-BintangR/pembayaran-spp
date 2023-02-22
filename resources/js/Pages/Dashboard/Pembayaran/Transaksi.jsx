@@ -22,7 +22,7 @@ const Transaksi = ({ siswa, user, short }) => {
         setTimeout(() => {
             setRecord(siswa.data);
             setTblLoading(false);
-        }, 300);
+        }, 200);
     }, [siswa]);
 
     const handleShortData = (e) => {
@@ -39,9 +39,9 @@ const Transaksi = ({ siswa, user, short }) => {
             const prevRecord = record;
             const search = target.trim();
             if (target && search.length !== 0) {
-                const url = search ? `/dashboard/pembayaran/transaksi/search?search=${search}` : "/dashboard/pembayaran/transaksi";
+                const url = search ? `/dashboard/pembayaran/transaksi/search?search=${search}` : "/dashboard/pembayaran/search";
                 axios.get(url)
-                    .then(res => res?.data?.items)
+                    .then(res => res?.data?.siswa)
                     .then(res => {
                         setRecord(res?.data || prevRecord);
                     });
