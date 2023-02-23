@@ -73,6 +73,7 @@ Route::group(['prefix' => '/dashboard', 'middleware' => ['auth', 'petugas']], fu
     Route::post('/pembayaran', [PembayaranController::class, 'store'])->name('pembayaran.store');
     Route::delete('/pembayaran/{pembayaran:id}', [PembayaranController::class, 'destroy'])->name('pembayaran.destroy');
     Route::get('/pembayaran/transaksi', [PembayaranController::class, 'transaksi'])->name('transaksi');
+    Route::get('/pembayaran/{kwitansi:nis}/kwitansi', [PembayaranController::class, 'kwitansi'])->name('kwitansi');
 
     //? Profile Route
     Route::get('profile', [DashboardController::class, 'profile'])->name('profile');

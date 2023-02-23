@@ -1,10 +1,8 @@
 import Sidebar from '@/Layouts/Sidebar'
 import HardTitle from '@/Components/HardTitle'
-import { Inertia } from '@inertiajs/inertia';
 import { Link, router } from '@inertiajs/react';
 import React, { useEffect, useState } from 'react'
-import { BiTrash } from 'react-icons/bi';
-import swal from 'sweetalert';
+import { BiPrinter } from 'react-icons/bi';
 import Loading from '@/Components/Loading';
 import Paginate from '@/Components/Paginate';
 import ShortData from '@/Components/ShortData';
@@ -47,29 +45,6 @@ const Home = ({ items, user, short }) => {
         }
     }
 
-    const handleDelete = async (id) => {
-        await swal({
-            title: "Apakah Anda Yakin?",
-            text: "Jika data di hapus, maka data tidak akan bisa di kembalikan!",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-        })
-            .then((willDelete) => {
-                if (willDelete) {
-                    Inertia.delete(`/dashboard/pembayaran/${id}`, {
-                        onFinish: () => {
-                            setRecord(record.filter(record => record.id !== id));
-                            swal("Berhasil!", "Data telah di hapus", {
-                                icon: "success",
-                            });
-                        }
-                    });
-                } else {
-                    swal("Batal Di Hapus!", "Data tetap tersimpan");
-                }
-            });
-    }
 
     return (
 
@@ -105,21 +80,17 @@ const Home = ({ items, user, short }) => {
                                 className={` border-x-2 border-gray-300 odd:bg-gray-200`} >
                                 <>
                                     <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300'>{index + 1}</td>
-                                    <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 capitalize'>{row?.petugas ? row?.petugas?.nama_pengguna : '-'}</td>
-                                    <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 capitalize'>{row?.siswa?.nama}</td>
-                                    <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 capitalize'>{row?.siswa?.nis}</td>
-                                    <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 uppercase'>{row?.tgl_bayar}</td>
-                                    <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 capitalize'>{row?.bulan_bayar}</td>
-                                    <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 uppercase'>{row?.tahun_bayar}</td>
-                                    <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 capitalize'>Rp {row?.spp ? row?.spp?.nominal.toLocaleString() : '0'}</td>
-                                    <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 capitalize'>Rp {row?.jumlah_bayar.toLocaleString()}</td>
+                                    <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 capitalize'>{row?.nis}</td>
+                                    <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 uppercase'>{row?.tanggal}</td>
+                                    <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 capitalize'>{row?.bulan}</td>
                                     <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300'>
-                                        <button
-                                            onClick={() => handleDelete(row?.id)}
-                                            className='duration-100 text-sm md:text-xl text-black mr-1 font-medium md:font-semibold py-1 px-3 hover:text-red-400'
+                                        <Link
+                                            href={route('kwitansi', row?.nis)}
+                                            className='duration-300 bg-gray-100 border-2 border-gray-300 text-gray-500 rounded-md py-2 px-3 hover:bg-green-600 hover:text-white font-semibold hover:border-green-700 box-border'
                                         >
-                                            <BiTrash className='inline' />
-                                        </button>
+                                            <BiPrinter className='text-md inline-block mr-1' />
+                                            Kwitansi
+                                        </Link>
                                     </td>
                                 </>
                             </tr>
@@ -144,21 +115,16 @@ const Home = ({ items, user, short }) => {
                         <tbody className="flex-1 sm:flex-none">
                             <tr className="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0 text-xs">
                                 <td className="border-grey-light border hover:bg-gray-100 p-3">{index + 1}</td>
-                                <td className="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">{row?.petugas ? row?.petugas?.nama_pengguna : '-'}</td>
-                                <td className="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">{row?.siswa?.nama}</td>
-                                <td className="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">{row?.siswa?.nis}</td>
-                                <td className="border-grey-light border hover:bg-gray-100 p-3 truncate uppercase">{row?.tgl_bayar}</td>
-                                <td className="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">{row?.bulan_bayar}</td>
-                                <td className="border-grey-light border hover:bg-gray-100 p-3 truncate uppercase">{row?.tahun_bayar}</td>
-                                <td className="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">Rp {row?.spp ? row?.spp?.nominal.toLocaleString() : '0'}</td>
-                                <td className="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">Rp {row?.jumlah_bayar.toLocaleString()}</td>
-                                <td className="border-grey-light border hover:bg-gray-100 p-3 text-red-400 hover:text-red-600 hover:font-medium cursor-pointer">
-                                    <button
-                                        onClick={() => handleDelete(row?.id)}
-                                        className='duration-100 text-sm md:text-xl text-black mr-1 font-medium md:font-semibold hover:text-red-400'
+                                <td className="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">{row?.nis}</td>
+                                <td className="border-grey-light border hover:bg-gray-100 p-3 truncate uppercase">{row?.tanggal}</td>
+                                <td className="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">{row?.bulan}</td>
+                                <td className="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">
+                                    <Link
+                                        href={route('kwitansi', row?.nis)}
+                                        className='duration-300 bg-gray-100 border-2 border-gray-300 text-gray-500 rounded-md py-1 px-2 hover:bg-green-600 hover:text-white font-semibold hover:border-green-700 text-xs'
                                     >
-                                        <BiTrash className='inline' />
-                                    </button>
+                                        <BiPrinter />
+                                    </Link>
                                 </td>
                             </tr>
                         </tbody>

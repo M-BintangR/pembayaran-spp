@@ -91,14 +91,9 @@ export const tableTransaksi02 = [
 //! Tabel Pembayaran
 export const tablePembayaran = [
     { title: 'No' },
-    { title: 'Nama Petugas / Penerima' },
-    { title: 'Nama Siswa' },
     { title: 'NIS' },
     { title: 'Tanggal Bayar' },
     { title: 'Bulan Bayar' },
-    { title: 'Tahun Bayar' },
-    { title: 'Nominal Pembayaran Spp' },
-    { title: 'Jumlah Yang Di Bayar' },
 ];
 
 //! Tabel Petugas

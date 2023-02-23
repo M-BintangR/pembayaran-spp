@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kelas;
+use App\Models\Kwitansi;
 use App\Models\Pembayaran;
 use App\Models\Siswa;
 use App\Models\Spp;
 use Error;
 use Exception;
+use Illuminate\Database\DBAL\TimestampType;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
@@ -19,6 +21,21 @@ class PembayaranController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function kwitansi(Kwitansi $kwitansi)
+    {
+        $nominal = $kwitansi->siswa->spp->nominal;
+        $total_bulan = count($kwitansi->siswa->pembayaran);
+        $total =  $nominal * $total_bulan;
+
+        return Inertia::render('Dashboard/Pembayaran/Kwitansi', [
+            'user' => auth()->user(),
+            'siswa' => $kwitansi->siswa,
+            'pembayaran' => $total,
+            'kwitansi' => $kwitansi,
+            'kelas' => $kwitansi->siswa->kelas,
+        ]);
+    }
+
     public function transaksiSearch(Request $request)
     {
         $search = $request->query('search', null);
@@ -45,23 +62,10 @@ class PembayaranController extends Controller
         $search = $request->query('search', null);
 
         if ($search !== null && $search !== "") {
-            $items = Pembayaran::with(['petugas', 'siswa', 'spp'])
-                ->where(function ($query) use ($search) {
-                    $query
-                        ->where('bulan_bayar',  'like', '%' . $search . '%')
-                        ->orWhere('tahun_bayar',  'like', '%' . $search . '%')
-                        ->orWhere('nisn',  'like', '%' . $search . '%')
-                        ->orWhere('tgl_bayar',  'like', '%' . $search . '%')
-                        ->orWhere('jumlah_bayar',  'like', '%' . $search . '%');
-                })->orWhereHas('petugas', function ($query) use ($search) {
-                    $query->where('nama_pengguna', 'like', '%' . $search . '%');
-                })->orWhereHas('siswa', function ($query) use ($search) {
-                    $query
-                        ->where('nama', 'like', '%' . $search . '%')
-                        ->orWhere('nis', 'like', '%' . $search . '%');
-                })->orWhereHas('spp', function ($query) use ($search) {
-                    $query->where('nominal',  'like', '%' . $search . '%');
-                })->paginate(20);
+            $items = Pembayaran::where('nis', 'LIKE', '%' . $search . '%')
+                ->orWhere('tanggal', 'LIKE', '%' . $search . '%')
+                ->orWhere('bulan', 'LIKE', '%' . $search . '%')
+                ->paginate(20);
         }
 
         return response()->json(['items' => $items], 200);
@@ -95,20 +99,8 @@ class PembayaranController extends Controller
     {
         $short = $request->query('short', 20);
 
-        $items = Pembayaran::select('id', 'bulan_bayar', 'tahun_bayar', 'nisn', 'tgl_bayar', 'id_spp', 'jumlah_bayar', 'id_petugas')
-            ->orderBy('created_at', 'desc')
+        $items = Kwitansi::orderBy('created_at', 'desc')
             ->orderBy('updated_at', 'desc')
-            ->with([
-                'petugas' => function ($query) {
-                    $query->select('id', 'nama_pengguna');
-                },
-                'siswa' => function ($query) {
-                    $query->select('nisn', 'nama', 'nis');
-                },
-                'spp' => function ($query) {
-                    $query->select('id', 'nominal');
-                },
-            ])
             ->paginate($short);
 
         return Inertia::render('Dashboard/Pembayaran/Home', [
@@ -167,11 +159,10 @@ class PembayaranController extends Controller
         if ($existingPayments->isNotEmpty()) {
             return back()->with('error', 'Pembayaran Bulan ini Sudah');
         }
-
         try {
 
             foreach ($validateData['bulan_bayar'] as $bulan) {
-                Pembayaran::create([
+                $pembayaran = Pembayaran::create([
                     'id_petugas' => $validateData['id_petugas'],
                     'id_spp' => $validateData['id_spp'],
                     'nisn' => $validateData['nisn'],
@@ -181,10 +172,37 @@ class PembayaranController extends Controller
                     'jumlah_bayar' => $validateData['jumlah_bayar'],
                 ]);
             }
-            return redirect(route('transaksi'))->with('success', 'Data berhasil di tambah kan');
+
+            if ($pembayaran) {
+                $siswa = Siswa::query()
+                    ->where('nisn', $request->nisn)
+                    ->firstOrFail();
+                $bulan = array_column($request->bulan_bayar, 'value');
+                $kwitansi = Kwitansi::query()
+                    ->where('nis', $siswa->nis)->first();
+
+                if ($kwitansi) {
+                    $bulan_baru = array_merge(explode(",", $kwitansi->bulan), $bulan);
+                    $bulan_baru = array_unique($bulan_baru);
+                    sort($bulan_baru);
+
+                    $kwitansi->update([
+                        'tanggal' => now()->format('Y-m-d'),
+                        'bulan' => implode(",", $bulan_baru),
+                    ]);
+                } else {
+                    Kwitansi::create([
+                        'nis' => $siswa->nis,
+                        'tanggal' => now()->format('Y-m-d'),
+                        'bulan' => implode(",", $bulan),
+                    ]);
+                }
+            }
+            return redirect(route('transaksi'))->with('success', 'Data berhasil di tambahkan');
         } catch (Exception $e) {
             return back()->with('error', 'Data gagal di tambahkan');
         }
+        return back()->with('error', 'Data gagal di tambahkan');
     }
 
     /**

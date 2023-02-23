@@ -31,6 +31,11 @@ class Siswa extends Authenticatable
         return $this->belongsTo(Spp::class, 'id_spp', 'id');
     }
 
+    public function kwitansi()
+    {
+        return $this->hasMany(Kwitansi::class, 'nis', 'nis');
+    }
+
     //! Membuat trigger hapus siswa->pembayaran
     protected static function boot()
     {

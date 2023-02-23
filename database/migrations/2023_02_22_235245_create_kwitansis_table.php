@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('kwitansis', function (Blueprint $table) {
             $table->id();
             $table->char('nis', 7)->unique();
-            $table->string('bulan', 15);
-            $table->date('tanggal');
+            $table->string('bulan');
+            $table->dateTime('tanggal');
             $table->timestamps();
         });
     }
