@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->char('nis', 7)->unique();
             $table->string('bulan');
-            $table->dateTime('tanggal');
+            $table->date('tanggal');
             $table->timestamps();
         });
     }

@@ -1,12 +1,13 @@
 import React from 'react'
+import ttd from '../../../Components/img/gambar_ttd.png';
 
 const Kwitansi = ({ user, siswa, pembayaran, kelas, kwitansi }) => {
-    setTimeout(() => {
-        window.print();
-    }, 1000);
+    // setTimeout(() => {
+    //     window.print();
+    // }, 1000);
 
     return (
-        <div className='bg-white my-5 mx-10'>
+        <div className='bg-white my-5 md:mx-10'>
             <h1 className='text-center text-2xl uppercase font-bold'>Kwitansi Pembayaran Spp</h1>
             <p className='text-center text-sm lowercase'>Laporan pembayaran spp siswa</p>
             <div class="border border-x-0 border-t-0 text-center mt-2 border-b-2 border-b-black text-sm">
@@ -42,7 +43,7 @@ const Kwitansi = ({ user, siswa, pembayaran, kelas, kwitansi }) => {
                         <td className="text-center">Petugas : {user?.nama_pengguna}</td>
                     </tr>
                     <tr className='h-20'>
-
+                        <img src={ttd} alt="" width={'200px'} />
                     </tr>
                     <tr>
                         <td className='text-center'>Tanggal : {kwitansi?.tanggal}</td>
