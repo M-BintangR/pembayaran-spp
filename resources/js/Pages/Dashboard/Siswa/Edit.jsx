@@ -31,7 +31,7 @@ const Edit = ({ item, kelas, spp, user }) => {
     const onHandleSubmit = (e) => {
         e.preventDefault();
         put(route('siswa.update', item?.id), {
-            onFinish: () => {
+            onSuccess: () => {
                 swal({
                     title: "Data Siswa Berhasil Di Edit",
                     icon: "success",

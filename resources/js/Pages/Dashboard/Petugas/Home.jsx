@@ -31,7 +31,7 @@ const Home = ({ items, user, short }) => {
     const handleShortData = (shorting) => {
         setLoading(true);
         router.get(route('petugas.index'), { short: shorting }, {
-            onFinish: () => {
+            onSuccess: () => {
                 setLoading(false);
             }
         });
@@ -67,7 +67,7 @@ const Home = ({ items, user, short }) => {
             .then((willDelete) => {
                 if (willDelete) {
                     Inertia.delete(`/dashboard/petugas/${id}`, {
-                        onFinish: () => {
+                        onSuccess: () => {
                             setRecord(record.filter(record => record.id !== id));
                             swal("Berhasil!", "Data telah di hapus", {
                                 icon: "success",
@@ -99,7 +99,7 @@ const Home = ({ items, user, short }) => {
     const onHandleSubmit = (e) => {
         e.preventDefault();
         post(route('petugas.store'), {
-            onFinish: () => {
+            onSuccess: () => {
                 setRecord(items?.data);
                 setOnCreateModal(false);
                 clearData();
@@ -116,7 +116,7 @@ const Home = ({ items, user, short }) => {
     const onHandleSubmitEdit = (e) => {
         e.preventDefault();
         put(route('petugas.update', idPetugas), {
-            onFinish: () => {
+            onSuccess: () => {
                 setRecord(items?.data);
                 setOnEditModal(false);
                 clearData();

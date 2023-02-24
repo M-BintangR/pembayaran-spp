@@ -96,7 +96,7 @@ const Home = ({ items, user, short }) => {
     const onHandleSubmit = (e) => {
         e.preventDefault();
         post(route('kelas.store'), {
-            onFinish: () => {
+            onSuccess: () => {
                 setRecord(items?.data);
                 setOnCreateModal(false);
                 clearData();
@@ -113,7 +113,7 @@ const Home = ({ items, user, short }) => {
     const onHandleSubmitEdit = (e) => {
         e.preventDefault();
         put(route('kelas.update', idKelas), {
-            onFinish: () => {
+            onSuccess: () => {
                 setRecord(items?.data);
                 setOnEditModal(false);
                 clearData();

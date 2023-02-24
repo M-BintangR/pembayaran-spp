@@ -28,7 +28,7 @@ const Transaksi = ({ siswa, user, short }) => {
     const handleShortData = (e) => {
         setLoading(true);
         router.get(route('transaksi'), { short: e }, {
-            onFinish: () => {
+            onSuccess: () => {
                 setLoading(false);
             }
         });

@@ -23,7 +23,7 @@ const Home = ({ items, user, short }) => {
     const handleShortData = (shorting) => {
         setLoading(true);
         router.get(route('siswa.index'), { short: shorting }, {
-            onFinish: () => {
+            onSuccess: () => {
                 setLoading(false);
             }
         });

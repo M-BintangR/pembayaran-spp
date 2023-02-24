@@ -27,7 +27,7 @@ const Create = ({ kelas, spp, user }) => {
     const onHandleSubmit = (e) => {
         e.preventDefault();
         post(route('siswa.store'), {
-            onFinish: () => {
+            onSuccess: () => {
                 swal({
                     title: "Data Siswa Berhasil Di Tambah",
                     icon: "success",

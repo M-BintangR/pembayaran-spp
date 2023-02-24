@@ -56,7 +56,7 @@ const Create = ({ spp, user, siswa, kelas, bulan_bayar }) => {
 
     const onHandleSubmit = async (e) => {
         e.preventDefault();
-        await swal({
+        swal({
             title: "Apakah Anda Yakin!",
             text: "Transaksi akan di lakukan!",
             icon: "warning",
@@ -73,7 +73,8 @@ const Create = ({ spp, user, siswa, kelas, bulan_bayar }) => {
                             icon: "success",
                         });
                     },
-                    onError: () => {
+                    onError: (e) => {
+                        console.log(e);
                         swal({
                             title: "Transaksi Gagal",
                             icon: "error",

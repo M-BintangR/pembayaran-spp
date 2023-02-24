@@ -7,7 +7,7 @@ use App\Models\Kwitansi;
 use App\Models\Pembayaran;
 use App\Models\Siswa;
 use App\Models\Spp;
-use Error;
+use App\Models\User;
 use Exception;
 use Illuminate\Database\DBAL\TimestampType;
 use Illuminate\Http\Request;
@@ -139,7 +139,7 @@ class PembayaranController extends Controller
      */
     public function store(Request $request)
     {
-        $idPetugas = Pembayaran::pluck('id');
+        $idPetugas = User::pluck('id');
         $idSpp = Spp::pluck('id');
 
         $validateData = $request->validate([

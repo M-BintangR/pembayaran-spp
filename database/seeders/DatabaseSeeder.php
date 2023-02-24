@@ -5,7 +5,6 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Kelas;
-use App\Models\Pembayaran;
 use App\Models\Siswa;
 use App\Models\Spp;
 use App\Models\User;
@@ -95,18 +94,6 @@ class DatabaseSeeder extends Seeder
             ],
         ];
 
-        $data_pembayaran = [
-            [
-                "id_petugas" => 1,
-                "nisn" => '1111111111',
-                "tgl_bayar" => '2022-03-02',
-                "bulan_bayar" => 'maret',
-                "tahun_bayar" => '2004',
-                "id_spp" => 1,
-                "jumlah_bayar" => 200000
-            ],
-        ];
-
         $data_siswa = [
             [
                 'nama' => 'Fery Fadul',
@@ -120,17 +107,22 @@ class DatabaseSeeder extends Seeder
             ]
         ];
 
-        $data_petugas = [[
-            'nama_pengguna' => 'Muh Bintang',
-            'username' => 'Bintang',
-            'level' => 'admin',
-            'password' => bcrypt('adminadmin'),
-        ]];
+        $data_petugas = [
+            [
+                'nama_pengguna' => 'Muh Bintang',
+                'username' => 'Bintang',
+                'level' => 'admin',
+                'password' => bcrypt('adminadmin'),
+            ],
+            [
+                'nama_pengguna' => 'Zakaria',
+                'username' => 'Zaka',
+                'level' => 'admin',
+                'password' => bcrypt('adminadmin'),
+            ]
+        ];
 
-        foreach ($data_pembayaran as $pembayaran) {
-            Pembayaran::create($pembayaran);
-        }
-
+        //! DATA FAKE CREATE
         foreach ($data_spp as $spp) {
             Spp::create($spp);
         }
@@ -147,8 +139,8 @@ class DatabaseSeeder extends Seeder
             User::create($petugas);
         }
 
-        // ! Menggunakan Factory data Fake
-        User::factory()->count(10)->create();
-        Siswa::factory()->count(50)->create();
+        //! DATA FACTORY CREATE
+        // User::factory()->count(10)->create();
+        // Siswa::factory()->count(50)->create();
     }
 }

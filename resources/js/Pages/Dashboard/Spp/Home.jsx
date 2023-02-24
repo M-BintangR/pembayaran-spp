@@ -30,7 +30,7 @@ const Home = ({ items, user, short }) => {
     const handleShortData = (e) => {
         setLoading(true);
         router.get(route('spp.index'), { short: e }, {
-            onFinish: () => {
+            onSuccess: () => {
                 setLoading(false);
             }
         });
@@ -66,7 +66,7 @@ const Home = ({ items, user, short }) => {
             .then((willDelete) => {
                 if (willDelete) {
                     Inertia.delete(`/dashboard/spp/${id}`, {
-                        onFinish: () => {
+                        onSuccess: () => {
                             setRecord(record.filter(record => record.id !== id));
                             swal("Berhasil!", "Data telah dihapus!", {
                                 icon: "success",
@@ -98,7 +98,7 @@ const Home = ({ items, user, short }) => {
     const onHandleSubmit = (e) => {
         e.preventDefault();
         post(route('spp.store'), {
-            onFinish: () => {
+            onSuccess: () => {
                 setRecord(items?.data);
                 setOnCreateModal(false);
                 clearData();
@@ -115,7 +115,7 @@ const Home = ({ items, user, short }) => {
     const onHandleSubmitEdit = (e) => {
         e.preventDefault();
         put(route('spp.update', idSpp), {
-            onFinish: () => {
+            onSuccess: () => {
                 setRecord(items?.data);
                 setOnEditModal(false);
                 clearData();
