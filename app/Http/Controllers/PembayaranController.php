@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Kelas;
 use App\Models\Kwitansi;
 use App\Models\Pembayaran;
 use App\Models\Siswa;
@@ -106,15 +105,11 @@ class PembayaranController extends Controller
 
     public function create(Siswa $siswa)
     {
-
-        $data_kelas = Kelas::where('id', $siswa->id_kelas)->pluck('nama_kelas');
-        $data_spp = Spp::where('id', $siswa->id_spp)->pluck('nominal');
         $bulan_bayar = $siswa->pembayaran->pluck('bulan_bayar')->toArray();
-
         return Inertia::render('Dashboard/Pembayaran/Create', [
             'siswa' => $siswa,
-            'kelas' => $data_kelas,
-            'spp' => $data_spp,
+            'kelas' => $siswa->kelas->nama_kelas,
+            'spp' => $siswa->spp->nominal,
             'user' => auth()->user(),
             'bulan_bayar' => $bulan_bayar,
         ]);

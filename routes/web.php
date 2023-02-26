@@ -39,7 +39,8 @@ Route::group(['prefix' => '/dashboard', 'middleware' => ['auth', 'petugas']], fu
         Route::get('/pembayaran/transaksi/search', 'transaksiSearch')->name('transaksi.search');
         Route::get('/pembayaran/transaksi', 'transaksi')->name('transaksi');
         Route::get('/pembayaran/{kwitansi:nis}/kwitansi', 'kwitansi')->name('kwitansi');
-        Route::resource('pembayaran', PembayaranController::class);
+        Route::get('/pembayaran/{siswa:nisn}/create', 'create')->name('pembayaran.create');
+        Route::resource('pembayaran', PembayaranController::class)->name('create', 'pembayaran.tambah');
     });
     //! DASHBOARD CONTROLLER ROUTE
     Route::controller(DashboardController::class)->group(function () {
