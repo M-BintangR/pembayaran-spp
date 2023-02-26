@@ -68,10 +68,8 @@ Route::group(['prefix' => '/dashboard', 'middleware' => ['auth', 'petugas']], fu
     Route::get('/pembayaran/search', [PembayaranController::class, 'search'])->name('pembayaran.search');
     Route::get('/pembayaran/transaksi/search', [PembayaranController::class, 'transaksiSearch'])->name('transaksi.search');
     Route::get('/pembayaran', [PembayaranController::class, 'index'])->name('pembayaran.index');
-    Route::put('/pembayaran/{pembayaran:id}', [PembayaranController::class, 'update'])->name('pembayaran.update');
     Route::get('/pembayaran/{siswa:nisn}/create', [PembayaranController::class, 'create'])->name('pembayaran.create');
     Route::post('/pembayaran', [PembayaranController::class, 'store'])->name('pembayaran.store');
-    Route::delete('/pembayaran/{pembayaran:id}', [PembayaranController::class, 'destroy'])->name('pembayaran.destroy');
     Route::get('/pembayaran/transaksi', [PembayaranController::class, 'transaksi'])->name('transaksi');
     Route::get('/pembayaran/{kwitansi:nis}/kwitansi', [PembayaranController::class, 'kwitansi'])->name('kwitansi');
 
@@ -81,8 +79,6 @@ Route::group(['prefix' => '/dashboard', 'middleware' => ['auth', 'petugas']], fu
     //? Dashboard Route
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 });
-
-Route::get('/dashboard-siswa', [DashboardController::class, 'getPanelSiswa'])->name('panel.siswa');
 
 
 

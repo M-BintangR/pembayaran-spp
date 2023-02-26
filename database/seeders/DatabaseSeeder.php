@@ -22,51 +22,51 @@ class DatabaseSeeder extends Seeder
 
         $data_kelas = [
             [
-                "nama_kelas" => "3 RPL 2",
+                "nama_kelas" => "XII RPL 2",
                 "kompetensi_keahlian" => "Rekayasa Prangkat Lunak",
             ],
             [
-                "nama_kelas" => "2 RPL 2",
+                "nama_kelas" => "XI RPL 2",
                 "kompetensi_keahlian" => "Rekayasa Prangkat Lunak",
             ],
             [
-                "nama_kelas" => "1 RPL 2",
+                "nama_kelas" => "X RPL 2",
                 "kompetensi_keahlian" => "Rekayasa Prangkat Lunak",
             ],
             [
-                "nama_kelas" => "3 RPL 1",
+                "nama_kelas" => "XII RPL 1",
                 "kompetensi_keahlian" => "Rekayasa Prangkat Lunak",
             ],
             [
-                "nama_kelas" => "2 RPL 1",
+                "nama_kelas" => "XI RPL 1",
                 "kompetensi_keahlian" => "Rekayasa Prangkat Lunak",
             ],
             [
-                "nama_kelas" => "1 RPL 1",
+                "nama_kelas" => "X RPL 1",
                 "kompetensi_keahlian" => "Rekayasa Prangkat Lunak",
             ],
             [
-                "nama_kelas" => "3 TKJ 1",
+                "nama_kelas" => "XII TKJ 1",
                 "kompetensi_keahlian" => "Teknik Komputer Jaringan",
             ],
             [
-                "nama_kelas" => "2 TKJ 1",
+                "nama_kelas" => "XI TKJ 1",
                 "kompetensi_keahlian" => "Teknik Komputer Jaringan",
             ],
             [
-                "nama_kelas" => "1 TKJ 1",
+                "nama_kelas" => "X TKJ 1",
                 "kompetensi_keahlian" => "Teknik Komputer Jaringan",
             ],
             [
-                "nama_kelas" => "3 MMD 1",
+                "nama_kelas" => "XII MMD 1",
                 "kompetensi_keahlian" => "Multi Media",
             ],
             [
-                "nama_kelas" => "2 MMD 1",
+                "nama_kelas" => "XI MMD 1",
                 "kompetensi_keahlian" => "Multi Media",
             ],
             [
-                "nama_kelas" => "1 MMD 1",
+                "nama_kelas" => "X MMD 1",
                 "kompetensi_keahlian" => "Multi Media",
             ],
         ];

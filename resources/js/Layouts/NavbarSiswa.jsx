@@ -1,7 +1,7 @@
 import React from 'react'
 import logo from '../Components/img/logoWeb2.png'
 
-const NavbarSiswa = ({ children, setIsModal, isModal }) => {
+const NavbarSiswa = ({ children }) => {
     return (
         <div>
             <div className='w-screen bg-purple-700 text-white p-2 py-3 fixed shadow-xl z-50 '>
@@ -11,9 +11,6 @@ const NavbarSiswa = ({ children, setIsModal, isModal }) => {
                         <h1 className='inline-block md:text-base text-xs relative md:top-0 top-2'>Aplikasi Transaksi Spp</h1>
                         <p className={`md:text-xs md:block hidden`}>solusi cerdas dalam transaksi</p>
                     </div>
-                    <button
-                        onClick={() => setIsModal(!isModal)}
-                        className='bg-white md:py-2 md:px-5 py-2 md:mt-0 mt-1 px-3 md:text-base text-sm md:rounded-md rounded-md text-purple-700 '>Masuk</button>
                 </div>
             </div>
             {children}

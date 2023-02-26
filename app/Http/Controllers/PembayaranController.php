@@ -139,12 +139,12 @@ class PembayaranController extends Controller
      */
     public function store(Request $request)
     {
-        $idPetugas = User::pluck('id');
-        $idSpp = Spp::pluck('id');
+        $id_petugas = User::pluck('id');
+        $id_spp = Spp::pluck('id');
 
         $validateData = $request->validate([
-            'id_petugas' => ['required', Rule::in($idPetugas)],
-            'id_spp' => ['required', Rule::in($idSpp)],
+            'id_petugas' => ['required', Rule::in($id_petugas)],
+            'id_spp' => ['required', Rule::in($id_spp)],
             'nisn' => ['required', 'max:10'],
             'tgl_bayar' => ['required', 'date'],
             'bulan_bayar' => ['required', 'max:12', 'array'],
@@ -203,62 +203,5 @@ class PembayaranController extends Controller
             return back()->with('error', 'Data gagal di tambahkan');
         }
         return back()->with('error', 'Data gagal di tambahkan');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Pembayaran  $pembayaran
-     * @return \Illuminate\Http\Response
-     */
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Pembayaran  $pembayaran
-     * @return \Illuminate\Http\Response
-     */
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Pembayaran  $pembayaran
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Pembayaran $pembayaran)
-    {
-        $idPetugas = Pembayaran::pluck('id');
-        $idSpp = Spp::pluck('id');
-
-        $credentials = $request->validate([
-            'id_petugas' => ['required', Rule::in($idPetugas)],
-            'id_spp' => ['required', Rule::in($idSpp)],
-            'nisn' => ['required', 'integer', 'min:1', 'max:10'],
-            'tgl_bayar' => ['required', 'date'],
-            'bulan_bayar' => ['required', 'max:8'],
-            'tahun_bayar' => ['required', 'max:4'],
-            'jumlah_bayar' => ['required', 'integer', 'min:1'],
-        ]);
-
-        if ($pembayaran->update($credentials)) {
-            return redirect(route('pembayaran.index'))
-                ->with('success', 'Data berhasil di tambah');
-        }
-
-        return back()->with('error', 'Data gagal di tambah');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Pembayaran  $pembayaran
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Pembayaran $pembayaran)
-    {
-        $pembayaran->delete();
-
-        return back();
     }
 }
