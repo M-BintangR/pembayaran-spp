@@ -1,7 +1,7 @@
 import React from 'react'
 import ttd from '../../../Components/img/gambar_ttd.png';
 
-const Kwitansi = ({ user, siswa, pembayaran, kelas, kwitansi }) => {
+const Kwitansi = ({ user, siswa, pembayaran, kelas, kwitansi, terbilang }) => {
     setTimeout(() => {
         window.print();
     }, 1000);
@@ -33,20 +33,22 @@ const Kwitansi = ({ user, siswa, pembayaran, kelas, kwitansi }) => {
                     <tr className='my-10'>
                         <td width={'5%'}>Terbilang</td>
                         <td width={'2%'}>:</td>
-                        <td width={'20%'}>Empat Ratus Ribu Rupiah</td>
+                        <td width={'20%'}>{terbilang}</td>
                     </tr>
                 </table>
             </div>
             <div className='float-right my-3'>
                 <table>
                     <tr>
-                        <td className="text-center">Petugas : {user?.nama_pengguna}</td>
+                        <td className="text-center">Dicetak Tanggal
+                            <p>{kwitansi?.tanggal}</p>
+                            <p>Yang Menerima,</p>
+                        </td>
                     </tr>
                     <tr className='h-20'>
-                        <img src={ttd} alt="" width={'200px'} />
                     </tr>
                     <tr>
-                        <td className='text-center'>Tanggal : {kwitansi?.tanggal}</td>
+                        <td className='text-center font-bold'>{user?.nama_pengguna}</td>
                     </tr>
                 </table>
             </div>

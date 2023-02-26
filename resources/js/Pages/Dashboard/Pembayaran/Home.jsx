@@ -118,10 +118,10 @@ const Home = ({ items, user, short }) => {
                                 <td className="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">{row?.nis}</td>
                                 <td className="border-grey-light border hover:bg-gray-100 p-3 truncate uppercase">{row?.tanggal}</td>
                                 <td className="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">{row?.bulan}</td>
-                                <td className="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">
+                                <td className="border-grey-light border hover:bg-gray-100 px-3 truncate capitalize py-5 box-border">
                                     <Link
                                         href={route('kwitansi', row?.nis)}
-                                        className='duration-300 bg-gray-100 border-2 border-gray-300 text-gray-500 rounded-md py-1 px-2 hover:bg-green-600 hover:text-white font-semibold hover:border-green-700 text-xs'
+                                        className='duration-300 text-black hover:text-green-600 text-lg'
                                     >
                                         <BiPrinter />
                                     </Link>

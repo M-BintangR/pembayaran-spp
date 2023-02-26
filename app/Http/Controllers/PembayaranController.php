@@ -11,6 +11,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
+use App\Helpers\Terbilang;
 
 class PembayaranController extends Controller
 {
@@ -19,6 +20,7 @@ class PembayaranController extends Controller
         $nominal = $kwitansi->siswa->spp->nominal;
         $total_bulan = count($kwitansi->siswa->pembayaran);
         $total =  $nominal * $total_bulan;
+        $terbilang = Terbilang::konversi($total);
 
         return Inertia::render('Dashboard/Pembayaran/Kwitansi', [
             'user' => auth()->user(),
@@ -26,6 +28,7 @@ class PembayaranController extends Controller
             'pembayaran' => $total,
             'kwitansi' => $kwitansi,
             'kelas' => $kwitansi->siswa->kelas,
+            'terbilang' => strtoupper($terbilang),
         ]);
     }
 
