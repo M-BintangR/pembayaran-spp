@@ -61,7 +61,7 @@ class KelasController extends Controller
         ]);
 
         if (Kelas::create($validateData)) {
-            return redirect(route('kelas.index'))
+            return to_route('kelas.index')
                 ->with('success', 'Data berhasil di tambah kan');
         }
 
@@ -103,7 +103,7 @@ class KelasController extends Controller
         ]);
 
         if ($kelas->update($credentials)) {
-            return redirect(route('kelas.index'))
+            return to_route('kelas.index')
                 ->with('success', 'Data berhasil di tambah kan');
         }
 

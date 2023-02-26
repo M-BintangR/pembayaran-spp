@@ -65,7 +65,7 @@ class PetugasController extends Controller
         $validateData['password'] = bcrypt($validateData['password']);
 
         if (User::create($validateData)) {
-            return redirect(route('petugas.index'))
+            return to_route('petugas.index')
                 ->with('success', 'Data berhasil ditambahkan.');
         }
 
@@ -107,7 +107,7 @@ class PetugasController extends Controller
         ]);
 
         if ($user->update($credentials)) {
-            return redirect(route('petugas.index'))
+            return to_route('petugas.index')
                 ->with('success', 'Data berhasil di tambah kan');
         }
 

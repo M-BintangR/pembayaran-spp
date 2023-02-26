@@ -107,7 +107,7 @@ class SiswaController extends Controller
         ]);
 
         if (Siswa::create($validateData)) {
-            return redirect(route('siswa.index'))
+            return to_route('siswa.index')
                 ->with('success', 'Data berhasil di tambah kan');
         }
 
@@ -164,7 +164,7 @@ class SiswaController extends Controller
         ]);
 
         if ($siswa->update($credentials)) {
-            return redirect(route('siswa.index'))
+            return to_route('siswa.index')
                 ->with('success');
         }
 

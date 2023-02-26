@@ -198,7 +198,7 @@ class PembayaranController extends Controller
                     ]);
                 }
             }
-            return redirect(route('transaksi'))->with('success', 'Data berhasil di tambahkan');
+            return to_route('transaksi')->with('success', 'Data berhasil di tambahkan');
         } catch (Exception $e) {
             return back()->with('error', 'Data gagal di tambahkan');
         }

@@ -61,7 +61,7 @@ class SppController extends Controller
         ]);
 
         if (Spp::create($validateData)) {
-            return redirect(route('spp.index'))
+            return to_route('spp.index')
                 ->with('success', 'Data berhasil di tambah kan');
         }
 
@@ -104,7 +104,7 @@ class SppController extends Controller
         ]);
 
         if ($spp->update($credentials)) {
-            return redirect(route('spp.index'))
+            return to_route('spp.index')
                 ->with('success', 'Data berhasil di edit');
         }
 
