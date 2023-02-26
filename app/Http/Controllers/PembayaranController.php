@@ -9,18 +9,12 @@ use App\Models\Siswa;
 use App\Models\Spp;
 use App\Models\User;
 use Exception;
-use Illuminate\Database\DBAL\TimestampType;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 
 class PembayaranController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function kwitansi(Kwitansi $kwitansi)
     {
         $nominal = $kwitansi->siswa->spp->nominal;
@@ -110,11 +104,6 @@ class PembayaranController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create(Siswa $siswa)
     {
 
@@ -131,12 +120,6 @@ class PembayaranController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $id_petugas = User::pluck('id');
@@ -200,7 +183,7 @@ class PembayaranController extends Controller
             }
             return to_route('transaksi')->with('success', 'Data berhasil di tambahkan');
         } catch (Exception $e) {
-            return back()->with('error', 'Data gagal di tambahkan');
+            return back()->with('error', $e);
         }
         return back()->with('error', 'Data gagal di tambahkan');
     }

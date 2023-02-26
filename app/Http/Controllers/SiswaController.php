@@ -11,11 +11,7 @@ use Inertia\Inertia;
 
 class SiswaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Respon se
-     */
+
     public function search(Request $request)
     {
         $search = $request->query('search', null);
@@ -67,11 +63,6 @@ class SiswaController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $data_kelas = Kelas::all();
@@ -84,12 +75,6 @@ class SiswaController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $id_spp = Spp::pluck('id');
@@ -114,19 +99,6 @@ class SiswaController extends Controller
         return back()->with('error', 'Data gagal di tambahkan');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Siswa  $siswa
-     * @return \Illuminate\Http\Response
-     */
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Siswa  $siswa
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Siswa $siswa)
     {
         $data_spp = Spp::all();
@@ -140,13 +112,6 @@ class SiswaController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Siswa  $siswa
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Siswa $siswa)
     {
         $id_spp = Spp::pluck('id');
@@ -171,12 +136,6 @@ class SiswaController extends Controller
         return back()->with('error', 'Data gagal di tambah kan');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Siswa  $siswa
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Siswa $siswa)
     {
         $siswa->delete();

@@ -81,10 +81,10 @@ class KelasController extends Controller
      * @param  \App\Models\Kelas  $kelas
      * @return \Illuminate\Http\Response
      */
-    public function edit(Kelas $kelas)
+    public function edit($kelas)
     {
         return response()->json([
-            "item" => $kelas,
+            "item" => Kelas::where('id', $kelas)->first(),
         ]);
     }
 
@@ -95,12 +95,14 @@ class KelasController extends Controller
      * @param  \App\Models\Kelas  $kelas
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Kelas $kelas)
+    public function update(Request $request, $kelas)
     {
         $credentials = $request->validate([
             'nama_kelas' => ['required'],
             'kompetensi_keahlian' => ['required'],
         ]);
+
+        $kelas = Kelas::where('id', $kelas)->first();
 
         if ($kelas->update($credentials)) {
             return to_route('kelas.index')
@@ -116,9 +118,9 @@ class KelasController extends Controller
      * @param  \App\Models\Kelas  $kelas
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Kelas $kelas)
+    public function destroy($kelas)
     {
-        $kelas->delete();
+        Kelas::where('id', $kelas)->delete();
         return back();
     }
 }

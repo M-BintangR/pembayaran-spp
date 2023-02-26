@@ -65,8 +65,8 @@ const Home = ({ items, user, short }) => {
         })
             .then((willDelete) => {
                 if (willDelete) {
-                    Inertia.delete(`/dashboard/spp/${id}`, {
-                        onSuccess: () => {
+                    Inertia.delete(route('spp.destroy', id), {
+                        onFinish: () => {
                             setRecord(record.filter(record => record.id !== id));
                             swal("Berhasil!", "Data telah dihapus!", {
                                 icon: "success",

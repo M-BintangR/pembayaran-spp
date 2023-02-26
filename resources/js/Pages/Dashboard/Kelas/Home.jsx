@@ -65,9 +65,10 @@ const Home = ({ items, user, short }) => {
         })
             .then((willDelete) => {
                 if (willDelete) {
-                    Inertia.delete(`/dashboard/kelas/${id}`, {
+                    console.log(id);
+                    Inertia.delete(route('kelas.destroy', id), {
                         onFinish: () => {
-                            setRecord(record.filter(record => record.id !== id));
+                            setRecord(prevItems => prevItems.filter(item => item.id !== id));
                             swal("Berhasil!", "Data telah di hapus", {
                                 icon: "success",
                             });
@@ -136,16 +137,11 @@ const Home = ({ items, user, short }) => {
     const onHandleEdit = (id) => {
         try {
             axios.get(route('kelas.edit', id))
-                .then(res => res?.data?.item)
+                .then(res => res.data.item)
                 .then(res => {
-                    try {
-                        setData({ nama_kelas: res.nama_kelas, kompetensi_keahlian: res.kompetensi_keahlian });
-                        setIdKelas(id);
-                        setOnEditModal(true);
-                        setPetugas(res?.id);
-                    } catch (e) {
-                        console.log(e);
-                    }
+                    setData({ nama_kelas: res.nama_kelas, kompetensi_keahlian: res.kompetensi_keahlian });
+                    setIdKelas(id);
+                    setOnEditModal(true);
                 });
         } catch (e) {
             console.error(e)

@@ -8,11 +8,7 @@ use Inertia\Inertia;
 
 class SppController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function search(Request $request)
     {
         $search = $request->query('search', null);
@@ -41,18 +37,6 @@ class SppController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $validateData = $request->validate([
@@ -68,19 +52,6 @@ class SppController extends Controller
         return back()->with('error', 'Data gagal di tambah kan');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Spp  $spp
-     * @return \Illuminate\Http\Response
-     */
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Spp  $spp
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Spp $spp)
     {
         return response()->json([
@@ -88,13 +59,6 @@ class SppController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Spp  $spp
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Spp $spp)
     {
 
@@ -111,12 +75,6 @@ class SppController extends Controller
         return back()->with('error', 'Data gagal di edit');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Spp  $spp
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Spp $spp)
     {
         $spp->delete();

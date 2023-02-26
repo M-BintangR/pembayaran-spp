@@ -9,77 +9,48 @@ use App\Http\Controllers\SppController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-Route::get('/', function () {
-    return Inertia::render('Home');
-})->name('home')->middleware('guest');
-
 Route::group(['prefix' => '/dashboard', 'middleware' => ['auth', 'admin']], function () {
-    //? Kelas Route
-    Route::get('/kelas/search', [KelasController::class, 'search'])->name('kelas.search');
-    Route::get('/kelas', [KelasController::class, 'index'])->name('kelas.index');
-    Route::get('/kelas/{kelas:id}/edit', [KelasController::class, 'edit'])->name('kelas.edit');
-    Route::put('/kelas/{kelas:id}', [KelasController::class, 'update'])->name('kelas.update');
-    Route::get('/kelas/create', [KelasController::class, 'create'])->name('kelas.create');
-    Route::post('/kelas', [KelasController::class, 'store'])->name('kelas.store');
-    Route::delete('/kelas/{kelas:id}', [KelasController::class, 'destroy'])->name('kelas.destroy');
-
-    //? Siswa Route
-    Route::get('/siswa/search', [SiswaController::class, 'search'])->name('siswa.search');
-    Route::get('/siswa', [SiswaController::class, 'index'])->name('siswa.index');
-    Route::get('/siswa/{siswa:id}/edit', [SiswaController::class, 'edit'])->name('siswa.edit');
-    Route::put('/siswa/{siswa:id}', [SiswaController::class, 'update'])->name('siswa.update');
-    Route::get('/siswa/create', [SiswaController::class, 'create'])->name('siswa.create');
-    Route::post('/siswa', [SiswaController::class, 'store'])->name('siswa.store');
-    Route::delete('/siswa/{siswa:id}', [SiswaController::class, 'destroy'])->name('siswa.destroy');
-
-    //? Petugas Route
-    Route::get('/petugas/search', [PetugasController::class, 'search'])->name('petugas.search');
-    Route::get('/petugas', [PetugasController::class, 'index'])->name('petugas.index');
-    Route::get('/petugas/{user:id}/edit', [PetugasController::class, 'edit'])->name('petugas.edit');
-    Route::put('/petugas/{user:id}', [PetugasController::class, 'update'])->name('petugas.update');
-    Route::get('/petugas/create', [PetugasController::class, 'create'])->name('petugas.create');
-    Route::post('/petugas', [PetugasController::class, 'store'])->name('petugas.store');
-    Route::delete('/petugas/{user:id}', [PetugasController::class, 'destroy'])->name('petugas.destroy');
-
-    //? Spp Route
-    Route::get('/spp/search', [SppController::class, 'search'])->name('spp.search');
-    Route::get('/spp', [SppController::class, 'index'])->name('spp.index');
-    Route::get('/spp/{spp:id}/edit', [SppController::class, 'edit'])->name('spp.edit');
-    Route::put('/spp/{spp:id}', [SppController::class, 'update'])->name('spp.update');
-    Route::get('/spp/create', [SppController::class, 'create'])->name('spp.create');
-    Route::post('/spp', [SppController::class, 'store'])->name('spp.store');
-    Route::delete('/spp/{spp:id}', [SppController::class, 'destroy'])->name('spp.destroy');
+    //! SISWA CONTROLLER ROUTE
+    Route::controller(SiswaController::class)->group(function () {
+        Route::get('/siswa/search', 'search')->name('siswa.search');
+        Route::resource('siswa', SiswaController::class);
+    });
+    //! SPP CONTROLLER ROUTE
+    Route::controller(SppController::class)->group(function () {
+        Route::get('/spp/search', 'search')->name('spp.search');
+        Route::resource('spp', SppController::class);
+    });
+    //! PETUGAS CONTROLLER ROUTE
+    Route::controller(PetugasController::class)->group(function () {
+        Route::get('/petugas/search', 'search')->name('petugas.search');
+        Route::resource('petugas', PetugasController::class);
+    });
+    //! KELAS CONTROLLER ROUTE
+    Route::controller(KelasController::class)->group(function () {
+        Route::get('/kelas/search', 'search')->name('kelas.search');
+        Route::resource('kelas', KelasController::class);
+    });
 });
 
 Route::group(['prefix' => '/dashboard', 'middleware' => ['auth', 'petugas']], function () {
-
-    //? Pembayaran Route
-    Route::get('/pembayaran/search', [PembayaranController::class, 'search'])->name('pembayaran.search');
-    Route::get('/pembayaran/transaksi/search', [PembayaranController::class, 'transaksiSearch'])->name('transaksi.search');
-    Route::get('/pembayaran', [PembayaranController::class, 'index'])->name('pembayaran.index');
-    Route::get('/pembayaran/{siswa:nisn}/create', [PembayaranController::class, 'create'])->name('pembayaran.create');
-    Route::post('/pembayaran', [PembayaranController::class, 'store'])->name('pembayaran.store');
-    Route::get('/pembayaran/transaksi', [PembayaranController::class, 'transaksi'])->name('transaksi');
-    Route::get('/pembayaran/{kwitansi:nis}/kwitansi', [PembayaranController::class, 'kwitansi'])->name('kwitansi');
-
-    //? Profile Route
-    Route::get('profile', [DashboardController::class, 'profile'])->name('profile');
-
-    //? Dashboard Route
-    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    //! PEMBAYARAN CONTROLLER ROUTE
+    Route::controller(PembayaranController::class)->group(function () {
+        Route::get('/pembayaran/search', 'search')->name('pembayaran.search');
+        Route::get('/pembayaran/transaksi/search', 'transaksiSearch')->name('transaksi.search');
+        Route::get('/pembayaran/transaksi', 'transaksi')->name('transaksi');
+        Route::get('/pembayaran/{kwitansi:nis}/kwitansi', 'kwitansi')->name('kwitansi');
+        Route::resource('pembayaran', PembayaranController::class);
+    });
+    //! DASHBOARD CONTROLLER ROUTE
+    Route::controller(DashboardController::class)->group(function () {
+        Route::get('profile', 'profile')->name('profile');
+        Route::get('/', 'index')->name('dashboard');
+    });
 });
 
-
+//! HOME PAGE ROUTE
+Route::get('/', function () {
+    return Inertia::render('Home');
+})->name('home')->middleware('guest');
 
 require __DIR__ . '/auth.php';

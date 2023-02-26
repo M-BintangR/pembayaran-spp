@@ -66,8 +66,8 @@ const Home = ({ items, user, short }) => {
         })
             .then((willDelete) => {
                 if (willDelete) {
-                    Inertia.delete(`/dashboard/petugas/${id}`, {
-                        onSuccess: () => {
+                    Inertia.delete(route('petugas.destroy', id), {
+                        onFinish: () => {
                             setRecord(record.filter(record => record.id !== id));
                             swal("Berhasil!", "Data telah di hapus", {
                                 icon: "success",
