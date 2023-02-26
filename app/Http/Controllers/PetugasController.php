@@ -56,14 +56,14 @@ class PetugasController extends Controller
         return back()->with('error', 'Data gagal ditambahkan.');
     }
 
-    public function edit($user)
+    public function edit(User $user)
     {
         return response()->json([
-            'item' => User::where('id', $user)->first(),
+            'item' => $user,
         ]);
     }
 
-    public function update(Request $request, $user)
+    public function update(Request $request, User $user)
     {
         $credentials = $request->validate([
             'username' => ['required', 'min:1', 'max:25'],
@@ -71,7 +71,6 @@ class PetugasController extends Controller
             'level' => ['required', 'min:1'],
         ]);
 
-        $user = User::where('id', $user)->first();
         if ($user->update($credentials)) {
             return to_route('petugas.index')
                 ->with('success', 'Data berhasil di tambah kan');
@@ -80,9 +79,9 @@ class PetugasController extends Controller
         return back()->with('error' . 'Data gagal di tambah kan');
     }
 
-    public function destroy($user)
+    public function destroy(User $user)
     {
-        User::where('id', $user)->delete();
+        $user->delete();
         return back();
     }
 }

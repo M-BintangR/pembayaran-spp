@@ -13,22 +13,26 @@ Route::group(['prefix' => '/dashboard', 'middleware' => ['auth', 'admin']], func
     //! SISWA CONTROLLER ROUTE
     Route::controller(SiswaController::class)->group(function () {
         Route::get('/siswa/search', 'search')->name('siswa.search');
-        Route::resource('siswa', SiswaController::class);
+        Route::resource('siswa', SiswaController::class)
+            ->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
     });
     //! SPP CONTROLLER ROUTE
     Route::controller(SppController::class)->group(function () {
         Route::get('/spp/search', 'search')->name('spp.search');
-        Route::resource('spp', SppController::class);
+        Route::resource('spp', SppController::class)
+            ->only(['index', 'store', 'edit', 'update', 'destroy']);
     });
     //! PETUGAS CONTROLLER ROUTE
     Route::controller(PetugasController::class)->group(function () {
         Route::get('/petugas/search', 'search')->name('petugas.search');
-        Route::resource('petugas', PetugasController::class);
+        Route::resource('petugas', PetugasController::class)
+            ->only(['index', 'store', 'edit', 'update', 'destroy'])
+            ->parameters(['petugas' => 'user']);
     });
     //! KELAS CONTROLLER ROUTE
     Route::controller(KelasController::class)->group(function () {
         Route::get('/kelas/search', 'search')->name('kelas.search');
-        Route::resource('kelas', KelasController::class);
+        Route::resource('kelas', KelasController::class)->parameters(['kelas' => 'kelas'])->only(['index', 'store', 'edit', 'update', 'destroy']);
     });
 });
 
@@ -40,7 +44,7 @@ Route::group(['prefix' => '/dashboard', 'middleware' => ['auth', 'petugas']], fu
         Route::get('/pembayaran/transaksi', 'transaksi')->name('transaksi');
         Route::get('/pembayaran/{kwitansi:nis}/kwitansi', 'kwitansi')->name('kwitansi');
         Route::get('/pembayaran/{siswa:nisn}/create', 'create')->name('pembayaran.create');
-        Route::resource('pembayaran', PembayaranController::class)->name('create', 'pembayaran.tambah');
+        Route::resource('pembayaran', PembayaranController::class)->name('create', 'pembayaran.tambah')->only(['index', 'create', 'store']);
     });
     //! DASHBOARD CONTROLLER ROUTE
     Route::controller(DashboardController::class)->group(function () {

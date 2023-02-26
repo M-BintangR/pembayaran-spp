@@ -8,11 +8,7 @@ use Inertia\Inertia;
 
 class KelasController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function search(Request $request)
     {
         $search = $request->query('search', null);
@@ -41,18 +37,6 @@ class KelasController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $validateData = $request->validate([
@@ -68,41 +52,19 @@ class KelasController extends Controller
         return back()->with('error', 'Data gagal di tambahkan');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Kelas  $kelas
-     * @return \Illuminate\Http\Response
-     */
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Kelas  $kelas
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($kelas)
+    public function edit(Kelas $kelas)
     {
         return response()->json([
-            "item" => Kelas::where('id', $kelas)->first(),
+            "item" => $kelas,
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Kelas  $kelas
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $kelas)
+    public function update(Request $request, Kelas $kelas)
     {
         $credentials = $request->validate([
             'nama_kelas' => ['required'],
             'kompetensi_keahlian' => ['required'],
         ]);
-
-        $kelas = Kelas::where('id', $kelas)->first();
 
         if ($kelas->update($credentials)) {
             return to_route('kelas.index')
@@ -112,15 +74,9 @@ class KelasController extends Controller
         return back()->with('error', 'Data gagal di tambah kan');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Kelas  $kelas
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($kelas)
+    public function destroy(Kelas $kelas)
     {
-        Kelas::where('id', $kelas)->delete();
+        $kelas->delete();
         return back();
     }
 }
