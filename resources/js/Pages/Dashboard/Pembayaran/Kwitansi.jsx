@@ -42,7 +42,7 @@ const Kwitansi = ({ user, siswa, pembayaran, kelas, kwitansi, terbilang }) => {
                     <tr>
                         <td className="text-center">Dicetak Tanggal
                             <p>{kwitansi?.tanggal}</p>
-                            <p>Yang Menerima,</p>
+                            <p>Bendahara Sekolah,</p>
                         </td>
                     </tr>
                     <tr className='h-20'>
