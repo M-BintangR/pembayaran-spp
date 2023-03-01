@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 use App\Helpers\Terbilang;
+use Carbon\Carbon;
 
 class PembayaranController extends Controller
 {
@@ -21,12 +22,14 @@ class PembayaranController extends Controller
         $total_bulan = count($kwitansi->siswa->pembayaran);
         $total =  $nominal * $total_bulan;
         $terbilang = Terbilang::konversi($total);
+        $tanggal = Carbon::now()->isoFormat('dddd, D MMMM YYYY');
 
         return Inertia::render('Dashboard/Pembayaran/Kwitansi', [
             'user' => auth()->user(),
             'siswa' => $kwitansi->siswa,
             'pembayaran' => $total,
             'kwitansi' => $kwitansi,
+            'tanggal' => $tanggal,
             'kelas' => $kwitansi->siswa->kelas,
             'terbilang' => strtoupper($terbilang),
         ]);
