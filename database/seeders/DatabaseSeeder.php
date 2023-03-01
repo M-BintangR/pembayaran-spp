@@ -141,6 +141,6 @@ class DatabaseSeeder extends Seeder
 
         //! DATA FACTORY CREATE
         // User::factory()->count(10)->create();
-        // Siswa::factory()->count(50)->create();
+        Siswa::factory()->count(50)->create();
     }
 }

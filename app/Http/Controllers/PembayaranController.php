@@ -58,7 +58,7 @@ class PembayaranController extends Controller
         $search = $request->query('search', null);
 
         if ($search !== null && $search !== "") {
-            $items = Pembayaran::where('nis', 'LIKE', '%' . $search . '%')
+            $items = Kwitansi::where('nis', 'LIKE', '%' . $search . '%')
                 ->orWhere('tanggal', 'LIKE', '%' . $search . '%')
                 ->orWhere('bulan', 'LIKE', '%' . $search . '%')
                 ->paginate(20);
