@@ -6,10 +6,9 @@ import { BiPrinter } from 'react-icons/bi';
 import Loading from '@/Components/Loading';
 import Paginate from '@/Components/Paginate';
 import ShortData from '@/Components/ShortData';
-import SearchData from '@/Components/SearchData';
-import { tablePembayaran as trTbl } from '@/Components/url/url';
+import { Inertia } from '@inertiajs/inertia';
 
-const Home = ({ items, user, short }) => {
+const Laporan = ({ items, user, short, shortKelas, relasi }) => {
     const [record, setRecord] = useState([]);
     const [loading, setLoading] = useState(false);
 
@@ -19,41 +18,46 @@ const Home = ({ items, user, short }) => {
 
     const handleShortData = (shorting) => {
         setLoading(true);
-        router.get(route('pembayaran.index'), { short: shorting }, {
-            onFinish: () => {
+        router.get(route('laporan'), { short: shorting }, {
+            onSuccess: () => {
                 setLoading(false);
             }
         });
     }
 
-    const handleSearchData = (target) => {
-        try {
-            const prevRecord = record;
-            const search = target.trim();
-            if (target && search.length !== 0) {
-                const url = search ? `/dashboard/pembayaran/search?search=${search}` : "/dashboard/pembayaran";
-                axios.get(url)
-                    .then(res => res?.data?.items)
-                    .then(res => {
-                        setRecord(res?.data || prevRecord);
-                    });
-            } else {
-                setRecord(record);
-            }
-        } catch (e) {
-            console.log(e);
+    const handleShortKelas = (shortKelas) => {
+        setLoading(true);
+        if (!shortKelas.toLowerCase().includes('semua')) {
+            router.get(route('laporan'), { short_kelas: shortKelas }, {
+                onSuccess: () => {
+                    setLoading(false);
+                }
+            });
+        } else {
+            router.get(route('laporan'));
         }
     }
 
+    const trTbl = [
+        { title: 'No' },
+        { title: 'Nama Kelas' }
+    ];
 
     return (
-        <Sidebar active={'pembayaran'} user={user}>
-            <HardTitle title={'History Pembayaran'} subTitle={'History Transaksi Pembayaran'} />
+        <Sidebar active={'laporan'} user={user}>
+            <HardTitle title={'Laporan Pembayaran Kelas'} subTitle={'Laporan pembayaran per kelas'} />
             <Loading loading={loading} />
             <div className='text-base font-semibold md:mb-5'>
                 <ShortData handleShortData={handleShortData} short={short} />
-                <SearchData handleSearchData={handleSearchData} />
-                <Link href={route('transaksi')} className='bg-purple-700 md:rounded-md md:text-base text-xs px-2 py-[3px] md:px-3 md:py-1 text-white inline float-right md:relative fixed bottom-0 md:m-0 m-5 rounded-xl shadow-2xl right-0'>Tambah Pembayaran +</Link>
+                <select
+                    value={shortKelas}
+                    onChange={(e) => handleShortKelas(e.target.value)}
+                    name="short" id="short" className='md:px-7 md:py-1 md:text-sm text-xs px-6 py-0 rounded-sm border-gray-300 focus:outline-none bg-slate-100 focus:bg-white focus:ring-1 focus:ring-purple-700 mr-2'>
+                    <option value={'semua'}>Semua Kelas</option>
+                    {relasi?.map((row, i) => (
+                        <option key={i} value={row?.id}>{row?.nama_kelas}</option>
+                    ))}
+                </select>
             </div>
 
             {/* table md */}
@@ -79,16 +83,14 @@ const Home = ({ items, user, short }) => {
                                 className={` border-x-2 border-gray-300 odd:bg-gray-200`} >
                                 <>
                                     <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300'>{index + 1}</td>
-                                    <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 capitalize'>{row?.nis}</td>
-                                    <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 uppercase'>{row?.tanggal}</td>
-                                    <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 capitalize'>{row?.bulan}</td>
+                                    <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 capitalize'>{row?.nama_kelas}</td>
                                     <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300'>
                                         <Link
-                                            href={route('kwitansi', row?.nis)}
+                                            href={route('laporan.rekap', row?.id)}
                                             className='duration-300 bg-gray-100 border-2 border-gray-300 text-gray-500 rounded-md py-2 px-3 hover:bg-green-600 hover:text-white font-semibold hover:border-green-700 box-border'
                                         >
                                             <BiPrinter className='text-md inline-block mr-1' />
-                                            Kwitansi
+                                            Rekap Kelas
                                         </Link>
                                     </td>
                                 </>
@@ -114,12 +116,10 @@ const Home = ({ items, user, short }) => {
                         <tbody className="flex-1 sm:flex-none">
                             <tr className="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0 text-xs">
                                 <td className="border-grey-light border hover:bg-gray-100 p-3">{index + 1}</td>
-                                <td className="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">{row?.nis}</td>
-                                <td className="border-grey-light border hover:bg-gray-100 p-3 truncate uppercase">{row?.tanggal}</td>
-                                <td className="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">{row?.bulan}</td>
+                                <td className="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">{row?.nama_kelas}</td>
                                 <td className="border-grey-light border hover:bg-gray-100 px-3 truncate capitalize py-5 box-border">
                                     <Link
-                                        href={route('kwitansi', row?.nis)}
+                                        href={route('laporan.rekap', row?.id)}
                                         className='duration-300 text-black hover:text-green-600 text-lg'
                                     >
                                         <BiPrinter />
@@ -135,4 +135,4 @@ const Home = ({ items, user, short }) => {
     )
 }
 
-export default Home
+export default Laporan

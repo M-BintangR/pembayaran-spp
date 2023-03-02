@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Navbar from './Navbar'
-import { BsChevronDown, BsCurrencyDollar } from 'react-icons/bs';
+import { BsChevronDown, BsCurrencyDollar, BsFillBarChartLineFill } from 'react-icons/bs';
 import { MdOutlineDashboardCustomize, MdOutlineSchool } from 'react-icons/md';
 import { FaSchool, FaRegMoneyBillAlt, FaUserAlt } from 'react-icons/fa';
 import { RiUserSettingsLine } from 'react-icons/ri';
@@ -9,7 +9,7 @@ import Footer from './Footer';
 import { menuSidebar } from '@/Components/url/url';
 
 const Sidebar = ({ children, active, user }) => {
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState('dashboard');
     const [submenuOpen, setSubmenuOpen] = useState(false);
     const [targetActive, setTargetActive] = useState(false);
     const sidebarRef = useRef();
@@ -31,7 +31,7 @@ const Sidebar = ({ children, active, user }) => {
             <Navbar setOpen={setOpen} open={open} sidebarRef={sidebarRef} user={user} />
             <div className='pt-10'>
                 <div className="flex flex-row">
-                    <div ref={sidebarRef} className={` drop-shadow-md md:pt-24 pt-14 bg-gray-200 z-30 md:h-screen bottom-0 top-0 left-0 fixed duration-500  ${open ? 'md:fixed md:w-1/5 w-1/2 bottom-0 ' : 'w-12 fixed h-screen'}`}>
+                    <div ref={sidebarRef} className={`scrollbar-hide pb-20 drop-shadow-md md:pt-24 pt-14 bg-gray-200 z-30 md:h-screen bottom-0 top-0 left-0 fixed duration-500 overflow-y-auto ${open ? 'md:fixed md:w-1/5 w-1/2 bottom-0 ' : 'w-12 fixed h-screen'}`}>
                         <div className="ml-2 mb-5">
                             <span className={`duration-500 ${open && 'rotate-[360deg]'} md:text-2xl text-base block float-left bg-amber-500 p-1 rounded-md text-white text-center mr-3`}>
                                 <FaUserAlt />
@@ -47,7 +47,7 @@ const Sidebar = ({ children, active, user }) => {
                                 )}
                                 <div className={`text-gray-900`}>
                                     <Link
-                                        onClick={() => setOpen(prev => prev = true)}
+                                        onClick={() => setOpen(menu?.active)}
                                         href={menu?.link}
                                     >
                                         <li
@@ -80,17 +80,21 @@ const Sidebar = ({ children, active, user }) => {
                                                         <RiUserSettingsLine />
                                                     ) : null}
 
+                                                    {menu?.title === "Laporan" ? (
+                                                        <BsFillBarChartLineFill />
+                                                    ) : null}
+
                                                 </>
                                             </span>
                                             <span className={`md:text-base text-xs md:font-semibold font-medium flex-1 duration-200 ${!open && 'hidden'}`}>{menu?.title}
                                             </span>
                                             {menu?.submenu && open && (
-                                                <BsChevronDown className={`duration-300 ${!submenuOpen && 'rotate-180'}`} />
+                                                <BsChevronDown className={`duration-300 ${!submenuOpen && open === menu?.active && 'rotate-180'}`} />
                                             )}
                                         </li>
                                     </Link>
 
-                                    {menu.submenu && submenuOpen && open && (
+                                    {menu.submenu && submenuOpen && open === menu?.active && (
                                         <ul className='my-2 space-y-1 flex flex-col'>
                                             {menu.submenuItems.map((submenu, index) => (
                                                 <Link href={submenu?.link} key={index} className=''>

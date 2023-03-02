@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Kwitansi = ({ user, siswa, pembayaran, kelas, kwitansi, terbilang, tanggal }) => {
+const Kwitansi = ({ siswa, pembayaran, kelas, kwitansi, terbilang, tanggal }) => {
     setTimeout(() => {
         window.print();
     }, 500);
@@ -44,15 +44,14 @@ const Kwitansi = ({ user, siswa, pembayaran, kelas, kwitansi, terbilang, tanggal
             <div className='float-right my-3'>
                 <table>
                     <tr>
-                        <td className="text-center">Dicetak Tanggal
-                            <p>{kwitansi?.tanggal}</p>
+                        <td className="text-center">
                             <p>Bendahara Sekolah,</p>
                         </td>
                     </tr>
                     <tr className='h-20'>
                     </tr>
                     <tr>
-                        <td className='text-center font-bold'>{user?.nama_pengguna}</td>
+                        <td className='text-center font-bold'>Hasmawati S.pd</td>
                     </tr>
                 </table>
             </div>

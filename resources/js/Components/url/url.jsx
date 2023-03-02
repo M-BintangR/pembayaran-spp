@@ -23,6 +23,16 @@ export const menuSidebar = [
         role: ['admin', 'petugas']
     },
     {
+        title: 'Laporan',
+        active: 'laporan',
+        role: ['admin', 'petugas'],
+        submenu: true,
+        submenuItems: [
+            { title: 'Rekap Pembayaran Kelas', link: '/dashboard/laporan', active: 'menu utama' },
+            { title: 'Tunggakan Pembayaran Kelas', link: '', active: 'profil' },
+        ],
+    },
+    {
         title: 'Data Siswa',
         link: '/dashboard/siswa',
         active: 'siswa',

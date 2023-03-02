@@ -20,7 +20,7 @@ export default forwardRef(function TextInput(
             value={value}
             autoComplete={autoComplete}
             className={
-                `border-gray-300 focus:border-purple-700 focus:ring-purple-700 rounded-md shadow-sm md:text-base text-xs mt-1 block w-full` +
+                `border border-gray-300 focus:border-purple-700 focus:ring-purple-700 rounded-md shadow-sm md:text-base text-xs mt-1 block w-full` +
                 className
             }
             ref={input}
