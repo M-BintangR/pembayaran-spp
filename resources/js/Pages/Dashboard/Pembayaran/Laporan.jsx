@@ -6,7 +6,6 @@ import { BiPrinter } from 'react-icons/bi';
 import Loading from '@/Components/Loading';
 import Paginate from '@/Components/Paginate';
 import ShortData from '@/Components/ShortData';
-import { Inertia } from '@inertiajs/inertia';
 
 const Laporan = ({ items, user, short, shortKelas, relasi }) => {
     const [record, setRecord] = useState([]);
