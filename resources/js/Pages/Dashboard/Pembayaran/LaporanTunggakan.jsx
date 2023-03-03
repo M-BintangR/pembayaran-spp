@@ -2,11 +2,10 @@ import React from 'react'
 import { month } from '@/Components/url/url'
 
 const CetakTunggakan = ({ kelas, siswa }) => {
-    // setTimeout(() => {
-    //     window.print();
-    // }, 500);
+    setTimeout(() => {
+        window.print();
+    }, 500);
 
-    console.log(siswa);
     return (
         <div className='bg-white my-5'>
             <h1 className='text-center text-2xl uppercase font-bold'>Laporan Tunggakan Spp Kelas {kelas?.nama_kelas}</h1>
