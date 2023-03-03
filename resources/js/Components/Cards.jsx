@@ -100,3 +100,61 @@ export const CardAdmin = ({ dataCards, items }) => {
     )
 }
 
+export const CardPetugas = ({ dataCardsPetugas, kelasX, kelasXI, kelasXII }) => {
+
+    let pembayaran_countX = 0;
+    for (const kelas of kelasX) {
+        for (const siswa of kelas.siswa) {
+            pembayaran_countX += siswa.pembayaran_count;
+        }
+    }
+
+    let pembayaran_countXI = 0;
+    for (const kelas of kelasXI) {
+        for (const siswa of kelas.siswa) {
+            pembayaran_countXI += siswa.pembayaran_count;
+        }
+    }
+
+    let pembayaran_countXII = 0;
+    for (const kelas of kelasXII) {
+        for (const siswa of kelas.siswa) {
+            pembayaran_countXII += siswa.pembayaran_count;
+        }
+    }
+
+    return (
+        <div className="grid mb-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+            {dataCardsPetugas.map((card, index) => (
+                <div key={index} className="bg-slate-100 p-3 flex justify-start rounded-md">
+                    <div className="flex justify-center">
+                        <div className={`${card.bgColor} jutify-self-start self-center text-white md:p-2 p-2 rounded-md mr-4`}>
+                            {
+                                card?.title === 'X' ? (
+                                    <div className='text-xl font-bold py-1 px-3 box-border'>X</div>
+                                ) : card?.title === 'XI' ? (
+                                    <div className='text-xl font-bold py-1 px-2 box-border'>XI</div>
+                                ) : card?.title === 'XII' ? (
+                                    <div className='text-xl font-bold py-1 px-1 box-border'>XII</div>
+                                ) : null
+                            }
+                        </div>
+                        <div className="flex flex-col flex-wrap">
+                            <div className='font-semibold md:text-base text-sm text-slate-800 mx-auto'>Pembayaran Kelas {card?.title}</div>
+                            {
+                                card?.data === 'X' ? (
+                                    <div className={`md:text-lg text-xs font-bold ${card.textColor}`}>{pembayaran_countX}</div>
+                                ) : card?.data === 'XI' ? (
+                                    <div className={`md:text-lg text-xs font-bold ${card.textColor}`}>{pembayaran_countXI}</div>
+                                ) : card?.data === 'XII' ? (
+                                    <div className={`md:text-lg text-xs font-bold ${card.textColor}`}>{pembayaran_countXII}</div>
+                                ) : null
+                            }
+                        </div>
+                    </div>
+                </div>
+            ))}
+        </div >
+    )
+}
+

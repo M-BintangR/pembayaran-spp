@@ -140,3 +140,9 @@ export const tableKelas = [
     { title: 'Nama Kelas' },
     { title: 'Kompetensi Keahlian' },
 ];
+
+//! Tabel Rekap Pembayaran Kelas
+export const tableRekap = [
+    { title: 'No' },
+    { title: 'Nama Kelas' }
+];

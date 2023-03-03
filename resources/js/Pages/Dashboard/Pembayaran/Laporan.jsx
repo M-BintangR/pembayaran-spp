@@ -6,6 +6,7 @@ import { BiPrinter } from 'react-icons/bi';
 import Loading from '@/Components/Loading';
 import Paginate from '@/Components/Paginate';
 import ShortData from '@/Components/ShortData';
+import { tableRekap as trTbl } from '@/Components/url/url';
 
 const Laporan = ({ items, user, short, shortKelas, relasi }) => {
     const [record, setRecord] = useState([]);
@@ -36,11 +37,6 @@ const Laporan = ({ items, user, short, shortKelas, relasi }) => {
             router.get(route('laporan'));
         }
     }
-
-    const trTbl = [
-        { title: 'No' },
-        { title: 'Nama Kelas' }
-    ];
 
     return (
         <Sidebar active={'laporan'} user={user}>

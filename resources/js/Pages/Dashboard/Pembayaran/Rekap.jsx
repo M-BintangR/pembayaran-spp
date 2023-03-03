@@ -26,7 +26,7 @@ const Kwitansi = ({ kelas, siswa }) => {
                         </tr>
                         <tr>
                             {month.map((mon, i) => (
-                                <th className='border text-sm py-2' key={i}>{mon}</th>
+                                <th className='border text-sm py-2' key={i}>{mon.substring(0, 3)}</th>
                             ))}
                         </tr>
                     </thead>
