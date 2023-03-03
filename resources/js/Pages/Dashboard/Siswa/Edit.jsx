@@ -14,6 +14,7 @@ const Edit = ({ item, kelas, spp, user }) => {
         nis: '',
         nama: '',
         jk: '',
+        level: '',
         id_kelas: '',
         id_spp: '',
         alamat: '',
@@ -21,7 +22,7 @@ const Edit = ({ item, kelas, spp, user }) => {
     });
 
     useEffect(() => {
-        setData({ nama: item?.nama, nisn: item?.nisn, nis: item?.nis, id_kelas: item?.id_kelas, id_spp: item?.id_spp, alamat: item?.alamat, no_telp: item?.no_telp, jk: item?.jk });
+        setData({ nama: item?.nama, nisn: item?.nisn, nis: item?.nis, id_kelas: item?.id_kelas, id_spp: item?.id_spp, alamat: item?.alamat, no_telp: item?.no_telp, jk: item?.jk, level: item?.level });
     }, [item]);
 
     const onHandleChange = (event) => {
@@ -55,11 +56,6 @@ const Edit = ({ item, kelas, spp, user }) => {
                                 name="id_kelas"
                                 id="id_kelas"
                             >
-                                {kelas?.map((data, index) => {
-                                    data.id === item?.id_kelas ? (
-                                        <option key={index} value={data?.id}>{data?.nama_kelas}</option>
-                                    ) : null
-                                })}
                                 {kelas?.map((data, index) => (
                                     <option key={index} value={data?.id}>{data?.nama_kelas}</option>
                                 ))}
@@ -70,7 +66,7 @@ const Edit = ({ item, kelas, spp, user }) => {
                             <InputLabel forInput="jk" value="Jenis Kelamin" />
                             <select
                                 onChange={onHandleChange}
-                                defaultValue={data.jk}
+                                defaultValue={data?.jk}
                                 className='border-gray-300 focus:border-purple-700 focus:ring-purple-700 rounded-md shadow-sm md:text-base text-xs mt-1 block w-full'
                                 name="jk"
                                 id="jk"
@@ -85,11 +81,12 @@ const Edit = ({ item, kelas, spp, user }) => {
                             <InputLabel forInput="level" value="Jenis Kelamin" />
                             <select
                                 onChange={onHandleChange}
-                                value={data.level}
+                                defaultValue={data?.level}
                                 className='border-gray-300 focus:border-purple-700 focus:ring-purple-700 rounded-md shadow-sm md:text-base text-xs mt-1 block w-full'
                                 name="level"
                                 id="level"
                             >
+                                <option value={item?.level}>{item?.level}</option>
                                 <option value={'X'}>X</option>
                                 <option value={'XI'}>XI</option>
                                 <option value={'XII'}>XII</option>
@@ -100,16 +97,11 @@ const Edit = ({ item, kelas, spp, user }) => {
                             <InputLabel forInput="id_spp" value="Nominal SPP" />
                             <select
                                 onChange={onHandleChange}
-                                defaultValue={data.id_spp}
+                                defaultValue={data?.id_spp}
                                 className='border-gray-300 focus:border-purple-700 focus:ring-purple-700 rounded-md shadow-sm md:text-base text-xs mt-1 block w-full'
                                 name="id_spp"
                                 id="id_spp"
                             >
-                                {spp?.map((data, index) => {
-                                    data.id === item?.id_spp ? (
-                                        <option selected key={index} value={data?.id}>Rp {data?.nominal}</option>
-                                    ) : null
-                                })}
                                 {spp?.map((data, index) => (
                                     <option key={index} value={data?.id}>Rp {data?.nominal}</option>
                                 ))}

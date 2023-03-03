@@ -47,12 +47,12 @@ const Create = ({ kelas, spp, user }) => {
                             <InputLabel forInput="id_kelas" value="Pilih Kelas" />
                             <select
                                 onChange={onHandleChange}
-                                defaultValue={data?.id_kelas}
+                                value={data?.id_kelas}
                                 className='border-gray-300 focus:border-purple-700 focus:ring-purple-700 rounded-md shadow-sm md:text-base text-xs mt-1 block w-full'
                                 name="id_kelas"
                                 id="id_kelas"
                             >
-                                <option selected>Pilih Kelas</option>
+                                <option>-- Pilih Kelas --</option>
                                 {kelas?.map((data, index) => (
                                     <option key={index} value={data?.id}>{data?.nama_kelas}</option>
                                 ))}
@@ -63,12 +63,12 @@ const Create = ({ kelas, spp, user }) => {
                             <InputLabel forInput="jk" value="Jenis Kelamin" />
                             <select
                                 onChange={onHandleChange}
-                                defaultValue={data?.jk}
+                                value={data?.jk}
                                 className='border-gray-300 focus:border-purple-700 focus:ring-purple-700 rounded-md shadow-sm md:text-base text-xs mt-1 block w-full'
                                 name="jk"
                                 id="jk"
                             >
-                                <option selected>Jenis Kelamin</option>
+                                <option>-- Jenis Kelamin --</option>
                                 <option value={'p'}>Perempuan</option>
                                 <option value={'l'}>Laki-laki</option>
                             </select>
@@ -83,7 +83,7 @@ const Create = ({ kelas, spp, user }) => {
                                 name="level"
                                 id="level"
                             >
-                                <option>- Pilih Level Kelas -</option>
+                                <option>-- Pilih Level Kelas --</option>
                                 <option value={'X'}>X</option>
                                 <option value={'XI'}>XI</option>
                                 <option value={'XII'}>XII</option>
@@ -94,14 +94,14 @@ const Create = ({ kelas, spp, user }) => {
                             <InputLabel forInput="id_spp" value="Nominal SPP" />
                             <select
                                 onChange={onHandleChange}
-                                defaultValue={data.id_spp}
+                                value={data.id_spp}
                                 className='border-gray-300 focus:border-purple-700 focus:ring-purple-700 rounded-md shadow-sm md:text-base text-xs mt-1 block w-full'
                                 name="id_spp"
                                 id="id_spp"
                             >
-                                <option selected>Rp ---.---</option>
+                                <option>Rp ---.---</option>
                                 {spp?.map((data, index) => (
-                                    <option key={index} value={data?.id}>Rp {data?.nominal}</option>
+                                    <option key={index} value={data?.id}>Rp {data?.nominal.toLocaleString()}</option>
                                 ))}
                             </select>
                             <InputError message={errors.id_spp} className="mt-2" />
@@ -117,7 +117,7 @@ const Create = ({ kelas, spp, user }) => {
                                 autoComplete="username"
                                 isFocused={true}
                                 handleChange={onHandleChange}
-                                placeholder={'0101010101'}
+                                placeholder={'Masukkan NISN'}
                             />
                             <InputError message={errors.nisn} className="mt-2" />
                         </div>
@@ -132,7 +132,7 @@ const Create = ({ kelas, spp, user }) => {
                                 autoComplete="username"
                                 isFocused={true}
                                 handleChange={onHandleChange}
-                                placeholder={'000-000'}
+                                placeholder={'Masukkan NIS'}
                             />
                             <InputError message={errors.nis} className="mt-2" />
                         </div>
@@ -149,7 +149,7 @@ const Create = ({ kelas, spp, user }) => {
                                 autoComplete="username"
                                 isFocused={true}
                                 handleChange={onHandleChange}
-                                placeholder={'Nama Siswa'}
+                                placeholder={'Masukkan Nama Siswa'}
                             />
                             <InputError message={errors.nama} className="mt-2" />
                         </div>
@@ -164,7 +164,7 @@ const Create = ({ kelas, spp, user }) => {
                                 autoComplete="username"
                                 isFocused={true}
                                 handleChange={onHandleChange}
-                                placeholder={'Jl Merdeka No 13'}
+                                placeholder={'Masukkan Alamat Siswa'}
                             />
                             <InputError message={errors.alamat} className="mt-2" />
                         </div>
@@ -179,7 +179,7 @@ const Create = ({ kelas, spp, user }) => {
                                 autoComplete="username"
                                 isFocused={true}
                                 handleChange={onHandleChange}
-                                placeholder={'0854443331254'}
+                                placeholder={'Masukkan No Telp Siswa'}
                             />
                             <InputError message={errors.no_telp} className="mt-2" />
                         </div>
