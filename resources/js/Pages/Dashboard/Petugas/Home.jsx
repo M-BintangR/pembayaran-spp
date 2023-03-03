@@ -151,6 +151,12 @@ const Home = ({ items, user, short }) => {
 
     }
 
+    const handleClose = () => {
+        setOnCreateModal(false);
+        setOnEditModal(false);
+        clearData();
+    }
+
 
     return (
         <Sidebar active={'petugas'} user={user}>
@@ -252,7 +258,7 @@ const Home = ({ items, user, short }) => {
 
             <CrudModal
                 isVisible={onCreteModal}
-                onClose={() => setOnCreateModal(false)}
+                onClose={handleClose}
                 title={'Tambah Data'}
             >
                 <DataCreate
@@ -267,7 +273,7 @@ const Home = ({ items, user, short }) => {
 
             <CrudModal
                 isVisible={onEditModal}
-                onClose={() => setOnEditModal(false)}
+                onClose={handleClose}
                 title={'Edit Data'}
             >
                 <DataEdit

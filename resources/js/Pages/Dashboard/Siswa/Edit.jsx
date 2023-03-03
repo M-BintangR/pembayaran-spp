@@ -78,7 +78,7 @@ const Edit = ({ item, kelas, spp, user }) => {
                             <InputError message={errors.jk} className="mt-2" />
                         </div>
                         <div className='my-2'>
-                            <InputLabel forInput="level" value="Jenis Kelamin" />
+                            <InputLabel forInput="level" value="Level Kelas" />
                             <select
                                 onChange={onHandleChange}
                                 defaultValue={data?.level}
@@ -107,6 +107,38 @@ const Edit = ({ item, kelas, spp, user }) => {
                                 ))}
                             </select>
                             <InputError message={errors.id_spp} className="mt-2" />
+                        </div>
+                        <div className='my-2'>
+                            <InputLabel forInput="no_telp" value="No Telp" />
+                            <TextInput
+                                id="no_telp"
+                                type="number"
+                                name="no_telp"
+                                value={data.no_telp}
+                                className=" w-full"
+                                autoComplete="username"
+                                isFocused={true}
+                                handleChange={onHandleChange}
+                                placeholder={'No Telp'}
+                            />
+                            <InputError message={errors.no_telp} className="mt-2" />
+                        </div>
+                    </div>
+                    <div>
+                        <div className='my-2'>
+                            <InputLabel forInput="nama" value="Nama Siswa" />
+                            <TextInput
+                                id="nama"
+                                type="text"
+                                name="nama"
+                                value={data.nama}
+                                className="block w-full"
+                                autoComplete="username"
+                                isFocused={true}
+                                handleChange={onHandleChange}
+                                placeholder={'Nama Siswa'}
+                            />
+                            <InputError message={errors.nama} className="mt-2" />
                         </div>
                         <div className='my-2'>
                             <InputLabel forInput="nisn" value="NISN" />
@@ -138,23 +170,6 @@ const Edit = ({ item, kelas, spp, user }) => {
                             />
                             <InputError message={errors.nis} className="mt-2" />
                         </div>
-                    </div>
-                    <div>
-                        <div className='my-2'>
-                            <InputLabel forInput="nama" value="Nama Siswa" />
-                            <TextInput
-                                id="nama"
-                                type="text"
-                                name="nama"
-                                value={data.nama}
-                                className="block w-full"
-                                autoComplete="username"
-                                isFocused={true}
-                                handleChange={onHandleChange}
-                                placeholder={'Nama Siswa'}
-                            />
-                            <InputError message={errors.nama} className="mt-2" />
-                        </div>
                         <div className='my-2'>
                             <InputLabel forInput="alamat" value="Alamat Siswa" />
                             <TextInput
@@ -170,24 +185,7 @@ const Edit = ({ item, kelas, spp, user }) => {
                             />
                             <InputError message={errors.alamat} className="mt-2" />
                         </div>
-                        <div className='my-2'>
-                            <InputLabel forInput="no_telp" value="No Telp" />
-                            <TextInput
-                                id="no_telp"
-                                type="number"
-                                name="no_telp"
-                                value={data.no_telp}
-                                className=" w-full"
-                                autoComplete="username"
-                                isFocused={true}
-                                handleChange={onHandleChange}
-                                placeholder={'No Telp'}
-                            />
-                            <InputError message={errors.no_telp} className="mt-2" />
-                        </div>
-
                     </div>
-
                 </div>
                 <div className="md:mt-5 mt-3 mb-5">
                     <PrimaryButton processing={processing}>Rekam</PrimaryButton>

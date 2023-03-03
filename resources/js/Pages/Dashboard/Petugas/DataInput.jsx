@@ -48,7 +48,7 @@ export const DataCreate = ({ onHandleSubmit, data, errors, onHandleChange, proce
                         name="level"
                         id="level"
                     >
-                        <option>Pilih Peran</option>
+                        <option>-- Pilih Peran --</option>
                         <option value='admin'>Admin</option>
                         <option value='petugas'>Petugas</option>
                     </select>

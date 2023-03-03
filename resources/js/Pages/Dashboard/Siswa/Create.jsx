@@ -107,6 +107,38 @@ const Create = ({ kelas, spp, user }) => {
                             <InputError message={errors.id_spp} className="mt-2" />
                         </div>
                         <div className='my-2'>
+                            <InputLabel forInput="no_telp" value="No Telp" />
+                            <TextInput
+                                id="no_telp"
+                                type="number"
+                                name="no_telp"
+                                value={data.no_telp}
+                                className=" w-full"
+                                autoComplete="username"
+                                isFocused={true}
+                                handleChange={onHandleChange}
+                                placeholder={'Masukkan No Telp Siswa'}
+                            />
+                            <InputError message={errors.no_telp} className="mt-2" />
+                        </div>
+                    </div>
+                    <div>
+                        <div className='my-2'>
+                            <InputLabel forInput="nama" value="Nama Siswa" />
+                            <TextInput
+                                id="nama"
+                                type="text"
+                                name="nama"
+                                value={data.nama}
+                                className="block w-full"
+                                autoComplete="username"
+                                isFocused={true}
+                                handleChange={onHandleChange}
+                                placeholder={'Masukkan Nama Siswa'}
+                            />
+                            <InputError message={errors.nama} className="mt-2" />
+                        </div>
+                        <div className='my-2'>
                             <InputLabel forInput="nisn" value="NISN" />
                             <TextInput
                                 id="nisn"
@@ -136,23 +168,6 @@ const Create = ({ kelas, spp, user }) => {
                             />
                             <InputError message={errors.nis} className="mt-2" />
                         </div>
-                    </div>
-                    <div>
-                        <div className='my-2'>
-                            <InputLabel forInput="nama" value="Nama Siswa" />
-                            <TextInput
-                                id="nama"
-                                type="text"
-                                name="nama"
-                                value={data.nama}
-                                className="block w-full"
-                                autoComplete="username"
-                                isFocused={true}
-                                handleChange={onHandleChange}
-                                placeholder={'Masukkan Nama Siswa'}
-                            />
-                            <InputError message={errors.nama} className="mt-2" />
-                        </div>
                         <div className='my-2'>
                             <InputLabel forInput="alamat" value="Alamat Siswa" />
                             <TextInput
@@ -168,22 +183,6 @@ const Create = ({ kelas, spp, user }) => {
                             />
                             <InputError message={errors.alamat} className="mt-2" />
                         </div>
-                        <div className='my-2'>
-                            <InputLabel forInput="no_telp" value="No Telp" />
-                            <TextInput
-                                id="no_telp"
-                                type="number"
-                                name="no_telp"
-                                value={data.no_telp}
-                                className=" w-full"
-                                autoComplete="username"
-                                isFocused={true}
-                                handleChange={onHandleChange}
-                                placeholder={'Masukkan No Telp Siswa'}
-                            />
-                            <InputError message={errors.no_telp} className="mt-2" />
-                        </div>
-
                     </div>
 
                 </div>
