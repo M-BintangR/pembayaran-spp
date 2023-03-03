@@ -51,7 +51,7 @@ class PembayaranController extends Controller
         $siswa = Siswa::where('id_kelas', $kelas->id)
             ->orderBy('created_at', 'desc')
             ->orderBy('updated_at', 'desc')
-            ->with('pembayaran')
+            ->with(['pembayaran', 'spp'])
             ->get();
 
         return Inertia::render('Dashboard/Pembayaran/LaporanTunggakan', [

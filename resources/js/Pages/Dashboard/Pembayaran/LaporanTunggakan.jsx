@@ -2,11 +2,11 @@ import React from 'react'
 import { month } from '@/Components/url/url'
 
 const CetakTunggakan = ({ kelas, siswa }) => {
-    setTimeout(() => {
-        window.print();
-    }, 500);
+    // setTimeout(() => {
+    //     window.print();
+    // }, 500);
 
-
+    console.log(siswa);
     return (
         <div className='bg-white my-5'>
             <h1 className='text-center text-2xl uppercase font-bold'>Laporan Tunggakan Spp Kelas {kelas?.nama_kelas}</h1>
@@ -22,7 +22,7 @@ const CetakTunggakan = ({ kelas, siswa }) => {
                             <th className='border text-sm px-1' rowSpan={2}>Nama</th>
                             <th className='border text-sm px-1' rowSpan={2}>NIS</th>
                             <th className='border text-sm px-1 py-2' colSpan={12}>Pembayaran Bulanan</th>
-                            <th className='border text-sm px-1' rowSpan={2}>Total</th>
+                            <th className='border text-sm px-1' rowSpan={2}>Tunggakan</th>
                         </tr>
                         <tr>
                             {month.map((mon, i) => (
@@ -32,7 +32,8 @@ const CetakTunggakan = ({ kelas, siswa }) => {
                     </thead>
                     <tbody>
                         {siswa.map((item, i) => {
-                            let paymentTotal = 0;
+                            let nominal = item?.spp?.nominal;
+                            let paymentTotal = nominal * 12;
                             return (
                                 <tr key={i} className='border'>
                                     <td className='border py-5 text-center text-xs'>{i + 1}</td>
@@ -41,17 +42,18 @@ const CetakTunggakan = ({ kelas, siswa }) => {
                                     {month.map((mon, j) => {
                                         let jumlah_bayar = 0;
                                         let match = false;
+
                                         for (const bulan of item?.pembayaran) {
                                             if (bulan.bulan_bayar.toLowerCase() === mon.toLowerCase()) {
                                                 match = true;
                                                 jumlah_bayar = bulan?.jumlah_bayar;
-                                                paymentTotal += bulan?.jumlah_bayar;
-                                                break;
+                                                paymentTotal -= bulan?.jumlah_bayar;
                                             }
                                         }
+
                                         return (
                                             <td key={j} className="border-grey-light border hover:bg-gray-100 px-2 truncate capitalize text-xs">
-                                                {jumlah_bayar === 0 ? 'Lunas' : (match ? `Rp ${jumlah_bayar.toLocaleString()},-` : `Rp ${item?.jumlah_bayar.toLocaleString()},-`)}
+                                                {match ? `Lunas` : `Rp ${nominal.toLocaleString()},-`}
                                             </td>
                                         )
                                     })}

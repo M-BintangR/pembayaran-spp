@@ -38,6 +38,7 @@ const Tunggakan = ({ items, user, short, shortKelas, relasi }) => {
         }
     }
 
+
     return (
         <Sidebar active={'tunggakan'} user={user}>
             <HardTitle title={'Laporan Pembayaran Kelas'} subTitle={'Laporan pembayaran per kelas'} />
