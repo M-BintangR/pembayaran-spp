@@ -14,7 +14,7 @@ const Kwitansi = ({ kelas, siswa }) => {
             <div className="border border-x-0 border-t-0 text-center mt-2 border-b-2 border-b-black text-sm">
                 Jl. Goa Ria/Pa’bongkayya Laikang | Sudiang | Kel. Laikang | Kec. Biringkanaya | admin@mutiarailmu.sch.id
             </div>
-            <div className='my-3 border-2 p-3 clear-both'>
+            <div className='my-3 clear-both'>
                 <table className="border w-full">
                     <thead>
                         <tr>

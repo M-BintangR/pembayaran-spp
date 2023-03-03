@@ -13,7 +13,7 @@ const CetakTunggakan = ({ kelas, siswa }) => {
             <div className="border border-x-0 border-t-0 text-center mt-2 border-b-2 border-b-black text-sm">
                 Jl. Goa Ria/Pa’bongkayya Laikang | Sudiang | Kel. Laikang | Kec. Biringkanaya | admin@mutiarailmu.sch.id
             </div>
-            <div className='my-3 border-2 p-3 clear-both'>
+            <div className='my-3 clear-both'>
                 <table className="border w-full">
                     <thead>
                         <tr>
@@ -39,13 +39,11 @@ const CetakTunggakan = ({ kelas, siswa }) => {
                                     <td className='border py-5 text-xs'>{item?.nama}</td>
                                     <td className='border py-5 text-xs px-3'>{item?.nis}</td>
                                     {month.map((mon, j) => {
-                                        let jumlah_bayar = 0;
                                         let match = false;
 
                                         for (const bulan of item?.pembayaran) {
                                             if (bulan.bulan_bayar.toLowerCase() === mon.toLowerCase()) {
                                                 match = true;
-                                                jumlah_bayar = bulan?.jumlah_bayar;
                                                 paymentTotal -= bulan?.jumlah_bayar;
                                             }
                                         }
