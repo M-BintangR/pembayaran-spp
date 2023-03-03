@@ -82,6 +82,21 @@ const Edit = ({ item, kelas, spp, user }) => {
                             <InputError message={errors.jk} className="mt-2" />
                         </div>
                         <div className='my-2'>
+                            <InputLabel forInput="level" value="Jenis Kelamin" />
+                            <select
+                                onChange={onHandleChange}
+                                value={data.level}
+                                className='border-gray-300 focus:border-purple-700 focus:ring-purple-700 rounded-md shadow-sm md:text-base text-xs mt-1 block w-full'
+                                name="level"
+                                id="level"
+                            >
+                                <option value={'X'}>X</option>
+                                <option value={'XI'}>XI</option>
+                                <option value={'XII'}>XII</option>
+                            </select>
+                            <InputError message={errors.level} className="mt-2" />
+                        </div>
+                        <div className='my-2'>
                             <InputLabel forInput="id_spp" value="Nominal SPP" />
                             <select
                                 onChange={onHandleChange}

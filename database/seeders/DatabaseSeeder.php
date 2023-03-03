@@ -103,6 +103,7 @@ class DatabaseSeeder extends Seeder
                 'id_kelas' => 1,
                 'id_spp' => 1,
                 'no_telp' => '09848934',
+                'level' => 'X',
                 'jk' => 'l',
             ]
         ];

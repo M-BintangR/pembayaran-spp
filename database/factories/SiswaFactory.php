@@ -17,6 +17,7 @@ class SiswaFactory extends Factory
     public function definition()
     {
         $jenis_kelamin = ['p', 'l'];
+        $level = ['X', 'XI', 'XII'];
         return [
             'nisn' => fake()->unique()->randomNumber(9),
             'nis' => fake()->unique()->regexify('^[0-9]{3}\-[0-9]{3}$'),
@@ -26,6 +27,7 @@ class SiswaFactory extends Factory
             'alamat' => fake()->address(),
             'no_telp' => fake()->e164PhoneNumber(),
             'id_spp' => fake()->numberBetween(1, 5),
+            'level' => fake()->randomElement($level),
         ];
     }
 }
