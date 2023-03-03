@@ -28,8 +28,8 @@ export const menuSidebar = [
         role: ['admin', 'petugas'],
         submenu: true,
         submenuItems: [
-            { title: 'Rekap Pembayaran Kelas', link: '/dashboard/laporan', active: 'menu utama' },
-            { title: 'Tunggakan Pembayaran Kelas', link: '', active: 'profil' },
+            { title: 'Rekap Pembayaran Kelas', link: '/dashboard/laporan', active: 'rekap kelas' },
+            { title: 'Tunggakan Pembayaran Kelas', link: '/dashboard/laporan/tunggakan', active: 'tunggakan' },
         ],
     },
     {
@@ -146,3 +146,23 @@ export const tableRekap = [
     { title: 'No' },
     { title: 'Nama Kelas' }
 ];
+
+//! DATA CARD
+
+//! Card Admin
+export const dataCardsAdmin = [
+    { title: 'Data Siswa', bgColor: 'bg-indigo-700', textColor: 'text-indigo-700', data: 'siswa', role: 'admin' },
+    { title: 'Data Kelas', bgColor: 'bg-fuchsia-700', textColor: 'text-fuchsia-700', data: 'kelas', role: 'admin' },
+    { title: 'Data Pembayaran', bgColor: 'bg-violet-700', textColor: 'text-violet-700', data: 'pembayaran', role: ['admin', 'petugas'] },
+    { title: 'Data Spp', bgColor: 'bg-cyan-700', textColor: 'text-cyan-700', data: 'spp', role: 'admin' },
+    { title: 'Data Petugas', bgColor: 'bg-emerald-700', textColor: 'text-emerald-700', data: 'petugas', role: 'admin' },
+];
+
+//! Card  Petugas
+export const dataCardsPetugas = [
+    { title: 'X', bgColor: 'bg-indigo-700', textColor: 'text-indigo-700', data: 'X' },
+    { title: 'XI', bgColor: 'bg-indigo-700', textColor: 'text-indigo-700', data: 'XI' },
+    { title: 'XII', bgColor: 'bg-indigo-700', textColor: 'text-indigo-700', data: 'XII' },
+]
+
+

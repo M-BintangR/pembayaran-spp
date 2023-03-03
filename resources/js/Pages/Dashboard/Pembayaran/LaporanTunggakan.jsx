@@ -1,7 +1,7 @@
 import React from 'react'
 import { month } from '@/Components/url/url'
 
-const Kwitansi = ({ kelas, siswa }) => {
+const CetakTunggakan = ({ kelas, siswa }) => {
     setTimeout(() => {
         window.print();
     }, 500);
@@ -9,7 +9,7 @@ const Kwitansi = ({ kelas, siswa }) => {
 
     return (
         <div className='bg-white my-5'>
-            <h1 className='text-center text-2xl uppercase font-bold'>Laporan Pembayaran Spp Kelas {kelas?.nama_kelas}</h1>
+            <h1 className='text-center text-2xl uppercase font-bold'>Laporan Tunggakan Spp Kelas {kelas?.nama_kelas}</h1>
             <p className='text-center text-sm uppercase'>SMK MUTIARA ILMU</p>
             <div className="border border-x-0 border-t-0 text-center mt-2 border-b-2 border-b-black text-sm">
                 Jl. Goa Ria/Pa’bongkayya Laikang | Sudiang | Kel. Laikang | Kec. Biringkanaya | admin@mutiarailmu.sch.id
@@ -50,18 +50,19 @@ const Kwitansi = ({ kelas, siswa }) => {
                                             }
                                         }
                                         return (
-                                            <td key={j} className="border-grey-light border hover:bg-gray-100 px-2 truncate capitalize text-xs">{match ?
-                                                `Rp ${jumlah_bayar.toLocaleString()},-` : 'Rp 0,-'
-                                            }</td>
+                                            <td key={j} className="border-grey-light border hover:bg-gray-100 px-2 truncate capitalize text-xs">
+                                                {jumlah_bayar === 0 ? 'Lunas' : (match ? `Rp ${jumlah_bayar.toLocaleString()},-` : `Rp ${item?.jumlah_bayar.toLocaleString()},-`)}
+                                            </td>
                                         )
                                     })}
-                                    <td className="border-grey-light border hover:bg-gray-100 px-2 truncate capitalize text-xs" > {
-                                        `Rp ${paymentTotal.toLocaleString()},-`
-                                    }</td>
+                                    <td className="border-grey-light border hover:bg-gray-100 px-2 truncate capitalize text-xs" >
+                                        {`Rp ${paymentTotal.toLocaleString()},-`}
+                                    </td>
                                 </tr>
                             )
                         })}
                     </tbody>
+
                 </table>
                 <table className='my-10 float-right clear-both'>
                     <tr>
@@ -80,4 +81,4 @@ const Kwitansi = ({ kelas, siswa }) => {
     )
 }
 
-export default Kwitansi
+export default CetakTunggakan

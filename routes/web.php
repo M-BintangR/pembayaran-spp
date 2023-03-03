@@ -44,6 +44,8 @@ Route::group(['prefix' => '/dashboard', 'middleware' => ['auth', 'petugas']], fu
         Route::get('/pembayaran/transaksi', 'transaksi')->name('transaksi');
         Route::get('/pembayaran/{kwitansi:nis}/kwitansi', 'kwitansi')->name('kwitansi');
         Route::get('/pembayaran/{siswa:nisn}/create', 'create')->name('pembayaran.create');
+        Route::get('/laporan/tunggakan', 'tunggakan')->name('tunggakan');
+        Route::get('/laporan/tunggakan/cetak/{kelas:id}', 'tunggakanCetak')->name('tunggakan.cetak');
         Route::get('/laporan', 'laporan')->name('laporan');
         Route::get('/laporan/rekap-pembayaran/{kelas:id}', 'rekapLaporan')->name('laporan.rekap');
         Route::resource('pembayaran', PembayaranController::class)
