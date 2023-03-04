@@ -50,12 +50,12 @@ const Kwitansi = ({ kelas, siswa }) => {
                                             }
                                         }
                                         return (
-                                            <td key={j} className="border-black hover:bg-gray-100 px-2 truncate capitalize text-xs">{match ?
+                                            <td key={j} className="border border-black hover:bg-gray-100 px-2 truncate capitalize text-xs">{match ?
                                                 `Rp ${jumlah_bayar.toLocaleString()},-` : 'Rp 0,-'
                                             }</td>
                                         )
                                     })}
-                                    <td className="border-black hover:bg-gray-100 px-2 truncate capitalize text-xs" > {
+                                    <td className="norder border-black hover:bg-gray-100 px-2 truncate capitalize text-xs" > {
                                         `Rp ${paymentTotal.toLocaleString()},-`
                                     }</td>
                                 </tr>

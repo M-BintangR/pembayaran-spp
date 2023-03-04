@@ -8,8 +8,11 @@ const PanelAdmin = ({ items, user, data_spp }) => {
     return (
         <Sidebar active={'dashboard'} user={user}>
             <HardTitle title={'Menu Utama'} subTitle={`Selamat Datang ${user?.level}`} />
-            <CardAdmin dataCards={dataCardsAdmin} items={items} />
-            <CardPetugas dataCardsPetugas={dataCardsPetugas} dataSpp={data_spp} />
+            {user.level === 'admin' ? (
+                <CardAdmin dataCards={dataCardsAdmin} items={items} />
+            ) : (
+                <CardPetugas dataCardsPetugas={dataCardsPetugas} dataSpp={data_spp} />
+            )}
         </Sidebar>
     )
 }

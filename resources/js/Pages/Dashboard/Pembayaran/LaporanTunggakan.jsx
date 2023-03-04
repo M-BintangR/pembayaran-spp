@@ -2,9 +2,9 @@ import React from 'react'
 import { month } from '@/Components/url/url'
 
 const CetakTunggakan = ({ kelas, siswa }) => {
-    // setTimeout(() => {
-    //     window.print();
-    // }, 500);
+    setTimeout(() => {
+        window.print();
+    }, 500);
 
     return (
         <div className='bg-white my-5'>

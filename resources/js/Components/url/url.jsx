@@ -20,12 +20,12 @@ export const menuSidebar = [
         link: '/dashboard/pembayaran',
         spacing: true,
         active: 'pembayaran',
-        role: ['admin', 'petugas']
+        role: 'petugas'
     },
     {
         title: 'Laporan',
         active: 'laporan',
-        role: ['admin', 'petugas'],
+        role: 'petugas',
         submenu: true,
         submenuItems: [
             { title: 'Rekap Pembayaran Kelas', link: '/dashboard/laporan', active: 'rekap kelas' },

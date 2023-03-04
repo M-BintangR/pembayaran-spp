@@ -114,8 +114,6 @@ export const CardPetugas = ({ dataSpp }) => {
                     }
                 }
 
-
-
                 return (
                     <div key={index} className='bg-slate-100 rounded-md'>
                         <div className='py-3 px-5 text-[15px] md:text-2xl font-semibold capitalize'>Kelas {spp?.level}
