@@ -41,7 +41,7 @@ class SppController extends Controller
     {
         $validateData = $request->validate([
             'nominal' => ['required'],
-            'tahun' => ['required'],
+            'level' => ['required'],
         ]);
 
         if (Spp::create($validateData)) {
@@ -64,7 +64,7 @@ class SppController extends Controller
 
         $credentials = $request->validate([
             'nominal' => ['required'],
-            'tahun' => ['required'],
+            'level' => ['required'],
         ]);
 
         if ($spp->update($credentials)) {

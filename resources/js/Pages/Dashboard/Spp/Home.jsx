@@ -83,7 +83,7 @@ const Home = ({ items, user, short }) => {
 
     const { data, setData, post, processing, errors, put } = useForm({
         nominal: '',
-        tahun: '',
+        level: '',
     });
 
     const onHandleChange = (event) => {
@@ -140,7 +140,7 @@ const Home = ({ items, user, short }) => {
             axios.get(route('spp.edit', id))
                 .then(res => res.data.item)
                 .then(res => {
-                    setData({ nominal: res.nominal, tahun: res.tahun });
+                    setData({ nominal: res.nominal, level: res.level });
                     setOnEditModal(true);
                     setIdSpp(res.id)
                 });
@@ -195,7 +195,7 @@ const Home = ({ items, user, short }) => {
                                 <>
                                     <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300'>{index + 1}</td>
                                     <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300'>Rp {row?.nominal.toLocaleString()}</td>
-                                    <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300'>{row?.tahun}</td>
+                                    <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300'>{row?.level}</td>
                                     <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300'>
                                         <button
                                             onClick={() => onHandleEdit(row?.id)}
@@ -234,7 +234,7 @@ const Home = ({ items, user, short }) => {
                             <tr key={index} className="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0 text-xs">
                                 <td className="border-grey-light border hover:bg-gray-100 p-3">{index + 1}</td>
                                 <td className="border-grey-light border hover:bg-gray-100 p-3 truncate">{row?.nominal}</td>
-                                <td className="border-grey-light border hover:bg-gray-100 p-3 truncate">{row?.tahun}</td>
+                                <td className="border-grey-light border hover:bg-gray-100 p-3 truncate">{row?.level}</td>
                                 <td className="border-grey-light border hover:bg-gray-100 p-3 text-red-400 hover:text-red-600 hover:font-medium cursor-pointer">
                                     <button
                                         onClick={() => onHandleEdit(row?.id)}

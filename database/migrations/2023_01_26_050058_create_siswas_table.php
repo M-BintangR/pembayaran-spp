@@ -22,7 +22,7 @@ return new class extends Migration
             $table->foreignId('id_kelas');
             $table->text('alamat');
             $table->enum('level', ['X', 'XI', 'XII']);
-            $table->char('no_telp', 13);
+            $table->char('no_telp', 15);
             $table->foreignId('id_spp');
             $table->timestamps();
         });

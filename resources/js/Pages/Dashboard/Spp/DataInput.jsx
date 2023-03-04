@@ -20,24 +20,25 @@ export const DataCreate = ({ onHandleSubmit, data, errors, onHandleChange, proce
                         autoComplete="username"
                         isFocused={true}
                         handleChange={onHandleChange}
-                        placeholder={'200000'}
+                        placeholder={'Masukkan Nominal Pembayaran'}
                     />
                     <InputError message={errors.nominal} className="mt-2" />
                 </div>
                 <div className='my-2'>
-                    <InputLabel forInput="tahun" value="Tahun" />
-                    <TextInput
-                        id="tahun"
-                        type="text"
-                        name="tahun"
-                        value={data.tahun}
-                        className="mt-1 block w-full"
-                        autoComplete="username"
-                        isFocused={true}
-                        handleChange={onHandleChange}
-                        placeholder={'2023'}
-                    />
-                    <InputError message={errors.tahun} className="mt-2" />
+                    <InputLabel forInput="level" value="Level Kelas" />
+                    <select
+                        onChange={onHandleChange}
+                        value={data?.level}
+                        className='border-gray-300 focus:border-purple-700 focus:ring-purple-700 rounded-md shadow-sm md:text-base text-xs mt-1 block w-full'
+                        name="level"
+                        id="level"
+                    >
+                        <option>-- Pilih Level Kelas --</option>
+                        <option value={'X'}>X</option>
+                        <option value={'XI'}>XI</option>
+                        <option value={'XII'}>XII</option>
+                    </select>
+                    <InputError message={errors.level} className="mt-2" />
                 </div>
                 <div className="md:mt-5 mt-10">
                     <PrimaryButton processing={processing}>Rekam</PrimaryButton>
@@ -73,19 +74,19 @@ export const DataEdit = ({ onHandleSubmit, data, errors, onHandleChange, process
                     <InputError message={errors.nominal} className="mt-2" />
                 </div>
                 <div className='my-2'>
-                    <InputLabel forInput="tahun" value="Tahun" />
-                    <TextInput
-                        id="tahun"
-                        type="text"
-                        name="tahun"
-                        value={data.tahun}
-                        className="mt-1 block w-full"
-                        autoComplete="username"
-                        isFocused={true}
-                        handleChange={onHandleChange}
-                        placeholder={'Tahun'}
-                    />
-                    <InputError message={errors.tahun} className="mt-2" />
+                    <InputLabel forInput="level" value="Level Kelas" />
+                    <select
+                        onChange={onHandleChange}
+                        value={data?.level}
+                        className='border-gray-300 focus:border-purple-700 focus:ring-purple-700 rounded-md shadow-sm md:text-base text-xs mt-1 block w-full'
+                        name="level"
+                        id="level"
+                    >
+                        <option value={'X'}>X</option>
+                        <option value={'XI'}>XI</option>
+                        <option value={'XII'}>XII</option>
+                    </select>
+                    <InputError message={errors.level} className="mt-2" />
                 </div>
                 <div className="md:mt-5 mt-10">
                     <PrimaryButton processing={processing}>Rekam</PrimaryButton>

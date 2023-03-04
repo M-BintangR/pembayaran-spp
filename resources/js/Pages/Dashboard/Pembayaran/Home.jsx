@@ -88,7 +88,7 @@ const Home = ({ items, user, short }) => {
                                             className='duration-300 bg-gray-100 border-2 border-gray-300 text-gray-500 rounded-md py-2 px-3 hover:bg-green-600 hover:text-white font-semibold hover:border-green-700 box-border'
                                         >
                                             <BiPrinter className='text-md inline-block mr-1' />
-                                            Kwitansi
+                                            Cetak Kuitansi
                                         </Link>
                                     </td>
                                 </>

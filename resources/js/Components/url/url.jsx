@@ -131,7 +131,7 @@ export const tableSiswa = [
 export const tableSpp = [
     { title: 'No' },
     { title: 'Nominal' },
-    { title: 'Tahun' },
+    { title: 'Level Kelas' },
 ];
 
 //! Tabel Kelas

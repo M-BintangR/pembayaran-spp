@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('spps', function (Blueprint $table) {
             $table->id();
             $table->integer('nominal');
-            $table->integer('tahun');
+            $table->enum('level', ['X', 'XI', 'XII']);
             $table->timestamps();
         });
     }
