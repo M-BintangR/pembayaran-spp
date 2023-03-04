@@ -3,7 +3,6 @@ import { BsCurrencyDollar } from 'react-icons/bs';
 import { MdOutlineDashboardCustomize, MdOutlineSchool } from 'react-icons/md';
 import { FaSchool, FaRegMoneyBillAlt } from 'react-icons/fa';
 import { RiUserSettingsLine } from 'react-icons/ri';
-import { forEach, sum } from 'lodash';
 
 
 export const CardAdmin = ({ dataCards, items }) => {
@@ -101,104 +100,47 @@ export const CardAdmin = ({ dataCards, items }) => {
     )
 }
 
-export const CardPetugas = ({ dataCardsPetugas, kelas }) => {
+export const CardPetugas = ({ dataSpp }) => {
     return (
         <div className='flex flex-col md:flex-row gap-x-4 gap-y-3'>
-            <div className='bg-slate-100 rounded-md'>
-                <div className='py-3 px-5 text-[15px] md:text-2xl font-semibold capitalize'>Kelas X
-                    <div className='float-right ml-20'>Rp 200.000,-</div>
-                </div>
-                <div className='py-3 px-5 border-t-[3px] border-slate-500'>
-                    <div className='bg-slate'>
-                        <div className='text-md'>
-                            <div>Jumlah Pembayaran Kelas</div>
-                            <div className='font-bold md:text-xl text-md my-2 inline-block bg-amber-400 '>Rp 1.200.000,-</div>
+            {dataSpp.map((spp, index) => {
+                let totalPembayaran = 0;
+                let totalTunggakan = spp.nominal * spp.siswa.length * 12;
+                for (const pembayaran of spp.pembayaran) {
+                    totalPembayaran += pembayaran.jumlah_bayar;
+                    totalTunggakan -= pembayaran.jumlah_bayar;
+                    if (totalTunggakan <= 0) {
+                        totalTunggakan = 0;
+                    }
+                }
+
+
+
+                return (
+                    <div key={index} className='bg-slate-100 rounded-md'>
+                        <div className='py-3 px-5 text-[15px] md:text-2xl font-semibold capitalize'>Kelas {spp?.level}
+                            <div className='float-right ml-20'>Rp {spp?.nominal.toLocaleString()},-</div>
+                        </div>
+                        <div className='py-3 px-5 border-t-[3px] border-slate-500'>
+                            <div className='bg-slate'>
+                                <div className='text-md'>
+                                    <div>Jumlah Pembayaran Kelas</div>
+                                    <div className='font-bold md:text-xl text-md my-2 inline-block bg-amber-400 '>Rp {totalPembayaran.toLocaleString()},-</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className='py-3 px-5 border-t-[3px] border-slate-500'>
+                            <div className='bg-slate'>
+                                <div className='text-md'>
+                                    <div>Tunggakan Pembayaran Kelas</div>
+                                    <div className='font-bold md:text-xl text-md my-2 inline-block bg-amber-400 '>Rp{totalTunggakan.toLocaleString()},-</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div className='py-3 px-5 border-t-[3px] border-slate-500'>
-                    <div className='bg-slate'>
-                        <div className='text-md'>
-                            <div>Tunggakan Pembayaran Kelas</div>
-                            <div className='font-bold md:text-xl text-md my-2 inline-block bg-amber-400 '>Rp 1.200.000,-</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div className='bg-slate-100 rounded-md'>
-                <div className='py-3 px-5 text-[15px] md:text-2xl font-semibold capitalize'>Kelas X
-                    <div className='float-right ml-20'>Rp 200.000,-</div>
-                </div>
-                <div className='py-3 px-5 border-t-[3px] border-slate-500'>
-                    <div className='bg-slate'>
-                        <div className='text-md'>
-                            <div>Jumlah Pembayaran Kelas</div>
-                            <div className='font-bold md:text-xl text-md my-2 inline-block bg-amber-400 '>Rp 1.200.000,-</div>
-                        </div>
-                    </div>
-                </div>
-                <div className='py-3 px-5 border-t-[3px] border-slate-500'>
-                    <div className='bg-slate'>
-                        <div className='text-md'>
-                            <div>Tunggakan Pembayaran Kelas</div>
-                            <div className='font-bold md:text-xl text-md my-2 inline-block bg-amber-400 '>Rp 1.200.000,-</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div className='bg-slate-100 rounded-md'>
-                <div className='py-3 px-5 text-[15px] md:text-2xl font-semibold capitalize'>Kelas X
-                    <div className='float-right ml-20'>Rp 200.000,-</div>
-                </div>
-                <div className='py-3 px-5 border-t-[3px] border-slate-500'>
-                    <div className='bg-slate'>
-                        <div className='text-md'>
-                            <div>Jumlah Pembayaran Kelas</div>
-                            <div className='font-bold md:text-xl text-md my-2 inline-block bg-amber-400 '>Rp 1.200.000,-</div>
-                        </div>
-                    </div>
-                </div>
-                <div className='py-3 px-5 border-t-[3px] border-slate-500'>
-                    <div className='bg-slate'>
-                        <div className='text-md'>
-                            <div>Tunggakan Pembayaran Kelas</div>
-                            <div className='font-bold md:text-xl text-md my-2 inline-block bg-amber-400 '>Rp 1.200.000,-</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                )
+            })}
         </div>
     )
-    // <div className="grid mb-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
-    //     {dataCardsPetugas.map((card, index) => (
-    //         <div key={index} className="bg-slate-100 p-3 flex justify-start rounded-md">
-    //             <div className="flex justify-center">
-    //                 <div className={`${card.bgColor} jutify-self-start self-center text-white md:p-2 p-2 rounded-md mr-4`}>
-    //                     {
-    //                         card?.title === 'X' ? (
-    //                             <div className='text-xl font-bold px-3 py-2 box-border'>X</div>
-    //                         ) : card?.title === 'XI' ? (
-    //                             <div className='text-xl font-bold px-3 py-2 box-border'>XI</div>
-    //                         ) : card?.title === 'XII' ? (
-    //                             <div className='text-xl font-bold px-3 py-2 box-border'>XII</div>
-    //                         ) : null
-    //                     }
-    //                 </div>
-    //                 <div className="flex flex-col flex-wrap">
-    //                     <div className='font-semibold md:text-base text-sm text-slate-800'>Kelas {card?.title}</div>
-    //                     {
-    //                         card?.data === 'X' ? (
-    //                             <div className={`md:text-lg text-xs font-bold ${card.textColor}`}>Kelas</div>
-    //                         ) : card?.data === 'XI' ? (
-    //                             <div className={`md:text-lg text-xs font-bold ${card.textColor}`}>Kelas</div>
-    //                         ) : card?.data === 'XII' ? (
-    //                             <div className={`md:text-lg text-xs font-bold ${card.textColor}`}>Kelas</div>
-    //                         ) : null
-    //                     }
-    //                 </div>
-    //             </div>
-    //         </div>
-    //     ))}
-    // </div >
 }
 

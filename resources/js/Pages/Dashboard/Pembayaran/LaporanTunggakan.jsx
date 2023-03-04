@@ -2,9 +2,9 @@ import React from 'react'
 import { month } from '@/Components/url/url'
 
 const CetakTunggakan = ({ kelas, siswa }) => {
-    setTimeout(() => {
-        window.print();
-    }, 500);
+    // setTimeout(() => {
+    //     window.print();
+    // }, 500);
 
     return (
         <div className='bg-white my-5'>
@@ -14,18 +14,18 @@ const CetakTunggakan = ({ kelas, siswa }) => {
                 Jl. Goa Ria/Pa’bongkayya Laikang | Sudiang | Kel. Laikang | Kec. Biringkanaya | admin@mutiarailmu.sch.id
             </div>
             <div className='my-3 clear-both'>
-                <table className="border w-full">
+                <table className="border border-black w-full">
                     <thead>
                         <tr>
-                            <th className='border text-sm px-1' rowSpan={2}>NO</th>
-                            <th className='border text-sm px-1' rowSpan={2}>Nama</th>
-                            <th className='border text-sm px-1' rowSpan={2}>NIS</th>
-                            <th className='border text-sm px-1 py-2' colSpan={12}>Pembayaran Bulanan</th>
-                            <th className='border text-sm px-1' rowSpan={2}>Tunggakan</th>
+                            <th className='border border-black text-sm px-1' rowSpan={2}>NO</th>
+                            <th className='border border-black text-sm px-1' rowSpan={2}>Nama</th>
+                            <th className='border border-black text-sm px-1' rowSpan={2}>NIS</th>
+                            <th className='border border-black text-sm px-1 py-2' colSpan={12}>Pembayaran Bulanan</th>
+                            <th className='border border-black text-sm px-1' rowSpan={2}>Tunggakan</th>
                         </tr>
                         <tr>
                             {month.map((mon, i) => (
-                                <th className='border text-sm py-2' key={i}>{mon.substring(0, 3)}</th>
+                                <th className='border border-black text-sm py-2' key={i}>{mon.substring(0, 3)}</th>
                             ))}
                         </tr>
                     </thead>
@@ -34,10 +34,10 @@ const CetakTunggakan = ({ kelas, siswa }) => {
                             let nominal = item?.spp?.nominal;
                             let paymentTotal = nominal * 12;
                             return (
-                                <tr key={i} className='border'>
-                                    <td className='border py-5 text-center text-xs'>{i + 1}</td>
-                                    <td className='border py-5 text-xs'>{item?.nama}</td>
-                                    <td className='border py-5 text-xs px-3'>{item?.nis}</td>
+                                <tr key={i} className='border border-black'>
+                                    <td className='border border-black py-5 text-center text-xs'>{i + 1}</td>
+                                    <td className='border border-black py-5 text-xs'>{item?.nama}</td>
+                                    <td className='border border-black py-5 text-xs px-3'>{item?.nis}</td>
                                     {month.map((mon, j) => {
                                         let match = false;
 
@@ -49,12 +49,12 @@ const CetakTunggakan = ({ kelas, siswa }) => {
                                         }
 
                                         return (
-                                            <td key={j} className="border-grey-light border hover:bg-gray-100 px-2 truncate capitalize text-xs">
+                                            <td key={j} className="border border-black hover:bg-gray-100 px-2 truncate capitalize text-xs">
                                                 {match ? `Lunas` : `Rp ${nominal.toLocaleString()},-`}
                                             </td>
                                         )
                                     })}
-                                    <td className="border-grey-light border hover:bg-gray-100 px-2 truncate capitalize text-xs" >
+                                    <td className="border border-black hover:bg-gray-100 px-2 truncate capitalize text-xs" >
                                         {`Rp ${paymentTotal.toLocaleString()},-`}
                                     </td>
                                 </tr>

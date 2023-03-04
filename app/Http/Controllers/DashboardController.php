@@ -22,10 +22,11 @@ class DashboardController extends Controller
             'pembayaran' => Pembayaran::count(),
         ];
 
+        $data_spp = Spp::with(['pembayaran', 'siswa'])->get();
 
         return Inertia::render('Dashboard/PanelAdmin', [
             'items' => $items,
-            'kelas' => 'sdfasf',
+            'data_spp' => $data_spp,
             'user' => auth()->user(),
         ]);
     }

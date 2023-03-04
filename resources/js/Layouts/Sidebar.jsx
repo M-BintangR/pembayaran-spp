@@ -25,7 +25,6 @@ const Sidebar = ({ children, active, user }) => {
         return menu.role.includes(user?.level);
     });
 
-
     return (
         <div>
             <Navbar setOpen={setOpen} open={open} sidebarRef={sidebarRef} user={user} />
