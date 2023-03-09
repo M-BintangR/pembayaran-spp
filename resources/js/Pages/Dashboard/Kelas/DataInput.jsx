@@ -33,7 +33,7 @@ export const DataCreate = ({ onHandleSubmit, data, errors, onHandleChange, proce
                         value={data.kompetensi_keahlian}
                         className="mt-1 block w-full"
                         autoComplete="username"
-                        isFocused={true}
+                        isFocused={false}
                         handleChange={onHandleChange}
                         placeholder={'Rekayasa Prangkat Lunak'}
                     />
@@ -81,7 +81,7 @@ export const DataEdit = ({ onHandleSubmit, data, errors, onHandleChange, process
                         value={data.kompetensi_keahlian}
                         className="mt-1 block w-full"
                         autoComplete="username"
-                        isFocused={true}
+                        isFocused={false}
                         handleChange={onHandleChange}
                         placeholder={'Kompetensi Keahlian'}
                     />

@@ -33,7 +33,7 @@ export const DataCreate = ({ onHandleSubmit, data, errors, onHandleChange, proce
                         value={data.nama_pengguna}
                         className="mt-1 block w-full"
                         autoComplete="username"
-                        isFocused={true}
+                        isFocused={false}
                         handleChange={onHandleChange}
                         placeholder={'Nama Pengguna'}
                     />
@@ -63,7 +63,7 @@ export const DataCreate = ({ onHandleSubmit, data, errors, onHandleChange, proce
                         value={data.password}
                         className="mt-1 block w-full"
                         autoComplete="username"
-                        isFocused={true}
+                        isFocused={false}
                         handleChange={onHandleChange}
                         placeholder={'Password Petugas'}
                     />
@@ -111,7 +111,7 @@ export const DataEdit = ({ onHandleSubmit, data, errors, onHandleChange, process
                         value={data.nama_pengguna}
                         className="mt-1 block w-full"
                         autoComplete="username"
-                        isFocused={true}
+                        isFocused={false}
                         handleChange={onHandleChange}
                         placeholder={'Nama Pengguna'}
                     />

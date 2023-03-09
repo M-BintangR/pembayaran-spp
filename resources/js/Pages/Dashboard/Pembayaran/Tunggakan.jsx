@@ -39,7 +39,7 @@ const Tunggakan = ({ items, user, short, shortKelas, relasi }) => {
     }
 
     return (
-        <Sidebar active={'tunggakan'} user={user}>
+        <Sidebar active={'laporan'} user={user}>
             <HardTitle title={'Laporan Tunggakan Kelas'} subTitle={'Laporan Tunggakan Per kelas'} />
             <Loading loading={loading} />
             <div className='text-base font-semibold md:mb-5'>

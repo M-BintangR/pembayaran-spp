@@ -29,7 +29,7 @@ export const menuSidebar = [
         submenu: true,
         submenuItems: [
             { title: 'Rekap Pembayaran Kelas', link: '/dashboard/laporan', active: 'rekap kelas' },
-            { title: 'Tunggakan Pembayaran Kelas', link: '/dashboard/laporan/tunggakan', active: 'tunggakan' },
+            { title: 'Tunggakan Pembayaran Kelas', link: '/dashboard/laporan/tunggakan', active: 'rekap tunggakan kelas' },
         ],
     },
     {

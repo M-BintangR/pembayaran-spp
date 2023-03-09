@@ -52,6 +52,7 @@ const Edit = ({ item, kelas, spp, user }) => {
                             <select
                                 onChange={onHandleChange}
                                 defaultValue={item?.id_kelas}
+                                autoFocus
                                 className='border-gray-300 focus:border-purple-700 focus:ring-purple-700 rounded-md shadow-sm md:text-base text-xs mt-1 block w-full'
                                 name="id_kelas"
                                 id="id_kelas"
@@ -117,7 +118,7 @@ const Edit = ({ item, kelas, spp, user }) => {
                                 value={data.no_telp}
                                 className=" w-full"
                                 autoComplete="username"
-                                isFocused={true}
+                                isFocused={false}
                                 handleChange={onHandleChange}
                                 placeholder={'No Telp'}
                             />
@@ -134,7 +135,7 @@ const Edit = ({ item, kelas, spp, user }) => {
                                 value={data.nama}
                                 className="block w-full"
                                 autoComplete="username"
-                                isFocused={true}
+                                isFocused={false}
                                 handleChange={onHandleChange}
                                 placeholder={'Nama Siswa'}
                             />
@@ -149,7 +150,7 @@ const Edit = ({ item, kelas, spp, user }) => {
                                 value={data.nisn}
                                 className="mt-1 block w-full"
                                 autoComplete="username"
-                                isFocused={true}
+                                isFocused={false}
                                 handleChange={onHandleChange}
                                 placeholder={'NISN'}
                             />
@@ -164,7 +165,7 @@ const Edit = ({ item, kelas, spp, user }) => {
                                 value={data.nis}
                                 className="mt-1 block w-full"
                                 autoComplete="username"
-                                isFocused={true}
+                                isFocused={false}
                                 handleChange={onHandleChange}
                                 placeholder={'NIS'}
                             />
@@ -179,7 +180,7 @@ const Edit = ({ item, kelas, spp, user }) => {
                                 value={data.alamat}
                                 className=" w-full"
                                 autoComplete="username"
-                                isFocused={true}
+                                isFocused={false}
                                 handleChange={onHandleChange}
                                 placeholder={'Alamat Siswa'}
                             />
