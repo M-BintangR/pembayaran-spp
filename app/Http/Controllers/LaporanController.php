@@ -15,13 +15,18 @@ class LaporanController extends Controller
         $short_kelas = $request->query('short_kelas', null);
 
         if ($short_kelas != null) {
-            $items = Kelas::select('id', 'nama_kelas')
+            $items = Kelas::with(['siswa' => function ($query) {
+                $query->with(['pembayaran', 'spp']);
+            }])->select('id', 'nama_kelas')
                 ->where('id', $short_kelas)
                 ->orderBy('created_at', 'desc')
                 ->orderBy('updated_at')
                 ->paginate($short);
         } else {
-            $items = Kelas::select('id', 'nama_kelas')
+            $items = Kelas::with(['siswa' => function ($query) {
+                $query->with(['pembayaran', 'spp']);
+            }])
+                ->select('id', 'nama_kelas')
                 ->orderBy('created_at', 'desc')
                 ->orderBy('updated_at')
                 ->paginate($short);
@@ -60,13 +65,19 @@ class LaporanController extends Controller
         $short_kelas = $request->query('short_kelas', null);
 
         if ($short_kelas != null) {
-            $items = Kelas::select('id', 'nama_kelas')
+            $items = Kelas::with(['siswa' => function ($query) {
+                $query->with(['pembayaran', 'spp']);
+            }])
+                ->select('id', 'nama_kelas')
                 ->where('id', $short_kelas)
                 ->orderBy('created_at', 'desc')
                 ->orderBy('updated_at')
                 ->paginate($short);
         } else {
-            $items = Kelas::select('id', 'nama_kelas')
+            $items = Kelas::with(['siswa' => function ($query) {
+                $query->with(['pembayaran', 'spp']);
+            }])
+                ->select('id', 'nama_kelas')
                 ->orderBy('created_at', 'desc')
                 ->orderBy('updated_at')
                 ->paginate($short);

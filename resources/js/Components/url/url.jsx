@@ -144,7 +144,14 @@ export const tableKelas = [
 //! Tabel Rekap Pembayaran Kelas
 export const tableRekap = [
     { title: 'No' },
-    { title: 'Nama Kelas' }
+    { title: 'Nama Kelas' },
+    { title: 'Tunggakan Pembayaran' }
+];
+//! Tabel Laporan Pembayaran Kelas
+export const tableLaporan = [
+    { title: 'No' },
+    { title: 'Nama Kelas' },
+    { title: 'Jumlah Pembayaran' }
 ];
 
 //! DATA CARD

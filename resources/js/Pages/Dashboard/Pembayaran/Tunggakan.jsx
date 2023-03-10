@@ -72,25 +72,33 @@ const Tunggakan = ({ items, user, short, shortKelas, relasi }) => {
                         </tr>
                     </thead>
                     <tbody className='divide-y divide-gray-100  '>
-                        {record?.map((row, index) => (
-                            < tr
-                                key={index}
-                                className={` border-x-2 border-gray-300 odd:bg-gray-200`} >
-                                <>
-                                    <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300'>{index + 1}</td>
-                                    <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 capitalize'>{row?.nama_kelas}</td>
-                                    <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300'>
-                                        <Link
-                                            href={route('tunggakan.cetak', row?.id)}
-                                            className='duration-300 bg-gray-100 border-2 border-gray-300 text-gray-500 rounded-md py-2 px-3 hover:bg-green-600 hover:text-white font-semibold hover:border-green-700 box-border'
-                                        >
-                                            <BiPrinter className='text-md inline-block mr-1' />
-                                            Cetak Tunggakan Kelas
-                                        </Link>
-                                    </td>
-                                </>
-                            </tr>
-                        ))}
+                        {record?.map((row, index) => {
+                            let tunggakan = 0;
+                            for (const siswa of row.siswa) {
+                                const nominal = siswa.spp.nominal;
+                                tunggakan += (12 * nominal) - siswa.pembayaran.reduce((total, pembayaran) => total + pembayaran.jumlah_bayar, 0);
+                            }
+                            return (
+                                < tr
+                                    key={index}
+                                    className={` border-x-2 border-gray-300 odd:bg-gray-200`} >
+                                    <>
+                                        <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300'>{index + 1}</td>
+                                        <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 capitalize'>{row?.nama_kelas}</td>
+                                        <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 capitalize'>Rp {tunggakan.toLocaleString()},-</td>
+                                        <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300'>
+                                            <Link
+                                                href={route('tunggakan.cetak', row?.id)}
+                                                className='duration-300 bg-gray-100 border-2 border-gray-300 text-gray-500 rounded-md py-2 px-3 hover:bg-green-600 hover:text-white font-semibold hover:border-green-700 box-border'
+                                            >
+                                                <BiPrinter className='text-md inline-block mr-1' />
+                                                Cetak Tunggakan Kelas
+                                            </Link>
+                                        </td>
+                                    </>
+                                </tr>
+                            )
+                        })}
                     </tbody>
                 </table>
             </div>
@@ -98,32 +106,40 @@ const Tunggakan = ({ items, user, short, shortKelas, relasi }) => {
             {/* table sm */}
 
             <div className='duration-300 mt-3 mb-10 sm:hidden'>
-                {record?.map((row, index) => (
-                    <table key={index} className="w-full flex flex-row flex-no-wrap sm:bg-white overflow-hidden sm:shadow-lg ">
-                        <thead className="text-white">
-                            <tr className="bg-purple-700 flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0 text-xs rounded-l-md">
-                                {trTbl.map((tr, index) => (
-                                    <th key={index} className="p-3 text-left">{tr.title}</th>
-                                ))}
-                                <th className="p-3 text-left h-[63px]" width="110px">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody className="flex-1 sm:flex-none">
-                            <tr className="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0 text-xs">
-                                <td className="border-grey-light border hover:bg-gray-100 p-3">{index + 1}</td>
-                                <td className="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">{row?.nama_kelas}</td>
-                                <td className="border-grey-light border hover:bg-gray-100 px-3 truncate capitalize py-5 box-border">
-                                    <Link
-                                        href={route('tunggakan.cetak', row?.id)}
-                                        className='duration-300 text-black hover:text-green-600 text-lg'
-                                    >
-                                        <BiPrinter />
-                                    </Link>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                ))}
+                {record?.map((row, index) => {
+                    let tunggakan = 0;
+                    for (const siswa of row.siswa) {
+                        const nominal = siswa.spp.nominal;
+                        tunggakan += (12 * nominal) - siswa.pembayaran.reduce((total, pembayaran) => total + pembayaran.jumlah_bayar, 0);
+                    }
+                    return (
+                        <table key={index} className="w-full flex flex-row flex-no-wrap sm:bg-white overflow-hidden sm:shadow-lg ">
+                            <thead className="text-white">
+                                <tr className="bg-purple-700 flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0 text-xs rounded-l-md">
+                                    {trTbl.map((tr, index) => (
+                                        <th key={index} className="p-3 text-left">{tr.title}</th>
+                                    ))}
+                                    <th className="p-3 text-left h-[63px]" width="110px">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody className="flex-1 sm:flex-none">
+                                <tr className="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0 text-xs">
+                                    <td className="border-grey-light border hover:bg-gray-100 p-3">{index + 1}</td>
+                                    <td className="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">{row?.nama_kelas}</td>
+                                    <td className="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">Rp {tunggakan.toLocaleString()},-</td>
+                                    <td className="border-grey-light border hover:bg-gray-100 px-3 truncate capitalize py-5 box-border">
+                                        <Link
+                                            href={route('tunggakan.cetak', row?.id)}
+                                            className='duration-300 text-black hover:text-green-600 text-lg'
+                                        >
+                                            <BiPrinter />
+                                        </Link>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    )
+                })}
             </div>
             <Paginate meta={items} short={short} />
         </Sidebar>
