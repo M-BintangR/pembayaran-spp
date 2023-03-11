@@ -37,7 +37,7 @@ const Kwitansi = ({ siswa, pembayaran, kelas, kwitansi, terbilang, tanggal }) =>
                     <tr className='my-10'>
                         <td width={'5%'}>Terbilang</td>
                         <td width={'2%'}>:</td>
-                        <td width={'20%'}>{terbilang}</td>
+                        <td className='font-bold' width={'20%'}> ## {terbilang} RUPIAH ##</td>
                     </tr>
                 </table>
             </div>
