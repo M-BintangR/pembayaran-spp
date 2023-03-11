@@ -104,7 +104,7 @@ const Edit = ({ item, kelas, spp, user }) => {
                                 id="id_spp"
                             >
                                 {spp?.map((data, index) => (
-                                    <option key={index} value={data?.id}>Rp {data?.nominal}</option>
+                                    <option key={index} value={data?.id}>Level : {data?.level} Nominal : Rp {data?.nominal.toLocaleString()},-</option>
                                 ))}
                             </select>
                             <InputError message={errors.id_spp} className="mt-2" />

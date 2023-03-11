@@ -92,7 +92,6 @@ const Transaksi = ({ siswa, user, short }) => {
                                             <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 capitalize'>{row?.nis}</td>
                                             <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 capitalize'>{row?.kelas?.nama_kelas}</td>
                                             {month.map((mon, i) => {
-
                                                 let match = false;
                                                 for (const bulan of row?.pembayaran) {
                                                     if (bulan.bulan_bayar.toLowerCase() === mon.toLowerCase()) {
@@ -100,7 +99,6 @@ const Transaksi = ({ siswa, user, short }) => {
                                                         break;
                                                     }
                                                 }
-
                                                 return (
                                                     <td key={i} className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 capitalize'>{match ?
                                                         <BsCheck className='text-green-600 font-bold text-lg' /> : <RiCloseFill className='text-red-600 font-bold text-lg' />

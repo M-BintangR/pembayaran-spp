@@ -8,6 +8,8 @@ const Paginate = ({ meta, short }) => {
     const prev = meta.links[0].url + `&short=${short}`;
     const next = meta.links[meta.links.length - 1].url + `&short=${short}`;
     const current = meta.current_page;
+    const last_page = meta.last_page;
+    const per_page = meta.per_page;
 
     const handleClick = async (url) => {
         setLoading(true);
@@ -16,7 +18,10 @@ const Paginate = ({ meta, short }) => {
     };
 
     return (
-        <div className='flex justify-end text-purple-700 font-bold md:my-10 mb-12'>
+        <div className='flex justify-between text-purple-700 font-bold md:my-10 mb-12'>
+            <div>
+                Menampilkan {current} sampai {last_page} dari {per_page} data
+            </div>
             <div className="flex bg-white rounded-lg">
                 <Link
                     href={prev}
