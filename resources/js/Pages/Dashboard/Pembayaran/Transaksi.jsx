@@ -167,7 +167,11 @@ const Transaksi = ({ siswa, user, short }) => {
                     </div>
                     <Paginate meta={siswa} short={short} />
                 </>
-            ) : (<h1 className='text-md md:bg-amber-500 text-black md:text-white w-32 md:pl-3 rounded-md md:py-1 box-border my-5'>Memuat data...</h1>)}
+            ) : (
+                <div className='flex justify-end'>
+                    <h1 className='text-md md:bg-amber-500 text-black md:text-white w-32 md:pl-3 rounded-md md:py-1 box-border my-5 text-center'>Memuat data...</h1>
+                </div>
+            )}
 
 
         </Sidebar>

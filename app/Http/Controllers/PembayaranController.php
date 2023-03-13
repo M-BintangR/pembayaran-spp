@@ -76,8 +76,6 @@ class PembayaranController extends Controller
         $short = $request->query('short', 20);
 
         $siswa = Siswa::select('id', 'nama', 'nis', 'nisn', 'id_kelas')
-            ->orderBy('updated_at', 'desc')
-            ->orderBy('created_at', 'desc')
             ->with([
                 'kelas' => function ($query) {
                     $query->select('id', 'nama_kelas');
@@ -86,6 +84,8 @@ class PembayaranController extends Controller
                     $query->select('nisn', 'bulan_bayar');
                 }
             ])
+            ->orderBy('created_at', 'desc')
+            ->orderBy('updated_at', 'desc')
             ->paginate($short);
 
         return Inertia::render('Dashboard/Pembayaran/Transaksi', [
@@ -100,6 +100,7 @@ class PembayaranController extends Controller
         $short = $request->query('short', 20);
 
         $items = Kwitansi::orderBy('created_at', 'desc')
+            ->orderBy('created_at', 'desc')
             ->orderBy('updated_at', 'desc')
             ->paginate($short);
 

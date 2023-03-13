@@ -115,23 +115,23 @@ export const CardPetugas = ({ dataSpp }) => {
                 }
 
                 return (
-                    <div key={index} className='bg-slate-100 rounded-md'>
-                        <div className='py-3 px-5 text-[15px] md:text-2xl font-semibold capitalize'>Kelas {spp?.level}
+                    <div key={index} className='bg-slate-100 rounded-md shadow-md'>
+                        <div className='py-3 px-5 text-[15px] md:text-2xl font-semibold capitalize bg-purple-700 text-white rounded-t-md'>Kelas {spp?.level}
                             <div className='float-right ml-20'>Rp {spp?.nominal.toLocaleString()},-</div>
                         </div>
-                        <div className='py-3 px-5 border-t-[3px] border-slate-500'>
+                        <div className='py-3 px-5'>
                             <div className='bg-slate'>
                                 <div className='text-md'>
                                     <div>Jumlah Pembayaran Kelas</div>
-                                    <div className='font-bold md:text-xl text-md my-2 inline-block bg-amber-400 '>Rp {totalPembayaran.toLocaleString()},-</div>
+                                    <div className='font-bold md:text-xl text-md my-2 inline-block'>Rp {totalPembayaran.toLocaleString()},-</div>
                                 </div>
                             </div>
                         </div>
-                        <div className='py-3 px-5 border-t-[3px] border-slate-500'>
+                        <div className='py-3 px-5 border-t-[3px] border-purple-800'>
                             <div className='bg-slate'>
                                 <div className='text-md'>
                                     <div>Tunggakan Pembayaran Kelas</div>
-                                    <div className='font-bold md:text-xl text-md my-2 inline-block bg-amber-400 '>Rp{totalTunggakan.toLocaleString()},-</div>
+                                    <div className='font-bold md:text-xl text-md my-2 inline-block'>Rp{totalTunggakan.toLocaleString()},-</div>
                                 </div>
                             </div>
                         </div>
