@@ -75,7 +75,7 @@ const Tunggakan = ({ items, user, short, shortKelas, relasi }) => {
                         {record?.map((row, index) => {
                             let tunggakan = 0;
                             for (const siswa of row.siswa) {
-                                const nominal = siswa.spp.nominal;
+                                const nominal = siswa?.spp?.nominal;
                                 tunggakan += (12 * nominal) - siswa.pembayaran.reduce((total, pembayaran) => total + pembayaran.jumlah_bayar, 0);
                                 if (tunggakan <= 0) tunggakan = 0;
                             }
@@ -110,7 +110,7 @@ const Tunggakan = ({ items, user, short, shortKelas, relasi }) => {
                 {record?.map((row, index) => {
                     let tunggakan = 0;
                     for (const siswa of row.siswa) {
-                        const nominal = siswa.spp.nominal;
+                        const nominal = siswa?.spp?.nominal;
                         tunggakan += (12 * nominal) - siswa.pembayaran.reduce((total, pembayaran) => total + pembayaran.jumlah_bayar, 0);
                     }
                     return (

@@ -12,7 +12,6 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 use App\Helpers\Terbilang;
-use App\Models\Kelas;
 use Carbon\Carbon;
 
 class PembayaranController extends Controller

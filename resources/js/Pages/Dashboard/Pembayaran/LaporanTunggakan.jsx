@@ -40,7 +40,6 @@ const CetakTunggakan = ({ kelas, siswa }) => {
                                     <td className='border border-black py-5 text-xs px-3'>{item?.nis}</td>
                                     {month.map((mon, j) => {
                                         let match = false;
-
                                         for (const bulan of item?.pembayaran) {
                                             if (bulan.bulan_bayar.toLowerCase() === mon.toLowerCase()) {
                                                 match = true;
@@ -50,12 +49,12 @@ const CetakTunggakan = ({ kelas, siswa }) => {
 
                                         return (
                                             <td key={j} className="border border-black hover:bg-gray-100 px-2 truncate capitalize text-xs">
-                                                {match ? `Lunas` : `Rp ${nominal.toLocaleString()},-`}
+                                                {match ? `Lunas` : `Rp ${nominal?.toLocaleString()},-`}
                                             </td>
                                         )
                                     })}
                                     <td className="border border-black hover:bg-gray-100 px-2 truncate capitalize text-xs" >
-                                        {`Rp ${paymentTotal.toLocaleString()},-`}
+                                        {`Rp ${paymentTotal?.toLocaleString()},-`}
                                     </td>
                                 </tr>
                             )
