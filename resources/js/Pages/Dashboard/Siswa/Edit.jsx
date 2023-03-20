@@ -8,15 +8,15 @@ import { Link, useForm } from '@inertiajs/react';
 import PrimaryButton from '@/Components/PrimaryButton'
 import swal from 'sweetalert'
 
-const Edit = ({ item, kelas, spp, user }) => {
+const Edit = ({ item, kelas, user }) => {
     const { data, setData, processing, errors, put } = useForm({
         nisn: '',
         nis: '',
         nama: '',
         jk: '',
         id_kelas: '',
-        id_spp: '',
         alamat: '',
+        id_spp: '',
         no_telp: '',
     });
 
@@ -76,21 +76,6 @@ const Edit = ({ item, kelas, spp, user }) => {
                                 <option value={'l'}>Laki-laki</option>
                             </select>
                             <InputError message={errors.jk} className="mt-2" />
-                        </div>
-                        <div className='my-2'>
-                            <InputLabel forInput="id_spp" value="Nominal SPP" />
-                            <select
-                                onChange={onHandleChange}
-                                defaultValue={data?.id_spp}
-                                className='border-gray-300 focus:border-purple-700 focus:ring-purple-700 rounded-md shadow-sm md:text-base text-xs mt-1 block w-full'
-                                name="id_spp"
-                                id="id_spp"
-                            >
-                                {spp?.map((data, index) => (
-                                    <option key={index} value={data?.id}>Level : {data?.level} Nominal : Rp {data?.nominal.toLocaleString()},-</option>
-                                ))}
-                            </select>
-                            <InputError message={errors.id_spp} className="mt-2" />
                         </div>
                         <div className='my-2'>
                             <InputLabel forInput="no_telp" value="No Telp" />

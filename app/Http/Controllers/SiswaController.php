@@ -66,10 +66,8 @@ class SiswaController extends Controller
     public function create()
     {
         $data_kelas = Kelas::all();
-        $data_spp = Spp::all();
 
         return Inertia::render('Dashboard/Siswa/Create', [
-            'spp' => $data_spp,
             'kelas' => $data_kelas,
             'user' => auth()->user(),
         ]);
@@ -85,11 +83,24 @@ class SiswaController extends Controller
             'nis' => ['required', 'max:7', 'unique:siswas,nis'],
             'nama' => ['required', 'min:1', 'max:35'],
             'jk' => ['required', 'min:1'],
-            'id_kelas' => ['required', Rule::in($id_spp)],
+            'id_kelas' => ['required', Rule::in($id_kelas)],
             'alamat' => ['required', 'min:1'],
+            'id_spp' => ['nullable', Rule::in($id_spp)],
             'no_telp' => ['required', 'min:1', 'max:13'],
-            'id_spp' => ['required', Rule::in($id_kelas)],
         ]);
+
+        $IdKelas = $request['id_kelas'];
+        $kelas = Kelas::where('id', $IdKelas)->firstOrFail();
+
+        if ($kelas) {
+            $arr = explode(" ", $kelas->nama_kelas);
+            $data_spp = Spp::where('level', $arr[0])->firstOrFail();
+            if ($data_spp) {
+                $validateData['id_spp'] = $data_spp->id;
+            } else {
+                $validateData['id_spp'] = 1;
+            }
+        }
 
         if (Siswa::create($validateData)) {
             return to_route('siswa.index')
@@ -101,12 +112,10 @@ class SiswaController extends Controller
 
     public function edit(Siswa $siswa)
     {
-        $data_spp = Spp::all();
         $data_kelas = Kelas::all();
 
         return Inertia::render('Dashboard/Siswa/Edit', [
             'item' => $siswa,
-            'spp' => $data_spp,
             'kelas' => $data_kelas,
             'user' => auth()->user(),
         ]);
@@ -122,10 +131,10 @@ class SiswaController extends Controller
             'nis' => ['required', 'min:1', 'max:7'],
             'nama' => ['required', 'min:1', 'max:35'],
             'jk' => ['required', 'min:1'],
-            'id_kelas' => ['required', Rule::in($id_spp)],
+            'id_kelas' => ['required', Rule::in($id_kelas)],
             'alamat' => ['required', 'min:1'],
             'no_telp' => ['required', 'min:1', 'max:13'],
-            'id_spp' => ['required', Rule::in($id_kelas)],
+            'id_spp' => ['required', Rule::in($id_spp)],
         ]);
 
         if ($siswa->update($credentials)) {
