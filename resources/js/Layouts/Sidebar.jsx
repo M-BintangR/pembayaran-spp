@@ -9,7 +9,7 @@ import Footer from './Footer';
 import { menuSidebar } from '@/Components/url/url';
 
 const Sidebar = ({ children, active, user }) => {
-    const [open, setOpen] = useState('dashboard');
+    const [open, setOpen] = useState('');
     const [submenuOpen, setSubmenuOpen] = useState(false);
     const [targetActive, setTargetActive] = useState(false);
     const sidebarRef = useRef();
