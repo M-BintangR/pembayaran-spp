@@ -47,54 +47,6 @@ const Edit = ({ item, kelas, user }) => {
                 <div className='grid md:grid-cols-2 gap-x-3'>
                     <div className=''>
                         <div className='my-2'>
-                            <InputLabel forInput="id_kelas" value="Pilih Kelas" />
-                            <select
-                                onChange={onHandleChange}
-                                defaultValue={item?.id_kelas}
-                                autoFocus
-                                className='border-gray-300 focus:border-purple-700 focus:ring-purple-700 rounded-md shadow-sm md:text-base text-xs mt-1 block w-full'
-                                name="id_kelas"
-                                id="id_kelas"
-                            >
-                                {kelas?.map((data, index) => (
-                                    <option key={index} value={data?.id}>{data?.nama_kelas}</option>
-                                ))}
-                            </select>
-                            <InputError message={errors.id_kelas} className="mt-2" />
-                        </div>
-                        <div className='my-2'>
-                            <InputLabel forInput="jk" value="Jenis Kelamin" />
-                            <select
-                                onChange={onHandleChange}
-                                defaultValue={data?.jk}
-                                className='border-gray-300 focus:border-purple-700 focus:ring-purple-700 rounded-md shadow-sm md:text-base text-xs mt-1 block w-full'
-                                name="jk"
-                                id="jk"
-                            >
-                                <option >{item?.jk === "l" ? 'Laki-laki' : 'Perempuan'}</option>
-                                <option value={'p'}>Perempuan</option>
-                                <option value={'l'}>Laki-laki</option>
-                            </select>
-                            <InputError message={errors.jk} className="mt-2" />
-                        </div>
-                        <div className='my-2'>
-                            <InputLabel forInput="no_telp" value="No Telp" />
-                            <TextInput
-                                id="no_telp"
-                                type="number"
-                                name="no_telp"
-                                value={data.no_telp}
-                                className=" w-full"
-                                autoComplete="username"
-                                isFocused={false}
-                                handleChange={onHandleChange}
-                                placeholder={'No Telp'}
-                            />
-                            <InputError message={errors.no_telp} className="mt-2" />
-                        </div>
-                    </div>
-                    <div>
-                        <div className='my-2'>
                             <InputLabel forInput="nama" value="Nama Siswa" />
                             <TextInput
                                 id="nama"
@@ -141,18 +93,64 @@ const Edit = ({ item, kelas, user }) => {
                         </div>
                         <div className='my-2'>
                             <InputLabel forInput="alamat" value="Alamat Siswa" />
-                            <TextInput
-                                id="alamat"
-                                type="text"
+                            <textarea
+                                onChange={onHandleChange}
+                                value={data?.alamat}
+                                style={{ resize: 'none' }}
+                                className='border-gray-300 focus:border-purple-700 focus:ring-purple-700 rounded-md shadow-sm md:text-base text-xs mt-1 block w-full'
                                 name="alamat"
-                                value={data.alamat}
+                                id="alamat"
+                            >
+                            </textarea>
+                            <InputError message={errors.alamat} className="mt-2" />
+                        </div>
+                    </div>
+                    <div>
+                        <div className='my-2'>
+                            <InputLabel forInput="id_kelas" value="Pilih Kelas" />
+                            <select
+                                onChange={onHandleChange}
+                                defaultValue={item?.id_kelas}
+                                autoFocus
+                                className='border-gray-300 focus:border-purple-700 focus:ring-purple-700 rounded-md shadow-sm md:text-base text-xs mt-1 block w-full'
+                                name="id_kelas"
+                                id="id_kelas"
+                            >
+                                {kelas?.map((data, index) => (
+                                    <option key={index} value={data?.id}>{data?.nama_kelas}</option>
+                                ))}
+                            </select>
+                            <InputError message={errors.id_kelas} className="mt-2" />
+                        </div>
+                        <div className='my-2'>
+                            <InputLabel forInput="jk" value="Jenis Kelamin" />
+                            <select
+                                onChange={onHandleChange}
+                                defaultValue={data?.jk}
+                                className='border-gray-300 focus:border-purple-700 focus:ring-purple-700 rounded-md shadow-sm md:text-base text-xs mt-1 block w-full'
+                                name="jk"
+                                id="jk"
+                            >
+                                <option >{item?.jk === "l" ? 'Laki-laki' : 'Perempuan'}</option>
+                                <option value={'p'}>Perempuan</option>
+                                <option value={'l'}>Laki-laki</option>
+                            </select>
+                            <InputError message={errors.jk} className="mt-2" />
+                        </div>
+                        <div className='my-2'>
+                            <InputLabel forInput="no_telp" value="No Telp" />
+                            <TextInput
+                                id="no_telp"
+                                type="number"
+                                name="no_telp"
+                                value={data.no_telp}
                                 className=" w-full"
                                 autoComplete="username"
                                 isFocused={false}
                                 handleChange={onHandleChange}
-                                placeholder={'Alamat Siswa'}
+                                placeholder={'No Telp'}
                             />
-                            <InputError message={errors.alamat} className="mt-2" />
+                            <InputError message={errors.no_telp} className="mt-2" />
                         </div>
                     </div>
                 </div>
