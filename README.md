@@ -65,5 +65,10 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
-## Aplikasi Transaksi Pembayaran Spp
-# Project UKK Sekolah SMK MUTIARA ILMU
+
+
+# APLIKASI TRANSAKSI SPP
+
+## About
+aplikasi transaksi spp merupakan aplikasi yang saya buat dengan tujuan project ujian kompetensi keahlian sekolah saya
+SMK MUTIARA ILMU. 
