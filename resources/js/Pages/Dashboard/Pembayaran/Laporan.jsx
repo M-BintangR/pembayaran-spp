@@ -88,13 +88,14 @@ const Laporan = ({ items, user, short, shortKelas, relasi }) => {
                                         <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 capitalize'>{row?.nama_kelas}</td>
                                         <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 capitalize'>Rp {paymentTotal.toLocaleString()},-</td>
                                         <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300'>
-                                            <Link
+                                            <a
+                                                target={'_blank'}
                                                 href={route('laporan.rekap', row?.id)}
                                                 className='duration-300 bg-gray-100 border-2 border-gray-300 text-gray-500 rounded-md py-2 px-3 hover:bg-green-600 hover:text-white font-semibold hover:border-green-700 box-border'
                                             >
                                                 <BiPrinter className='text-md inline-block mr-1' />
                                                 Cetak Rekap Kelas
-                                            </Link>
+                                            </a>
                                         </td>
                                     </>
                                 </tr>
@@ -130,12 +131,13 @@ const Laporan = ({ items, user, short, shortKelas, relasi }) => {
                                     <td className="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">{row?.nama_kelas}</td>
                                     <td className="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">Rp {paymentTotal.toLocaleString()},-</td>
                                     <td className="border-grey-light border hover:bg-gray-100 px-3 truncate capitalize py-5 box-border">
-                                        <Link
+                                        <a
+                                            target={'_blank'}
                                             href={route('laporan.rekap', row?.id)}
                                             className='duration-300 text-black hover:text-green-600 text-lg'
                                         >
                                             <BiPrinter />
-                                        </Link>
+                                        </a>
                                     </td>
                                 </tr>
                             </tbody>

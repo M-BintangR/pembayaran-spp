@@ -14,7 +14,6 @@ const Edit = ({ item, kelas, spp, user }) => {
         nis: '',
         nama: '',
         jk: '',
-        level: '',
         id_kelas: '',
         id_spp: '',
         alamat: '',
@@ -77,22 +76,6 @@ const Edit = ({ item, kelas, spp, user }) => {
                                 <option value={'l'}>Laki-laki</option>
                             </select>
                             <InputError message={errors.jk} className="mt-2" />
-                        </div>
-                        <div className='my-2'>
-                            <InputLabel forInput="level" value="Level Kelas" />
-                            <select
-                                onChange={onHandleChange}
-                                defaultValue={data?.level}
-                                className='border-gray-300 focus:border-purple-700 focus:ring-purple-700 rounded-md shadow-sm md:text-base text-xs mt-1 block w-full'
-                                name="level"
-                                id="level"
-                            >
-                                <option value={item?.level}>{item?.level}</option>
-                                <option value={'X'}>X</option>
-                                <option value={'XI'}>XI</option>
-                                <option value={'XII'}>XII</option>
-                            </select>
-                            <InputError message={errors.level} className="mt-2" />
                         </div>
                         <div className='my-2'>
                             <InputLabel forInput="id_spp" value="Nominal SPP" />

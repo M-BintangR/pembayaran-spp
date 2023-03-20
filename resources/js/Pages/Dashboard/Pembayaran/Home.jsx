@@ -83,13 +83,14 @@ const Home = ({ items, user, short }) => {
                                     <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 uppercase'>{row?.tanggal}</td>
                                     <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300 capitalize'>{row?.bulan}</td>
                                     <td className='p-3 whitespace-nowrap text-gray-700 text-sm border-2 border-gray-300'>
-                                        <Link
+                                        <a
+                                            target={'_blank'}
                                             href={route('kwitansi', row?.nis)}
                                             className='duration-300 bg-gray-100 border-2 border-gray-300 text-gray-500 rounded-md py-2 px-3 hover:bg-green-600 hover:text-white font-semibold hover:border-green-700 box-border'
                                         >
                                             <BiPrinter className='text-md inline-block mr-1' />
                                             Cetak Kuitansi
-                                        </Link>
+                                        </a>
                                     </td>
                                 </>
                             </tr>
@@ -118,12 +119,13 @@ const Home = ({ items, user, short }) => {
                                 <td className="border-grey-light border hover:bg-gray-100 p-3 truncate uppercase">{row?.tanggal}</td>
                                 <td className="border-grey-light border hover:bg-gray-100 p-3 truncate capitalize">{row?.bulan}</td>
                                 <td className="border-grey-light border hover:bg-gray-100 px-3 truncate capitalize py-5 box-border">
-                                    <Link
+                                    <a
+                                        target={'_blank'}
                                         href={route('kwitansi', row?.nis)}
                                         className='duration-300 text-black hover:text-green-600 text-lg'
                                     >
                                         <BiPrinter />
-                                    </Link>
+                                    </a>
                                 </td>
                             </tr>
                         </tbody>

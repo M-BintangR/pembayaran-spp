@@ -115,7 +115,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 1,
                         'id_spp' => 1,
                         'no_telp' => '8907674536753',
-                        'level' => 'X',
                         'jk' => 'l',
                     ],
                     [
@@ -126,7 +125,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 1,
                         'id_spp' => 1,
                         'no_telp' => '8907674536777',
-                        'level' => 'X',
                         'jk' => 'l',
                     ],
                     [
@@ -137,7 +135,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 1,
                         'id_spp' => 1,
                         'no_telp' => '8907674536799',
-                        'level' => 'X',
                         'jk' => 'p',
                     ],
                     [
@@ -148,7 +145,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 1,
                         'id_spp' => 1,
                         'no_telp' => '8907674536657',
-                        'level' => 'X',
                         'jk' => 'l',
                     ],
                     [
@@ -159,7 +155,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 1,
                         'id_spp' => 1,
                         'no_telp' => '8907884536657',
-                        'level' => 'X',
                         'jk' => 'l',
                     ],
                     [
@@ -170,7 +165,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 1,
                         'id_spp' => 1,
                         'no_telp' => '8907884536657',
-                        'level' => 'X',
                         'jk' => 'p',
                     ],
                     [
@@ -181,7 +175,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 1,
                         'id_spp' => 1,
                         'no_telp' => '8909884536657',
-                        'level' => 'X',
                         'jk' => 'p',
                     ],
                     [
@@ -192,7 +185,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 1,
                         'id_spp' => 1,
                         'no_telp' => '8900884536657',
-                        'level' => 'X',
                         'jk' => 'p',
                     ],
                     [
@@ -203,7 +195,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 1,
                         'id_spp' => 1,
                         'no_telp' => '8907884588657',
-                        'level' => 'X',
                         'jk' => 'p',
                     ],
                     [
@@ -214,7 +205,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 1,
                         'id_spp' => 1,
                         'no_telp' => '89078847776657',
-                        'level' => 'X',
                         'jk' => 'p',
                     ],
                 ],
@@ -227,7 +217,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 2,
                         'id_spp' => 1,
                         'no_telp' => '6219609236753',
-                        'level' => 'X',
                         'jk' => 'l',
                     ],
                     [
@@ -238,7 +227,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 2,
                         'id_spp' => 1,
                         'no_telp' => '6587812636777',
-                        'level' => 'X',
                         'jk' => 'l',
                     ],
                     [
@@ -249,7 +237,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 2,
                         'id_spp' => 1,
                         'no_telp' => '6918574936799',
-                        'level' => 'X',
                         'jk' => 'l',
                     ],
                     [
@@ -260,7 +247,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 2,
                         'id_spp' => 1,
                         'no_telp' => '7362920536657',
-                        'level' => 'X',
                         'jk' => 'p',
                     ],
                     [
@@ -271,7 +257,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 2,
                         'id_spp' => 1,
                         'no_telp' => '7952523436657',
-                        'level' => 'X',
                         'jk' => 'p',
                     ],
                     [
@@ -282,7 +267,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 2,
                         'id_spp' => 1,
                         'no_telp' => '7362041636657',
-                        'level' => 'X',
                         'jk' => 'p',
                     ],
                     [
@@ -293,7 +277,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 2,
                         'id_spp' => 1,
                         'no_telp' => '6185981136657',
-                        'level' => 'X',
                         'jk' => 'p',
                     ],
                     [
@@ -304,7 +287,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 2,
                         'id_spp' => 1,
                         'no_telp' => '5828883636657',
-                        'level' => 'X',
                         'jk' => 'l',
                     ],
                     [
@@ -315,7 +297,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 2,
                         'id_spp' => 1,
                         'no_telp' => '6828132488657',
-                        'level' => 'X',
                         'jk' => 'l',
                     ],
                     [
@@ -326,7 +307,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 2,
                         'id_spp' => 1,
                         'no_telp' => '72733751776657',
-                        'level' => 'X',
                         'jk' => 'l',
                     ],
                 ],
@@ -339,7 +319,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 3,
                         'id_spp' => 1,
                         'no_telp' => '6127878136753',
-                        'level' => 'X',
                         'jk' => 'l',
                     ],
                     [
@@ -350,7 +329,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 3,
                         'id_spp' => 1,
                         'no_telp' => '7312683736777',
-                        'level' => 'X',
                         'jk' => 'l',
                     ],
                     [
@@ -361,7 +339,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 3,
                         'id_spp' => 1,
                         'no_telp' => '7614128136799',
-                        'level' => 'X',
                         'jk' => 'l',
                     ],
                     [
@@ -372,7 +349,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 3,
                         'id_spp' => 1,
                         'no_telp' => '6832119436657',
-                        'level' => 'X',
                         'jk' => 'p',
                     ],
                     [
@@ -383,7 +359,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 3,
                         'id_spp' => 1,
                         'no_telp' => '6730179936657',
-                        'level' => 'X',
                         'jk' => 'l',
                     ],
                     [
@@ -394,7 +369,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 3,
                         'id_spp' => 1,
                         'no_telp' => '7481561736657',
-                        'level' => 'X',
                         'jk' => 'p',
                     ],
                     [
@@ -405,7 +379,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 3,
                         'id_spp' => 1,
                         'no_telp' => '3068020284366',
-                        'level' => 'X',
                         'jk' => 'l',
                     ],
                     [
@@ -416,7 +389,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 3,
                         'id_spp' => 1,
                         'no_telp' => '7326465236657',
-                        'level' => 'X',
                         'jk' => 'l',
                     ],
                     [
@@ -427,7 +399,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 3,
                         'id_spp' => 1,
                         'no_telp' => '6899327588657',
-                        'level' => 'X',
                         'jk' => 'p',
                     ],
                     [
@@ -438,7 +409,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 3,
                         'id_spp' => 1,
                         'no_telp' => '79700723776657',
-                        'level' => 'X',
                         'jk' => 'p',
                     ],
                 ],
@@ -451,7 +421,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 4,
                         'id_spp' => 1,
                         'no_telp' => '6570608736753',
-                        'level' => 'X',
                         'jk' => 'l',
                     ],
                     [
@@ -462,7 +431,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 4,
                         'id_spp' => 1,
                         'no_telp' => '6756184136777',
-                        'level' => 'X',
                         'jk' => 'l',
                     ],
                     [
@@ -473,7 +441,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 4,
                         'id_spp' => 1,
                         'no_telp' => '6322709236799',
-                        'level' => 'X',
                         'jk' => 'l',
                     ],
                     [
@@ -484,7 +451,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 4,
                         'id_spp' => 1,
                         'no_telp' => '7169337736657',
-                        'level' => 'X',
                         'jk' => 'l',
                     ],
                     [
@@ -495,7 +461,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 4,
                         'id_spp' => 1,
                         'no_telp' => '6177755336657',
-                        'level' => 'X',
                         'jk' => 'p',
                     ],
                     [
@@ -506,7 +471,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 4,
                         'id_spp' => 1,
                         'no_telp' => '6511923336657',
-                        'level' => 'X',
                         'jk' => 'p',
                     ],
                     [
@@ -517,7 +481,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 4,
                         'id_spp' => 1,
                         'no_telp' => '66242936366',
-                        'level' => 'X',
                         'jk' => 'p',
                     ],
                     [
@@ -528,7 +491,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 4,
                         'id_spp' => 1,
                         'no_telp' => '6520727136657',
-                        'level' => 'X',
                         'jk' => 'l',
                     ],
                     [
@@ -539,7 +501,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 4,
                         'id_spp' => 1,
                         'no_telp' => '7985636188657',
-                        'level' => 'X',
                         'jk' => 'l',
                     ],
                     [
@@ -550,7 +511,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 4,
                         'id_spp' => 1,
                         'no_telp' => '73397341776657',
-                        'level' => 'X',
                         'jk' => 'p',
                     ],
                 ],
@@ -563,7 +523,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 5,
                         'id_spp' => 2,
                         'no_telp' => '8907674536753',
-                        'level' => 'XI',
                         'jk' => 'l',
                     ],
                     [
@@ -574,7 +533,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 5,
                         'id_spp' => 2,
                         'no_telp' => '8907674536777',
-                        'level' => 'XI',
                         'jk' => 'l',
                     ],
                     [
@@ -585,7 +543,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 5,
                         'id_spp' => 2,
                         'no_telp' => '8907674536799',
-                        'level' => 'XI',
                         'jk' => 'p',
                     ],
                     [
@@ -596,7 +553,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 5,
                         'id_spp' => 2,
                         'no_telp' => '8907674536657',
-                        'level' => 'XI',
                         'jk' => 'l',
                     ],
                     [
@@ -607,7 +563,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 5,
                         'id_spp' => 2,
                         'no_telp' => '8907884536657',
-                        'level' => 'XI',
                         'jk' => 'l',
                     ],
                     [
@@ -618,7 +573,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 5,
                         'id_spp' => 2,
                         'no_telp' => '8907884536657',
-                        'level' => 'XI',
                         'jk' => 'p',
                     ],
                     [
@@ -629,7 +583,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 5,
                         'id_spp' => 2,
                         'no_telp' => '8909884536657',
-                        'level' => 'XI',
                         'jk' => 'p',
                     ],
                     [
@@ -640,7 +593,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 5,
                         'id_spp' => 2,
                         'no_telp' => '8900884536657',
-                        'level' => 'XI',
                         'jk' => 'p',
                     ],
                     [
@@ -651,7 +603,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 5,
                         'id_spp' => 2,
                         'no_telp' => '8907884588657',
-                        'level' => 'XI',
                         'jk' => 'p',
                     ],
                     [
@@ -662,7 +613,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 5,
                         'id_spp' => 2,
                         'no_telp' => '89078847776657',
-                        'level' => 'XI',
                         'jk' => 'p',
                     ],
                 ],
@@ -675,7 +625,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 6,
                         'id_spp' => 2,
                         'no_telp' => '6219609236753',
-                        'level' => 'XI',
                         'jk' => 'l',
                     ],
                     [
@@ -686,7 +635,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 6,
                         'id_spp' => 2,
                         'no_telp' => '6587812636777',
-                        'level' => 'XI',
                         'jk' => 'l',
                     ],
                     [
@@ -697,7 +645,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 6,
                         'id_spp' => 2,
                         'no_telp' => '6918574936799',
-                        'level' => 'XI',
                         'jk' => 'l',
                     ],
                     [
@@ -708,7 +655,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 6,
                         'id_spp' => 2,
                         'no_telp' => '7362920536657',
-                        'level' => 'XI',
                         'jk' => 'p',
                     ],
                     [
@@ -719,7 +665,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 6,
                         'id_spp' => 2,
                         'no_telp' => '7952523436657',
-                        'level' => 'XI',
                         'jk' => 'p',
                     ],
                     [
@@ -730,7 +675,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 6,
                         'id_spp' => 2,
                         'no_telp' => '7362041636657',
-                        'level' => 'XI',
                         'jk' => 'p',
                     ],
                     [
@@ -741,7 +685,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 6,
                         'id_spp' => 2,
                         'no_telp' => '6185981136657',
-                        'level' => 'XI',
                         'jk' => 'p',
                     ],
                     [
@@ -752,7 +695,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 6,
                         'id_spp' => 2,
                         'no_telp' => '5828883636657',
-                        'level' => 'XI',
                         'jk' => 'l',
                     ],
                     [
@@ -763,7 +705,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 6,
                         'id_spp' => 2,
                         'no_telp' => '6828132488657',
-                        'level' => 'XI',
                         'jk' => 'l',
                     ],
                     [
@@ -774,7 +715,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 6,
                         'id_spp' => 2,
                         'no_telp' => '72733751776657',
-                        'level' => 'XI',
                         'jk' => 'l',
                     ],
                 ],
@@ -787,7 +727,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 7,
                         'id_spp' => 2,
                         'no_telp' => '6127878765753',
-                        'level' => 'XI',
                         'jk' => 'l',
                     ],
                     [
@@ -798,7 +737,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 7,
                         'id_spp' => 2,
                         'no_telp' => '7312683765777',
-                        'level' => 'XI',
                         'jk' => 'l',
                     ],
                     [
@@ -809,7 +747,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 7,
                         'id_spp' => 2,
                         'no_telp' => '7614128765799',
-                        'level' => 'XI',
                         'jk' => 'l',
                     ],
                     [
@@ -820,7 +757,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 7,
                         'id_spp' => 2,
                         'no_telp' => '6832119765657',
-                        'level' => 'XI',
                         'jk' => 'p',
                     ],
                     [
@@ -831,7 +767,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 7,
                         'id_spp' => 2,
                         'no_telp' => '6730179765657',
-                        'level' => 'XI',
                         'jk' => 'l',
                     ],
                     [
@@ -842,7 +777,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 7,
                         'id_spp' => 2,
                         'no_telp' => '7481561765657',
-                        'level' => 'XI',
                         'jk' => 'p',
                     ],
                     [
@@ -853,7 +787,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 7,
                         'id_spp' => 2,
                         'no_telp' => '3068020765366',
-                        'level' => 'XI',
                         'jk' => 'l',
                     ],
                     [
@@ -864,7 +797,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 7,
                         'id_spp' => 2,
                         'no_telp' => '7326465765657',
-                        'level' => 'XI',
                         'jk' => 'l',
                     ],
                     [
@@ -875,7 +807,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 7,
                         'id_spp' => 2,
                         'no_telp' => '6899327765657',
-                        'level' => 'XI',
                         'jk' => 'p',
                     ],
                     [
@@ -886,7 +817,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 7,
                         'id_spp' => 2,
                         'no_telp' => '79700727656657',
-                        'level' => 'XI',
                         'jk' => 'p',
                     ],
                 ],
@@ -899,7 +829,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 8,
                         'id_spp' => 2,
                         'no_telp' => '65708736753',
-                        'level' => 'XI',
                         'jk' => 'l',
                     ],
                     [
@@ -910,7 +839,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 8,
                         'id_spp' => 2,
                         'no_telp' => '67584136777',
-                        'level' => 'XI',
                         'jk' => 'l',
                     ],
                     [
@@ -921,7 +849,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 8,
                         'id_spp' => 2,
                         'no_telp' => '63209236799',
-                        'level' => 'XI',
                         'jk' => 'l',
                     ],
                     [
@@ -932,7 +859,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 8,
                         'id_spp' => 2,
                         'no_telp' => '71637736657',
-                        'level' => 'XI',
                         'jk' => 'l',
                     ],
                     [
@@ -943,7 +869,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 8,
                         'id_spp' => 2,
                         'no_telp' => '61755336657',
-                        'level' => 'XI',
                         'jk' => 'p',
                     ],
                     [
@@ -954,7 +879,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 8,
                         'id_spp' => 2,
                         'no_telp' => '65123336657',
-                        'level' => 'XI',
                         'jk' => 'p',
                     ],
                     [
@@ -965,7 +889,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 8,
                         'id_spp' => 2,
                         'no_telp' => '662936366',
-                        'level' => 'XI',
                         'jk' => 'p',
                     ],
                     [
@@ -976,7 +899,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 8,
                         'id_spp' => 2,
                         'no_telp' => '65227136657',
-                        'level' => 'XI',
                         'jk' => 'l',
                     ],
                     [
@@ -987,7 +909,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 8,
                         'id_spp' => 2,
                         'no_telp' => '79836188657',
-                        'level' => 'XI',
                         'jk' => 'l',
                     ],
                     [
@@ -998,7 +919,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 8,
                         'id_spp' => 2,
                         'no_telp' => '733341776657',
-                        'level' => 'XI',
                         'jk' => 'p',
                     ],
                 ],
@@ -1011,7 +931,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 9,
                         'id_spp' => 3,
                         'no_telp' => '8966674536753',
-                        'level' => 'XII',
                         'jk' => 'l',
                     ],
                     [
@@ -1022,7 +941,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 9,
                         'id_spp' => 3,
                         'no_telp' => '8966674536777',
-                        'level' => 'XII',
                         'jk' => 'l',
                     ],
                     [
@@ -1033,7 +951,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 9,
                         'id_spp' => 3,
                         'no_telp' => '8966674536799',
-                        'level' => 'XII',
                         'jk' => 'p',
                     ],
                     [
@@ -1044,7 +961,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 9,
                         'id_spp' => 3,
                         'no_telp' => '8966674536657',
-                        'level' => 'XII',
                         'jk' => 'l',
                     ],
                     [
@@ -1055,7 +971,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 9,
                         'id_spp' => 3,
                         'no_telp' => '8966684536657',
-                        'level' => 'XII',
                         'jk' => 'l',
                     ],
                     [
@@ -1066,7 +981,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 9,
                         'id_spp' => 3,
                         'no_telp' => '8966684536657',
-                        'level' => 'XII',
                         'jk' => 'p',
                     ],
                     [
@@ -1077,7 +991,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 9,
                         'id_spp' => 3,
                         'no_telp' => '8966684536657',
-                        'level' => 'XII',
                         'jk' => 'p',
                     ],
                     [
@@ -1088,7 +1001,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 9,
                         'id_spp' => 3,
                         'no_telp' => '8966684536657',
-                        'level' => 'XII',
                         'jk' => 'p',
                     ],
                     [
@@ -1099,7 +1011,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 9,
                         'id_spp' => 3,
                         'no_telp' => '8966684588657',
-                        'level' => 'XII',
                         'jk' => 'p',
                     ],
                     [
@@ -1110,7 +1021,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 9,
                         'id_spp' => 3,
                         'no_telp' => '89666847776657',
-                        'level' => 'XII',
                         'jk' => 'p',
                     ],
                 ],
@@ -1123,7 +1033,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 10,
                         'id_spp' => 3,
                         'no_telp' => '6339609236753',
-                        'level' => 'XII',
                         'jk' => 'l',
                     ],
                     [
@@ -1134,7 +1043,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 10,
                         'id_spp' => 3,
                         'no_telp' => '6337812636777',
-                        'level' => 'XII',
                         'jk' => 'l',
                     ],
                     [
@@ -1145,7 +1053,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 10,
                         'id_spp' => 3,
                         'no_telp' => '6338574936799',
-                        'level' => 'XII',
                         'jk' => 'l',
                     ],
                     [
@@ -1156,7 +1063,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 10,
                         'id_spp' => 3,
                         'no_telp' => '7332920536657',
-                        'level' => 'XII',
                         'jk' => 'p',
                     ],
                     [
@@ -1167,7 +1073,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 10,
                         'id_spp' => 3,
                         'no_telp' => '7332523436657',
-                        'level' => 'XII',
                         'jk' => 'p',
                     ],
                     [
@@ -1178,7 +1083,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 10,
                         'id_spp' => 3,
                         'no_telp' => '7332041636657',
-                        'level' => 'XII',
                         'jk' => 'p',
                     ],
                     [
@@ -1189,7 +1093,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 10,
                         'id_spp' => 3,
                         'no_telp' => '6335981136657',
-                        'level' => 'XII',
                         'jk' => 'p',
                     ],
                     [
@@ -1200,7 +1103,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 10,
                         'id_spp' => 3,
                         'no_telp' => '5338883636657',
-                        'level' => 'XII',
                         'jk' => 'l',
                     ],
                     [
@@ -1211,7 +1113,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 10,
                         'id_spp' => 3,
                         'no_telp' => '6338132488657',
-                        'level' => 'XII',
                         'jk' => 'l',
                     ],
                     [
@@ -1222,7 +1123,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 10,
                         'id_spp' => 3,
                         'no_telp' => '73333751776657',
-                        'level' => 'XII',
                         'jk' => 'l',
                     ],
                 ],
@@ -1235,7 +1135,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 11,
                         'id_spp' => 3,
                         'no_telp' => '7727878765753',
-                        'level' => 'XII',
                         'jk' => 'l',
                     ],
                     [
@@ -1246,7 +1145,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 11,
                         'id_spp' => 3,
                         'no_telp' => '7712683765777',
-                        'level' => 'XII',
                         'jk' => 'l',
                     ],
                     [
@@ -1257,7 +1155,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 11,
                         'id_spp' => 3,
                         'no_telp' => '7714128765799',
-                        'level' => 'XII',
                         'jk' => 'l',
                     ],
                     [
@@ -1268,7 +1165,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 11,
                         'id_spp' => 3,
                         'no_telp' => '7732119765657',
-                        'level' => 'XII',
                         'jk' => 'p',
                     ],
                     [
@@ -1279,7 +1175,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 11,
                         'id_spp' => 3,
                         'no_telp' => '7730179765657',
-                        'level' => 'XII',
                         'jk' => 'l',
                     ],
                     [
@@ -1290,7 +1185,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 11,
                         'id_spp' => 3,
                         'no_telp' => '7781561765657',
-                        'level' => 'XII',
                         'jk' => 'p',
                     ],
                     [
@@ -1301,7 +1195,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 11,
                         'id_spp' => 3,
                         'no_telp' => '7768020765366',
-                        'level' => 'XII',
                         'jk' => 'l',
                     ],
                     [
@@ -1312,7 +1205,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 11,
                         'id_spp' => 3,
                         'no_telp' => '7726465765657',
-                        'level' => 'XII',
                         'jk' => 'l',
                     ],
                     [
@@ -1323,7 +1215,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 11,
                         'id_spp' => 3,
                         'no_telp' => '7799327765657',
-                        'level' => 'XII',
                         'jk' => 'p',
                     ],
                     [
@@ -1334,7 +1225,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 11,
                         'id_spp' => 3,
                         'no_telp' => '77700727656657',
-                        'level' => 'XII',
                         'jk' => 'p',
                     ],
                 ],
@@ -1347,7 +1237,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 12,
                         'id_spp' => 3,
                         'no_telp' => '00708736753',
-                        'level' => 'XII',
                         'jk' => 'l',
                     ],
                     [
@@ -1358,7 +1247,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 12,
                         'id_spp' => 3,
                         'no_telp' => '00584136777',
-                        'level' => 'XII',
                         'jk' => 'l',
                     ],
                     [
@@ -1369,7 +1257,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 12,
                         'id_spp' => 3,
                         'no_telp' => '00209236799',
-                        'level' => 'XII',
                         'jk' => 'l',
                     ],
                     [
@@ -1380,7 +1267,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 12,
                         'id_spp' => 3,
                         'no_telp' => '00637736657',
-                        'level' => 'XII',
                         'jk' => 'l',
                     ],
                     [
@@ -1391,7 +1277,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 12,
                         'id_spp' => 3,
                         'no_telp' => '00755336657',
-                        'level' => 'XII',
                         'jk' => 'p',
                     ],
                     [
@@ -1402,7 +1287,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 12,
                         'id_spp' => 3,
                         'no_telp' => '00123336657',
-                        'level' => 'XII',
                         'jk' => 'p',
                     ],
                     [
@@ -1413,7 +1297,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 12,
                         'id_spp' => 3,
                         'no_telp' => '002936366',
-                        'level' => 'XII',
                         'jk' => 'p',
                     ],
                     [
@@ -1424,7 +1307,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 12,
                         'id_spp' => 3,
                         'no_telp' => '00227136657',
-                        'level' => 'XII',
                         'jk' => 'l',
                     ],
                     [
@@ -1435,7 +1317,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 12,
                         'id_spp' => 3,
                         'no_telp' => '00836188657',
-                        'level' => 'XII',
                         'jk' => 'l',
                     ],
                     [
@@ -1446,7 +1327,6 @@ class DatabaseSeeder extends Seeder
                         'id_kelas' => 12,
                         'id_spp' => 3,
                         'no_telp' => '003341776657',
-                        'level' => 'XII',
                         'jk' => 'p',
                     ],
                 ],
