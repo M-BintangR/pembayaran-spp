@@ -6,7 +6,7 @@ Aplikasi pembayaran SPP saya juga dilengkapi dengan fitur laporan pembayaran SPP
 
 > Aplikasi ini masih dalam tahap pengembangan!
 
-Follow instagram saya [Muhammad Bintang](https://www.instagram.com/bntg.ch_icy/) .
+☕ Follow instagram saya [Muhammad Bintang](https://www.instagram.com/bntg.ch_icy/).
 
 ## Screenshot
 
