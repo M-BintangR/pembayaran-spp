@@ -45,8 +45,7 @@ Aplikasi pembayaran SPP saya juga dilengkapi dengan fitur laporan pembayaran SPP
 5. install npm dengan perintah : npm install 
 6. install composer dengan perintah : composer install
 7. jalankan perintah artisan berikut : php artisan key:generate
-8. jalankan perintah artisan untuk membuat tabel dan data : php artisan migrate:fresh --seed 
-9. jika terjadi error, pastikan composer dan npm ter-instal
+8. jalankan perintah artisan untuk membuat tabel dan data : php artisan migrate:fresh --seed
   
 
 ## Database dan Tabel
