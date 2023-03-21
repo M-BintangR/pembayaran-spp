@@ -38,8 +38,7 @@ Aplikasi pembayaran SPP saya juga dilengkapi dengan fitur laporan pembayaran SPP
 ## Cara Install dan Mengatur Aplikasi
 
 1. install aplikasi dengan perintah
-```bash
-git clone https://github.com/M-BintangR/Aplikasi-Pembayaran-SPP.git```
+git clone https://github.com/M-BintangR/Aplikasi-Pembayaran-SPP.git```bash
 
 2. buat database pada web server  
 3. copy .env.example menjadi .env
