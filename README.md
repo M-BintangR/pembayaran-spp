@@ -43,7 +43,7 @@ Follow instagram saya [Muhammad Bintang](https://www.instagram.com/bntg.ch_icy/)
 
 clone repo ini dengan cara :
 ```bash
-git clone https://github.com/M-BintangR/Aplikasi-Pembayaran-SPP.git
+https://github.com/M-BintangR/pembayaran-spp-laravel9.git
 ```
 Kemudian, buka terminal seperti bash, zsh, command prompt atau powershell dan nstall dependency composer dengan command berikut :
 ```bash
