@@ -40,8 +40,11 @@ Aplikasi pembayaran SPP saya juga dilengkapi dengan fitur laporan pembayaran SPP
 1. install aplikasi dengan perintah : git clone https://github.com/M-BintangR/Aplikasi-Pembayaran-SPP.git
 2. buat database pada web server  
 3. copy .env.example menjadi .env
+
 <img src="https://github.com/M-BintangR/gambar-doc/blob/main/env1.png" alt="gambarHomePage">
+
 4. ubah DB_DATABASE pada .env dengan database yang sudah anda buat di web server
+
 <img src="https://github.com/M-BintangR/gambar-doc/blob/main/env2.png" alt="gambarHomePage">
 
 5. install npm dengan perintah : npm install
