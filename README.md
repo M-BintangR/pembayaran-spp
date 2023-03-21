@@ -29,9 +29,7 @@ Aplikasi pembayaran SPP saya juga dilengkapi dengan fitur laporan pembayaran SPP
 9. ...dll
 
 ## Cara Install dan Mengatur Aplikasi
-```diff
-+ Teks yang ingin di-highlight
-- Teks yang ingin di-highlight dengan warna lain
+<span style="background-color: rgba(255,255,255,0.5);">Teks Anda</span>
 
 ## Database dan Tabel
 
