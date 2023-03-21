@@ -29,12 +29,13 @@ Aplikasi pembayaran SPP saya juga dilengkapi dengan fitur laporan pembayaran SPP
 9. ...dll
 
 ## Cara Install dan Mengatur Aplikasi
-1. Install aplikasi dengan perintah 'git clone https://github.com/M-BintangR/Aplikasi-Pembayaran-SPP.git'
-2. Buat database pada web server XAMPP/Laragon 
-3. Copy .env.example menjadi .env
+1. install aplikasi dengan perintah : git clone https://github.com/M-BintangR/Aplikasi-Pembayaran-SPP.git
+2. buat database pada web server  
+3. copy .env.example menjadi .env
 <img src="https://github.com/M-BintangR/gambar-doc/blob/main/env1.png" alt="gambarHomePage">
-4. Ubah DB_DATABASE dengan database yang anda buat pada .env 
+4. ubah DB_DATABASE pada .env dengan database yang sudah anda buat di web server
 <img src="https://github.com/M-BintangR/gambar-doc/blob/main/env2.png" alt="gambarHomePage">
+5. jalankan perintah artisan untuk membuat tabel dan data : php artisan migrate:fresh --seed 
   
 
 ## Database dan Tabel
