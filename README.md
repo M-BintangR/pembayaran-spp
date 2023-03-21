@@ -8,10 +8,10 @@ Aplikasi pembayaran SPP saya juga dilengkapi dengan fitur laporan pembayaran SPP
 
 <img src="https://github.com/M-BintangR/gambar-doc/blob/main/homepage.png" width="1000" alt="gambarHomePage">
 <img src="https://github.com/M-BintangR/gambar-doc/blob/main/1.png" width="1000" alt="gambarHomePage">
-<img src="https://github.com/M-BintangR/gambar-doc/blob/main/2.png" width="1000" alt="gambarHomePage">
-<img src="https://github.com/M-BintangR/gambar-doc/blob/main/3.png" width="1000" alt="gambarHomePage">
-<img src="https://github.com/M-BintangR/gambar-doc/blob/main/4.png" width="1000" alt="gambarHomePage">
-<img src="https://github.com/M-BintangR/gambar-doc/blob/main/5.gif" width="500" alt="gambarHomePage">
+<img src="https://github.com/M-BintangR/gambar-doc/blob/main/2.png" width="800" alt="gambarHomePage">
+<img src="https://github.com/M-BintangR/gambar-doc/blob/main/3.png" width="800" alt="gambarHomePage">
+<img src="https://github.com/M-BintangR/gambar-doc/blob/main/4.png" width="800" alt="gambarHomePage">
+<img src="https://github.com/M-BintangR/gambar-doc/blob/main/5.gif" alt="gambarHomePage">
 
 ## Fitur
 
