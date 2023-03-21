@@ -8,6 +8,7 @@ Aplikasi pembayaran SPP saya juga dilengkapi dengan fitur laporan pembayaran SPP
 
 ### Home Page
 <img src="https://github.com/M-BintangR/gambar-doc/blob/main/homepage.png" width="1000" alt="gambarHomePage">
+
 ### Fitur Aplikasi
 <img src="https://github.com/M-BintangR/gambar-doc/blob/main/1.png" width="800" alt="gambarHomePage">
 <img src="https://github.com/M-BintangR/gambar-doc/blob/main/2.png" width="800" alt="gambarHomePage">
