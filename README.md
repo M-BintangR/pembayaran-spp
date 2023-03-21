@@ -37,22 +37,52 @@ Aplikasi pembayaran SPP saya juga dilengkapi dengan fitur laporan pembayaran SPP
 
 ## Cara Install dan Mengatur Aplikasi
 
-1. install aplikasi dengan perintah
-git clone https://github.com/M-BintangR/Aplikasi-Pembayaran-SPP.git```bash
+clone repo ini dengan cara :
+```bash
+git clone https://github.com/M-BintangR/Aplikasi-Pembayaran-SPP.git
+```
+Kemudian, buka terminal seperti bash, zsh, command prompt atau powershell dan nstall dependency composer dengan command berikut :
+```bash
+composer install && composer update
+```
+Lanjut, copy file `.env.example` dengan nama `.env` sebagai berikut:
+```bash
+cp .env.example .env
+```
+Kemudian, silahkan ganti credentials database di file .env nya seperti
+```bash
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=xxx
+DB_USERNAME=root
+DB_PASSWORD=
+```
+untuk panduan atau dokumentasi mengenai setup database pada file `.env` bisa kalian baca pada dokumentasi resmi laravelnya ya cui, [klik disini.](https://laravel.com/docs/9.x/database)
 
-2. buat database pada web server  
-3. copy .env.example menjadi .env
-
-<img src="https://github.com/M-BintangR/gambar-doc/blob/main/env1.png" alt="gambarHomePage">
-
-4. ubah DB_DATABASE pada .env dengan database yang sudah anda buat di web server
-
-<img src="https://github.com/M-BintangR/gambar-doc/blob/main/env2.png" alt="gambarHomePage">
-
-5. install npm dengan perintah : npm install
-6. install composer dengan perintah : composer install
-7. jalankan perintah artisan : php artisan key:generate
-8. jalankan perintah artisan : php artisan migrate:fresh --seed
+Kemudian, silahkan migrate semua database di project ini dengan menggunakan artisan command:
+```bash
+php artisan migrate
+```
+Lanjut, generate aplikasi key untuk keamanan pada project laravel dengan menggunakan artisan command berikut:
+```bash
+php artisan key:generate
+# atau 
+php artisan key:generate --show
+```
+Install dependencies nodejs didalam folder `node_modules` menggunakan Npm atau Yarn:
+```bash
+npm install && npm run dev
+# atau menggunakan Yarn
+yarn && yarn dev
+# atau menggunakan pnpm
+pnpm i && pnpm dev
+```
+Langkah Terakhir, silahkan jalankan local development server Laravel dengan menggunakan artisan command sebagai berikut:
+```bash
+php artisan serve
+```
+Project ini akan berjalan di `https://localhost:8080`.
 
 ## Database dan Tabel
 
