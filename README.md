@@ -6,6 +6,8 @@ Aplikasi pembayaran SPP saya juga dilengkapi dengan fitur laporan pembayaran SPP
 
 ## Screenshot
 
+<img src="https://github.com/M-BintangR/gambar-doc/blob/main/homepage.png" width="400" alt="gambarHomePage">
+
 ## Fitur
 
 1. Sistem login 
