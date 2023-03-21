@@ -1,12 +1,3 @@
-<h1 align="center"><img src="https://emojis.slackmojis.com/emojis/images/1531849430/4246/blob-sunglasses.gif?1531849430" width="30"/> PROJECT APLIKASI TRANSAKSI PEMBAYARAN SPP <img src="https://media.giphy.com/media/12oufCB0MyZ1Go/giphy.gif" width="50"></h1>
-
-
-<p align="center"><em>Tech Entertainer <a href="https://youtube.com/deaafrizal">youtube.com/deaafrizal
-</a><img src="https://media.giphy.com/media/WUlplcMpOCEmTGBtBW/giphy.gif" width="30"> 
-</em></p>
-
-
-
 # APLIKASI TRANSAKSI PEMBAYARAN SPP
 
 Aplikasi pembayaran SPP yang saya buat dengan tujuan tugas pemprograman web & mobile sekolah saya [SMK MUTIARA ILMU](https://mutiarailmu.sch.id) . Dalam aplikasi ini, admin dapat melihat jumlah tagihan SPP yang harus dibayarkan, melakukan pembayaran SPP dengan mudah dan cepat, serta memperoleh informasi tentang status pembayaran SPP secara real-time. Selain itu, dalam aplikasi ini juga terdapat fitur seperti melihat tunggakan siswa,tunggakan kelas, jumlah pembayaran siswa, jumlah pembayaran kelas serta cetak kwitansi, laporan, dan rekap pembayaran.
