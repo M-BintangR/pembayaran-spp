@@ -28,6 +28,15 @@ Aplikasi pembayaran SPP saya juga dilengkapi dengan fitur laporan pembayaran SPP
 
 ## Database dan Tabel
 
+### Tabel User
+| Nama            |Type      |Length     |Atribut                       |
+|-----------------|----------|-----------|------------------------------|
+| id              | int      | 11        | primary_key, auto_increment  |
+| username        | varchar  | 25        | -                            | 
+| nama_pengguna   | varchar  | 35        | -                            |
+| level           | enum     | 0         | -                            |
+| password        | varchar  | 8         | -                            |
+
 ### Tabel Siswa
 | Nama      | Type    | Length    | Atribut                     |
 |-----------|---------|-----------|-----------------------------|
@@ -39,3 +48,17 @@ Aplikasi pembayaran SPP saya juga dilengkapi dengan fitur laporan pembayaran SPP
 | alamat    | text    | 0         | -                           |
 | no_telp   | char    | 13        | -                           |
 | id_spp    | int     | 11        | -                           |
+
+### Tabel Kelas
+| Nama                | Type    | Atribut                     |
+|---------------------|---------|-----------------------------|
+| id                  | int     | primary_key, auto_increment |
+| nama_kelas          | varchar | -                           |
+| kompetensi_keahlian | varchar | -                           |
+
+### Tabel SPP
+| Nama      | Type    | Length | Atribut                     |
+|-----------|---------|--------|-----------------------------|
+| id        | int     | 11     | primary_key, auto_increment |
+| nominal   | bigint  | 255    |                             |
+| level     | enum    | 0      |                             |
