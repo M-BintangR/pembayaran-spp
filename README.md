@@ -38,16 +38,16 @@ Aplikasi pembayaran SPP saya juga dilengkapi dengan fitur laporan pembayaran SPP
 | password        | varchar  | 8         | -                            |
 
 ### Tabel Siswa
-| Nama      | Type    | Length    | Atribut                     |
-|-----------|---------|-----------|-----------------------------|
-| nisn      | int     | 10        | primary_key, auto_increment |
-| nis       | char    | 8         | -                           |
-| nama      | varchar | 35        | -                           |
-| jk        | enum    | 0         | -                           |
-| id_kelas  | int     | 11        | -                           |
-| alamat    | text    | 0         | -                           |
-| no_telp   | char    | 13        | -                           |
-| id_spp    | int     | 11        | -                           |
+| Nama      | Type    | Length    | Atribut                             |
+|-----------|---------|-----------|-------------------------------------|
+| nisn      | int     | 10        | primary_key, auto_increment, unique |
+| nis       | char    | 8         | unique                              |
+| nama      | varchar | 35        | -                                   |
+| jk        | enum    | 0         | -                                   |
+| id_kelas  | int     | 11        | -                                   |
+| alamat    | text    | 0         | -                                   |
+| no_telp   | char    | 13        | -                                   |
+| id_spp    | int     | 11        | -                                   |
 
 ### Tabel Kelas
 | Nama                | Type    | Atribut                     |
@@ -62,3 +62,23 @@ Aplikasi pembayaran SPP saya juga dilengkapi dengan fitur laporan pembayaran SPP
 | id        | int     | 11     | primary_key, auto_increment |
 | nominal   | bigint  | 255    |                             |
 | level     | enum    | 0      |                             |
+
+### Tabel Pembayaran
+| Nama         | Type       | Length  | Atribut                     |
+|--------------|------------|---------|-----------------------------|
+| id_petugas   | int        | 11      | primary_key, auto_increment |
+| nisn         | int        | 10      | -                           |
+| tgl_bayar    | date       | 0       | -                           |
+| bulan_bayar  | varchar    | 10      | -                           |
+| tahun_bayar  | varchar    | 4       | -                           |   
+| id_spp       | int        | 11      | -                           |
+| jumlah_bayar | bitint     | 255     | -                           |
+
+### Tabel Kuitansi
+| Nama          | Type      | Length    | Atribut                       |
+|---------------|-----------|-----------|-------------------------------|
+| id            | int       | 11        | primary_key, auto_increment   |
+| nis           | char      | 8         | -                             |
+| bulan         | varchar   | 100       | -                             |
+| tanggal       | date      | 0         | -                             |
+
