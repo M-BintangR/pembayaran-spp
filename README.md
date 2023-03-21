@@ -29,7 +29,13 @@ Aplikasi pembayaran SPP saya juga dilengkapi dengan fitur laporan pembayaran SPP
 9. ...dll
 
 ## Cara Install dan Mengatur Aplikasi
-<span style="background-color: rgba(255,255,255,0.5);">Teks Anda</span>
+1. Install aplikasi dengan perintah 'git clone https://github.com/M-BintangR/Aplikasi-Pembayaran-SPP.git'
+2. Buat database pada web server XAMPP/Laragon 
+3. Copy .env.example menjadi .env
+<img src="https://github.com/M-BintangR/gambar-doc/blob/main/env1.png" alt="gambarHomePage">
+4. Ubah DB_DATABASE dengan database yang anda buat pada .env 
+<img src="https://github.com/M-BintangR/gambar-doc/blob/main/env2.png" alt="gambarHomePage">
+  
 
 ## Database dan Tabel
 
