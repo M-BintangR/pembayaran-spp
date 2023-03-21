@@ -28,5 +28,14 @@ Aplikasi pembayaran SPP saya juga dilengkapi dengan fitur laporan pembayaran SPP
 
 ## Database dan Tabel
 
-
-
+### Tabel Siswa
+| Nama      | Type    | Length    | Atribut                     |
+|-----------|---------|-----------|-----------------------------|
+| nisn      | int     | 10        | primary_key, auto_increment |
+| nis       | char    | 8         | -                           |
+| nama      | varchar | 35        | -                           |
+| jk        | enum    | 0         | -                           |
+| id_kelas  | int     | 11        | -                           |
+| alamat    | text    | 0         | -                           |
+| no_telp   | char    | 13        | -                           |
+| id_spp    | int     | 11        | -                           |
