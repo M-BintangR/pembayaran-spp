@@ -36,17 +36,17 @@ Aplikasi pembayaran SPP saya juga dilengkapi dengan fitur laporan pembayaran SPP
 9. ...dll
 
 ## Cara Install dan Mengatur Aplikasi
+
 1. install aplikasi dengan perintah : git clone https://github.com/M-BintangR/Aplikasi-Pembayaran-SPP.git
 2. buat database pada web server  
 3. copy .env.example menjadi .env
 <img src="https://github.com/M-BintangR/gambar-doc/blob/main/env1.png" alt="gambarHomePage">
 4. ubah DB_DATABASE pada .env dengan database yang sudah anda buat di web server
 <img src="https://github.com/M-BintangR/gambar-doc/blob/main/env2.png" alt="gambarHomePage">
-5. install npm dengan perintah : npm install 
+5. install npm dengan perintah : npm install
 6. install composer dengan perintah : composer install
-7. jalankan perintah artisan berikut : php artisan key:generate
-8. jalankan perintah artisan untuk membuat tabel dan data : php artisan migrate:fresh --seed
-  
+7. jalankan perintah artisan : php artisan key:generate
+8. jalankan perintah artisan : php artisan migrate:fresh --seed
 
 ## Database dan Tabel
 
