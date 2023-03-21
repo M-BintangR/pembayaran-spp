@@ -18,3 +18,9 @@ Aplikasi pembayaran SPP saya juga dilengkapi dengan fitur laporan pembayaran SPP
 8. Pelacakan Transaksi Pembayaran
 9. ...dll
 
+## Cara Install dan Mengatur Aplikasi
+
+## Database dan Tabel
+
+
+
