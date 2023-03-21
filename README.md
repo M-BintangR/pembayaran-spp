@@ -16,6 +16,13 @@ Aplikasi pembayaran SPP saya juga dilengkapi dengan fitur laporan pembayaran SPP
 <img src="https://github.com/M-BintangR/gambar-doc/blob/main/3.png" width="800" alt="gambarHomePage">
 <img src="https://github.com/M-BintangR/gambar-doc/blob/main/4.png" width="800" alt="gambarHomePage">
 
+## Teknologi
+1. [Laravel 9](https://laravel.com/)
+2. [Reactjs](https://react.dev/)
+3. [Inertiajs](https://inertiajs.com/)
+4. [Tailwindcss](https://tailwindcss.com)
+5. [Vitejs](https://vitejs.dev/)
+
 ## Fitur
 
 1. Sistem login 
