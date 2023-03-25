@@ -122,7 +122,7 @@ Project ini akan berjalan di `https://localhost:8080`.
 | Nama      | Type    | Length | Atribut                     |
 |-----------|---------|--------|-----------------------------|
 | id        | int     | 11     | primary_key, auto_increment |
-| nominal   | bigint  | 255    |                             |
+| nominal   | bigint  | 100    |                             |
 | level     | enum    | 0      |                             |
 
 ### Tabel Pembayaran
@@ -134,7 +134,7 @@ Project ini akan berjalan di `https://localhost:8080`.
 | bulan_bayar  | varchar    | 10      | -                           |
 | tahun_bayar  | varchar    | 4       | -                           |   
 | id_spp       | int        | 11      | -                           |
-| jumlah_bayar | bitint     | 255     | -                           |
+| jumlah_bayar | bitint     | 100     | -                           |
 
 ### Tabel Kuitansi
 | Nama          | Type      | Length    | Atribut                       |
