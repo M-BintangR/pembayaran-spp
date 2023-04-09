@@ -1,66 +1,146 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# APLIKASI TRANSAKSI PEMBAYARAN SPP
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Aplikasi pembayaran SPP yang saya buat dengan tujuan tugas pemprograman web & mobile sekolah saya [SMK MUTIARA ILMU](https://mutiarailmu.sch.id). Dalam aplikasi ini, admin dapat melihat jumlah tagihan SPP yang harus dibayarkan, melakukan pembayaran SPP dengan mudah dan cepat, serta memperoleh informasi tentang status pembayaran SPP secara real-time. Selain itu, dalam aplikasi ini juga terdapat fitur seperti melihat tunggakan siswa,tunggakan kelas, jumlah pembayaran siswa, jumlah pembayaran kelas serta cetak kwitansi, laporan, dan rekap pembayaran.
 
-## About Laravel
+Aplikasi pembayaran SPP saya juga dilengkapi dengan fitur laporan pembayaran SPP, yang memungkinkan para admin memantau dan melacak pembayaran SPP yang telah dilakukan. Dalam laporan ini, terdapat informasi detail tentang tanggal pembayaran, jumlah yang dibayarkan, dan status pembayaran. Dengan fitur ini, para siswa dan orang tua dapat dengan mudah mengakses catatan pembayaran SPP mereka dan memastikan bahwa pembayaran SPP telah dilakukan dengan benar. Dalam rangka meningkatkan kualitas layanan.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Follow instagram saya [Muhammad Bintang](https://www.instagram.com/bntg.ch_icy/)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+> Aplikasi ini masih dalam tahap pengembangan!
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Screenshot
 
-## Learning Laravel
+### Home Page
+<img src="https://github.com/M-BintangR/gambar-doc/blob/main/homepage.png" width="800" alt="gambarHomePage">
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Fitur Aplikasi
+<img src="https://github.com/M-BintangR/gambar-doc/blob/main/5.gif" alt="gambarHomePage">
+<img src="https://github.com/M-BintangR/gambar-doc/blob/main/1.png" width="800" alt="gambarHomePage">
+<img src="https://github.com/M-BintangR/gambar-doc/blob/main/2.png" width="800" alt="gambarHomePage">
+<img src="https://github.com/M-BintangR/gambar-doc/blob/main/3.png" width="800" alt="gambarHomePage">
+<img src="https://github.com/M-BintangR/gambar-doc/blob/main/4.png" width="800" alt="gambarHomePage">
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Teknologi
+1. [Laravel 9](https://laravel.com/)
+2. [Reactjs](https://react.dev/)
+3. [Inertiajs](https://inertiajs.com/)
+4. [Tailwindcss](https://tailwindcss.com)
+5. [Vitejs](https://vitejs.dev/)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Fitur
 
-## Laravel Sponsors
+1. Sistem login 
+2. Multiusers
+3. Multiroles
+4. Homepage dan Dashboard
+5. Manajement Transaksi
+6. Cetak Laporan,Kwitansi,Rekap, dan Tunggakan
+7. Manajement Siswa, Kelas, Petugas, dan Spp
+8. Pelacakan Transaksi Pembayaran
+9. ...dll
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+## Cara Install dan Mengatur Aplikasi
 
-### Premium Partners
+clone repo ini dengan cara :
+```bash
+https://github.com/M-BintangR/pembayaran-spp-laravel9.git
+```
+Kemudian, buka terminal seperti bash, zsh, command prompt atau powershell dan nstall dependency composer dengan command berikut :
+```bash
+composer install && composer update
+```
+Lanjut, copy file `.env.example` dengan nama `.env` sebagai berikut:
+```bash
+cp .env.example .env
+```
+Kemudian, silahkan ganti credentials database di file .env nya seperti
+```bash
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=xxx
+DB_USERNAME=root
+DB_PASSWORD=
+```
+untuk panduan atau dokumentasi mengenai setup database pada file `.env` bisa kalian baca pada dokumentasi resmi laravelnya ya cui, [klik disini.](https://laravel.com/docs/9.x/database)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+Kemudian, silahkan migrate semua database di project ini dengan menggunakan artisan command:
+```bash
+php artisan migrate
+```
+Lanjut, generate aplikasi key untuk keamanan pada project laravel dengan menggunakan artisan command berikut:
+```bash
+php artisan key:generate
+# atau 
+php artisan key:generate --show
+```
+Install dependencies nodejs didalam folder `node_modules` menggunakan Npm atau Yarn:
+```bash
+npm install && npm run dev
+# atau menggunakan Yarn
+yarn && yarn dev
+# atau menggunakan pnpm
+pnpm i && pnpm dev
+```
+Langkah Terakhir, silahkan jalankan local development server Laravel dengan menggunakan artisan command sebagai berikut:
+```bash
+php artisan serve
+```
+Project ini akan berjalan di `https://localhost:8080`.
 
-## Contributing
+## Database dan Tabel
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Tabel User
+| Nama            |Type      |Length     |Atribut                       |
+|-----------------|----------|-----------|------------------------------|
+| id              | int      | 11        | primary_key, auto_increment  |
+| username        | varchar  | 25        | -                            | 
+| nama_pengguna   | varchar  | 35        | -                            |
+| level           | enum     | 0         | -                            |
+| password        | varchar  | 8         | -                            |
 
-## Code of Conduct
+### Tabel Siswa
+| Nama      | Type    | Length    | Atribut                             |
+|-----------|---------|-----------|-------------------------------------|
+| nisn      | int     | 10        | primary_key, auto_increment, unique |
+| nis       | char    | 8         | unique                              |
+| nama      | varchar | 35        | -                                   |
+| jk        | enum    | 0         | -                                   |
+| id_kelas  | int     | 11        | -                                   |
+| alamat    | text    | 0         | -                                   |
+| no_telp   | char    | 13        | -                                   |
+| id_spp    | int     | 11        | -                                   |
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Tabel Kelas
+| Nama                | Type    | Atribut                     |
+|---------------------|---------|-----------------------------|
+| id                  | int     | primary_key, auto_increment |
+| nama_kelas          | varchar | -                           |
+| kompetensi_keahlian | varchar | -                           |
 
-## Security Vulnerabilities
+### Tabel SPP
+| Nama      | Type    | Length | Atribut                     |
+|-----------|---------|--------|-----------------------------|
+| id        | int     | 11     | primary_key, auto_increment |
+| nominal   | bigint  | 100    |                             |
+| level     | enum    | 0      |                             |
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Tabel Pembayaran
+| Nama         | Type       | Length  | Atribut                     |
+|--------------|------------|---------|-----------------------------|
+| id_petugas   | int        | 11      | primary_key, auto_increment |
+| nisn         | int        | 10      | -                           |
+| tgl_bayar    | date       | 0       | -                           |
+| bulan_bayar  | varchar    | 10      | -                           |
+| tahun_bayar  | varchar    | 4       | -                           |   
+| id_spp       | int        | 11      | -                           |
+| jumlah_bayar | bitint     | 100     | -                           |
 
-## License
+### Tabel Kuitansi
+| Nama          | Type      | Length    | Atribut                       |
+|---------------|-----------|-----------|-------------------------------|
+| id            | int       | 11        | primary_key, auto_increment   |
+| nis           | char      | 8         | -                             |
+| bulan         | varchar   | 100       | -                             |
+| tanggal       | date      | 0         | -                             |
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
