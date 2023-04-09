@@ -137,6 +137,19 @@ class SiswaController extends Controller
             'id_spp' => ['required', Rule::in($id_spp)],
         ]);
 
+        $IdKelas = $request['id_kelas'];
+        $kelas = Kelas::where('id', $IdKelas)->firstOrFail();
+
+        if ($kelas) {
+            $arr = explode(" ", $kelas->nama_kelas);
+            $data_spp = Spp::where('level', $arr[0])->firstOrFail();
+            if ($data_spp) {
+                $validateData['id_spp'] = $data_spp->id;
+            } else {
+                $validateData['id_spp'] = 1;
+            }
+        }
+
         if ($siswa->update($credentials)) {
             return to_route('siswa.index')
                 ->with('success');
