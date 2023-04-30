@@ -1,12 +1,15 @@
 import HardTitle from '@/Components/HardTitle'
 import Sidebar from '@/Layouts/Sidebar'
+import { usePage } from '@inertiajs/react';
 import React from 'react'
 import { BiUserCircle, BiUserPin } from 'react-icons/bi';
 import { FaUserTie } from 'react-icons/fa';
 
-const Profile = ({ user }) => {
+const Profile = () => {
+    const { auth } = usePage().props;
+
     return (
-        <Sidebar active={'dashboard'} user={user}>
+        <Sidebar active={'dashboard'} user={auth.user}>
             <HardTitle title={'Profil Pengguna'} subTitle={'Data akun anda'} />
             <div className='grid md:grid-cols-2 grid-cols-1 gap-x-5'>
                 <div className='md:mt-0 mt-3'>

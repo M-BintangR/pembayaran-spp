@@ -1,6 +1,6 @@
 import Sidebar from '@/Layouts/Sidebar'
 import HardTitle from '@/Components/HardTitle'
-import { Link, router } from '@inertiajs/react';
+import { Link, router, usePage } from '@inertiajs/react';
 import React, { useEffect, useState } from 'react'
 import { BiPrinter } from 'react-icons/bi';
 import Loading from '@/Components/Loading';
@@ -8,7 +8,8 @@ import Paginate from '@/Components/Paginate';
 import ShortData from '@/Components/ShortData';
 import { tableLaporan as trTbl } from '@/Components/url/url';
 
-const Laporan = ({ items, user, short, shortKelas, relasi }) => {
+const Laporan = ({ items, short, shortKelas, relasi }) => {
+    const { auth } = usePage().props;
     const [record, setRecord] = useState([]);
     const [loading, setLoading] = useState(false);
 
@@ -39,7 +40,7 @@ const Laporan = ({ items, user, short, shortKelas, relasi }) => {
     }
 
     return (
-        <Sidebar active={'laporan'} user={user}>
+        <Sidebar active={'laporan'} user={auth.user}>
             <HardTitle title={'Laporan Pembayaran Kelas'} subTitle={'Laporan pembayaran per kelas'} />
             <Loading loading={loading} />
             <div className='text-base font-semibold md:mb-5'>

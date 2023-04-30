@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SppRequest;
 use App\Models\Spp;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -37,14 +38,9 @@ class SppController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(SppRequest $request)
     {
-        $validateData = $request->validate([
-            'nominal' => ['required'],
-            'level' => ['required'],
-        ]);
-
-        if (Spp::create($validateData)) {
+        if (Spp::create($request->all())) {
             return to_route('spp.index')
                 ->with('success', 'Data berhasil di tambah kan');
         }
@@ -59,15 +55,9 @@ class SppController extends Controller
         ]);
     }
 
-    public function update(Request $request, Spp $spp)
+    public function update(SppRequest $request, Spp $spp)
     {
-
-        $credentials = $request->validate([
-            'nominal' => ['required'],
-            'level' => ['required'],
-        ]);
-
-        if ($spp->update($credentials)) {
+        if ($spp->update($request->all())) {
             return to_route('spp.index')
                 ->with('success', 'Data berhasil di edit');
         }

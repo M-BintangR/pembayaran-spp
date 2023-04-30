@@ -2,166 +2,59 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SiswaRequest;
 use App\Models\Kelas;
 use App\Models\Siswa;
 use App\Models\Spp;
+use App\Services\SiswaService;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 
 class SiswaController extends Controller
 {
+    protected $service;
+
+    public function __construct(SiswaService $service)
+    {
+        $this->service = $service;
+    }
 
     public function search(Request $request)
     {
-        $search = $request->query('search', null);
-
-        $items = Siswa::with(['kelas', 'spp'])
-            ->where(function ($query) use ($search) {
-                $query
-                    ->where('nama', 'like', "%{$search}%")
-                    ->orWhere('nis', 'like', "%{$search}%")
-                    ->orWhere('nisn', 'like', "%{$search}%")
-                    ->orWhere('alamat', 'like', "%{$search}%")
-                    ->orWhere('jk', 'like', "%{$search}%")
-                    ->orWhere('no_telp', 'like', "%{$search}%");
-            })->orWhereHas('kelas', function ($query) use ($search) {
-                $query
-                    ->where('nama_kelas', 'like', "%{$search}%");
-            })->orWhereHas('spp', function ($query) use ($search) {
-                $query
-                    ->where('nominal', 'like', "%{$search}%");
-            })
-            ->orderBy('created_at', 'desc')
-            ->orderBy('updated_at', 'desc')
-            ->paginate(20);
-
-        return response()->json(['items' => $items], 200);
+        return $this->service->searching($request);
     }
 
     public function index(Request $request)
     {
-        $short = $request->query('short', 20);
-        $items = Siswa::with(
-            [
-                'kelas' => function ($query) {
-                    $query->select('id', 'nama_kelas');
-                },
-                'spp' => function ($query) {
-                    $query->select('id', 'nominal');
-                }
-            ]
-        )
-            ->orderBy('created_at', 'desc')
-            ->orderBy('updated_at', 'desc')
-            ->paginate($short);
-
-        return Inertia::render('Dashboard/Siswa/Home', [
-            'items' => $items,
-            'user' => auth()->user(),
-            'short' => $short,
-        ]);
+        $data = $this->service->getSiswa($request);
+        return Inertia::render('Dashboard/Siswa/Home', $data);
     }
 
     public function create()
     {
-        $data_kelas = Kelas::all();
-
-        return Inertia::render('Dashboard/Siswa/Create', [
-            'kelas' => $data_kelas,
-            'user' => auth()->user(),
-        ]);
+        $data = $this->service->getDataKelas();
+        return Inertia::render('Dashboard/Siswa/Create', $data);
     }
 
-    public function store(Request $request)
+    public function store(SiswaRequest $request)
     {
-        $id_spp = Spp::pluck('id');
-        $id_kelas = Kelas::pluck('id');
-
-        $validateData = $request->validate([
-            'nisn' => ['required', 'min:1', 'max:10', 'unique:siswas,nisn'],
-            'nis' => ['required', 'max:7', 'unique:siswas,nis'],
-            'nama' => ['required', 'min:1', 'max:35'],
-            'jk' => ['required', 'min:1'],
-            'id_kelas' => ['required', Rule::in($id_kelas)],
-            'alamat' => ['required', 'min:1'],
-            'id_spp' => ['nullable', Rule::in($id_spp)],
-            'no_telp' => ['required', 'min:1', 'max:13'],
-        ]);
-
-        $IdKelas = $request['id_kelas'];
-        $kelas = Kelas::where('id', $IdKelas)->firstOrFail();
-
-        if ($kelas) {
-            $arr = explode(" ", $kelas->nama_kelas);
-            $data_spp = Spp::where('level', $arr[0])->firstOrFail();
-            if ($data_spp) {
-                $validateData['id_spp'] = $data_spp->id;
-            } else {
-                $validateData['id_spp'] = 1;
-            }
-        }
-
-        if (Siswa::create($validateData)) {
-            return to_route('siswa.index')
-                ->with('success', 'Data berhasil di tambah kan');
-        }
-
-        return back()->with('error', 'Data gagal di tambahkan');
+        return $this->service->createSiswa($request);
     }
 
     public function edit(Siswa $siswa)
     {
-        $data_kelas = Kelas::all();
-
-        return Inertia::render('Dashboard/Siswa/Edit', [
-            'item' => $siswa,
-            'kelas' => $data_kelas,
-            'user' => auth()->user(),
-        ]);
+        $data = $this->service->editSiswa($siswa);
+        return Inertia::render('Dashboard/Siswa/Edit', $data);
     }
 
-    public function update(Request $request, Siswa $siswa)
+    public function update(SiswaRequest $request, Siswa $siswa)
     {
-        $id_spp = Spp::pluck('id');
-        $id_kelas = Kelas::pluck('id');
-
-        $credentials = $request->validate([
-            'nisn' => ['required', 'min:1', 'max:10'],
-            'nis' => ['required', 'min:1', 'max:7'],
-            'nama' => ['required', 'min:1', 'max:35'],
-            'jk' => ['required', 'min:1'],
-            'id_kelas' => ['required', Rule::in($id_kelas)],
-            'alamat' => ['required', 'min:1'],
-            'no_telp' => ['required', 'min:1', 'max:13'],
-            'id_spp' => ['required', Rule::in($id_spp)],
-        ]);
-
-        $IdKelas = $request['id_kelas'];
-        $kelas = Kelas::where('id', $IdKelas)->firstOrFail();
-
-        if ($kelas) {
-            $arr = explode(" ", $kelas->nama_kelas);
-            $data_spp = Spp::where('level', $arr[0])->firstOrFail();
-            if ($data_spp) {
-                $validateData['id_spp'] = $data_spp->id;
-            } else {
-                $validateData['id_spp'] = 1;
-            }
-        }
-
-        if ($siswa->update($credentials)) {
-            return to_route('siswa.index')
-                ->with('success');
-        }
-
-        return back()->with('error', 'Data gagal di tambah kan');
+        return $this->service->updateSiswa($request, $siswa);
     }
 
     public function destroy(Siswa $siswa)
     {
         $siswa->delete();
-
         return back();
     }
 }

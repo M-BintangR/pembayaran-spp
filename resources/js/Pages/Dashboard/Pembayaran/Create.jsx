@@ -1,14 +1,15 @@
 import Sidebar from '@/Layouts/Sidebar'
 import React, { useState } from 'react'
 import HardTitle from '@/Components/HardTitle'
-import { Link, useForm } from '@inertiajs/react';
+import { Link, useForm, usePage } from '@inertiajs/react';
 import swal from 'sweetalert'
 import { month } from '@/Components/url/url';
 import { MultiSelect } from "react-multi-select-component";
 import InputError from '@/Components/InputError';
 import { AiOutlineInfoCircle, AiOutlineWarning } from 'react-icons/ai';
 
-const Create = ({ spp, user, siswa, kelas, bulan_bayar }) => {
+const Create = ({ spp, siswa, kelas, bulan_bayar }) => {
+    const { auth } = usePage().props;
     const [selected, setSelected] = useState([]);
     const [onAlert, setOnAlert] = useState(false);
     const [hideAlert, setHideAlert] = useState(true);
@@ -88,7 +89,7 @@ const Create = ({ spp, user, siswa, kelas, bulan_bayar }) => {
     }
 
     return (
-        <Sidebar active={'pembayaran'} user={user}>
+        <Sidebar active={'pembayaran'} user={auth.user}>
             <HardTitle title={'Entri Pembayaran'} subTitle={'Entri Transaksi Pembayaran'} />
             <div className="grid md:grid-cols-2 grid-cols-1 md:gap-7 gap-5 md:mt-0 mt-5">
                 <div className='flex gap-y-3 flex-col'>

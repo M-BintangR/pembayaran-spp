@@ -2,49 +2,34 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Kelas;
+use App\Http\Requests\KelasRequest;
+use App\Services\KelasService;
 use Illuminate\Http\Request;
+use App\Models\Kelas;
 use Inertia\Inertia;
 
 class KelasController extends Controller
 {
+    protected $service;
+    public function __construct(KelasService $service)
+    {
+        $this->service = $service;
+    }
 
     public function search(Request $request)
     {
-        $search = $request->query('search', null);
-
-        if ($search !== null && $search !== "") {
-            $items = Kelas::where('nama_kelas', 'like', '%' . $search . '%')
-                ->orWhere('kompetensi_keahlian', 'like', '%' . $search . '%')
-                ->paginate(20);
-        }
-
-        return response()->json(['items' => $items], 200);
+        return $this->service->searching($request);
     }
 
     public function index(Request $request)
     {
-        $short = $request->query('short', 20);
-
-        $items = Kelas::orderBy('created_at', 'desc')
-            ->orderBy('updated_at', 'desc')
-            ->paginate($short);
-
-        return Inertia::render('Dashboard/Kelas/Home', [
-            'items' => $items,
-            'user' => auth()->user(),
-            'short' => $short,
-        ]);
+        $data = $this->service->getKelas($request);
+        return Inertia::render('Dashboard/Kelas/Home', $data);
     }
 
-    public function store(Request $request)
+    public function store(KelasRequest $request)
     {
-        $validateData = $request->validate([
-            'nama_kelas' => ['required', 'min:1', 'max:10'],
-            'kompetensi_keahlian' => ['required', 'min:1', 'max:50'],
-        ]);
-
-        if (Kelas::create($validateData)) {
+        if (Kelas::create($request->all())) {
             return to_route('kelas.index')
                 ->with('success', 'Data berhasil di tambah kan');
         }
@@ -59,14 +44,9 @@ class KelasController extends Controller
         ]);
     }
 
-    public function update(Request $request, Kelas $kelas)
+    public function update(KelasRequest $request, Kelas $kelas)
     {
-        $credentials = $request->validate([
-            'nama_kelas' => ['required'],
-            'kompetensi_keahlian' => ['required'],
-        ]);
-
-        if ($kelas->update($credentials)) {
+        if ($kelas->update($request->all())) {
             return to_route('kelas.index')
                 ->with('success', 'Data berhasil di tambah kan');
         }

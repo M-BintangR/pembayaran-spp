@@ -4,11 +4,12 @@ import TextInput from '@/Components/TextInput'
 import Sidebar from '@/Layouts/Sidebar'
 import React from 'react'
 import HardTitle from '@/Components/HardTitle'
-import { Link, useForm } from '@inertiajs/react';
+import { Link, useForm, usePage } from '@inertiajs/react';
 import PrimaryButton from '@/Components/PrimaryButton'
 import swal from 'sweetalert'
 
-const Create = ({ kelas, user }) => {
+const Create = ({ kelas }) => {
+    const { auth } = usePage().props;
     const { data, setData, post, processing, errors } = useForm({
         nisn: '',
         nis: '',
@@ -36,7 +37,7 @@ const Create = ({ kelas, user }) => {
     }
 
     return (
-        <Sidebar active={'siswa'} user={user}>
+        <Sidebar active={'siswa'} user={auth.user}>
             <HardTitle title={'Tambah Siswa'} subTitle={'Tambah data siswa'} />
             <form onSubmit={onHandleSubmit}>
                 <div className='grid md:grid-cols-2 gap-x-3'>

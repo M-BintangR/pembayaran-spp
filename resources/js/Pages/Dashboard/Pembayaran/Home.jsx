@@ -1,6 +1,6 @@
 import Sidebar from '@/Layouts/Sidebar'
 import HardTitle from '@/Components/HardTitle'
-import { Link, router } from '@inertiajs/react';
+import { Link, router, usePage } from '@inertiajs/react';
 import React, { useEffect, useState } from 'react'
 import { BiPrinter } from 'react-icons/bi';
 import Loading from '@/Components/Loading';
@@ -9,7 +9,8 @@ import ShortData from '@/Components/ShortData';
 import SearchData from '@/Components/SearchData';
 import { tablePembayaran as trTbl } from '@/Components/url/url';
 
-const Home = ({ items, user, short }) => {
+const Home = ({ items, short }) => {
+    const { auth } = usePage().props;
     const [record, setRecord] = useState([]);
     const [loading, setLoading] = useState(false);
 
@@ -47,7 +48,7 @@ const Home = ({ items, user, short }) => {
 
 
     return (
-        <Sidebar active={'pembayaran'} user={user}>
+        <Sidebar active={'pembayaran'} user={auth.user}>
             <HardTitle title={'History Pembayaran'} subTitle={'History Transaksi Pembayaran'} />
             <Loading loading={loading} />
             <div className='text-base font-semibold md:mb-5'>

@@ -31,7 +31,8 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/",
-            "App\\Helpers\\": "app/Helpers/"
+            "App\\Helpers\\": "app/Helpers/",
+            "App\\Helpers\\": "app/Counter/"
         }
     },
     "autoload-dev": {

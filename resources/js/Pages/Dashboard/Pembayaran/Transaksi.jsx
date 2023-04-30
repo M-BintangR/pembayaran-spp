@@ -1,6 +1,6 @@
 import Sidebar from '@/Layouts/Sidebar'
 import HardTitle from '@/Components/HardTitle'
-import { Link, router } from '@inertiajs/react';
+import { Link, router, usePage } from '@inertiajs/react';
 import React, { useEffect, useState } from 'react'
 import Loading from '@/Components/Loading';
 import Paginate from '@/Components/Paginate';
@@ -12,7 +12,8 @@ import { tableTransaksi01 as trTbl } from '@/Components/url/url';
 import { tableTransaksi02 as trTbl2 } from '@/Components/url/url';
 import { month } from '@/Components/url/url';
 
-const Transaksi = ({ siswa, user, short }) => {
+const Transaksi = ({ siswa, short }) => {
+    const { auth } = usePage().props;
     const [record, setRecord] = useState([]);
     const [loading, setLoading] = useState(false);
     const [tblLoading, setTblLoading] = useState(false);
@@ -41,7 +42,7 @@ const Transaksi = ({ siswa, user, short }) => {
             if (target && search.length !== 0) {
                 const url = search ? `/dashboard/pembayaran/transaksi/search?search=${search}` : "/dashboard/pembayaran/search";
                 axios.get(url)
-                    .then(res => res?.data?.siswa)
+                    .then(res => res?.data?.items)
                     .then(res => {
                         setRecord(res?.data || prevRecord);
                     });
@@ -54,7 +55,7 @@ const Transaksi = ({ siswa, user, short }) => {
     }
 
     return (
-        <Sidebar active={'pembayaran'} user={user}>
+        <Sidebar active={'pembayaran'} user={auth.user}>
             <HardTitle title={'Pembayaran Siswa'} subTitle={'Data Pembayaran Siswa'} />
             <Loading loading={loading} />
 

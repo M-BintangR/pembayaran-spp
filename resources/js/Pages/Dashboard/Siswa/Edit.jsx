@@ -4,11 +4,12 @@ import TextInput from '@/Components/TextInput'
 import Sidebar from '@/Layouts/Sidebar'
 import React, { useEffect } from 'react'
 import HardTitle from '@/Components/HardTitle'
-import { Link, useForm } from '@inertiajs/react';
+import { Link, useForm, usePage } from '@inertiajs/react';
 import PrimaryButton from '@/Components/PrimaryButton'
 import swal from 'sweetalert'
 
-const Edit = ({ item, kelas, user }) => {
+const Edit = ({ item, kelas }) => {
+    const { auth } = usePage().props;
     const { data, setData, processing, errors, put } = useForm({
         nisn: '',
         nis: '',

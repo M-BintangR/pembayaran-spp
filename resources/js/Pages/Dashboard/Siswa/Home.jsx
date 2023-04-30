@@ -1,7 +1,7 @@
 import HardTitle from '@/Components/HardTitle'
 import Sidebar from '@/Layouts/Sidebar'
 import { Inertia } from '@inertiajs/inertia';
-import { Link, router } from '@inertiajs/react';
+import { Link, router, usePage } from '@inertiajs/react';
 import React, { useEffect, useState } from 'react'
 import { BiEdit, BiTrash } from 'react-icons/bi';
 import swal from 'sweetalert';
@@ -12,7 +12,8 @@ import SearchData from '@/Components/SearchData';
 import { tableSiswa as trTbl } from '@/Components/url/url';
 
 
-const Home = ({ items, user, short }) => {
+const Home = ({ items, short }) => {
+    const { auth } = usePage().props;
     const [record, setRecord] = useState();
     const [loading, setLoading] = useState(false);
 
@@ -67,7 +68,7 @@ const Home = ({ items, user, short }) => {
     }
 
     return (
-        <Sidebar active={'siswa'} user={user}>
+        <Sidebar active={'siswa'} user={auth.user}>
             <HardTitle title={'Data Siswa'} subTitle={'Kelola Data Siswa'} />
             <Loading loading={loading} />
             <div className='text-base font-semibold md:mb-5'>

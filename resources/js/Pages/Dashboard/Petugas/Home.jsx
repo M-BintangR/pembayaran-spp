@@ -4,7 +4,7 @@ import { Inertia } from '@inertiajs/inertia';
 import React, { useEffect, useState } from 'react'
 import { BiEdit, BiTrash } from 'react-icons/bi';
 import swal from 'sweetalert';
-import { router, useForm } from '@inertiajs/react';
+import { router, useForm, usePage } from '@inertiajs/react';
 import { CrudModal } from '@/Components/CrudModal';
 import axios from 'axios';
 import { DataCreate, DataEdit } from './DataInput';
@@ -15,7 +15,8 @@ import SearchData from '@/Components/SearchData';
 import { tablePetugas as trTbl } from '@/Components/url/url';
 
 
-const Home = ({ items, user, short }) => {
+const Home = ({ items, short }) => {
+    const { auth } = usePage().props;
     const [record, setRecord] = useState([]);
     const [loading, setLoading] = useState(false);
 
@@ -159,7 +160,7 @@ const Home = ({ items, user, short }) => {
 
 
     return (
-        <Sidebar active={'petugas'} user={user}>
+        <Sidebar active={'petugas'} user={auth.user}>
             <HardTitle title={'Data Petugas'} subTitle={'Kelola Data Petugas'} />
             <Loading loading={loading} />
             <div className='text-base font-semibold md:mb-5'>
