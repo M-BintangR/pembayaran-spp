@@ -1,12 +1,12 @@
-import Sidebar from '@/Layouts/Sidebar'
 import HardTitle from '@/Components/HardTitle'
-import { Link, router, usePage } from '@inertiajs/react';
+import { router, usePage } from '@inertiajs/react';
 import React, { useEffect, useState } from 'react'
 import { BiPrinter } from 'react-icons/bi';
 import Loading from '@/Components/Loading';
 import Paginate from '@/Components/Paginate';
 import ShortData from '@/Components/ShortData';
 import { tableRekap as trTbl } from '@/Components/url/url';
+import AuthLayout from '@/Layouts/AuthLayout';
 
 const Tunggakan = ({ items, short, shortKelas, relasi }) => {
     const { auth } = usePage().props;
@@ -40,7 +40,7 @@ const Tunggakan = ({ items, short, shortKelas, relasi }) => {
     }
 
     return (
-        <Sidebar active={'laporan'} user={auth.user}>
+        <AuthLayout active={'laporan'} user={auth.user}>
             <HardTitle title={'Laporan Tunggakan Kelas'} subTitle={'Laporan Tunggakan Per kelas'} />
             <Loading loading={loading} />
             <div className='text-base font-semibold md:mb-5'>
@@ -146,7 +146,7 @@ const Tunggakan = ({ items, short, shortKelas, relasi }) => {
                 })}
             </div>
             <Paginate meta={items} short={short} />
-        </Sidebar>
+        </AuthLayout>
     )
 }
 

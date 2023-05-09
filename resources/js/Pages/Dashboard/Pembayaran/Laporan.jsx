@@ -1,6 +1,5 @@
-import Sidebar from '@/Layouts/Sidebar'
 import HardTitle from '@/Components/HardTitle'
-import { Link, router, usePage } from '@inertiajs/react';
+import { router, usePage } from '@inertiajs/react';
 import React, { useEffect, useState } from 'react'
 import { BiPrinter } from 'react-icons/bi';
 import Loading from '@/Components/Loading';
@@ -40,7 +39,7 @@ const Laporan = ({ items, short, shortKelas, relasi }) => {
     }
 
     return (
-        <Sidebar active={'laporan'} user={auth.user}>
+        <AuthLayout active={'laporan'} user={auth.user}>
             <HardTitle title={'Laporan Pembayaran Kelas'} subTitle={'Laporan pembayaran per kelas'} />
             <Loading loading={loading} />
             <div className='text-base font-semibold md:mb-5'>
@@ -147,7 +146,7 @@ const Laporan = ({ items, short, shortKelas, relasi }) => {
                 })}
             </div>
             <Paginate meta={items} short={short} />
-        </Sidebar>
+        </AuthLayout>
     )
 }
 

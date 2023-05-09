@@ -1,4 +1,3 @@
-import Sidebar from '@/Layouts/Sidebar'
 import HardTitle from '@/Components/HardTitle'
 import { Inertia } from '@inertiajs/inertia';
 import React, { useEffect, useState } from 'react'
@@ -13,6 +12,7 @@ import Paginate from '@/Components/Paginate';
 import ShortData from '@/Components/ShortData';
 import SearchData from '@/Components/SearchData';
 import { tableKelas as trTbl } from '@/Components/url/url';
+import AuthLayout from '@/Layouts/AuthLayout';
 
 const Home = ({ items, short }) => {
     const { auth } = usePage().props;
@@ -157,7 +157,7 @@ const Home = ({ items, short }) => {
     }
 
     return (
-        <Sidebar active={'kelas'} user={auth.user}>
+        <AuthLayout active={'kelas'} user={auth.user}>
             <HardTitle title={'Data Kelas'} subTitle={'Kelola Data Kelas'} />
             <Loading loading={loading} />
             <div className='text-base font-semibold md:mb-5'>
@@ -282,7 +282,7 @@ const Home = ({ items, short }) => {
                     onHandleModal={onHandleModal}
                 />
             </CrudModal>
-        </Sidebar>
+        </AuthLayout>
     )
 }
 

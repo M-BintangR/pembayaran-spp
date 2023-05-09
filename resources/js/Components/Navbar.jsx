@@ -5,7 +5,7 @@ import { CgLogOut, CgProfile } from 'react-icons/cg';
 import { Link } from '@inertiajs/react';
 import logo from '../Components/img/logoWeb2.png'
 
-const Navbar = ({ open, setOpen, sidebarRef, user }) => {
+const Navbar = ({ onOpenMenu, sidebarRef, user }) => {
     const [isOpen, setIsOpen] = useState(false);
     const toggleRef = useRef();
     const btnDropdownRef = useRef();
@@ -14,10 +14,6 @@ const Navbar = ({ open, setOpen, sidebarRef, user }) => {
     const handleOpenDropdown = useCallback(() => {
         setIsOpen(!isOpen);
     }, [isOpen]);
-
-    const handleOpenMenus = useCallback(() => {
-        setOpen(!open);
-    }, [open]);
 
     useEffect(() => {
         document.addEventListener('click', handleClickOutside);
@@ -39,7 +35,7 @@ const Navbar = ({ open, setOpen, sidebarRef, user }) => {
         <div>
             <div className='w-screen bg-purple-700 text-white p-2 fixed shadow-xl z-50'>
                 <div className='inline-block ' ref={toggleRef} >
-                    <AiOutlineMenu className='md:mr-3 mr-2 relative md:top-1 top-1 md:p-2 p-1 md:text-xl text-xs box-content hover:bg-purple-400 hover:rounded-md duration-300' onClick={handleOpenMenus} />
+                    <AiOutlineMenu className='md:mr-3 mr-2 relative md:top-1 top-1 md:p-2 p-1 md:text-xl text-xs box-content hover:bg-purple-400 hover:rounded-md duration-300' onClick={onOpenMenu} />
                 </div>
                 <div className="md:text-xl text-xs font-semibold inline-block relative md:top-0 -top-1">
                     <img className='inline-block mr-3 float-left md:w-[50px] w-[30px] relative md:top-2 top-0' src={logo} alt="logo website" />

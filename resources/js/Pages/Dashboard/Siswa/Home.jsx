@@ -1,5 +1,5 @@
 import HardTitle from '@/Components/HardTitle'
-import Sidebar from '@/Layouts/Sidebar'
+import AuthLayout from '@/Layouts/AuthLayout'
 import { Inertia } from '@inertiajs/inertia';
 import { Link, router, usePage } from '@inertiajs/react';
 import React, { useEffect, useState } from 'react'
@@ -68,7 +68,7 @@ const Home = ({ items, short }) => {
     }
 
     return (
-        <Sidebar active={'siswa'} user={auth.user}>
+        <AuthLayout active={'siswa'} user={auth.user}>
             <HardTitle title={'Data Siswa'} subTitle={'Kelola Data Siswa'} />
             <Loading loading={loading} />
             <div className='text-base font-semibold md:mb-5'>
@@ -173,7 +173,7 @@ const Home = ({ items, short }) => {
                 ))}
             </div>
             <Paginate meta={items} short={short} />
-        </Sidebar>
+        </AuthLayout>
     )
 }
 

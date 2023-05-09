@@ -18,18 +18,14 @@ class DashboardController extends Controller
     {
         $data_spp = Spp::with(['pembayaran', 'siswa'])->get();
         $items = $this->service->countering();
-        $user = auth()->user();
         return Inertia::render('Dashboard/PanelAdmin', [
             'items' => $items,
             'data_spp' => $data_spp,
-            'user' => $user,
         ]);
     }
 
     public function profile()
     {
-        return Inertia::render('Dashboard/Profile', [
-            'user' => auth()->user(),
-        ]);
+        return Inertia::render('Dashboard/Profile');
     }
 }

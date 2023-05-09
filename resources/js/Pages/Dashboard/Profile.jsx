@@ -1,5 +1,6 @@
 import HardTitle from '@/Components/HardTitle'
-import Sidebar from '@/Layouts/Sidebar'
+import AuthLayout from '@/Layouts/AuthLayout';
+import AuthLayout from '@/Layouts/AuthLayout'
 import { usePage } from '@inertiajs/react';
 import React from 'react'
 import { BiUserCircle, BiUserPin } from 'react-icons/bi';
@@ -9,7 +10,7 @@ const Profile = () => {
     const { auth } = usePage().props;
 
     return (
-        <Sidebar active={'dashboard'} user={auth.user}>
+        <AuthLayout active={'dashboard'} user={auth.user}>
             <HardTitle title={'Profil Pengguna'} subTitle={'Data akun anda'} />
             <div className='grid md:grid-cols-2 grid-cols-1 gap-x-5'>
                 <div className='md:mt-0 mt-3'>
@@ -48,7 +49,7 @@ const Profile = () => {
                     </div>
                 </div>
             </div>
-        </Sidebar>
+        </AuthLayout>
     )
 }
 

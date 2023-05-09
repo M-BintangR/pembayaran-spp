@@ -1,4 +1,4 @@
-import NavbarSiswa from '@/Layouts/NavbarSiswa';
+import NavbarSiswa from '@/Components/NavbarSiswa';
 import { Link } from '@inertiajs/react';
 import React from 'react'
 import background from '../Components/img/background.jpg';

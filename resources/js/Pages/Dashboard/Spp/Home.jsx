@@ -1,4 +1,4 @@
-import Sidebar from '@/Layouts/Sidebar'
+import AuthLayout from '@/Layouts/AuthLayout'
 import HardTitle from '@/Components/HardTitle'
 import { Inertia } from '@inertiajs/inertia';
 import React, { useEffect, useState } from 'react'
@@ -158,7 +158,7 @@ const Home = ({ items, user, short }) => {
 
 
     return (
-        <Sidebar active={'spp'} user={user}>
+        <AuthLayout active={'spp'} user={user}>
             <HardTitle title={'Data SPP'} subTitle={'Kelola Data SPP'} />
             <Loading loading={loading} />
             <div className='text-base font-semibold md:mb-5'>
@@ -285,7 +285,7 @@ const Home = ({ items, user, short }) => {
                 />
             </CrudModal>
 
-        </Sidebar>
+        </AuthLayout>
     )
 }
 

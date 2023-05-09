@@ -1,4 +1,3 @@
-import Sidebar from '@/Layouts/Sidebar'
 import HardTitle from '@/Components/HardTitle'
 import { Inertia } from '@inertiajs/inertia';
 import React, { useEffect, useState } from 'react'
@@ -160,7 +159,7 @@ const Home = ({ items, short }) => {
 
 
     return (
-        <Sidebar active={'petugas'} user={auth.user}>
+        <AuthLayout active={'petugas'} user={auth.user}>
             <HardTitle title={'Data Petugas'} subTitle={'Kelola Data Petugas'} />
             <Loading loading={loading} />
             <div className='text-base font-semibold md:mb-5'>
@@ -287,7 +286,7 @@ const Home = ({ items, short }) => {
                 />
             </CrudModal>
 
-        </Sidebar>
+        </AuthLayout>
     )
 }
 

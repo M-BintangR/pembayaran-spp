@@ -1,33 +1,24 @@
-import React, { useEffect, useRef, useState } from 'react'
-import Navbar from './Navbar'
+import React, { forwardRef } from 'react'
 import { BsChevronDown, BsCurrencyDollar, BsFillBarChartLineFill } from 'react-icons/bs';
 import { MdOutlineDashboardCustomize, MdOutlineSchool } from 'react-icons/md';
 import { FaSchool, FaRegMoneyBillAlt, FaUserAlt } from 'react-icons/fa';
 import { RiUserSettingsLine } from 'react-icons/ri';
 import { Link } from '@inertiajs/react';
-import Footer from './Footer';
-import { menuSidebar } from '@/Components/url/url';
+import Footer from '@/Layouts/Footer';
 
-const Sidebar = ({ children, active, user }) => {
-    const [open, setOpen] = useState('');
-    const [submenuOpen, setSubmenuOpen] = useState(false);
-    const [targetActive, setTargetActive] = useState(false);
-    const sidebarRef = useRef();
-
-    useEffect(() => {
-        setTargetActive(active);
-    }, [active]);
-
-    const filterMenu = menuSidebar.filter(menu => {
-        if (Array.isArray(menu.role)) {
-            return menu.role.includes(user?.level)
-        }
-        return menu.role.includes(user?.level);
-    });
+const Sidebar = forwardRef((
+    {
+        user,
+        setOpen,
+        open,
+        submenuOpen,
+        setSubmenuOpen,
+        targetActive,
+        filterMenu
+    }, sidebarRef) => {
 
     return (
         <div>
-            <Navbar setOpen={setOpen} open={open} sidebarRef={sidebarRef} user={user} />
             <div className='pt-10'>
                 <div className="flex flex-row">
                     <div ref={sidebarRef} className={`scrollbar-hide pb-20 drop-shadow-md md:pt-24 pt-14 bg-gray-200 z-30 md:h-screen bottom-0 top-0 left-0 fixed duration-500 overflow-y-auto ${open ? 'md:fixed md:w-1/5 w-1/2 bottom-0 ' : 'w-12 fixed h-screen'}`}>
@@ -119,8 +110,8 @@ const Sidebar = ({ children, active, user }) => {
                 </div>
             </div>
             <Footer />
-        </div >
+        </div>
     )
-}
+})
 
 export default Sidebar

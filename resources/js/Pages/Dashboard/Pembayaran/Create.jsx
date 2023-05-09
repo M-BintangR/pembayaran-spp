@@ -1,4 +1,3 @@
-import Sidebar from '@/Layouts/Sidebar'
 import React, { useState } from 'react'
 import HardTitle from '@/Components/HardTitle'
 import { Link, useForm, usePage } from '@inertiajs/react';
@@ -7,6 +6,7 @@ import { month } from '@/Components/url/url';
 import { MultiSelect } from "react-multi-select-component";
 import InputError from '@/Components/InputError';
 import { AiOutlineInfoCircle, AiOutlineWarning } from 'react-icons/ai';
+import AuthLayout from '@/Layouts/AuthLayout';
 
 const Create = ({ spp, siswa, kelas, bulan_bayar }) => {
     const { auth } = usePage().props;
@@ -89,7 +89,7 @@ const Create = ({ spp, siswa, kelas, bulan_bayar }) => {
     }
 
     return (
-        <Sidebar active={'pembayaran'} user={auth.user}>
+        <AuthLayout active={'pembayaran'} user={auth.user}>
             <HardTitle title={'Entri Pembayaran'} subTitle={'Entri Transaksi Pembayaran'} />
             <div className="grid md:grid-cols-2 grid-cols-1 md:gap-7 gap-5 md:mt-0 mt-5">
                 <div className='flex gap-y-3 flex-col'>
@@ -203,7 +203,7 @@ const Create = ({ spp, siswa, kelas, bulan_bayar }) => {
                     </div>
                 </div>
             </div>
-        </Sidebar >
+        </AuthLayout>
     )
 }
 

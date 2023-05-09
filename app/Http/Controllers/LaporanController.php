@@ -35,7 +35,6 @@ class LaporanController extends Controller
         $relasi = Kelas::all();
 
         return Inertia::render('Dashboard/Pembayaran/Tunggakan', [
-            'user' => auth()->user(),
             'items' => $items,
             'shortKelas' => $short_kelas,
             'relasi' => $relasi,

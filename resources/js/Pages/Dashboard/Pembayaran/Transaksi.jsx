@@ -1,4 +1,3 @@
-import Sidebar from '@/Layouts/Sidebar'
 import HardTitle from '@/Components/HardTitle'
 import { Link, router, usePage } from '@inertiajs/react';
 import React, { useEffect, useState } from 'react'
@@ -11,6 +10,7 @@ import SearchData from '@/Components/SearchData';
 import { tableTransaksi01 as trTbl } from '@/Components/url/url';
 import { tableTransaksi02 as trTbl2 } from '@/Components/url/url';
 import { month } from '@/Components/url/url';
+import AuthLayout from '@/Layouts/AuthLayout';
 
 const Transaksi = ({ siswa, short }) => {
     const { auth } = usePage().props;
@@ -55,7 +55,7 @@ const Transaksi = ({ siswa, short }) => {
     }
 
     return (
-        <Sidebar active={'pembayaran'} user={auth.user}>
+        <AuthLayout active={'pembayaran'} user={auth.user}>
             <HardTitle title={'Pembayaran Siswa'} subTitle={'Data Pembayaran Siswa'} />
             <Loading loading={loading} />
 
@@ -173,9 +173,7 @@ const Transaksi = ({ siswa, short }) => {
                     <h1 className='text-md md:bg-amber-500 text-black md:text-white w-32 md:pl-3 rounded-md md:py-1 box-border my-5 text-center'>Memuat data...</h1>
                 </div>
             )}
-
-
-        </Sidebar>
+        </AuthLayout>
     )
 }
 

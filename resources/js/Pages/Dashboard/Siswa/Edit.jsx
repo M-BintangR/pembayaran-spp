@@ -1,7 +1,7 @@
 import InputError from '@/Components/InputError'
 import InputLabel from '@/Components/InputLabel'
 import TextInput from '@/Components/TextInput'
-import Sidebar from '@/Layouts/Sidebar'
+import AuthLayout from '@/Layouts/AuthLayout'
 import React, { useEffect } from 'react'
 import HardTitle from '@/Components/HardTitle'
 import { Link, useForm, usePage } from '@inertiajs/react';
@@ -42,7 +42,7 @@ const Edit = ({ item, kelas }) => {
     }
 
     return (
-        <Sidebar active={'siswa'} user={user}>
+        <AuthLayout active={'siswa'} user={user}>
             <HardTitle title={'Edit Siswa'} subTitle={'Edit data siswa'} />
             <form onSubmit={onHandleSubmit}>
                 <div className='grid md:grid-cols-2 gap-x-3'>
@@ -160,7 +160,7 @@ const Edit = ({ item, kelas }) => {
                     <Link className='duration-300 bg-gray-200 border border-gray-400 hover:border-purple-700 hover:bg-purple-700 hover:text-white py-2 rounded-md px-3' href={route('siswa.index')}>Kembali</Link>
                 </div>
             </form>
-        </Sidebar>
+        </AuthLayout>
     )
 }
 
