@@ -11,16 +11,19 @@ Follow instagram saya [Muhammad Bintang](https://www.instagram.com/bntg.ch_icy/)
 ## Screenshot
 
 ### Home Page
-<img src="https://github.com/M-BintangR/gambar-doc/blob/main/homepage.png" width="800" alt="gambarHomePage">
+
+<img src="https://github.com/M-BintangR/pembayaran-spp/doc/homepage.png" width="800" alt="gambarHomePage">
 
 ### Fitur Aplikasi
-<img src="https://github.com/M-BintangR/gambar-doc/blob/main/5.gif" alt="gambarHomePage">
-<img src="https://github.com/M-BintangR/gambar-doc/blob/main/1.png" width="800" alt="gambarHomePage">
-<img src="https://github.com/M-BintangR/gambar-doc/blob/main/2.png" width="800" alt="gambarHomePage">
-<img src="https://github.com/M-BintangR/gambar-doc/blob/main/3.png" width="800" alt="gambarHomePage">
-<img src="https://github.com/M-BintangR/gambar-doc/blob/main/4.png" width="800" alt="gambarHomePage">
+
+<img src="https://github.com/M-BintangR/pembayaran-spp/doc/5.gif" alt="gambarHomePage">
+<img src="https://github.com/M-BintangR/pembayaran-spp/doc/1.png" width="800" alt="gambarHomePage">
+<img src="https://github.com/M-BintangR/pembayaran-spp/doc/2.png" width="800" alt="gambarHomePage">
+<img src="https://github.com/M-BintangR/pembayaran-spp/doc/3.png" width="800" alt="gambarHomePage">
+<img src="https://github.com/M-BintangR/pembayaran-spp/doc/4.png" width="800" alt="gambarHomePage">
 
 ## Teknologi
+
 1. [Laravel 9](https://laravel.com/)
 2. [Reactjs](https://react.dev/)
 3. [Inertiajs](https://inertiajs.com/)
@@ -29,7 +32,7 @@ Follow instagram saya [Muhammad Bintang](https://www.instagram.com/bntg.ch_icy/)
 
 ## Fitur
 
-1. Sistem login 
+1. Sistem login
 2. Multiusers
 3. Multiroles
 4. Homepage dan Dashboard
@@ -42,18 +45,25 @@ Follow instagram saya [Muhammad Bintang](https://www.instagram.com/bntg.ch_icy/)
 ## Cara Install dan Mengatur Aplikasi
 
 clone repo ini dengan cara :
+
 ```bash
 https://github.com/M-BintangR/pembayaran-spp-laravel9.git
 ```
+
 Kemudian, buka terminal seperti bash, zsh, command prompt atau powershell dan nstall dependency composer dengan command berikut :
+
 ```bash
 composer install && composer update
 ```
+
 Lanjut, copy file `.env.example` dengan nama `.env` sebagai berikut:
+
 ```bash
 cp .env.example .env
 ```
+
 Kemudian, silahkan ganti credentials database di file .env nya seperti
+
 ```bash
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
@@ -62,19 +72,25 @@ DB_DATABASE=xxx
 DB_USERNAME=root
 DB_PASSWORD=
 ```
+
 untuk panduan atau dokumentasi mengenai setup database pada file `.env` bisa kalian baca pada dokumentasi resmi laravelnya ya cui, [klik disini.](https://laravel.com/docs/9.x/database)
 
 Kemudian, silahkan migrate semua database di project ini dengan menggunakan artisan command:
+
 ```bash
 php artisan migrate
 ```
+
 Lanjut, generate aplikasi key untuk keamanan pada project laravel dengan menggunakan artisan command berikut:
+
 ```bash
 php artisan key:generate
-# atau 
+# atau
 php artisan key:generate --show
 ```
+
 Install dependencies nodejs didalam folder `node_modules` menggunakan Npm atau Yarn:
+
 ```bash
 npm install && npm run dev
 # atau menggunakan Yarn
@@ -82,65 +98,73 @@ yarn && yarn dev
 # atau menggunakan pnpm
 pnpm i && pnpm dev
 ```
+
 Langkah Terakhir, silahkan jalankan local development server Laravel dengan menggunakan artisan command sebagai berikut:
+
 ```bash
 php artisan serve
 ```
+
 Project ini akan berjalan di `https://localhost:8080`.
 
 ## Database dan Tabel
 
 ### Tabel User
-| Nama            |Type      |Length     |Atribut                       |
-|-----------------|----------|-----------|------------------------------|
-| id              | int      | 11        | primary_key, auto_increment  |
-| username        | varchar  | 25        | -                            | 
-| nama_pengguna   | varchar  | 35        | -                            |
-| level           | enum     | 0         | -                            |
-| password        | varchar  | 8         | -                            |
+
+| Nama          | Type    | Length | Atribut                     |
+| ------------- | ------- | ------ | --------------------------- |
+| id            | int     | 11     | primary_key, auto_increment |
+| username      | varchar | 25     | -                           |
+| nama_pengguna | varchar | 35     | -                           |
+| level         | enum    | 0      | -                           |
+| password      | varchar | 8      | -                           |
 
 ### Tabel Siswa
-| Nama      | Type    | Length    | Atribut                             |
-|-----------|---------|-----------|-------------------------------------|
-| nisn      | int     | 10        | primary_key, auto_increment, unique |
-| nis       | char    | 8         | unique                              |
-| nama      | varchar | 35        | -                                   |
-| jk        | enum    | 0         | -                                   |
-| id_kelas  | int     | 11        | -                                   |
-| alamat    | text    | 0         | -                                   |
-| no_telp   | char    | 13        | -                                   |
-| id_spp    | int     | 11        | -                                   |
+
+| Nama     | Type    | Length | Atribut                             |
+| -------- | ------- | ------ | ----------------------------------- |
+| nisn     | int     | 10     | primary_key, auto_increment, unique |
+| nis      | char    | 8      | unique                              |
+| nama     | varchar | 35     | -                                   |
+| jk       | enum    | 0      | -                                   |
+| id_kelas | int     | 11     | -                                   |
+| alamat   | text    | 0      | -                                   |
+| no_telp  | char    | 13     | -                                   |
+| id_spp   | int     | 11     | -                                   |
 
 ### Tabel Kelas
+
 | Nama                | Type    | Atribut                     |
-|---------------------|---------|-----------------------------|
+| ------------------- | ------- | --------------------------- |
 | id                  | int     | primary_key, auto_increment |
 | nama_kelas          | varchar | -                           |
 | kompetensi_keahlian | varchar | -                           |
 
 ### Tabel SPP
-| Nama      | Type    | Length | Atribut                     |
-|-----------|---------|--------|-----------------------------|
-| id        | int     | 11     | primary_key, auto_increment |
-| nominal   | bigint  | 100    |                             |
-| level     | enum    | 0      |                             |
+
+| Nama    | Type   | Length | Atribut                     |
+| ------- | ------ | ------ | --------------------------- |
+| id      | int    | 11     | primary_key, auto_increment |
+| nominal | bigint | 100    |                             |
+| level   | enum   | 0      |                             |
 
 ### Tabel Pembayaran
-| Nama         | Type       | Length  | Atribut                     |
-|--------------|------------|---------|-----------------------------|
-| id_petugas   | int        | 11      | primary_key, auto_increment |
-| nisn         | int        | 10      | -                           |
-| tgl_bayar    | date       | 0       | -                           |
-| bulan_bayar  | varchar    | 10      | -                           |
-| tahun_bayar  | varchar    | 4       | -                           |   
-| id_spp       | int        | 11      | -                           |
-| jumlah_bayar | bitint     | 100     | -                           |
+
+| Nama         | Type    | Length | Atribut                     |
+| ------------ | ------- | ------ | --------------------------- |
+| id_petugas   | int     | 11     | primary_key, auto_increment |
+| nisn         | int     | 10     | -                           |
+| tgl_bayar    | date    | 0      | -                           |
+| bulan_bayar  | varchar | 10     | -                           |
+| tahun_bayar  | varchar | 4      | -                           |
+| id_spp       | int     | 11     | -                           |
+| jumlah_bayar | bitint  | 100    | -                           |
 
 ### Tabel Kuitansi
-| Nama          | Type      | Length    | Atribut                       |
-|---------------|-----------|-----------|-------------------------------|
-| id            | int       | 11        | primary_key, auto_increment   |
-| nis           | char      | 8         | -                             |
-| bulan         | varchar   | 100       | -                             |
-| tanggal       | date      | 0         | -                             |
 
+| Nama    | Type    | Length | Atribut                     |
+| ------- | ------- | ------ | --------------------------- |
+| id      | int     | 11     | primary_key, auto_increment |
+| nis     | char    | 8      | -                           |
+| bulan   | varchar | 100    | -                           |
+| tanggal | date    | 0      | -                           |
