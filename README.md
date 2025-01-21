@@ -12,15 +12,15 @@ Follow instagram saya [Muhammad Bintang](https://www.instagram.com/bntg.ch_icy/)
 
 ### Home Page
 
-<img src="https://github.com/M-BintangR/pembayaran-spp/doc/homepage.png" width="800" alt="gambarHomePage">
+<img src="https://github.com/M-BintangR/pembayaran-spp/blob/main/doc/homepage.png" width="800" alt="gambarHomePage">
 
 ### Fitur Aplikasi
 
-<img src="https://github.com/M-BintangR/pembayaran-spp/doc/5.gif" alt="gambarHomePage">
-<img src="https://github.com/M-BintangR/pembayaran-spp/doc/1.png" width="800" alt="gambarHomePage">
-<img src="https://github.com/M-BintangR/pembayaran-spp/doc/2.png" width="800" alt="gambarHomePage">
-<img src="https://github.com/M-BintangR/pembayaran-spp/doc/3.png" width="800" alt="gambarHomePage">
-<img src="https://github.com/M-BintangR/pembayaran-spp/doc/4.png" width="800" alt="gambarHomePage">
+<img src="https://github.com/M-BintangR/pembayaran-spp/blob/main/doc/5.gif" alt="gambarHomePage">
+<img src="https://github.com/M-BintangR/pembayaran-spp/blob/main/doc/1.png" width="800" alt="gambarHomePage">
+<img src="https://github.com/M-BintangR/pembayaran-spp/blob/main/doc/2.png" width="800" alt="gambarHomePage">
+<img src="https://github.com/M-BintangR/pembayaran-spp/blob/main/doc/3.png" width="800" alt="gambarHomePage">
+<img src="https://github.com/M-BintangR/pembayaran-spp/blob/main/doc/4.png" width="800" alt="gambarHomePage">
 
 ## Teknologi
 
